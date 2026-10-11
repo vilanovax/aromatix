@@ -1,0 +1,10 @@
+{
+  "name": "آروما",
+  "short_name": "آروما",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#E7EBE8",
+  "theme_color": "#E7EBE8",
+  "lang": "fa",
+  "dir": "rtl"
+}
