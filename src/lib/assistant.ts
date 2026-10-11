@@ -103,18 +103,19 @@ export function parseLine(input: string): Profile | null {
   else if (/معتدل|بهار|پاییز/.test(text)) season = "mild";
 
   const occasions: string[] = [];
-  if (/مهمانی|شب/.test(text)) occasions.push("night");
+  if (mentionsNight(text)) occasions.push("night");
   if (/کار|اداری|دفتر/.test(text)) occasions.push("office");
   if (/قرار/.test(text)) occasions.push("date");
   if (/ورزش/.test(text)) occasions.push("sport");
   if (/روزمره|هر روز/.test(text)) occasions.push("daily");
-  if (occasions.length === 0) occasions.push("daily");
 
   let budget = 8;
-  if (/تا\s*2|زیر\s*2|کمتر از\s*2/.test(text)) budget = 2;
-  else if (/تا\s*5|زیر\s*5/.test(text)) budget = 5;
-  else if (/تا\s*12|زیر\s*12/.test(text)) budget = 12;
-  else if (/تا\s*8|زیر\s*8/.test(text)) budget = 8;
+  const amount = text.match(/(?:تا|زیر|کمتر از)\s*(\d+)/);
+  if (amount) {
+    const value = Number(amount[1]);
+    if (!Number.isFinite(value) || value <= 0) return null;
+    budget = value;
+  }
 
   let reference: string | null = null;
   if (/ساواج/.test(text)) reference = "sauvage";
@@ -165,8 +166,15 @@ function needList() {
   };
 }
 
+function mentionsNight(text: string) {
+  return /مهمانی|(?<![\u0600-\u06FF])شب(?![\u0600-\u06FF])/u.test(text);
+}
+
 function hasScene(text: string) {
-  return /زمست|تابست|گرما|سرد|معتدل|کار|اداری|دفتر|مهمانی|شب|قرار|ورزش|روزمره|تا\s*\d|زیر\s*\d|میلیون/.test(text);
+  return (
+    /زمست|تابست|گرما|سرد|معتدل|کار|اداری|دفتر|قرار|ورزش|روزمره|هر روز|تا\s*\d|زیر\s*\d|میلیون/.test(text) ||
+    mentionsNight(text)
+  );
 }
 
 function normalize(input: string) {

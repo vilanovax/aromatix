@@ -40,7 +40,7 @@ function scorePerfume(perfume: Perfume, profile: Profile) {
   else score -= 1;
 
   const overlap = profile.occasions.filter((occasion) => perfume.occasions.includes(occasion)).length;
-  score += overlap * 2;
+  score += profile.occasions.length === 0 ? 2 : overlap * 2;
 
   if (profile.reference && profile.reference !== "none" && perfume.inspiredBy === profile.reference) {
     score += 3;
@@ -54,11 +54,12 @@ function scorePerfume(perfume: Perfume, profile: Profile) {
 }
 
 export function resultHeading(profile: Profile, count: number) {
-  const occasions = profile.occasions.map(occasionLabel).join(" و ");
+  const occasions = profile.occasions.map(occasionLabel).filter(Boolean).join(" و ");
   const season = profile.season === "all" ? "" : ` در ${seasonShort(profile.season)}`;
   const ref = referenceLabel(profile.reference);
   const prefix = ref && profile.reference !== "none" ? `نزدیک به ${ref}، ` : "";
-  return `${prefix}${countWord(count)} عطر برای ${occasions}${season}`;
+  const place = occasions ? ` برای ${occasions}` : "";
+  return `${prefix}${countWord(count)} عطر${place}${season}`;
 }
 
 function minPrice(perfume: Perfume) {
