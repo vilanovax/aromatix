@@ -62,12 +62,12 @@ export function Assistant() {
   }
 
   return (
-    <div className="border-t border-[var(--line)] bg-[var(--paper)] px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
+    <div className="border-t border-(--line) bg-(--paper) px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       {reply ? (
         <div
           ref={replyRef}
           aria-live="polite"
-          className="scroll-quiet sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain rounded-2xl border border-[var(--line)] bg-[var(--card)] p-4 shadow-[0_8px_24px_-12px_rgba(28,33,31,0.18)]"
+          className="scroll-quiet sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain rounded-2xl border border-(--line) bg-(--card) p-4 shadow-[0_8px_24px_-12px_rgba(28,33,31,0.18)]"
         >
           <div className="flex items-center justify-between gap-3">
             <p className="text-[13px] font-semibold">
@@ -76,14 +76,14 @@ export function Assistant() {
             <button
               type="button"
               onClick={() => setReply(null)}
-              className="pressable quiet -me-2 min-h-9 rounded-full px-3 text-[12px] text-[var(--muted)]"
+              className="pressable quiet -me-2 min-h-9 rounded-full px-3 text-[12px] text-(--muted)"
             >
               بستن
             </button>
           </div>
           <p className="mt-1.5 text-[15px] leading-7">{reply.body}</p>
           {reply.kind === "refine" ? (
-            <p className="mt-2 text-[13px] text-[var(--muted)]">فهرست بالا با همین اصلاح چیده شد.</p>
+            <p className="mt-2 text-[13px] text-(--muted)">فهرست بالا با همین اصلاح چیده شد.</p>
           ) : null}
           {reply.kind === "learn" && reply.href ? (
             <Link
@@ -96,7 +96,7 @@ export function Assistant() {
           {reply.kind === "compare" ? (
             <Link
               href={`/compare?a=${reply.a}&b=${reply.b}`}
-              className="pressable mt-3 inline-flex min-h-11 items-center rounded-xl bg-[var(--ink)] px-4 text-[14px] font-medium text-[var(--paper)]"
+              className="pressable mt-3 inline-flex min-h-11 items-center rounded-xl bg-(--ink) px-4 text-[14px] font-medium text-(--paper)"
             >
               مقایسه این دو
             </Link>
@@ -110,7 +110,7 @@ export function Assistant() {
               key={prompt}
               type="button"
               onClick={() => ask(prompt)}
-              className="pressable edge min-h-9 shrink-0 rounded-full border border-[var(--line)] bg-[var(--card)] px-3.5 text-[13px]"
+              className="pressable edge min-h-9 shrink-0 rounded-full border border-(--line) bg-(--card) px-3.5 text-[13px]"
             >
               {prompt}
             </button>
@@ -120,13 +120,13 @@ export function Assistant() {
         <button
           type="button"
           onClick={() => setChipsOpen(true)}
-          className="pressable quiet mb-2 min-h-8 rounded-full px-2 text-[12px] text-[var(--muted)]"
+          className="pressable quiet mb-2 min-h-8 rounded-full px-2 text-[12px] text-(--muted)"
         >
           پیشنهادهای سریع
         </button>
       )}
       <form
-        className="flex items-center gap-1 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-1 ps-3 focus-within:border-[var(--ink)]"
+        className="flex items-center gap-1 rounded-2xl border border-(--line) bg-(--card) p-1 ps-3 focus-within:border-(--ink)"
         onSubmit={(event) => {
           event.preventDefault();
           ask(draft);
@@ -154,7 +154,7 @@ export function Assistant() {
           type="submit"
           disabled={!draft.trim()}
           aria-label="بفرست"
-          className="pressable solid grid size-11 shrink-0 place-items-center rounded-xl bg-[var(--ink)] text-[var(--paper)] disabled:bg-[var(--line)] disabled:text-[var(--muted)]"
+          className="pressable solid grid size-11 shrink-0 place-items-center rounded-xl bg-(--ink) text-(--paper) disabled:bg-(--line) disabled:text-(--muted)"
         >
           <SendIcon className="size-5" />
         </button>

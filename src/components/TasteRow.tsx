@@ -5,12 +5,12 @@ import { useAroma } from "@/lib/store";
 import type { Taste } from "@/lib/types";
 
 const OPTIONS: Array<{ id: Taste; label: string; on: string }> = [
-  { id: "like", label: "دوست دارم", on: "bg-[var(--ink)] text-[var(--paper)]" },
-  { id: "try", label: "امتحان کنم", on: "bg-[var(--moss)] text-[var(--ink)]" },
-  { id: "dislike", label: "دوست ندارم", on: "bg-[var(--clay)] text-[var(--danger)]" },
+  { id: "like", label: "دوست دارم", on: "bg-(--ink) text-(--paper)" },
+  { id: "try", label: "امتحان کنم", on: "bg-(--moss) text-(--ink)" },
+  { id: "dislike", label: "دوست ندارم", on: "bg-(--clay) text-(--danger)" },
 ];
 
-export function TasteRow({ slug, dense = false }: { slug: string; dense?: boolean }) {
+export function TasteRow({ slug }: { slug: string }) {
   const { taste, setTaste } = useAroma();
   const current = taste[slug];
 
@@ -18,7 +18,7 @@ export function TasteRow({ slug, dense = false }: { slug: string; dense?: boolea
     <div
       role="group"
       aria-label="نظر تو"
-      className={cn("grid grid-cols-3", dense ? "gap-1.5" : "gap-1 rounded-2xl bg-[var(--paper)] p-1")}
+      className="grid grid-cols-3 gap-1 rounded-2xl bg-(--paper) p-1"
     >
       {OPTIONS.map((option) => {
         const selected = current === option.id;
@@ -29,13 +29,8 @@ export function TasteRow({ slug, dense = false }: { slug: string; dense?: boolea
             aria-pressed={selected}
             onClick={() => setTaste(slug, option.id)}
             className={cn(
-              "pressable rounded-xl px-1",
-              dense ? "min-h-9 border text-[12px]" : "min-h-10 text-[13px]",
-              selected
-                ? cn(option.on, "border-transparent font-semibold")
-                : dense
-                  ? "edge border-[var(--line)] text-[var(--muted)]"
-                  : "quiet text-[var(--muted)]",
+              "pressable min-h-10 rounded-xl px-1 text-[13px]",
+              selected ? cn(option.on, "font-semibold") : "quiet text-(--muted)",
             )}
           >
             {option.label}

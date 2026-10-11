@@ -36,7 +36,7 @@ export default function NotePage() {
   return (
     <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
       <article className="px-5 pt-6 pb-12">
-        <p className="text-[13px] text-[var(--muted)]">دانشنامه</p>
+        <p className="text-[13px] text-(--muted)">دانشنامه</p>
         <h1 className="mt-2 text-[1.7rem] font-bold">{note.title}</h1>
         <div className="mt-4 h-2 w-24 rounded-full bg-[#6E5436]" aria-hidden="true" />
         {note.body.map((paragraph) => (
@@ -44,17 +44,17 @@ export default function NotePage() {
             {paragraph}
           </p>
         ))}
-        <p className="mt-4 text-[15px] leading-7 text-[var(--muted)]">{note.wear}</p>
+        <p className="mt-4 text-[15px] leading-7 text-(--muted)">{note.wear}</p>
         <section className="mt-10">
           <h2 className="text-[15px] font-semibold">در این عطرها هست</h2>
           <ul className="mt-3 flex flex-col gap-2">
             {carriers.map((perfume) => (
               <li key={perfume.slug}>
-                <Link href={`/perfume/${perfume.slug}`} className="pressable flex items-center gap-3 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2.5">
+                <Link href={`/perfume/${perfume.slug}`} className="pressable flex items-center gap-3 rounded-2xl border border-(--line) bg-(--card) p-2.5">
                   <ScentMark perfume={perfume} className="h-16 w-12 rounded-lg" />
                   <span>
                     <span className="block font-medium">{perfume.nameFa}</span>
-                    <span className="text-[13px] text-[var(--muted)]">{perfume.brand}</span>
+                    <span className="text-[13px] text-(--muted)">{perfume.brand}</span>
                   </span>
                 </Link>
               </li>

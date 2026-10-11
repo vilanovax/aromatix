@@ -21,9 +21,9 @@ export function AccordMark({ accords, labeled = false }: { accords: Accord[]; la
       {labeled ? (
         <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
           {accords.map((accord) => (
-            <li key={accord.name} className="flex items-center gap-1.5 text-[13px] text-[var(--muted)]">
+            <li key={accord.name} className="flex items-center gap-1.5 text-[13px] text-(--muted)">
               <span className="size-2 rounded-full" style={{ background: accord.color }} />
-              <span className="text-[var(--ink)]">{accord.name}</span>
+              <span className="text-(--ink)">{accord.name}</span>
               <span>{faNum(Math.round((accord.strength / total) * 100))}٪</span>
             </li>
           ))}

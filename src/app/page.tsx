@@ -71,13 +71,13 @@ export default function HomePage() {
       <div className="flex min-h-full flex-col px-5 pt-6 pb-8">
         <div>
           <h1 className="text-[1.75rem] font-bold leading-[1.35]">چه عطری بهت میاد؟</h1>
-          <p className="mt-2.5 max-w-[22rem] text-[15px] leading-7 text-[var(--muted)]">
+          <p className="mt-2.5 max-w-88 text-[15px] leading-7 text-(--muted)">
             بگو کجا می‌خوای استفاده کنی، چه بوهایی دوست داری و چقدر می‌خوای هزینه کنی.
           </p>
           {memory ? (
             <Link
               href={memory.href}
-              className="pressable quiet mt-4 flex min-h-12 items-center rounded-2xl bg-[var(--moss)] px-4 text-[14px] leading-6"
+              className="pressable quiet mt-4 flex min-h-12 items-center rounded-2xl bg-(--moss) px-4 text-[14px] leading-6"
             >
               {memory.sentence}
             </Link>
@@ -94,8 +94,8 @@ export default function HomePage() {
               اسم عطر یا توصیف عطری که می‌خواهی
             </label>
             <div
-              className={`flex items-center gap-1 rounded-2xl border bg-[var(--card)] p-1 ps-3.5 shadow-[0_6px_20px_-14px_rgba(28,33,31,0.35)] focus-within:border-[var(--ink)] ${
-                error ? "border-[var(--danger)]" : "border-[var(--line)]"
+              className={`flex items-center gap-1 rounded-2xl border bg-(--card) p-1 ps-3.5 shadow-[0_6px_20px_-14px_rgba(28,33,31,0.35)] focus-within:border-(--ink) ${
+                error ? "border-(--danger)" : "border-(--line)"
               }`}
             >
               <input
@@ -114,17 +114,17 @@ export default function HomePage() {
               />
               <button
                 type="submit"
-                className="pressable solid min-h-12 shrink-0 rounded-xl bg-[var(--ink)] px-5 text-[15px] font-semibold text-[var(--paper)]"
+                className="pressable solid min-h-12 shrink-0 rounded-xl bg-(--ink) px-5 text-[15px] font-semibold text-(--paper)"
               >
                 پیدا کن
               </button>
             </div>
             {error ? (
-              <p id="wish-error" className="mt-2 text-[13px] leading-6 text-[var(--danger)]">
+              <p id="wish-error" className="mt-2 text-[13px] leading-6 text-(--danger)">
                 اسم یک عطر، یا موقعیت، فصل و بودجه را بنویس؛ مثلاً «خمره» یا «محل کار، تابستون».
               </p>
             ) : (
-              <p id="wish-hint" className="mt-2 text-[13px] leading-6 text-[var(--muted)]">
+              <p id="wish-hint" className="mt-2 text-[13px] leading-6 text-(--muted)">
                 اسم عطر هم می‌تونی بنویسی، یا بگی دنبال چه رایحه‌ای هستی.
               </p>
             )}
@@ -136,7 +136,7 @@ export default function HomePage() {
                 <button
                   type="button"
                   onClick={() => go(example)}
-                  className="pressable edge inline-flex min-h-10 items-center rounded-full border border-[var(--line)] bg-[var(--card)] px-3.5 text-[13px]"
+                  className="pressable edge inline-flex min-h-10 items-center rounded-full border border-(--line) bg-(--card) px-3.5 text-[13px]"
                 >
                   {example}
                 </button>
@@ -146,13 +146,13 @@ export default function HomePage() {
 
           <Link
             href="/guide"
-            className="pressable quiet mt-7 flex min-h-14 items-center gap-3 rounded-2xl border border-[var(--line)] px-4"
+            className="pressable quiet mt-7 flex min-h-14 items-center gap-3 rounded-2xl border border-(--line) px-4"
           >
             <span className="min-w-0 flex-1">
               <span className="block text-[14px] font-semibold">مطمئن نیستی چه بنویسی؟</span>
-              <span className="mt-0.5 block text-[13px] text-[var(--muted)]">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
+              <span className="mt-0.5 block text-[13px] text-(--muted)">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
             </span>
-            <ForwardIcon className="size-5 shrink-0 text-[var(--muted)]" />
+            <ForwardIcon className="size-5 shrink-0 text-(--muted)" />
           </Link>
         </div>
       </div>

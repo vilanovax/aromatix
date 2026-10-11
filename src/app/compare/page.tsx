@@ -32,12 +32,12 @@ function CompareScreen() {
       {!left || !right || left.slug === right.slug ? (
         <div className="px-5 py-8">
           <h1 className="text-[1.4rem] font-bold">دو عطر را انتخاب کن</h1>
-          <p className="mt-3 text-[14px] leading-7 text-[var(--muted)]">
+          <p className="mt-3 text-[14px] leading-7 text-(--muted)">
             روی کارت پیشنهاد، مقایسه را بزن. با دوتایی شدن، جدول کنار هم می‌آید.
           </p>
           <Link
             href="/results"
-            className="pressable mt-5 inline-flex min-h-12 items-center rounded-2xl bg-[var(--ink)] px-5 text-[15px] font-medium text-[var(--paper)]"
+            className="pressable mt-5 inline-flex min-h-12 items-center rounded-2xl bg-(--ink) px-5 text-[15px] font-medium text-(--paper)"
           >
             رفتن به پیشنهادها
           </Link>
@@ -48,14 +48,14 @@ function CompareScreen() {
             {left.nameFa} یا {right.nameFa}؟
           </h1>
           <Decision left={left} right={right} />
-          <p className="mt-3 px-1 text-[14px] leading-7 text-[var(--muted)]">{diffLine(left, right)}</p>
+          <p className="mt-3 px-1 text-[14px] leading-7 text-(--muted)">{diffLine(left, right)}</p>
 
           <div className="mt-5 grid grid-cols-2 gap-3">
             {[left, right].map((perfume) => (
-              <Link key={perfume.slug} href={`/perfume/${perfume.slug}`} className="rounded-2xl bg-[var(--card)] p-3">
+              <Link key={perfume.slug} href={`/perfume/${perfume.slug}`} className="rounded-2xl bg-(--card) p-3">
                 <ScentMark perfume={perfume} className="mx-auto h-24 w-full rounded-xl" />
                 <span className="mt-2 block text-center text-[15px] font-semibold">{perfume.nameFa}</span>
-                <span className="mt-0.5 block text-center text-[12px] text-[var(--muted)]">{perfume.brand}</span>
+                <span className="mt-0.5 block text-center text-[12px] text-(--muted)">{perfume.brand}</span>
                 <span className="mt-3 block">
                   <AccordMark accords={perfume.accords} />
                 </span>
@@ -64,7 +64,7 @@ function CompareScreen() {
           </div>
 
           <div className="mt-5 overflow-x-auto overscroll-contain">
-            <table className="w-full min-w-[22rem] border-separate border-spacing-0 text-[14px]">
+            <table className="w-full min-w-88 border-separate border-spacing-0 text-[14px]">
               <tbody>
                 <Row
                   label="چرا"
@@ -94,7 +94,7 @@ function CompareScreen() {
               </tbody>
             </table>
           </div>
-          <p className="mt-4 px-1 text-[12px] leading-6 text-[var(--muted)]">
+          <p className="mt-4 px-1 text-[12px] leading-6 text-(--muted)">
             قیمت‌ها همان فروشگاهِ موجودِ تأییدشده است. جایی که داده نداریم، ردیف را با حدس پر نمی‌کنیم.
           </p>
           <UnverifiedPrices left={left} right={right} />
@@ -108,7 +108,7 @@ function Decision({ left, right }: { left: Perfume; right: Perfume }) {
   const facts = decisionFacts(left, right);
   if (facts.length === 0) {
     return (
-      <p className="mt-3 rounded-xl bg-[var(--moss)] px-3 py-2.5 text-[14px] leading-7">
+      <p className="mt-3 rounded-xl bg-(--moss) px-3 py-2.5 text-[14px] leading-7">
         از روی قیمت تأییدشده و ماندگاری، این دو به هم نزدیک‌اند.
       </p>
     );
@@ -117,9 +117,9 @@ function Decision({ left, right }: { left: Perfume; right: Perfume }) {
   return (
     <ul className="mt-4 flex flex-col gap-2">
       {facts.map((item) => (
-        <li key={item.name} className="rounded-2xl bg-[var(--card)] px-4 py-3">
+        <li key={item.name} className="rounded-2xl bg-(--card) px-4 py-3">
           <p className="text-[15px] font-semibold">{item.name}</p>
-          <p className="mt-0.5 text-[14px] leading-6 text-[var(--muted)]">{item.fact}</p>
+          <p className="mt-0.5 text-[14px] leading-6 text-(--muted)">{item.fact}</p>
         </li>
       ))}
     </ul>
@@ -134,7 +134,7 @@ function UnverifiedPrices({ left, right }: { left: Perfume; right: Perfume }) {
   });
   if (notes.length === 0) return null;
   return (
-    <ul className="mt-2 px-1 text-[12px] leading-6 text-[var(--muted)]">
+    <ul className="mt-2 px-1 text-[12px] leading-6 text-(--muted)">
       {notes.map((note) => (
         <li key={note}>{note}</li>
       ))}
@@ -146,7 +146,7 @@ function Row({ label, values, span = false }: { label: string; values: string[];
   if (!span && values.every((value) => value.length === 0)) return null;
   return (
     <tr className="align-top">
-      <th className="sticky inset-inline-start-0 z-10 w-20 bg-[var(--paper)] py-3 pe-2 text-start text-[13px] font-normal text-[var(--muted)]">
+      <th className="sticky inset-inline-start-0 z-10 w-20 bg-(--paper) py-3 pe-2 text-start text-[13px] font-normal text-(--muted)">
         {label}
       </th>
       {span ? (
@@ -157,7 +157,7 @@ function Row({ label, values, span = false }: { label: string; values: string[];
         values.map((value, index) => (
           <td
             key={`${label}-${index}`}
-            className={cn("px-2 py-3 leading-7", values[0] === values[1] ? "text-[var(--muted)]" : "font-medium")}
+            className={cn("px-2 py-3 leading-7", values[0] === values[1] ? "text-(--muted)" : "font-medium")}
           >
             {value}
           </td>

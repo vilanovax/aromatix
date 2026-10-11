@@ -12,9 +12,9 @@ import { useAroma } from "@/lib/store";
 import type { Accord, Perfume, Taste } from "@/lib/types";
 
 const GROUPS: Array<{ id: Taste; label: string; empty: string; dot: string }> = [
-  { id: "like", label: "دوست دارم", empty: "هنوز چیزی اینجا نیست", dot: "bg-[var(--ink)]" },
+  { id: "like", label: "دوست دارم", empty: "هنوز چیزی اینجا نیست", dot: "bg-(--ink)" },
   { id: "try", label: "می‌خوام امتحان کنم", empty: "برای امتحان بعدی اینجا جمع می‌شود", dot: "bg-[#7FA58A]" },
-  { id: "dislike", label: "دوست ندارم", empty: "این‌ها از پیشنهاد بعدی کنار می‌روند", dot: "bg-[var(--danger)]" },
+  { id: "dislike", label: "دوست ندارم", empty: "این‌ها از پیشنهاد بعدی کنار می‌روند", dot: "bg-(--danger)" },
 ];
 
 const WEIGHT: Record<Taste, number> = { like: 1, try: 0.5, dislike: 0 };
@@ -33,17 +33,17 @@ export default function ShelfPage() {
   return (
     <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
       <div className="px-5 pt-6 pb-10">
-        <h1 className="text-[1.6rem] font-bold">قفسه</h1>
-        <p className="mt-1.5 text-[14px] leading-7 text-[var(--muted)]">
+        <h1 className="text-[1.45rem] font-bold">قفسه</h1>
+        <p className="mt-1.5 text-[15px] leading-7 text-(--muted)">
           روی همین دستگاه می‌ماند و پیشنهاد بعدی را به سلیقه‌ات نزدیک‌تر می‌کند.
         </p>
 
         {!ready ? null : entries.length === 0 ? (
           <div className="mt-8">
-            <div className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-5">
+            <div className="rounded-2xl border border-(--line) bg-(--card) p-5">
               <p className="text-[15px] font-semibold">قفسه هنوز خالی است</p>
-              <p className="mt-1.5 text-[14px] leading-7 text-[var(--muted)]">
-                روی هر پیشنهاد بزن «دوست دارم» یا «امتحان کنم» تا اینجا جمع شود.
+              <p className="mt-1.5 text-[15px] leading-7 text-(--muted)">
+                داخل صفحهٔ هر عطر بزن «دوست دارم» یا «امتحان کنم» تا اینجا جمع شود.
               </p>
               <div className="mt-4 flex gap-2">
                 {SAMPLES.map((perfume) => (
@@ -52,22 +52,22 @@ export default function ShelfPage() {
               </div>
               <Link
                 href="/"
-                className="pressable solid mt-5 inline-flex min-h-12 items-center rounded-2xl bg-[var(--ink)] px-5 text-[15px] font-semibold text-[var(--paper)]"
+                className="pressable solid mt-5 inline-flex min-h-12 items-center rounded-2xl bg-(--ink) px-5 text-[15px] font-semibold text-(--paper)"
               >
                 شروع انتخاب
               </Link>
             </div>
-            <p className="mt-4 text-[13px] leading-6 text-[var(--muted)]">
+            <p className="mt-4 text-[13px] leading-6 text-(--muted)">
               از بین {faNum(perfumes.length)} عطر نمونه می‌توانی شروع کنی.
             </p>
           </div>
         ) : (
           <>
             {profile.length > 0 ? (
-              <section className="mt-6 rounded-2xl bg-[var(--card)] p-4 shadow-[0_6px_20px_-16px_rgba(28,33,31,0.4)]">
+              <section className="mt-6 rounded-2xl bg-(--card) p-4 shadow-[0_6px_20px_-16px_rgba(28,33,31,0.4)]">
                 <div className="flex items-baseline justify-between gap-3">
                   <h2 className="text-[13px] font-semibold">سلیقه‌ات تا اینجا</h2>
-                  <p className="text-[12px] text-[var(--muted)]">{faNum(saved)} عطر ذخیره‌شده</p>
+                  <p className="text-[13px] text-(--muted)">{faNum(saved)} عطر ذخیره‌شده</p>
                 </div>
                 <div className="mt-3">
                   <AccordMark accords={profile} labeled />
@@ -84,7 +84,7 @@ export default function ShelfPage() {
                     <h2 id={`group-${group.id}`} className="flex items-center gap-2 text-[15px] font-semibold">
                       <span className={cn("size-2 rounded-full", group.dot)} aria-hidden="true" />
                       {group.label}
-                      <span className="text-[13px] font-normal text-[var(--muted)]">{faNum(items.length)}</span>
+                      <span className="text-[13px] font-normal text-(--muted)">{faNum(items.length)}</span>
                     </h2>
                     <ul className="mt-3 flex flex-col gap-3">
                       {items.map((perfume) => (
@@ -105,22 +105,22 @@ export default function ShelfPage() {
 function ShelfItem({ perfume, muted }: { perfume: Perfume; muted: boolean }) {
   const offer = leadOffer(perfume);
   return (
-    <li className="rounded-2xl border border-[var(--line)] bg-[var(--card)] p-3">
+    <li className="rounded-2xl border border-(--line) bg-(--card) p-3">
       <Link href={`/perfume/${perfume.slug}`} className="group flex items-center gap-3 rounded-xl">
         <ScentMark perfume={perfume} className={cn("h-20 w-16 shrink-0 rounded-xl", muted && "opacity-55 grayscale")} />
         <span className="min-w-0 flex-1">
           <span className="block font-semibold">{perfume.nameFa}</span>
-          <span className="mt-0.5 block text-[13px] text-[var(--muted)]">
+          <span className="mt-0.5 block text-[13px] text-(--muted)">
             {perfume.brand}، {millionToman(offer.price)}
           </span>
           {cheaperUnconfirmed(perfume) ? (
-            <span className="mt-0.5 block text-[12px] text-[var(--muted)]">ارزان‌تر هم هست، موجودی تأیید نشده</span>
+            <span className="mt-0.5 block text-[13px] text-(--muted)">ارزان‌تر هم هست، موجودی تأیید نشده</span>
           ) : null}
-          <span className="mt-2.5 block max-w-[12rem]">
+          <span className="mt-2.5 block max-w-48">
             <AccordMark accords={perfume.accords} />
           </span>
         </span>
-        <ForwardIcon className="size-5 shrink-0 text-[var(--muted)]" />
+        <ForwardIcon className="size-5 shrink-0 text-(--muted)" />
       </Link>
       <div className="mt-3">
         <TasteRow slug={perfume.slug} />

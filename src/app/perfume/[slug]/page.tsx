@@ -45,11 +45,11 @@ export default function PerfumePage() {
       <article className="px-5 pt-4 pb-10">
         <ScentMark perfume={perfume} className="h-36 w-full rounded-3xl" />
         <h1 className="mt-5 text-[1.7rem] font-bold leading-tight">{perfume.nameFa}</h1>
-        <p className="mt-1 text-[15px] text-[var(--muted)]">{perfume.brand}</p>
-        <p dir="ltr" className="text-end text-[12px] text-[var(--muted)]">
+        <p className="mt-1 text-[15px] text-(--muted)">{perfume.brand}</p>
+        <p dir="ltr" className="text-end text-[12px] text-(--muted)">
           {perfume.nameEn}
         </p>
-        <p className="mt-3 text-[13px] leading-6 text-[var(--muted)]">
+        <p className="mt-3 text-[13px] leading-6 text-(--muted)">
           {perfume.concentration} · {faNum(perfume.volumeMl)} میلی‌لیتر
         </p>
 
@@ -57,8 +57,8 @@ export default function PerfumePage() {
           <AccordMark accords={perfume.accords} labeled />
         </div>
 
-        <div className="mt-6 rounded-2xl bg-[var(--card)] px-4 py-3.5">
-          <p className="text-[12px] font-semibold text-[var(--muted)]">چرا این عطر؟</p>
+        <div className="mt-6 rounded-2xl bg-(--card) px-4 py-3.5">
+          <p className="text-[12px] font-semibold text-(--muted)">چرا این عطر؟</p>
           <p className="mt-1.5 text-[16px] leading-8">{perfume.why}</p>
         </div>
 
@@ -70,7 +70,7 @@ export default function PerfumePage() {
               if (notes.length === 0) return null;
               return (
                 <div key={layer.id} className="flex gap-3 text-[14px] leading-7">
-                  <dt className="w-14 shrink-0 text-[var(--muted)]">{layer.label}</dt>
+                  <dt className="w-14 shrink-0 text-(--muted)">{layer.label}</dt>
                   <dd>
                     {notes.map((note, index) => (
                       <span key={note.name}>
@@ -91,27 +91,27 @@ export default function PerfumePage() {
           </dl>
         </section>
 
-        <dl className="mt-8 divide-y divide-[var(--line)] rounded-2xl border border-[var(--line)] bg-[var(--card)] px-4">
+        <dl className="mt-8 divide-y divide-(--line) rounded-2xl border border-(--line) bg-(--card) px-4">
           <Fact label="فصل" value={perfume.seasons.includes("all") ? "همهٔ فصل‌ها" : perfume.seasons.map(seasonName).join("، ")} />
           {perfume.longevity ? <Fact label="ماندگاری" value={performanceLabel("longevity", perfume.longevity)} /> : null}
           {perfume.sillage ? <Fact label="پخش بو" value={performanceLabel("sillage", perfume.sillage)} /> : null}
           {perfume.inspiredBy ? <Fact label="نزدیک به" value={inspiredName(perfume.inspiredBy)} /> : null}
         </dl>
-        <p className="mt-3 text-[12px] leading-6 text-[var(--muted)]">
+        <p className="mt-3 text-[12px] leading-6 text-(--muted)">
           شباهت بر اساس نوت‌های ثبت‌شده در آروماست، نه محصول برند اصلی.
         </p>
 
         <button
           type="button"
           onClick={() => openShops(perfume.slug)}
-          className="pressable solid mt-6 flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl bg-[var(--ink)] px-4 text-start text-[var(--paper)]"
+          className="pressable solid mt-6 flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl bg-(--ink) px-4 text-start text-(--paper)"
         >
           <span>
             <span className="block text-[15px] font-semibold">
               {offer ? `از ${millionToman(offer.price)}` : "فروشگاه‌ها"}
             </span>
             {offer ? (
-              <span className="mt-0.5 block text-[12px] text-[var(--paper)]/75">
+              <span className="mt-0.5 block text-[12px] text-(--paper)/75">
                 {offer.shop}
                 {offer.stockConfirmed ? "، موجود" : "، موجودی تأیید نشده"}
               </span>
@@ -123,7 +123,7 @@ export default function PerfumePage() {
           </span>
         </button>
         {cheaper ? (
-          <p className="mt-2 text-[12px] leading-6 text-[var(--muted)]">
+          <p className="mt-2 text-[12px] leading-6 text-(--muted)">
             در {cheaper.shop} {millionToman(cheaper.price)}، موجودی تأیید نشده
           </p>
         ) : null}
@@ -140,8 +140,8 @@ export default function PerfumePage() {
                 <Link key={item.slug} href={`/perfume/${item.slug}`} className="w-36 shrink-0">
                   <ScentMark perfume={item} className="h-28 w-full rounded-2xl" />
                   <p className="mt-2 text-[14px] font-semibold">{item.nameFa}</p>
-                  <p className="text-[12px] text-[var(--muted)]">{item.brand}</p>
-                  <p className="mt-1 text-[12px] leading-5 text-[var(--muted)]">{likeness(perfume, item)}</p>
+                  <p className="text-[12px] text-(--muted)">{item.brand}</p>
+                  <p className="mt-1 text-[12px] leading-5 text-(--muted)">{likeness(perfume, item)}</p>
                 </Link>
               ))}
             </div>
@@ -155,7 +155,7 @@ export default function PerfumePage() {
 function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex gap-3 py-3.5 text-[14px]">
-      <dt className="w-20 shrink-0 text-[var(--muted)]">{label}</dt>
+      <dt className="w-20 shrink-0 text-(--muted)">{label}</dt>
       <dd>{value}</dd>
     </div>
   );
