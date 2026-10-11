@@ -14,10 +14,10 @@ type Step = "occasion" | "season" | "budget" | "reference";
 const STEPS: Step[] = ["occasion", "season", "budget", "reference"];
 
 const COPY: Record<Step, { title: string; hint: string }> = {
-  occasion: { title: "کجا می‌خواهی بزنی؟", hint: "حداکثر دو موقعیت" },
-  season: { title: "هوا چطور است؟", hint: "یک فصل" },
+  occasion: { title: "کجا می‌خوای بزنی؟", hint: "حداکثر دو موقعیت" },
+  season: { title: "هوا چطوره؟", hint: "یک فصل کافی است" },
   budget: { title: "تا چه قیمتی؟", hint: "قیمت یک شیشه در فروشگاه‌ها" },
-  reference: { title: "عطر آشنایی هست که دوستش داشته باشی؟", hint: "اختیاری" },
+  reference: { title: "عطر آشنایی هست که دوستش داشته باشی؟", hint: "اختیاری؛ می‌توانی رد کنی" },
 };
 
 const OCCASION_HINT: Record<string, string> = {
@@ -118,6 +118,24 @@ export default function GuidePage() {
         <div key={current} className="step-in">
           <p className="mt-6 text-[13px] text-[var(--muted)]">{COPY[current].hint}</p>
           <h1 className="mt-1.5 text-[1.6rem] font-bold leading-snug">{COPY[current].title}</h1>
+
+          {(occasions.length > 0 || season || budget) && current !== "occasion" ? (
+            <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="انتخاب‌های تا اینجا">
+              {occasions.map((id) => (
+                <li key={id} className="rounded-full bg-[var(--moss)] px-2.5 py-1 text-[12px]">
+                  {OCCASIONS.find((item) => item.id === id)?.label}
+                </li>
+              ))}
+              {season ? (
+                <li className="rounded-full bg-[var(--moss)] px-2.5 py-1 text-[12px]">
+                  {SEASONS.find((item) => item.id === season)?.short}
+                </li>
+              ) : null}
+              {budget && current === "reference" ? (
+                <li className="rounded-full bg-[var(--moss)] px-2.5 py-1 text-[12px]">تا {faNum(budget)} میلیون</li>
+              ) : null}
+            </ul>
+          ) : null}
 
           <div className="mt-6 flex flex-col gap-2" role="group" aria-label={COPY[current].title}>
             {current === "occasion"

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Bottle } from "@/components/Bottle";
+import { ScentMark } from "@/components/Bottle";
 import { Shell } from "@/components/Shell";
 import { perfumes } from "@/lib/catalog";
 
@@ -51,7 +51,7 @@ export default function NotePage() {
             {carriers.map((perfume) => (
               <li key={perfume.slug}>
                 <Link href={`/perfume/${perfume.slug}`} className="pressable flex items-center gap-3 rounded-2xl border border-[var(--line)] bg-[var(--card)] p-2.5">
-                  <Bottle perfume={perfume} className="h-16 w-12 rounded-lg" />
+                  <ScentMark perfume={perfume} className="h-16 w-12 rounded-lg" />
                   <span>
                     <span className="block font-medium">{perfume.nameFa}</span>
                     <span className="text-[13px] text-[var(--muted)]">{perfume.brand}</span>

@@ -1,4 +1,4 @@
-import type { Perfume } from "@/lib/types";
+import type { Leaning, Perfume } from "@/lib/types";
 
 const narsiso = "https://narsiso.com";
 const atrarya = "https://atrarya.com";
@@ -44,6 +44,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "rect",
     cap: "#3E342C",
+    image: "/perfumes/khamrah.jpg",
     accords: [
       { name: "خرما", color: "#8C4A32", strength: 0.34 },
       { name: "وانیل", color: "#C4A574", strength: 0.28 },
@@ -82,6 +83,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "round",
     cap: "#6E6248",
+    image: "/perfumes/kismet-angel.jpg",
     accords: [
       { name: "پرالین", color: "#B5816A", strength: 0.36 },
       { name: "وانیل", color: "#C4A574", strength: 0.27 },
@@ -118,6 +120,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "rect",
     cap: "#2C2A28",
+    image: "/perfumes/liquid-brun.jpg",
     accords: [
       { name: "وانیل", color: "#C4A574", strength: 0.4 },
       { name: "پرالین", color: "#B5816A", strength: 0.32 },
@@ -152,6 +155,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "rect",
     cap: "#3A2A22",
+    image: "/perfumes/qahwa.jpg",
     accords: [
       { name: "قهوه", color: "#6B4636", strength: 0.38 },
       { name: "خرما", color: "#8C4A32", strength: 0.27 },
@@ -188,6 +192,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "slim",
     cap: "#1C1C1C",
+    image: "/perfumes/asad.jpg",
     accords: [
       { name: "ادویه", color: "#8E3D32", strength: 0.34 },
       { name: "وانیل", color: "#C4A574", strength: 0.26 },
@@ -209,7 +214,7 @@ export const perfumes: Perfume[] = [
     sillage: 4,
     inspiredBy: "sauvage",
     why: "ادویه و وانیل تیره دارد. اگر ساواج الکسیر را بشناسی، حال‌وهوای همان خانواده را دارد.",
-    similar: ["cdnim"],
+    similar: ["cdnim", "nine-pm"],
     confidence: 0.88,
     shops: [
       { shop: "نرسیسو", price: 3_200_000, checkedOn: "۱۲ مهر ۱۴۰۴", stockConfirmed: true, href: narsiso },
@@ -225,6 +230,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 105,
     bottle: "slim",
     cap: "#C5C7C4",
+    image: "/perfumes/cdnim.jpg",
     accords: [
       { name: "میوه", color: "#D2B15C", strength: 0.3 },
       { name: "دودی", color: "#5C6164", strength: 0.26 },
@@ -262,6 +268,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "slim",
     cap: "#1F2428",
+    image: "/perfumes/fakhar.jpg",
     accords: [
       { name: "آروماتیک", color: "#7FA58A", strength: 0.34 },
       { name: "مرکبات", color: "#C6B15A", strength: 0.26 },
@@ -298,6 +305,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "round",
     cap: "#8AA0A6",
+    image: "/perfumes/hayaati.jpg",
     accords: [
       { name: "آبی", color: "#6E93A3", strength: 0.4 },
       { name: "نعنا", color: "#7FA58A", strength: 0.28 },
@@ -333,6 +341,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "rect",
     cap: "#D5D8D6",
+    image: "/perfumes/milestone.jpg",
     accords: [
       { name: "آبی", color: "#6E93A3", strength: 0.36 },
       { name: "نمک", color: "#C5CBD0", strength: 0.24 },
@@ -368,6 +377,7 @@ export const perfumes: Perfume[] = [
     volumeMl: 100,
     bottle: "round",
     cap: "#E4D5D8",
+    image: "/perfumes/yara.jpg",
     accords: [
       { name: "گل", color: "#C47B86", strength: 0.34 },
       { name: "وانیل", color: "#C4A574", strength: 0.28 },
@@ -387,15 +397,138 @@ export const perfumes: Perfume[] = [
     longevity: 4,
     sillage: 3,
     why: "شیرین و گلی است و بیشتر به روز و هوای معتدل می‌خورد.",
-    similar: ["khamrah"],
+    similar: ["khamrah", "emeer"],
     confidence: 0.83,
     shops: [
       { shop: "نرسیسو", price: 2_900_000, checkedOn: "۱۲ مهر ۱۴۰۴", stockConfirmed: true, href: narsiso },
     ],
   },
+  {
+    slug: "nine-pm",
+    nameFa: "۹ پی‌ام",
+    nameEn: "Afnan 9pm",
+    brand: "افنان",
+    marketGender: "مردانه",
+    concentration: "ادوپرفیوم",
+    volumeMl: 100,
+    bottle: "slim",
+    cap: "#1A1420",
+    image: "/perfumes/nine-pm.jpg",
+    accords: [
+      { name: "وانیل", color: "#C4A574", strength: 0.36 },
+      { name: "سیب", color: "#C6B15A", strength: 0.24 },
+      { name: "ادویه", color: "#8E3D32", strength: 0.22 },
+      { name: "عنبر", color: "#C47B4A", strength: 0.18 },
+    ],
+    notes: [
+      { layer: "top", name: "سیب" },
+      { layer: "top", name: "دارچین" },
+      { layer: "middle", name: "اسطوخودوس" },
+      { layer: "base", name: "وانیل" },
+      { layer: "base", name: "تونکا" },
+    ],
+    seasons: ["winter", "mild"],
+    occasions: ["night", "daily"],
+    tags: ["sweet", "warm"],
+    longevity: 5,
+    sillage: 5,
+    why: "سیب و وانیل گرم است و برای شب و مهمانی پخش خوبی دارد.",
+    similar: ["asad", "khamrah", "liquid-brun"],
+    confidence: 0.87,
+    shops: [
+      { shop: "نرسیسو", price: 2_750_000, checkedOn: "۱۲ مهر ۱۴۰۴", stockConfirmed: true, href: narsiso },
+      { shop: "لیلیوم", price: 2_680_000, checkedOn: "۱۰ مهر ۱۴۰۴", stockConfirmed: true, href: liliome },
+    ],
+  },
+  {
+    slug: "emeer",
+    nameFa: "امیر",
+    nameEn: "Lattafa Emeer",
+    brand: "لطافه",
+    marketGender: "مشترک",
+    concentration: "ادوپرفیوم",
+    volumeMl: 100,
+    bottle: "slim",
+    cap: "#B08A6A",
+    image: "/perfumes/emeer.jpg",
+    accords: [
+      { name: "عنبر", color: "#C47B4A", strength: 0.32 },
+      { name: "چوب", color: "#6E5436", strength: 0.28 },
+      { name: "مرکبات", color: "#C6B15A", strength: 0.22 },
+      { name: "وانیل", color: "#C4A574", strength: 0.18 },
+    ],
+    notes: [
+      { layer: "top", name: "ترنج" },
+      { layer: "middle", name: "چوب صندل" },
+      { layer: "middle", name: "عنبر" },
+      { layer: "base", name: "وانیل" },
+      { layer: "base", name: "مشک" },
+    ],
+    seasons: ["mild", "winter"],
+    occasions: ["date", "daily", "night"],
+    tags: ["warm"],
+    longevity: 4,
+    sillage: 3,
+    why: "عنبر و چوب گرم است؛ برای قرار و هوای معتدل نرم می‌نشیند.",
+    similar: ["yara", "khamrah", "asad"],
+    confidence: 0.78,
+    shops: [
+      { shop: "عطرآریا", price: 3_100_000, checkedOn: "۹ مهر ۱۴۰۴", stockConfirmed: true, href: atrarya },
+    ],
+  },
 ];
 
 export const perfumeBySlug = Object.fromEntries(perfumes.map((perfume) => [perfume.slug, perfume]));
+
+export const LEANINGS: Record<Leaning, { label: string; note: string; accords: string[] }> = {
+  sweet: { label: "گرم و شیرین", note: "گرم‌تر و شیرین‌تر چیده شد.", accords: ["وانیل", "خرما", "پرالین", "کارامل", "عنبر"] },
+  woody: { label: "تلخ و چوبی", note: "تلخ‌تر و چوبی‌تر چیده شد.", accords: ["چوب", "دودی", "ادویه", "قهوه"] },
+  citrus: { label: "تازه و مرکباتی", note: "تازه‌تر و مرکباتی‌تر چیده شد.", accords: ["مرکبات", "آروماتیک", "میوه"] },
+  aquatic: { label: "آبی و خنک", note: "آبی‌تر و خنک‌تر چیده شد.", accords: ["آبی", "نعنا", "نمک"] },
+};
+
+export function leaningShare(perfume: Perfume, leaning: Leaning) {
+  const wanted = new Set(LEANINGS[leaning].accords);
+  return perfume.accords.reduce((sum, accord) => (wanted.has(accord.name) ? sum + accord.strength : sum), 0);
+}
+
+const NAME_ALIASES: Record<string, string[]> = {
+  khamrah: ["khamrah"],
+  "kismet-angel": ["kismet", "کیسمت"],
+  "liquid-brun": ["liquid brun", "لیکوئید برون"],
+  qahwa: ["qahwa", "قهوه لطافه"],
+  asad: ["asad"],
+  cdnim: ["club de nuit", "cdnim", "کلاب دنویت", "کلاب د نویت"],
+  fakhar: ["fakhar"],
+  hayaati: ["hayaati", "حیاتی"],
+  milestone: ["milestone"],
+  yara: ["yara"],
+  "nine-pm": ["9pm", "۹pm", "افنان", "ناین پی ام", "۹ پی ام"],
+  emeer: ["emeer", "امیر لطافه"],
+};
+
+const NAME_INDEX = perfumes
+  .flatMap((perfume) =>
+    [perfume.nameFa, perfume.nameEn, ...(NAME_ALIASES[perfume.slug] ?? [])].map((alias) => ({
+      alias: alias.toLowerCase().replace(/[ِ]/g, ""),
+      perfume,
+    })),
+  )
+  .sort((a, b) => b.alias.length - a.alias.length);
+
+export function findPerfumeByName(text: string) {
+  const haystack = ` ${text.toLowerCase().replace(/[ِ]/g, "")} `;
+  const hit = NAME_INDEX.find(({ alias }) => {
+    const at = haystack.indexOf(alias);
+    if (at < 0) return false;
+    return !isLetter(haystack[at - 1]) && !isLetter(haystack[at + alias.length]);
+  });
+  return hit?.perfume ?? null;
+}
+
+function isLetter(char: string | undefined) {
+  return Boolean(char && /[\p{L}]/u.test(char));
+}
 
 export function getPerfume(slug: string) {
   return perfumeBySlug[slug];
@@ -415,7 +548,47 @@ export function sweetness(perfume: Perfume) {
 }
 
 export function leadOffer(perfume: Perfume) {
-  return perfume.shops.find((shop) => shop.stockConfirmed) ?? perfume.shops[0];
+  const confirmed = perfume.shops.filter((shop) => shop.stockConfirmed);
+  const pool = confirmed.length > 0 ? confirmed : perfume.shops;
+  return pool.reduce((best, shop) => (shop.price < best.price ? shop : best));
+}
+
+export function cheaperUnconfirmed(perfume: Perfume) {
+  const lead = leadOffer(perfume);
+  if (!lead.stockConfirmed) return null;
+  return (
+    perfume.shops
+      .filter((shop) => !shop.stockConfirmed && shop.price < lead.price)
+      .sort((a, b) => a.price - b.price)[0] ?? null
+  );
+}
+
+export function sharedAccordNames(left: Perfume, right: Perfume) {
+  const names = new Set(right.accords.map((accord) => accord.name));
+  return left.accords.filter((accord) => names.has(accord.name)).map((accord) => accord.name);
+}
+
+export function decisionFacts(left: Perfume, right: Perfume) {
+  const facts: Array<{ name: string; fact: string }> = [];
+  if (left.longevity != null && right.longevity != null && left.longevity !== right.longevity) {
+    const winner = left.longevity > right.longevity ? left : right;
+    facts.push({ name: winner.nameFa, fact: "ماندگاری بیشتر" });
+  }
+  const leftPrice = leadOffer(left).price;
+  const rightPrice = leadOffer(right).price;
+  if (leftPrice !== rightPrice) {
+    const cheaper = leftPrice < rightPrice ? left : right;
+    facts.push({ name: cheaper.nameFa, fact: "قیمت تأییدشده پایین‌تر" });
+  }
+  if (left.sillage != null && right.sillage != null && left.sillage !== right.sillage) {
+    const winner = left.sillage > right.sillage ? left : right;
+    facts.push({ name: winner.nameFa, fact: "پخش بوی بیشتر" });
+  }
+  const grouped = new Map<string, string[]>();
+  for (const item of facts) {
+    grouped.set(item.name, [...(grouped.get(item.name) ?? []), item.fact]);
+  }
+  return [...grouped].map(([name, items]) => ({ name, fact: items.join("، ") }));
 }
 
 export function performanceLabel(kind: "longevity" | "sillage", value: number) {

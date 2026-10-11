@@ -30,24 +30,28 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [shopFor, setShopFor] = useState<string | null>(null);
 
   useEffect(() => {
-    const raw = sessionStorage.getItem(KEY);
+    const stored = localStorage.getItem(KEY);
+    const legacy = stored ? null : sessionStorage.getItem(KEY);
+    const raw = stored ?? legacy;
     if (raw) {
       try {
         const data = JSON.parse(raw) as Persisted;
         setProfileState(data.profile ?? null);
         setTasteState(data.taste ?? {});
         setCompare(data.compare ?? []);
+        if (!stored) localStorage.setItem(KEY, raw);
       } catch {
-        sessionStorage.removeItem(KEY);
+        localStorage.removeItem(KEY);
       }
     }
+    if (legacy) sessionStorage.removeItem(KEY);
     setReady(true);
   }, []);
 
   useEffect(() => {
     if (!ready) return;
     const data: Persisted = { profile, taste, compare };
-    sessionStorage.setItem(KEY, JSON.stringify(data));
+    localStorage.setItem(KEY, JSON.stringify(data));
   }, [ready, profile, taste, compare]);
 
   const value = useMemo<Store>(

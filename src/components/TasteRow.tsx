@@ -10,12 +10,16 @@ const OPTIONS: Array<{ id: Taste; label: string; on: string }> = [
   { id: "dislike", label: "دوست ندارم", on: "bg-[var(--clay)] text-[var(--danger)]" },
 ];
 
-export function TasteRow({ slug }: { slug: string }) {
+export function TasteRow({ slug, dense = false }: { slug: string; dense?: boolean }) {
   const { taste, setTaste } = useAroma();
   const current = taste[slug];
 
   return (
-    <div role="group" aria-label="نظر تو" className="grid grid-cols-3 gap-1 rounded-2xl bg-[var(--paper)] p-1">
+    <div
+      role="group"
+      aria-label="نظر تو"
+      className={cn("grid grid-cols-3", dense ? "gap-1.5" : "gap-1 rounded-2xl bg-[var(--paper)] p-1")}
+    >
       {OPTIONS.map((option) => {
         const selected = current === option.id;
         return (
@@ -25,8 +29,13 @@ export function TasteRow({ slug }: { slug: string }) {
             aria-pressed={selected}
             onClick={() => setTaste(slug, option.id)}
             className={cn(
-              "pressable min-h-10 rounded-xl px-1 text-[13px]",
-              selected ? cn(option.on, "font-semibold") : "quiet text-[var(--muted)]",
+              "pressable rounded-xl px-1",
+              dense ? "min-h-9 border text-[12px]" : "min-h-10 text-[13px]",
+              selected
+                ? cn(option.on, "border-transparent font-semibold")
+                : dense
+                  ? "edge border-[var(--line)] text-[var(--muted)]"
+                  : "quiet text-[var(--muted)]",
             )}
           >
             {option.label}

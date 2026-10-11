@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Assistant } from "@/components/Assistant";
-import { BackIcon } from "@/components/Icons";
+import { BackIcon, BookmarkIcon } from "@/components/Icons";
 import { ShopSheet } from "@/components/ShopSheet";
 import { getPerfume } from "@/lib/catalog";
 import { faNum } from "@/lib/format";
@@ -44,14 +44,18 @@ export function Shell({
           <Link
             href="/shelf"
             aria-current={pathname === "/shelf" ? "page" : undefined}
-            className="pressable quiet justify-self-end inline-flex min-h-11 items-center gap-1.5 rounded-full px-3 text-[14px]"
+            aria-label={ready && saved > 0 ? `قفسه، ${faNum(saved)} عطر ذخیره‌شده` : "قفسه"}
+            className="pressable quiet justify-self-end inline-flex min-h-11 items-center gap-1.5 rounded-full ps-2.5 pe-3 text-[14px]"
           >
+            <span className="relative">
+              <BookmarkIcon className="size-5" />
+              {ready && saved > 0 ? (
+                <span className="absolute -top-1.5 -start-2 grid h-4 min-w-4 place-items-center rounded-full bg-[var(--ink)] px-1 text-[10px] font-semibold leading-none text-[var(--paper)] ring-2 ring-[var(--paper)]">
+                  {faNum(saved)}
+                </span>
+              ) : null}
+            </span>
             قفسه
-            {ready && saved > 0 ? (
-              <span className="grid h-5 min-w-5 place-items-center rounded-full bg-[var(--ink)] px-1 text-[11px] font-semibold text-[var(--paper)]">
-                {faNum(saved)}
-              </span>
-            ) : null}
           </Link>
         </div>
       </header>

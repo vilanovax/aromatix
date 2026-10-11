@@ -24,6 +24,19 @@ export function CheckIcon({ className }: IconProps) {
   );
 }
 
+export function BookmarkIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M6 3.5h8a1 1 0 0 1 1 1v12l-5-3.2-5 3.2v-12a1 1 0 0 1 1-1z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function SendIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">

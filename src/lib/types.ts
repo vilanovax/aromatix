@@ -1,7 +1,8 @@
 export type Season = "summer" | "winter" | "mild" | "all";
 export type Taste = "like" | "try" | "dislike";
 export type BottleShape = "rect" | "slim" | "round";
-export type Shift = "none" | "fresh" | "different";
+export type Shift = "none" | "fresh" | "different" | "lasting";
+export type Leaning = "sweet" | "woody" | "citrus" | "aquatic";
 
 export type Accord = {
   name: string;
@@ -32,6 +33,7 @@ export type Perfume = {
   volumeMl: number;
   bottle: BottleShape;
   cap: string;
+  image?: string;
   accords: Accord[];
   notes: Note[];
   seasons: Array<Season | "all">;
@@ -52,5 +54,6 @@ export type Profile = {
   budget: number;
   reference: string | null;
   shift: Shift;
+  leaning?: Leaning | "any" | null;
   note: string | null;
 };

@@ -1,6 +1,20 @@
-import { referenceLabel, sweetness } from "@/lib/catalog";
-import { faNum } from "@/lib/format";
-import type { Perfume, Profile, Season } from "@/lib/types";
+import {
+  decisionFacts,
+  findPerfumeByName,
+  getPerfume,
+  leadOffer,
+  leaningShare,
+  referenceLabel,
+  sharedAccordNames,
+  sweetness,
+} from "@/lib/catalog";
+import { faNum, joinFa } from "@/lib/format";
+import type { Leaning, Perfume, Profile, Season } from "@/lib/types";
+
+export type AskContext = {
+  perfume?: Perfume;
+  pair?: [Perfume, Perfume];
+};
 
 export type Reply =
   | { kind: "learn"; title: string; body: string; href?: string; hrefLabel?: string }
@@ -10,7 +24,7 @@ export type Reply =
 
 const STEPS = [12, 8, 5, 2];
 
-export function respond(raw: string, profile: Profile | null, results: Perfume[]) {
+export function respond(raw: string, profile: Profile | null, results: Perfume[], context: AskContext = {}) {
   const text = normalize(raw).trim();
   if (!text) {
     return { profile, reply: { kind: "miss", body: "یک سؤال یا یک اصلاح بنویس." } as Reply };
@@ -40,8 +54,41 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     };
   }
 
+  if (context.perfume && /شبیه این/.test(text)) {
+    return { profile, reply: similarReply(context.perfume) };
+  }
+
+  if (context.perfume && /تابست/.test(text) && /خوبه|مناسب|میاد|می‌آد/.test(text)) {
+    return { profile, reply: summerReply(context.perfume) };
+  }
+
+  if (/برای من بهتر/.test(text)) {
+    const pair = context.pair ?? pairFrom(results);
+    if (!pair) return needPair();
+    return { profile, reply: fitReply(profile, pair[0], pair[1]) };
+  }
+
+  if (/شیرین.?تر/.test(text)) {
+    const pair = context.pair ?? pairFrom(results);
+    if (!pair) return needPair();
+    return { profile, reply: sweetnessReply(pair[0], pair[1]) };
+  }
+
   if (/سوم|چهارم/.test(text)) {
-    return { profile, reply: compareReply(results) };
+    return { profile, reply: compareReply(results, 2, 3) };
+  }
+
+  if (/مقایسه|کدوم|کدام|این دو/.test(text) && results.length >= 2) {
+    return { profile, reply: compareReply(results, 0, 1) };
+  }
+
+  if (/ماندگار/.test(text)) {
+    if (!profile) return needList();
+    const next: Profile = { ...profile, shift: "lasting", note: "ماندگارتر چیده شد." };
+    return {
+      profile: next,
+      reply: { kind: "refine", body: "فهرست را با عطرهایی چیدم که ماندگاری‌شان در داده بالاتر است." } as Reply,
+    };
   }
 
   if (/خنک/.test(text)) {
@@ -72,11 +119,25 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     };
   }
 
-  const referenced = /ساواج/.test(text) ? "sauvage" : /اونتوس/.test(text) ? "aventus" : /آنجل/.test(text) ? "angels" : null;
+  const referenced = referenceIn(text);
   if (referenced && profile && !hasScene(text)) {
     const label = referenceLabel(referenced);
     const next: Profile = { ...profile, reference: referenced, note: label ? `نزدیک به ${label} چیده شد.` : null };
     return { profile: next, reply: { kind: "refine", body: next.note ?? "پیشنهادها را دوباره چیدم." } as Reply };
+  }
+
+  const named = findPerfume(text);
+  if (named && !hasScene(text)) {
+    return {
+      profile,
+      reply: {
+        kind: "learn",
+        title: `${named.nameFa}، ${named.brand}`,
+        body: named.why,
+        href: `/perfume/${named.slug}`,
+        hrefLabel: `دیدن ${named.nameFa} و مشابه‌ها`,
+      } as Reply,
+    };
   }
 
   const parsed = parseLine(text);
@@ -88,14 +149,23 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     profile,
     reply: {
       kind: "miss",
-      body: "این را در دانشنامهٔ آروما نداریم. می‌توانی بگویی خنک‌تر، ارزان‌تر، یا نام یک عطر آشنا.",
+      body: "این را در دانشنامهٔ آروما نداریم. می‌توانی بگویی خنک‌تر، ارزان‌تر، ماندگارتر، یا نام یک عطر آشنا.",
     } as Reply,
   };
 }
 
+export function findPerfume(input: string) {
+  return findPerfumeByName(normalize(input));
+}
+
+export function isPerfumeLookup(input: string) {
+  const text = normalize(input);
+  return findPerfumeByName(text) !== null && !hasScene(text);
+}
+
 export function parseLine(input: string): Profile | null {
   const text = normalize(input);
-  if (!hasScene(text) && !/ساواج|اونتوس|آنجل/.test(text)) return null;
+  if (!hasScene(text) && !referenceIn(text)) return null;
 
   let season: Season = "all";
   if (/زمست|سرد/.test(text)) season = "winter";
@@ -117,46 +187,63 @@ export function parseLine(input: string): Profile | null {
     budget = value;
   }
 
-  let reference: string | null = null;
-  if (/ساواج/.test(text)) reference = "sauvage";
-  else if (/اونتوس/.test(text)) reference = "aventus";
-  else if (/آنجل/.test(text)) reference = "angels";
-
   return {
     occasions: occasions.slice(0, 2),
     season,
     budget,
-    reference,
+    reference: referenceIn(text),
     shift: "none",
+    leaning: leaningIn(text),
     note: null,
   };
 }
 
-function compareReply(results: Perfume[]): Reply {
-  const third = results[2];
-  const fourth = results[3];
-  if (!third) {
+function referenceIn(text: string) {
+  if (/ساواج|sauvage/.test(text)) return "sauvage";
+  if (/اونتوس|aventus/.test(text)) return "aventus";
+  if (/آنجل|angels/.test(text)) return "angels";
+  return null;
+}
+
+function leaningIn(text: string): Leaning | null {
+  if (/شیرین|وانیل|گرم و/.test(text)) return "sweet";
+  if (/تلخ|چوبی|دودی/.test(text)) return "woody";
+  if (/مرکبات|لیمو|ترنج/.test(text)) return "citrus";
+  if (/آبی|دریا/.test(text)) return "aquatic";
+  return null;
+}
+
+function compareReply(results: Perfume[], leftIndex: number, rightIndex: number): Reply {
+  const left = results[leftIndex];
+  const right = results[rightIndex];
+  if (!left) {
     return { kind: "miss", body: "اول یک فهرست پیشنهاد بگیر تا بتوانم به همان عطرها اشاره کنم." };
   }
-  if (!fourth) {
-    const second = results[1];
+  if (!right) {
+    const other = results[leftIndex === 0 ? 1 : leftIndex - 1];
     return {
       kind: "compare",
-      title: third.nameFa,
-      body: `در این فهرست چهارمی نیست. سومی ${third.nameFa} است${second ? ` و دومی ${second.nameFa}` : ""}.`,
-      a: second?.slug ?? third.slug,
-      b: third.slug,
+      title: left.nameFa,
+      body: other
+        ? `در این فهرست ${ordinalHint(rightIndex)} نیست. ${ordinalHint(leftIndex)} ${left.nameFa} است و ${ordinalHint(results.indexOf(other))} ${other.nameFa}.`
+        : `${ordinalHint(leftIndex)} ${left.nameFa} است.`,
+      a: other?.slug ?? left.slug,
+      b: left.slug,
     };
   }
 
-  const thirdSweet = sweetness(third);
-  const fourthSweet = sweetness(fourth);
-  const sweeter = thirdSweet === fourthSweet ? null : thirdSweet > fourthSweet ? third : fourth;
+  const leftSweet = sweetness(left);
+  const rightSweet = sweetness(right);
+  const sweeter = Math.abs(leftSweet - rightSweet) < 0.08 ? null : leftSweet > rightSweet ? left : right;
   const body = sweeter
-    ? `سومی ${third.nameFa} است و چهارمی ${fourth.nameFa}. ${sweeter.nameFa} شیرین‌تر حس می‌شود، چون نوت‌های شیرینش پررنگ‌ترند.`
-    : `سومی ${third.nameFa} است و چهارمی ${fourth.nameFa}. از روی نوت‌های ثبت‌شده، شیرینی‌شان نزدیک است.`;
+    ? `${ordinalHint(leftIndex)} ${left.nameFa} است و ${ordinalHint(rightIndex)} ${right.nameFa}. ${sweeter.nameFa} شیرین‌تر حس می‌شود، چون نوت‌های شیرینش پررنگ‌ترند.`
+    : `${ordinalHint(leftIndex)} ${left.nameFa} است و ${ordinalHint(rightIndex)} ${right.nameFa}. از روی نوت‌های ثبت‌شده، شیرینی‌شان نزدیک است.`;
 
-  return { kind: "compare", title: `${third.nameFa} و ${fourth.nameFa}`, body, a: third.slug, b: fourth.slug };
+  return { kind: "compare", title: `${left.nameFa} و ${right.nameFa}`, body, a: left.slug, b: right.slug };
+}
+
+function ordinalHint(index: number) {
+  return ["اولی", "دومی", "سومی", "چهارمی", "پنجمی"][index] ?? "یکی";
 }
 
 function needList() {
@@ -166,13 +253,146 @@ function needList() {
   };
 }
 
+function needPair() {
+  return {
+    profile: null,
+    reply: { kind: "miss", body: "اول دو عطر را برای مقایسه انتخاب کن." } as Reply,
+  };
+}
+
+function pairFrom(results: Perfume[]): [Perfume, Perfume] | null {
+  if (results.length < 2) return null;
+  return [results[0], results[1]];
+}
+
+function sweetnessReply(left: Perfume, right: Perfume): Reply {
+  const gap = Math.abs(sweetness(left) - sweetness(right));
+  const sweeter = sweetness(left) > sweetness(right) ? left : right;
+  return {
+    kind: "compare",
+    title: `${left.nameFa} و ${right.nameFa}`,
+    body:
+      gap < 0.08
+        ? `از روی نوت‌های ثبت‌شده، شیرینی ${left.nameFa} و ${right.nameFa} نزدیک است.`
+        : `${sweeter.nameFa} شیرین‌تر حس می‌شود، چون نوت‌های شیرینش پررنگ‌ترند.`,
+    a: left.slug,
+    b: right.slug,
+  };
+}
+
+function fitReply(profile: Profile | null, left: Perfume, right: Perfume): Reply {
+  const title = `${left.nameFa} و ${right.nameFa}`;
+  const link = { a: left.slug, b: right.slug };
+  if (!profile) {
+    const facts = decisionFacts(left, right);
+    return {
+      kind: "compare",
+      title,
+      body: facts.length
+        ? facts.map((item) => `${item.name}: ${item.fact}.`).join(" ")
+        : "از روی قیمت تأییدشده و ماندگاری، این دو به هم نزدیک‌اند.",
+      ...link,
+    };
+  }
+
+  const leftScore = fitScore(left, profile);
+  const rightScore = fitScore(right, profile);
+  if (leftScore === rightScore) {
+    const priced = leadOffer(left).price !== leadOffer(right).price;
+    const cheaper = leadOffer(left).price <= leadOffer(right).price ? left : right;
+    const dearer = cheaper.slug === left.slug ? right : left;
+    return {
+      kind: "compare",
+      title,
+      body: priced
+        ? `هر دو به موقعیت می‌خورند. ${cheaper.nameFa} قیمت تأییدشده پایین‌تری از ${dearer.nameFa} دارد.`
+        : "از روی موقعیت و فصل، این دو به هم نزدیک‌اند.",
+      ...link,
+    };
+  }
+
+  const pick = leftScore > rightScore ? left : right;
+  const other = pick.slug === left.slug ? right : left;
+  return {
+    kind: "compare",
+    title,
+    body: `${pick.nameFa} به چیزی که گفتی نزدیک‌تر است. ${fitWhy(pick, other, profile)}`,
+    ...link,
+  };
+}
+
+function fitScore(perfume: Perfume, profile: Profile) {
+  let score = 0;
+  if (profile.season === "all" || perfume.seasons.includes("all") || perfume.seasons.includes(profile.season)) score += 2;
+  score += profile.occasions.filter((occasion) => perfume.occasions.includes(occasion)).length * 2;
+  if (profile.leaning && profile.leaning !== "any") score += leaningShare(perfume, profile.leaning) * 4;
+  if (leadOffer(perfume).price <= profile.budget * 1_000_000) score += 1;
+  return score;
+}
+
+function fitWhy(pick: Perfume, other: Perfume, profile: Profile) {
+  if (
+    profile.season !== "all" &&
+    pick.seasons.includes(profile.season) &&
+    !other.seasons.includes(profile.season) &&
+    !other.seasons.includes("all")
+  ) {
+    return "فصلش با چیزی که گفتی یکی است.";
+  }
+  const pickOccasions = profile.occasions.filter((occasion) => pick.occasions.includes(occasion)).length;
+  const otherOccasions = profile.occasions.filter((occasion) => other.occasions.includes(occasion)).length;
+  if (pickOccasions > otherOccasions) return "به همان موقعیت نزدیک‌تر است.";
+  if (
+    profile.leaning &&
+    profile.leaning !== "any" &&
+    leaningShare(pick, profile.leaning) > leaningShare(other, profile.leaning)
+  ) {
+    return "به سلیقه‌ای که انتخاب کردی نزدیک‌تر است.";
+  }
+  if ((pick.longevity ?? 0) > (other.longevity ?? 0)) return "ماندگاری بیشتری در داده دارد.";
+  if (leadOffer(pick).price < leadOffer(other).price) return "قیمت تأییدشده‌اش پایین‌تر است.";
+  return "جزئیات را در مقایسه ببین.";
+}
+
+function similarReply(perfume: Perfume): Reply {
+  const similars = perfume.similar.map((slug) => getPerfume(slug)).filter((item) => item !== undefined);
+  if (similars.length === 0) return { kind: "miss", body: "برای این عطر مشابهی در نمونه نیست." };
+  const body = similars
+    .map((item) => {
+      const shared = sharedAccordNames(perfume, item);
+      return shared.length > 0 ? `${item.nameFa}، هر دو ${joinFa(shared)} دارند` : item.nameFa;
+    })
+    .join("؛ ");
+  return {
+    kind: "learn",
+    title: `شبیه ${perfume.nameFa}`,
+    body,
+    href: `/perfume/${similars[0].slug}`,
+    hrefLabel: `دیدن ${similars[0].nameFa}`,
+  };
+}
+
+function summerReply(perfume: Perfume): Reply {
+  const summer = perfume.seasons.includes("summer") || perfume.seasons.includes("all");
+  const season = perfume.seasons
+    .map((id) => (id === "summer" ? "تابستان" : id === "winter" ? "زمستان" : id === "mild" ? "هوای معتدل" : "همهٔ فصل‌ها"))
+    .join(" و ");
+  return {
+    kind: "learn",
+    title: perfume.nameFa,
+    body: summer
+      ? `${perfume.nameFa} برای تابستان هم در داده آمده.`
+      : `${perfume.nameFa} برای ${season} آمده. برای تابستان در این داده نیست.`,
+  };
+}
+
 function mentionsNight(text: string) {
   return /مهمانی|(?<![\u0600-\u06FF])شب(?![\u0600-\u06FF])/u.test(text);
 }
 
 function hasScene(text: string) {
   return (
-    /زمست|تابست|گرما|سرد|معتدل|کار|اداری|دفتر|قرار|ورزش|روزمره|هر روز|تا\s*\d|زیر\s*\d|میلیون/.test(text) ||
+    /زمست|تابست|گرما|سرد|معتدل|بهار|پاییز|کار|اداری|دفتر|قرار|ورزش|روزمره|هر روز|تا\s*\d|زیر\s*\d|میلیون|شیرین|وانیل|تلخ|چوبی|دودی|مرکبات|لیمو|ترنج|آبی|دریا/.test(text) ||
     mentionsNight(text)
   );
 }
