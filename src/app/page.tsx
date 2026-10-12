@@ -1,51 +1,65 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Button, ButtonLink } from "@/components/Button";
+import { FieldShell } from "@/components/Card";
+import { Chip } from "@/components/Chip";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { findPerfume, isPerfumeLookup, parseLine } from "@/lib/assistant";
+import { findKnowledge } from "@/lib/knowledge";
 import { getPerfume } from "@/lib/catalog";
+import { computeDna, type DnaProfile } from "@/lib/dna";
 import { useAroma } from "@/lib/store";
-import type { Taste } from "@/lib/types";
+import type { UserPerfume } from "@/lib/types";
 
 const EXAMPLES = ["مهمانی شب زمستون", "محل کار، تابستون", "شبیه ساواج", "۹ پی‌ام"];
+const NUDGE = "داریم سلیقه‌ات رو بهتر می‌شناسیم. دوست داری چند عطر جدید متناسب با انتخاب‌هات ببینی؟";
 
-function recall(taste: Record<string, Taste>) {
-  const liked = Object.entries(taste).filter((entry): entry is [string, Taste] => entry[1] === "like");
-  const tried = Object.entries(taste).filter((entry): entry is [string, Taste] => entry[1] === "try");
-  const saved = liked.length > 0 ? liked : tried;
-  if (saved.length === 0) return null;
+function recall(library: Record<string, UserPerfume>, dna: DnaProfile, nudgeReady: boolean) {
+  if (nudgeReady) return { href: "/shelf", nudge: true, sentence: NUDGE };
 
-  if (saved.length === 1) {
-    const perfume = getPerfume(saved[0][0]);
+  const rated = Object.entries(library).filter((entry) => entry[1].rating != null && !entry[1].disliked);
+  if (rated.length === 1) {
+    const perfume = getPerfume(rated[0][0]);
     if (!perfume) return null;
-    const verb = saved[0][1] === "like" ? "پسندیدی" : "برای امتحان گذاشتی";
     return {
       href: `/perfume/${perfume.slug}`,
-      sentence: `دفعهٔ قبل ${perfume.nameFa} را ${verb}. چیزی شبیه آن می‌خوای؟`,
+      nudge: false,
+      sentence: `دفعهٔ قبل ${perfume.nameFa} را تجربه کردی. چیزی شبیه آن می‌خوای؟`,
     };
   }
-
-  const counts = new Map<string, number>();
-  for (const [slug, value] of saved) {
-    const perfume = getPerfume(slug);
-    if (!perfume) continue;
-    const weight = value === "like" ? 1 : 0.5;
-    for (const accord of perfume.accords) {
-      counts.set(accord.name, (counts.get(accord.name) ?? 0) + accord.strength * weight);
-    }
+  if (rated.length > 1 && (dna.stage === "early" || dna.stage === "dna")) {
+    return { href: "/shelf", nudge: false, sentence: dna.sentence };
   }
-  const top = [...counts.entries()].sort((a, b) => b[1] - a[1])[0];
-  if (!top) return null;
-  return { href: "/shelf", sentence: `رایحهٔ ${top[0]} را بیشتر پسندیدی.` };
+  if (rated.length > 1) {
+    return { href: "/shelf", nudge: false, sentence: "چند عطر را تجربه کردی." };
+  }
+
+  const wanted = Object.entries(library).filter(
+    (entry) => entry[1].wanted && !entry[1].owned && !entry[1].disliked && entry[1].rating == null,
+  );
+  if (rated.length === 0 && wanted.length === 1) {
+    const perfume = getPerfume(wanted[0][0]);
+    if (!perfume) return null;
+    return {
+      href: `/perfume/${perfume.slug}`,
+      nudge: false,
+      sentence: `دفعهٔ قبل ${perfume.nameFa} را برای امتحان گذاشتی. چیزی شبیه آن می‌خوای؟`,
+    };
+  }
+  if (rated.length === 0 && wanted.length > 1) {
+    return { href: "/shelf", nudge: false, sentence: "چند عطر را برای امتحان گذاشتی." };
+  }
+  return null;
 }
 
 export default function HomePage() {
   const router = useRouter();
-  const { setProfile, taste, ready } = useAroma();
-  const memory = ready ? recall(taste) : null;
+  const { setProfile, library, ready, nudgeSeen, dismissNudge } = useAroma();
+  const dna = computeDna(library, getPerfume);
+  const memory = ready ? recall(library, dna, dna.validCount >= 6 && !nudgeSeen) : null;
   const [draft, setDraft] = useState("");
   const [error, setError] = useState(false);
 
@@ -56,6 +70,11 @@ export default function HomePage() {
         router.push(`/perfume/${perfume.slug}`);
         return;
       }
+    }
+    const lesson = findKnowledge(text);
+    if (lesson) {
+      router.push(`/learn/${lesson.slug}`);
+      return;
     }
     const profile = parseLine(text);
     if (!profile) {
@@ -74,12 +93,18 @@ export default function HomePage() {
           بگو کجا می‌خوای استفاده کنی، چه بوهایی دوست داری و چقدر می‌خوای هزینه کنی.
         </p>
         {memory ? (
-          <Link
+          <ButtonLink
             href={memory.href}
-            className="pressable quiet mt-4 flex min-h-12 items-center rounded-panel bg-moss px-4 py-3 text-body text-pretty"
+            variant="quiet"
+            shape="panel"
+            size="lg"
+            onClick={() => {
+              if (memory.nudge) dismissNudge();
+            }}
+            className="mt-4 justify-start bg-moss px-4 py-3 text-pretty font-normal"
           >
             {memory.sentence}
-          </Link>
+          </ButtonLink>
         ) : null}
 
         <form
@@ -92,11 +117,7 @@ export default function HomePage() {
           <label htmlFor="wish" className="sr-only">
             اسم عطر یا توصیف عطری که می‌خواهی
           </label>
-          <div
-            className={`flex items-center gap-1 rounded-panel border bg-card p-1 ps-3.5 shadow-card focus-within:border-ink ${
-              error ? "border-danger" : "border-line"
-            }`}
-          >
+          <FieldShell error={error} className="ps-3.5 shadow-card">
             <input
               id="wish"
               value={draft}
@@ -111,16 +132,13 @@ export default function HomePage() {
               aria-describedby={error ? "wish-error" : "wish-hint"}
               className="min-h-12 min-w-0 flex-1 bg-transparent text-input text-ellipsis outline-none placeholder:text-faint focus:text-clip"
             />
-            <button
-              type="submit"
-              className="pressable solid min-h-12 shrink-0 rounded-control bg-ink px-5 text-body leading-none font-semibold text-paper"
-            >
+            <Button type="submit" shape="control" size="lg" className="shrink-0">
               پیدا کن
-            </button>
-          </div>
+            </Button>
+          </FieldShell>
           {error ? (
             <p id="wish-error" role="alert" className="mt-2 text-label text-pretty text-danger">
-              اسم یک عطر، یا موقعیت، فصل و بودجه را بنویس؛ مثلاً «خمره» یا «محل کار، تابستون».
+              اسم یک عطر، یک واژه مثل «وتیور»، یا موقعیت و بودجه را بنویس.
             </p>
           ) : (
             <p id="wish-hint" className="mt-2 text-label text-pretty text-muted">
@@ -132,27 +150,34 @@ export default function HomePage() {
         <ul className="mt-3 flex flex-wrap gap-2" aria-label="نمونه‌ها">
           {EXAMPLES.map((example) => (
             <li key={example}>
-              <button
-                type="button"
-                onClick={() => go(example)}
-                className="pressable edge inline-flex min-h-11 items-center rounded-full border border-line bg-card px-3.5 text-label leading-none"
-              >
+              <Chip className="min-h-11 px-3.5" onClick={() => go(example)}>
                 {example}
-              </button>
+              </Chip>
             </li>
           ))}
         </ul>
 
-        <Link
-          href="/guide"
-          className="pressable quiet mt-10 flex min-h-14 items-center gap-3 rounded-panel border border-line bg-card px-4 py-3"
-        >
-          <span className="min-w-0 flex-1">
+          <ButtonLink
+            href="/learn"
+            variant="quiet"
+            className="mt-8 justify-start px-1 font-normal text-muted"
+          >
+            دانستنی‌ها — غلظت، ماندگاری، بچ‌کد
+          </ButtonLink>
+
+          <ButtonLink
+            href="/guide"
+            variant="quiet"
+            shape="panel"
+            size="xl"
+            className="mt-4 gap-3 border border-line bg-card px-4 py-3"
+          >
+          <span className="min-w-0 flex-1 text-start">
             <span className="block text-body font-semibold">مطمئن نیستی چه بنویسی؟</span>
             <span className="mt-0.5 block text-label text-muted">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
           </span>
           <ForwardIcon className="size-5 shrink-0 text-muted" />
-        </Link>
+        </ButtonLink>
       </div>
     </Shell>
   );

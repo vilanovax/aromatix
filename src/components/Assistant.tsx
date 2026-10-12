@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Button, ButtonLink } from "@/components/Button";
+import { Card, FieldShell } from "@/components/Card";
+import { Chip } from "@/components/Chip";
 import { SendIcon } from "@/components/Icons";
 import { respond, type AskContext, type Reply } from "@/lib/assistant";
 import { getPerfume } from "@/lib/catalog";
@@ -13,15 +16,15 @@ const LEARN_PROMPT = "وتیور چه بویی دارد؟";
 
 export function Assistant() {
   const pathname = usePathname();
-  const { profile, setProfile, taste, compare } = useAroma();
+  const { profile, setProfile, library, compare } = useAroma();
   const [draft, setDraft] = useState("");
   const [reply, setReply] = useState<Reply | null>(null);
   const [chipsOpen, setChipsOpen] = useState(true);
   const replyRef = useRef<HTMLDivElement>(null);
   const pinned = useRef(false);
   const results = useMemo(
-    () => (profile ? matchPerfumes(profile, taste) : []),
-    [profile, taste],
+    () => (profile ? matchPerfumes(profile, library) : []),
+    [profile, library],
   );
   const context = useMemo<AskContext>(() => {
     const slug = pathname.match(/^\/perfume\/([^/]+)/)?.[1];
@@ -64,22 +67,19 @@ export function Assistant() {
   return (
     <div className="border-t border-line bg-paper px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
       {reply ? (
-        <div
-          ref={replyRef}
+        <div ref={replyRef}>
+        <Card
+          shadow="sheet"
+          className="scroll-quiet sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain p-4"
           aria-live="polite"
-          className="scroll-quiet sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain rounded-panel border border-line bg-card p-4 shadow-sheet"
         >
           <div className="flex items-center justify-between gap-3">
             <p className="text-label font-semibold">
               {reply.kind === "learn" || reply.kind === "compare" ? reply.title : "آروما"}
             </p>
-            <button
-              type="button"
-              onClick={() => setReply(null)}
-              className="pressable quiet -me-2 min-h-9 rounded-full px-3 text-label leading-none text-muted"
-            >
+            <Button variant="quiet" shape="pill" size="sm" onClick={() => setReply(null)} className="-me-2 text-muted">
               بستن
-            </button>
+            </Button>
           </div>
           <p className="mt-1.5 text-body">{reply.body}</p>
           {reply.kind === "refine" ? (
@@ -94,39 +94,40 @@ export function Assistant() {
             </Link>
           ) : null}
           {reply.kind === "compare" ? (
-            <Link
+            <ButtonLink
               href={`/compare?a=${reply.a}&b=${reply.b}`}
-              className="pressable mt-3 inline-flex min-h-11 items-center rounded-control bg-ink px-4 text-body leading-none font-medium text-paper"
+              shape="control"
+              size="md"
+              className="mt-3"
             >
               مقایسه این دو
-            </Link>
+            </ButtonLink>
           ) : null}
+        </Card>
         </div>
       ) : null}
       {chipsOpen ? (
         <div className="rail fade-end -mx-4 flex gap-1.5 px-4 pb-2.5">
           {prompts.map((prompt) => (
-            <button
-              key={prompt}
-              type="button"
-              onClick={() => ask(prompt)}
-              className="pressable edge min-h-9 shrink-0 rounded-full border border-line bg-card px-3.5 text-label leading-none"
-            >
+            <Chip key={prompt} className="px-3.5" onClick={() => ask(prompt)}>
               {prompt}
-            </button>
+            </Chip>
           ))}
         </div>
       ) : (
-        <button
-          type="button"
+        <Button
+          variant="quiet"
+          shape="pill"
+          size="sm"
           onClick={() => setChipsOpen(true)}
-          className="pressable quiet mb-2 min-h-8 rounded-full px-2 text-label leading-none text-muted"
+          className="mb-2 min-h-8 px-2 text-muted"
         >
           پیشنهادهای سریع
-        </button>
+        </Button>
       )}
-      <form
-        className="flex items-center gap-1 rounded-panel border border-line bg-card p-1 ps-3 focus-within:border-ink"
+      <FieldShell
+        as="form"
+        className="ps-3 shadow-card"
         onSubmit={(event) => {
           event.preventDefault();
           ask(draft);
@@ -150,21 +151,17 @@ export function Assistant() {
           enterKeyHint="send"
           className="min-h-11 min-w-0 flex-1 bg-transparent text-input outline-none placeholder:text-faint"
         />
-        <button
-          type="submit"
-          disabled={!draft.trim()}
-          aria-label="بفرست"
-          className="pressable solid grid size-11 shrink-0 place-items-center rounded-control bg-ink text-paper disabled:bg-line disabled:text-muted"
-        >
+        <Button type="submit" shape="control" size="icon" disabled={!draft.trim()} aria-label="بفرست">
           <SendIcon className="size-5" />
-        </button>
-      </form>
+        </Button>
+      </FieldShell>
     </div>
   );
 }
 
 function promptsFor(pathname: string, hasProfile: boolean) {
   if (pathname.startsWith("/compare")) return ["کدوم شیرین‌تره؟", "کدوم برای من بهتره؟"];
+  if (pathname.startsWith("/learn")) return ["فرق EDP و EDT چیه؟", "بچ‌کد یعنی چی؟"];
   if (pathname.startsWith("/perfume/")) return ["شبیه این چی داری؟", "برای تابستون خوبه؟"];
   if (pathname === "/results" && hasProfile) return ["ارزان‌تر", "خنک‌تر", "ماندگارتر", "متفاوت‌تر"];
   return [LEARN_PROMPT];

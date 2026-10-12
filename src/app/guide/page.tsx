@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/Button";
+import { SoftChip } from "@/components/Chip";
 import { BackIcon, CheckIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { BUDGETS, OCCASIONS, REFERENCES, SEASONS } from "@/lib/catalog";
@@ -198,17 +200,19 @@ export default function GuidePage() {
           {step > 0 ? (
             <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="انتخاب‌های تا اینجا">
               {occasions.map((id) => (
-                <li key={id} className="rounded-full bg-moss px-2.5 py-1 text-label">
-                  {OCCASIONS.find((item) => item.id === id)?.label}
+                <li key={id}>
+                  <SoftChip>{OCCASIONS.find((item) => item.id === id)?.label}</SoftChip>
                 </li>
               ))}
               {season ? (
-                <li className="rounded-full bg-moss px-2.5 py-1 text-label">
-                  {SEASONS.find((item) => item.id === season)?.short}
+                <li>
+                  <SoftChip>{SEASONS.find((item) => item.id === season)?.short}</SoftChip>
                 </li>
               ) : null}
               {budget && current === "reference" ? (
-                <li className="rounded-full bg-moss px-2.5 py-1 text-label">تا {faNum(budget)} میلیون</li>
+                <li>
+                  <SoftChip>تا {faNum(budget)} میلیون</SoftChip>
+                </li>
               ) : null}
             </ul>
           ) : null}
@@ -298,8 +302,10 @@ export default function GuidePage() {
           ) : null}
           <div className="flex gap-2">
             {step > 0 ? (
-              <button
-                type="button"
+              <Button
+                variant="edge"
+                size="icon-panel"
+                aria-label="سؤال قبلی"
                 onClick={() => {
                   if (advanceTimer.current) {
                     clearTimeout(advanceTimer.current);
@@ -308,29 +314,18 @@ export default function GuidePage() {
                   setLimitHit(false);
                   setStep((value) => value - 1);
                 }}
-                aria-label="سؤال قبلی"
-                className="pressable edge grid size-12 shrink-0 place-items-center rounded-panel border border-line bg-card"
               >
                 <BackIcon className="size-5" />
-              </button>
+              </Button>
             ) : null}
             {optional && !reference ? (
-              <button
-                type="button"
-                onClick={() => finish(null)}
-                className="pressable edge min-h-12 flex-1 rounded-panel border border-ink text-body leading-none font-semibold"
-              >
+              <Button variant="edge" className="flex-1 border-ink" onClick={() => finish(null)}>
                 رد کردن و دیدن پیشنهادها
-              </button>
+              </Button>
             ) : (
-              <button
-                type="button"
-                disabled={!ready}
-                onClick={goNext}
-                className="pressable solid min-h-12 flex-1 rounded-panel bg-ink text-body leading-none font-semibold text-paper disabled:bg-line disabled:text-muted"
-              >
+              <Button disabled={!ready} className="flex-1" onClick={goNext}>
                 {optional ? "دیدن پیشنهادها" : current === "occasion" ? "بعدی" : "ادامه"}
-              </button>
+              </Button>
             )}
           </div>
         </div>

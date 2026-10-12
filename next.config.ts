@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.dirname(fileURLToPath(import.meta.url)),
   },
+  async redirects() {
+    return [{ source: "/notes/:slug", destination: "/learn/:slug", permanent: true }];
+  },
 };
 
 export default nextConfig;

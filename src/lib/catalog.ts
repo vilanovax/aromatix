@@ -480,6 +480,20 @@ export const perfumes: Perfume[] = [
 
 export const perfumeBySlug = Object.fromEntries(perfumes.map((perfume) => [perfume.slug, perfume]));
 
+export type Brand = {
+  slug: string;
+  nameFa: string;
+  nameEn: string;
+};
+
+export const brands: Brand[] = [
+  { slug: "lattafa", nameFa: "لطافه", nameEn: "Lattafa" },
+  { slug: "armaf", nameFa: "آرماف", nameEn: "Armaf" },
+  { slug: "afnan", nameFa: "افنان", nameEn: "Afnan" },
+  { slug: "maison-alhambra", nameFa: "میسون الحمرا", nameEn: "Maison Alhambra" },
+  { slug: "french-avenue", nameFa: "فرنچ اونیو", nameEn: "French Avenue" },
+];
+
 export const LEANINGS: Record<Leaning, { label: string; note: string; accords: string[] }> = {
   sweet: { label: "گرم و شیرین", note: "گرم‌تر و شیرین‌تر چیده شد.", accords: ["وانیل", "خرما", "پرالین", "کارامل", "عنبر"] },
   woody: { label: "تلخ و چوبی", note: "تلخ‌تر و چوبی‌تر چیده شد.", accords: ["چوب", "دودی", "ادویه", "قهوه"] },
@@ -532,6 +546,20 @@ function isLetter(char: string | undefined) {
 
 export function getPerfume(slug: string) {
   return perfumeBySlug[slug];
+}
+
+export function getBrand(slug: string) {
+  return brands.find((brand) => brand.slug === slug);
+}
+
+export function brandByName(nameFa: string) {
+  return brands.find((brand) => brand.nameFa === nameFa);
+}
+
+export function perfumesByBrand(nameFa: string) {
+  return perfumes
+    .filter((perfume) => perfume.brand === nameFa)
+    .sort((a, b) => b.confidence - a.confidence || a.nameFa.localeCompare(b.nameFa, "fa"));
 }
 
 const SWEET_TOP = new Set(["وانیل", "خرما", "پرالین", "قهوه", "کارامل"]);

@@ -1,5 +1,6 @@
 export type Season = "summer" | "winter" | "mild" | "all";
-export type Taste = "like" | "try" | "dislike";
+/** وضعیت قدیمی قفسه؛ فقط برای خواندن aroma-ui-v1. */
+export type LegacyTaste = "like" | "try" | "dislike";
 export type BottleShape = "rect" | "slim" | "round";
 export type Shift = "none" | "fresh" | "different" | "lasting";
 export type Leaning = "sweet" | "woody" | "citrus" | "aquatic";
@@ -28,6 +29,8 @@ export type Perfume = {
   nameFa: string;
   nameEn: string;
   brand: string;
+  /** نام تأییدشدهٔ عطار. تا وقتی در کاتالوگ نیست، در صفحه نشان داده نمی‌شود. */
+  perfumer?: string;
   marketGender: "مشترک" | "مردانه" | "زنانه";
   concentration: string;
   volumeMl: number;
@@ -57,3 +60,30 @@ export type Profile = {
   leaning?: Leaning | "any" | null;
   note: string | null;
 };
+
+export type UserPerfume = {
+  owned: boolean;
+  wanted: boolean;
+  tried: boolean;
+  disliked: boolean;
+  rating: number | null;
+  ratedAt: string | null;
+  /** امتیاز ۸ مهاجرت‌شده از «دوست دارم»؛ تا ثبت دوباره نصف وزن دارد. */
+  inferred: boolean;
+};
+
+export function emptyUserPerfume(): UserPerfume {
+  return {
+    owned: false,
+    wanted: false,
+    tried: false,
+    disliked: false,
+    rating: null,
+    ratedAt: null,
+    inferred: false,
+  };
+}
+
+export function isEmptyUserPerfume(state: UserPerfume) {
+  return !state.owned && !state.wanted && !state.tried && !state.disliked && state.rating == null;
+}

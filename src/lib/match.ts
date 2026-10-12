@@ -1,4 +1,5 @@
 import {
+  getPerfume,
   isSweet,
   leadOffer,
   leaningShare,
@@ -7,19 +8,21 @@ import {
   referenceLabel,
   seasonShort,
 } from "@/lib/catalog";
+import { computeDna, type DnaProfile } from "@/lib/dna";
 import { countWord } from "@/lib/format";
-import type { Perfume, Profile, Taste } from "@/lib/types";
+import type { Perfume, Profile, UserPerfume } from "@/lib/types";
 
 const FLOOR = 2;
 
-export function matchPerfumes(profile: Profile, taste: Record<string, Taste | undefined>) {
+export function matchPerfumes(profile: Profile, library: Record<string, UserPerfume | undefined>) {
+  const dna = computeDna(library, getPerfume);
   const relevant = relevanceGate(profile);
   const scored = perfumes
     .filter(relevant)
-    .map((perfume) => ({ perfume, score: scorePerfume(perfume, profile) }))
+    .map((perfume) => ({ perfume, score: scorePerfume(perfume, profile, dna) }))
     .filter((item) => item.score >= FLOOR)
     .filter((item) => item.perfume.confidence >= 0.62)
-    .filter((item) => taste[item.perfume.slug] !== "dislike")
+    .filter((item) => !alreadyKnown(library[item.perfume.slug]))
     .sort(
       (a, b) =>
         b.score - a.score ||
@@ -28,6 +31,61 @@ export function matchPerfumes(profile: Profile, taste: Record<string, Taste | un
     );
 
   return scored.slice(0, 5).map((item) => item.perfume);
+}
+
+export function suggestForTaste(library: Record<string, UserPerfume | undefined>, limit = 3) {
+  return suggestFromDna(library, limit);
+}
+
+export function suggestForBrand(brandName: string, library: Record<string, UserPerfume | undefined>, limit = 3) {
+  return suggestFromDna(library, limit, brandName);
+}
+
+function suggestFromDna(library: Record<string, UserPerfume | undefined>, limit: number, brandName?: string) {
+  const dna = computeDna(library, getPerfume);
+  if (dna.stage !== "early" && dna.stage !== "dna") return [];
+  if (dna.top.length === 0) return [];
+
+  return perfumes
+    .filter(
+      (perfume) =>
+        (brandName == null || perfume.brand === brandName) &&
+        perfume.confidence >= 0.62 &&
+        !blocked(library[perfume.slug], true),
+    )
+    .map((perfume) => ({
+      perfume,
+      score: dna.all.reduce((sum, family) => sum + leaningShare(perfume, family.id) * family.affinity, 0),
+    }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || b.perfume.confidence - a.perfume.confidence)
+    .slice(0, limit)
+    .map((item) => item.perfume);
+}
+
+export function wantedNeighbors(library: Record<string, UserPerfume | undefined>, limit = 3) {
+  const wanted = Object.entries(library).filter((entry): entry is [string, UserPerfume] => {
+    const state = entry[1];
+    return Boolean(state?.wanted && !state.owned && !state.disliked && !state.tried && state.rating == null);
+  });
+  const seen = new Set<string>();
+  const picks: Perfume[] = [];
+
+  for (const [slug] of wanted) {
+    const perfume = getPerfume(slug);
+    if (!perfume) continue;
+    for (const similar of perfume.similar) {
+      if (seen.has(similar) || similar === slug) continue;
+      const state = library[similar];
+      if (blocked(state, true)) continue;
+      const item = getPerfume(similar);
+      if (!item) continue;
+      seen.add(similar);
+      picks.push(item);
+      if (picks.length >= limit) return picks;
+    }
+  }
+  return picks;
 }
 
 function relevanceGate(profile: Profile) {
@@ -46,7 +104,7 @@ function relevanceGate(profile: Profile) {
   return () => true;
 }
 
-function scorePerfume(perfume: Perfume, profile: Profile) {
+function scorePerfume(perfume: Perfume, profile: Profile, dna: DnaProfile) {
   if (profile.shift === "fresh" && !perfume.tags.includes("fresh")) return 0;
   if (profile.shift === "lasting" && (perfume.longevity ?? 0) < 4) return 0;
   if (shownPrice(perfume) > profile.budget * 1_000_000) return 0;
@@ -78,7 +136,24 @@ function scorePerfume(perfume: Perfume, profile: Profile) {
     score += share > 0 ? Math.round(share * 6) : -1;
   }
 
+  if (dna.stage === "early" || dna.stage === "dna") {
+    for (const family of dna.all) {
+      score += Math.round(leaningShare(perfume, family.id) * family.affinity * 4);
+    }
+  }
+
   return score;
+}
+
+function alreadyKnown(state: UserPerfume | undefined) {
+  if (!state) return false;
+  return state.disliked || state.owned || state.tried;
+}
+
+function blocked(state: UserPerfume | undefined, includeWanted: boolean) {
+  if (!state) return false;
+  if (state.disliked || state.owned || state.tried) return true;
+  return includeWanted && state.wanted;
 }
 
 export function resultHeading(profile: Profile, count: number) {

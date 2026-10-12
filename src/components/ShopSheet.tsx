@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { Button, buttonClass } from "@/components/Button";
 import { getPerfume } from "@/lib/catalog";
 import { millionToman } from "@/lib/format";
 import { useAroma } from "@/lib/store";
@@ -39,9 +40,9 @@ export function ShopSheet() {
             </h2>
             <p className="mt-1 text-body text-muted">{perfume.nameFa}</p>
           </div>
-          <button ref={closeRef} type="button" onClick={closeShops} className="pressable rounded-full px-3 py-2 text-body leading-none">
+          <Button ref={closeRef} variant="quiet" shape="pill" size="sm" onClick={closeShops} className="px-3 py-2 text-body">
             بستن
-          </button>
+          </Button>
         </div>
         <ul className="mt-4 divide-y divide-line">
           {perfume.shops.map((shop) => (
@@ -54,7 +55,7 @@ export function ShopSheet() {
                   href={shop.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="pressable mt-3 inline-flex min-h-11 items-center rounded-control bg-ink px-4 text-body leading-none font-medium text-paper"
+                  className={buttonClass({ shape: "control", size: "md", className: "mt-3" })}
                 >
                   خرید از {shop.shop}
                 </a>

@@ -9,6 +9,7 @@ import {
   sweetness,
 } from "@/lib/catalog";
 import { faNum, joinFa } from "@/lib/format";
+import { findKnowledge } from "@/lib/knowledge";
 import type { Leaning, Perfume, Profile, Season } from "@/lib/types";
 
 export type AskContext = {
@@ -30,26 +31,16 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     return { profile, reply: { kind: "miss", body: "یک سؤال یا یک اصلاح بنویس." } as Reply };
   }
 
-  if (/وتیور|vetiver/.test(text)) {
+  const lesson = findKnowledge(text);
+  if (lesson) {
     return {
       profile,
       reply: {
         kind: "learn",
-        title: "وتیور",
-        body: "بوی خاک تمیز، ریشهٔ خشک و کمی دودی است. معمولاً در پایه می‌آید و بو را روی پوست نگه می‌دارد.",
-        href: "/notes/vetiver",
-        hrefLabel: "ادامهٔ وتیور",
-      } as Reply,
-    };
-  }
-
-  if (/غلظت|ادوپرفیوم|ادوتویلت|\bedp\b|\bedt\b/.test(text)) {
-    return {
-      profile,
-      reply: {
-        kind: "learn",
-        title: "غلظت",
-        body: "ادوپرفیوم معمولاً غلیظ‌تر از ادوتویلت است و با همان تعداد پاشیدن دیرتر محو می‌شود. این قاعده برای همهٔ عطرها قطعی نیست. ماندگاری را فقط وقتی در داده باشد نشان می‌دهیم.",
+        title: lesson.title,
+        body: lesson.summary,
+        href: `/learn/${lesson.slug}`,
+        hrefLabel: "ادامه در دانستنی‌ها",
       } as Reply,
     };
   }
@@ -82,7 +73,7 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     return { profile, reply: compareReply(results, 0, 1) };
   }
 
-  if (/ماندگار/.test(text)) {
+  if (/ماندگارتر/.test(text)) {
     if (!profile) return needList();
     const next: Profile = { ...profile, shift: "lasting", note: "ماندگارتر چیده شد." };
     return {
@@ -149,7 +140,7 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     profile,
     reply: {
       kind: "miss",
-      body: "این را در دانشنامهٔ آروما نداریم. می‌توانی بگویی خنک‌تر، ارزان‌تر، ماندگارتر، یا نام یک عطر آشنا.",
+      body: "این را در دانستنی‌ها نداریم. می‌توانی بگویی خنک‌تر، ارزان‌تر، ماندگارتر، یا نام یک عطر آشنا.",
     } as Reply,
   };
 }

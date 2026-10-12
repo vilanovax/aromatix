@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { AccordMark } from "@/components/AccordMark";
+import { ButtonLink } from "@/components/Button";
+import { Card, Note } from "@/components/Card";
 import { Shell } from "@/components/Shell";
 import {
   cheaperUnconfirmed,
@@ -41,12 +43,9 @@ function CompareScreen() {
           <p className="mt-3 text-body text-muted">
             روی کارت پیشنهاد، مقایسه را بزن. با دوتایی شدن، جدول کنار هم می‌آید.
           </p>
-          <Link
-            href="/results"
-            className="pressable mt-5 inline-flex min-h-12 items-center rounded-panel bg-ink px-5 text-body leading-none font-medium text-paper"
-          >
+          <ButtonLink href="/results" size="md" className="mt-5 px-5">
             رفتن به پیشنهادها
-          </Link>
+          </ButtonLink>
         </div>
       ) : (
         <CompareBody left={left} right={right} />
@@ -79,10 +78,7 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
             <Link
               key={perfume.slug}
               href={`/perfume/${perfume.slug}`}
-              className={cn(
-                "rounded-panel border p-3",
-                lean ? "border-ink bg-card" : "border-line bg-card",
-              )}
+              className={cn("rounded-panel border bg-card p-3", lean ? "border-ink" : "border-line")}
             >
               <span className="block text-title font-semibold">{perfume.nameFa}</span>
               <span className="mt-0.5 block text-label text-muted">{perfume.brand}</span>
@@ -154,20 +150,16 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
 
 function Decision({ facts }: { facts: Array<{ name: string; fact: string }> }) {
   if (facts.length === 0) {
-    return (
-      <p className="mt-3 rounded-control bg-moss px-3 py-2.5 text-body">
-        از روی قیمت تأییدشده و ماندگاری، این دو به هم نزدیک‌اند.
-      </p>
-    );
+    return <Note className="mt-3">از روی قیمت تأییدشده و ماندگاری، این دو به هم نزدیک‌اند.</Note>;
   }
 
   return (
     <ul className="mt-4 flex flex-col gap-2">
       {facts.map((item) => (
-        <li key={item.name} className="rounded-panel bg-card px-4 py-3">
+        <Card as="li" bordered={false} key={item.name} className="px-4 py-3">
           <p className="text-body font-semibold">{item.name}</p>
           <p className="mt-0.5 text-label text-muted">{item.fact}</p>
-        </li>
+        </Card>
       ))}
     </ul>
   );

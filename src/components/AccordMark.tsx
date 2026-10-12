@@ -1,12 +1,21 @@
 import { faNum } from "@/lib/format";
 import type { Accord } from "@/lib/types";
 
-export function AccordMark({ accords, labeled = false }: { accords: Accord[]; labeled?: boolean }) {
+export function AccordMark({
+  accords,
+  labeled = false,
+  names = false,
+}: {
+  accords: Accord[];
+  labeled?: boolean;
+  names?: boolean;
+}) {
   const ranked = [...accords].sort((a, b) => b.strength - a.strength);
   const total = ranked.reduce((sum, accord) => sum + accord.strength, 0) || 1;
   const label = ranked
     .map((accord) => `${accord.name} ${faNum(Math.round((accord.strength / total) * 100))} درصد`)
     .join("، ");
+  const topNames = ranked.slice(0, 3).map((accord) => accord.name);
 
   return (
     <div>
@@ -19,6 +28,9 @@ export function AccordMark({ accords, labeled = false }: { accords: Accord[]; la
           />
         ))}
       </div>
+      {names && topNames.length > 0 ? (
+        <p className="mt-1.5 text-label leading-5 text-muted">{topNames.join(" · ")}</p>
+      ) : null}
       {labeled ? (
         <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
           {ranked.map((accord) => (

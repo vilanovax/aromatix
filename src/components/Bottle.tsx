@@ -28,11 +28,13 @@ export function PerfumePhoto({
   className,
   imgClassName,
   sizes = "hero",
+  alt = "",
 }: {
   perfume: Perfume;
   className?: string;
   imgClassName?: string;
   sizes?: "hero" | "thumb";
+  alt?: string;
 }) {
   const [failed, setFailed] = useState(false);
   const showImage = Boolean(perfume.image) && !failed;
@@ -45,7 +47,7 @@ export function PerfumePhoto({
     <div className={cn("relative overflow-hidden bg-well", className)}>
       <img
         src={perfume.image}
-        alt=""
+        alt={alt}
         loading={sizes === "hero" ? "eager" : "lazy"}
         decoding="async"
         onError={() => setFailed(true)}
