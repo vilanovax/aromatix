@@ -173,15 +173,19 @@ export default function GuidePage() {
   return (
     <Shell back={{ href: "/", label: "شروع" }}>
       <div className="flex min-h-full flex-col">
-        <div className="px-5 pt-4">
-          <div className="flex items-center gap-3">
+        <div className="px-5 pt-5">
+          <div
+            className="flex items-center gap-3"
+            role="group"
+            aria-label={`قدم ${faNum(step + 1)} از ${faNum(STEPS.length)}: ${STEP_LABEL[current]}`}
+          >
             <div className="flex flex-1 gap-1.5" aria-hidden="true">
               {STEPS.map((item, index) => (
                 <span
                   key={item}
                   title={STEP_LABEL[item]}
                   className={cn(
-                    "h-1 flex-1 rounded-full transition-colors duration-300",
+                    "h-1.5 flex-1 rounded-full transition-colors duration-300",
                     index <= step ? "bg-ink" : "bg-line",
                   )}
                 />
@@ -193,9 +197,9 @@ export default function GuidePage() {
           </div>
         </div>
 
-        <div key={current} className="step-in flex min-h-0 flex-1 flex-col px-5 pt-5 pb-4">
-          <h1 className="text-headline font-bold">{COPY[current].title}</h1>
-          <p className="mt-2 max-w-[20rem] text-body text-muted">{COPY[current].support}</p>
+        <div key={current} className="step-in flex min-h-0 flex-1 flex-col px-5 pt-6 pb-4">
+          <h1 className="text-balance text-headline font-bold">{COPY[current].title}</h1>
+          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">{COPY[current].support}</p>
 
           {step > 0 ? (
             <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="انتخاب‌های تا اینجا">
@@ -218,7 +222,7 @@ export default function GuidePage() {
           ) : null}
 
           {current === "occasion" && occasions.length > 0 ? (
-            <p className="mt-3 text-label text-muted" aria-live="polite">
+            <p className="mt-3.5 text-label text-muted" aria-live="polite">
               {occasions.length === 2
                 ? "۲ از ۲ انتخاب شد؛ برای عوض کردن یکی را بردار."
                 : `${faNum(occasions.length)} از ۲ — می‌توانی یکی دیگر هم بزنی.`}
@@ -227,8 +231,8 @@ export default function GuidePage() {
 
           <div
             className={cn(
-              "mt-4",
-              current === "budget" || current === "season" ? "grid grid-cols-2 gap-2" : "flex flex-col gap-2",
+              step > 0 || (current === "occasion" && occasions.length > 0) ? "mt-4" : "mt-5",
+              current === "budget" || current === "season" ? "grid grid-cols-2 gap-2.5" : "flex flex-col gap-2",
             )}
             role="group"
             aria-label={COPY[current].title}
@@ -284,21 +288,21 @@ export default function GuidePage() {
           </div>
 
           {limitHit ? (
-            <p role="status" className="mt-3 text-label text-danger">
+            <p role="status" className="mt-3.5 text-pretty text-label text-danger">
               حداکثر دو موقعیت. برای عوض کردن، یکی را بردار.
             </p>
           ) : null}
 
           {current === "season" || current === "budget" || current === "reference" ? (
-            <p className="mt-auto pt-4 text-label text-muted">بعد از انتخاب، خودش می‌رود قدم بعد.</p>
+            <p className="mt-auto pt-5 text-label text-muted">بعد از انتخاب، خودش می‌رود قدم بعد.</p>
           ) : null}
         </div>
 
-        <div className="sticky bottom-0 border-t border-line bg-paper/95 px-5 pt-3 pb-[max(0.85rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
+        <div className="sticky bottom-0 border-t border-line bg-paper/95 px-5 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
           {!ready && !optional ? (
-            <p className="mb-2 text-center text-label text-muted">{COPY[current].helper}</p>
+            <p className="mb-2.5 text-center text-label text-muted">{COPY[current].helper}</p>
           ) : footerSummary && current === "occasion" ? (
-            <p className="mb-2 text-center text-label text-muted">{footerSummary}</p>
+            <p className="mb-2.5 text-center text-label text-muted">{footerSummary}</p>
           ) : null}
           <div className="flex gap-2">
             {step > 0 ? (
@@ -357,22 +361,22 @@ function Choice({
       aria-pressed={pressed}
       onClick={onClick}
       className={cn(
-        "pressable relative flex items-center gap-3 rounded-panel border text-start transition-colors duration-150",
-        compact ? "min-h-[4.5rem] flex-col justify-center gap-1.5 px-3 py-3 text-center" : "min-h-12 px-3.5 py-2.5",
+        "pressable relative flex items-center gap-3 rounded-panel border text-start outline-offset-2 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-ink",
+        compact ? "min-h-[4.75rem] flex-col justify-center gap-1.5 px-3 py-3.5 text-center" : "min-h-14 px-3.5 py-3",
         pressed ? "border-ink bg-moss" : "edge border-line bg-card",
       )}
     >
       {compact ? (
         <>
           {swatch ? (
-            <span aria-hidden="true" className="size-2 rounded-full" style={{ background: swatch }} />
+            <span aria-hidden="true" className="size-2.5 rounded-full" style={{ background: swatch }} />
           ) : null}
-          <span className={cn("text-body leading-none", pressed ? "font-semibold" : "font-medium")}>{children}</span>
+          <span className={cn("text-body leading-snug", pressed ? "font-semibold" : "font-medium")}>{children}</span>
           {hint ? <span className="text-label text-muted">{hint}</span> : null}
           <span
             aria-hidden="true"
             className={cn(
-              "absolute top-2.5 end-2.5 grid size-5 place-items-center rounded-full border",
+              "absolute top-2.5 end-2.5 grid size-5 place-items-center rounded-full border transition-colors duration-150",
               pressed ? "border-ink bg-ink text-paper" : "border-transparent",
             )}
           >
@@ -385,15 +389,17 @@ function Choice({
             <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full" style={{ background: swatch }} />
           ) : null}
           <span className="min-w-0 flex-1">
-            <span className={cn("block text-body leading-none", pressed && "font-semibold")}>{children}</span>
-            {hint ? <span className="mt-0.5 block text-label text-muted">{hint}</span> : null}
+            <span className={cn("block text-body leading-snug", pressed ? "font-semibold" : "font-medium")}>
+              {children}
+            </span>
+            {hint ? <span className="mt-1 block text-label text-muted">{hint}</span> : null}
           </span>
           <span
             aria-hidden="true"
             className={cn(
-              "grid size-5 shrink-0 place-items-center border transition-colors duration-150",
+              "grid size-6 shrink-0 place-items-center border transition-colors duration-150",
               multi ? "rounded-md" : "rounded-full",
-              pressed ? "border-ink bg-ink text-paper" : "border-line bg-paper",
+              pressed ? "border-ink bg-ink text-paper" : "border-line bg-card",
             )}
           >
             {pressed ? <CheckIcon className="size-3.5" /> : null}

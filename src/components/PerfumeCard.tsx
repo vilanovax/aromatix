@@ -9,6 +9,7 @@ import { Chip } from "@/components/Chip";
 import { CheckIcon } from "@/components/Icons";
 import { cheaperUnconfirmed, leadOffer } from "@/lib/catalog";
 import { cn, faNum, millionToman, ordinalWord } from "@/lib/format";
+import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
 import type { Perfume } from "@/lib/types";
 
@@ -35,7 +36,7 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
 
       <div className="mt-1">
         <Link
-          href={`/perfume/${perfume.slug}`}
+          href={perfumeHref(perfume.slug, "/results")}
           className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
         >
           <h2 className="text-title font-semibold">{perfume.nameFa}</h2>

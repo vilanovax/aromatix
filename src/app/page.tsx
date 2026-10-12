@@ -11,6 +11,7 @@ import { findPerfume, isPerfumeLookup, parseLine } from "@/lib/assistant";
 import { findKnowledge } from "@/lib/knowledge";
 import { getPerfume } from "@/lib/catalog";
 import { computeDna, type DnaProfile } from "@/lib/dna";
+import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
 import type { UserPerfume } from "@/lib/types";
 
@@ -25,7 +26,7 @@ function recall(library: Record<string, UserPerfume>, dna: DnaProfile, nudgeRead
     const perfume = getPerfume(rated[0][0]);
     if (!perfume) return null;
     return {
-      href: `/perfume/${perfume.slug}`,
+      href: perfumeHref(perfume.slug, "/"),
       nudge: false,
       sentence: `دفعهٔ قبل ${perfume.nameFa} را تجربه کردی. چیزی شبیه آن می‌خوای؟`,
     };
@@ -44,7 +45,7 @@ function recall(library: Record<string, UserPerfume>, dna: DnaProfile, nudgeRead
     const perfume = getPerfume(wanted[0][0]);
     if (!perfume) return null;
     return {
-      href: `/perfume/${perfume.slug}`,
+      href: perfumeHref(perfume.slug, "/"),
       nudge: false,
       sentence: `دفعهٔ قبل ${perfume.nameFa} را برای امتحان گذاشتی. چیزی شبیه آن می‌خوای؟`,
     };
@@ -67,7 +68,7 @@ export default function HomePage() {
     if (isPerfumeLookup(text)) {
       const perfume = findPerfume(text);
       if (perfume) {
-        router.push(`/perfume/${perfume.slug}`);
+        router.push(perfumeHref(perfume.slug, "/"));
         return;
       }
     }

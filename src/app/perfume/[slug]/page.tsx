@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { Suspense } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import { AccordMark } from "@/components/AccordMark";
 import { PerfumePhoto } from "@/components/Bottle";
 import { Button, ButtonLink } from "@/components/Button";
@@ -15,6 +16,7 @@ import { BrandLink } from "@/components/BrandLink";
 import { cheaperUnconfirmed, getPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
 import { entryForConcentration, entryForNote } from "@/lib/knowledge";
 import { cn, faNum, joinFa, millionToman } from "@/lib/format";
+import { perfumeHref, resolvePerfumeBack } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
 import type { Perfume } from "@/lib/types";
 
@@ -25,20 +27,30 @@ const LAYERS = [
 ] as const;
 
 export default function PerfumePage() {
+  return (
+    <Suspense>
+      <PerfumeScreen />
+    </Suspense>
+  );
+}
+
+function PerfumeScreen() {
   const params = useParams<{ slug: string }>();
+  const search = useSearchParams();
   const perfume = getPerfume(params.slug);
   const { openShops, compare, toggleCompare } = useAroma();
+  const back = resolvePerfumeBack(search.get("from"));
 
   if (!perfume) {
     return (
-      <Shell back={{ href: "/results", label: "پیشنهادها" }}>
+      <Shell back={back}>
         <div className="px-5 py-10">
           <h1 className="text-headline font-bold">این عطر در نمونه نیست.</h1>
           <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">
             از پیشنهادها یکی را باز کن یا دوباره جستجو کن.
           </p>
-          <ButtonLink href="/results" className="mt-5">
-            برگشت به پیشنهادها
+          <ButtonLink href={back.href} className="mt-5">
+            برگشت به {back.label}
           </ButtonLink>
         </div>
       </Shell>
@@ -55,9 +67,10 @@ export default function PerfumePage() {
   const showFacts = Boolean(season || perfume.longevity || perfume.sillage || perfume.inspiredBy);
   const picked = compare.includes(perfume.slug);
   const concentrationEntry = entryForConcentration(perfume.concentration);
+  const similarFrom = `/perfume/${perfume.slug}`;
 
   return (
-    <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
+    <Shell composer back={back}>
       <article className="step-in px-5 pt-4 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <figure className="overflow-hidden rounded-sheet bg-well">
           <PerfumePhoto
@@ -233,7 +246,7 @@ export default function PerfumePage() {
                 <li key={item.slug}>
                   <div className="flex min-h-16 items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3">
                     <Link
-                      href={`/perfume/${item.slug}`}
+                      href={perfumeHref(item.slug, similarFrom)}
                       className="pressable quiet shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
                     >
                       <PerfumePhoto
@@ -245,7 +258,7 @@ export default function PerfumePage() {
                     </Link>
                     <span className="min-w-0 flex-1 text-start">
                       <Link
-                        href={`/perfume/${item.slug}`}
+                        href={perfumeHref(item.slug, similarFrom)}
                         className="block text-body font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
                       >
                         {item.nameFa}
@@ -260,7 +273,7 @@ export default function PerfumePage() {
                       </span>
                     </span>
                     <Link
-                      href={`/perfume/${item.slug}`}
+                      href={perfumeHref(item.slug, similarFrom)}
                       aria-label={`باز کردن ${item.nameFa}`}
                       className="pressable quiet shrink-0 rounded-control p-1 text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
                     >

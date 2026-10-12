@@ -15,12 +15,12 @@ import { useAroma } from "@/lib/store";
 
 const LEARN_PROMPT = "وتیور چه بویی دارد؟";
 
-export function Assistant() {
+export function Assistant({ quiet = false }: { quiet?: boolean }) {
   const pathname = usePathname();
   const { profile, setProfile, library, compare } = useAroma();
   const [draft, setDraft] = useState("");
   const [reply, setReply] = useState<Reply | null>(null);
-  const [chipsOpen, setChipsOpen] = useState(true);
+  const [chipsOpen, setChipsOpen] = useState(!quiet);
   const replyRef = useRef<HTMLDivElement>(null);
   const pinned = useRef(false);
   const results = useMemo(
@@ -43,17 +43,17 @@ export function Assistant() {
   }, [reply]);
 
   useEffect(() => {
-    setChipsOpen(true);
+    setChipsOpen(!quiet);
     pinned.current = false;
     const main = document.querySelector("main");
     if (!main) return;
     const onScroll = () => {
-      if (pinned.current) return;
+      if (pinned.current || quiet) return;
       setChipsOpen(main.scrollTop < 40);
     };
     main.addEventListener("scroll", onScroll, { passive: true });
     return () => main.removeEventListener("scroll", onScroll);
-  }, [pathname]);
+  }, [pathname, quiet]);
 
   function ask(text: string) {
     const next = respond(text, profile, results, context);
@@ -107,7 +107,7 @@ export function Assistant() {
         </Card>
         </div>
       ) : null}
-      {chipsOpen ? (
+      {quiet || prompts.length === 0 ? null : chipsOpen ? (
         <div className="rail fade-end -mx-4 flex gap-1.5 px-4 pb-2.5">
           {prompts.map((prompt) => (
             <Chip key={prompt} className="px-3.5" onClick={() => ask(prompt)}>
@@ -142,13 +142,14 @@ export function Assistant() {
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
           onFocus={() => {
+            if (quiet) return;
             pinned.current = true;
             setChipsOpen(true);
           }}
           onBlur={() => {
             pinned.current = false;
           }}
-          placeholder="بپرس یا پیشنهاد را اصلاح کن"
+          placeholder={quiet ? "بعد از مقایسه بپرس…" : "بپرس یا پیشنهاد را اصلاح کن"}
           enterKeyHint="send"
           className="min-h-11 min-w-0 flex-1 bg-transparent text-input outline-none placeholder:text-faint"
         />
@@ -164,6 +165,7 @@ function promptsFor(pathname: string, hasProfile: boolean) {
   if (pathname.startsWith("/compare")) return ["کدوم شیرین‌تره؟", "کدوم برای من بهتره؟"];
   if (pathname.startsWith("/learn")) return learnPrompts(pathname);
   if (pathname.startsWith("/perfume/")) return ["شبیه این چی داری؟", "برای تابستون خوبه؟"];
+  if (pathname.startsWith("/brands")) return [];
   if (pathname === "/results" && hasProfile) return ["ارزان‌تر", "خنک‌تر", "ماندگارتر", "متفاوت‌تر"];
   return [LEARN_PROMPT];
 }

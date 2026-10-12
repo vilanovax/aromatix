@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #e7ebe8;
-  --desk: #dbe0dd;
-  --card: #fbfcfb;
-  --ink: #1c211f;
-  --ink-hover: #111614;
-  --muted: #4e5854;
-  --faint: #646d69;
-  --line: #d5dbd7;
-  --press: #e1e6e3;
-  --moss: #dbe5de;
+  --paper: #e9edee;
+  --desk: #dce3e5;
+  --card: #fbfcfc;
+  --ink: #023a4b;
+  --ink-hover: #012b38;
+  --muted: #4a5b62;
+  --faint: #62737a;
+  --line: #d2dbde;
+  --press: #dfe6e8;
+  --moss: #d9e6ea;
+  --brass: #c7a769;
   --clay: #efe0dc;
   --danger: #8e3d32;
   --stock-ok: #4f8a62;
@@ -18,11 +19,11 @@
   --stock-ok-on-ink: #7dba92;
   --stock-pending-on-ink: #d4c19a;
   --taste-try: #7fa58a;
-  --well: #e3e7e5;
+  --well: #e2e8ea;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --shadow-card: 0 6px 20px -16px rgb(28 33 31 / 0.4);
-  --shadow-sheet: 0 8px 24px -12px rgb(28 33 31 / 0.18);
-  --shadow-frame: 0 0 48px rgb(28 33 31 / 0.06);
+  --shadow-card: 0 6px 20px -16px rgb(2 58 75 / 0.4);
+  --shadow-sheet: 0 8px 24px -12px rgb(2 58 75 / 0.18);
+  --shadow-frame: 0 0 48px rgb(2 58 75 / 0.06);
   color-scheme: light;
 }
 
@@ -37,6 +38,7 @@
   --color-line: var(--line);
   --color-press: var(--press);
   --color-moss: var(--moss);
+  --color-brass: var(--brass);
   --color-clay: var(--clay);
   --color-danger: var(--danger);
   --color-stock-ok: var(--stock-ok);
@@ -207,4 +209,69 @@ textarea {
 .fade-end {
   mask-image: linear-gradient(to right, transparent, #000 28px);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 28px);
+}
+
+.aroma-range {
+  --range-fill: 0%;
+  appearance: none;
+  background: transparent;
+  accent-color: var(--ink);
+}
+
+.aroma-range::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to left,
+    var(--ink) 0,
+    var(--ink) var(--range-fill),
+    var(--line) var(--range-fill),
+    var(--line) 100%
+  );
+}
+
+.aroma-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-top: -0.6875rem;
+  border-radius: 9999px;
+  border: 2px solid var(--card);
+  background: var(--ink);
+  box-shadow: 0 2px 8px -2px rgb(2 58 75 / 0.35);
+}
+
+.aroma-range::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--line);
+}
+
+.aroma-range::-moz-range-progress {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--ink);
+}
+
+.aroma-range::-moz-range-thumb {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  border: 2px solid var(--card);
+  background: var(--ink);
+  box-shadow: 0 2px 8px -2px rgb(2 58 75 / 0.35);
+}
+
+.aroma-range:focus-visible {
+  outline: none;
+}
+
+.aroma-range:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.aroma-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
 }

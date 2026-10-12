@@ -10,13 +10,14 @@ import { Card, Note } from "@/components/Card";
 import { Shell } from "@/components/Shell";
 import {
   cheaperUnconfirmed,
-  decisionFacts,
+  decisionVerdict,
   getPerfume,
   leadOffer,
   performanceLabel,
   sweetness,
 } from "@/lib/catalog";
 import { cn, faNum, millionToman } from "@/lib/format";
+import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
 import type { Perfume } from "@/lib/types";
 
@@ -41,12 +42,17 @@ function CompareScreen() {
       {!left || !right || left.slug === right.slug ? (
         <div className="px-5 py-8">
           <h1 className="text-headline font-bold">دو عطر را انتخاب کن</h1>
-          <p className="mt-3 text-body text-muted">
-            روی کارت پیشنهاد، مقایسه را بزن. با دوتایی شدن، جدول کنار هم می‌آید.
+          <p className="mt-3 max-w-[22rem] text-pretty text-body text-muted">
+            روی پیشنهادها یا صفحهٔ عطر، «مقایسه» را بزن. با دوتایی شدن، نوار پایین جدول را باز می‌کند.
           </p>
-          <ButtonLink href="/results" size="md" className="mt-5 px-5">
-            رفتن به پیشنهادها
-          </ButtonLink>
+          <div className="mt-5 flex flex-wrap gap-2">
+            <ButtonLink href="/results" size="md" className="px-5">
+              پیشنهادها
+            </ButtonLink>
+            <ButtonLink href="/shelf" variant="edge" size="md" className="px-5">
+              آرومای من
+            </ButtonLink>
+          </div>
         </div>
       ) : (
         <CompareBody left={left} right={right} />
@@ -56,95 +62,92 @@ function CompareScreen() {
 }
 
 function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
-  const facts = useMemo(() => decisionFacts(left, right), [left, right]);
-  const leanSlug =
-    facts.length === 1 ? (facts[0].name === left.nameFa ? left.slug : right.slug) : null;
+  const verdict = useMemo(() => decisionVerdict(left, right), [left, right]);
   const diffs = useMemo(() => diffRows(left, right), [left, right]);
   const alike = useMemo(() => alikeLine(left, right), [left, right]);
   const notes = useMemo(() => sharedNotes(left, right), [left, right]);
+  const scent = useMemo(() => diffLine(left, right), [left, right]);
+  const fromPath = `/compare?a=${left.slug}&b=${right.slug}`;
 
   return (
-    <div className="px-4 pt-5 pb-10">
-      <h1 className="px-1 text-headline font-bold">
+    <div className="px-4 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+      <h1 className="px-1 text-balance text-headline font-bold">
         {left.nameFa} یا {right.nameFa}؟
       </h1>
 
-      <Decision facts={facts} />
-      <p className="mt-3 px-1 text-body text-muted">{diffLine(left, right)}</p>
+      <Note className="mt-3 text-pretty">{verdict.body}</Note>
+      {scent ? <p className="mt-3 px-1 text-pretty text-body text-muted">{scent}</p> : null}
 
       <div className="mt-5 grid grid-cols-2 gap-2.5">
         {[left, right].map((perfume) => {
-          const lean = leanSlug === perfume.slug;
+          const lean = verdict.leanSlug === perfume.slug;
+          const href = perfumeHref(perfume.slug, fromPath);
           return (
-            <div
+            <Card
               key={perfume.slug}
-              className={cn("rounded-panel border bg-card p-3", lean ? "border-ink" : "border-line")}
+              as="div"
+              shadow={lean ? "card" : "none"}
+              className={cn("p-3.5", lean ? "border-ink" : undefined)}
             >
-              <Link href={`/perfume/${perfume.slug}`} className="block text-title font-semibold">
-                {perfume.nameFa}
+              <Link
+                href={href}
+                className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+              >
+                <span className="block text-title font-semibold">{perfume.nameFa}</span>
               </Link>
-              <span className="mt-0.5 block text-label text-muted">
+              <span className="mt-0.5 block text-label">
                 <BrandLink name={perfume.brand} from={perfume.slug} />
               </span>
-              <Link href={`/perfume/${perfume.slug}`} className="mt-3 block">
+              <Link
+                href={href}
+                className="mt-3 block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+              >
                 <AccordMark accords={perfume.accords} />
+                <span className="mt-2.5 block text-body font-semibold">{millionToman(leadOffer(perfume).price)}</span>
               </Link>
-              <Link href={`/perfume/${perfume.slug}`} className="mt-2.5 block text-body font-semibold">
-                {millionToman(leadOffer(perfume).price)}
-              </Link>
-            </div>
+            </Card>
           );
         })}
       </div>
 
       {diffs.length > 0 ? (
-        <section className="mt-6" aria-labelledby="diff-title">
-          <h2 id="diff-title" className="px-1 text-label font-semibold text-muted">
+        <section className="mt-7" aria-labelledby="diff-title">
+          <h2 id="diff-title" className="px-1 text-title font-semibold">
             تفاوت‌ها
           </h2>
-          <div className="mt-2 overflow-x-auto overscroll-contain">
-            <table className="w-full border-separate border-spacing-0 text-body">
-              <thead>
-                <tr className="text-label text-muted">
-                  <th className="w-20 py-2 pe-2 text-start font-normal" />
-                  <th className="px-2 py-2 text-start font-medium text-ink">{left.nameFa}</th>
-                  <th className="px-2 py-2 text-start font-medium text-ink">{right.nameFa}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {diffs.map((row) => (
-                  <tr key={row.label} className="align-top">
-                    <th className="sticky inset-inline-start-0 z-10 w-20 bg-paper py-3 pe-2 text-start text-label font-normal text-muted">
-                      {row.label}
-                    </th>
-                    {row.values.map((value, index) => (
-                      <td key={`${row.label}-${index}`} className="px-2 py-3 font-medium">
-                        {value}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-2 grid grid-cols-2 gap-2.5 px-1 text-label text-muted" aria-hidden="true">
+            <span>{left.nameFa}</span>
+            <span>{right.nameFa}</span>
           </div>
+          <Card className="mt-2 overflow-hidden p-0">
+            {diffs.map((row, index) => (
+              <div
+                key={row.label}
+                className={cn("px-3.5 py-3", index > 0 && "border-t border-line")}
+              >
+                <p className="text-label text-muted">{row.label}</p>
+                <div className="mt-1.5 grid grid-cols-2 gap-2.5 text-body">
+                  {row.values.map((value, valueIndex) => (
+                    <p
+                      key={`${row.label}-${valueIndex}`}
+                      className={cn(
+                        "min-w-0 text-pretty",
+                        value === "—" ? "text-muted" : "font-medium text-ink",
+                      )}
+                    >
+                      {value}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </Card>
         </section>
       ) : null}
 
-      {alike ? (
-        <p className="mt-5 px-1 text-label text-muted">
-          مشترک: {alike}
-        </p>
-      ) : null}
+      <SharedBlock alike={alike} notes={notes} leftName={left.nameFa} rightName={right.nameFa} />
 
-      {notes ? (
-        <p className="mt-2 px-1 text-label text-muted">
-          نوت مشترک: {notes}
-        </p>
-      ) : (
-        <p className="mt-2 px-1 text-label text-muted">نوت مشترکی در این نمونه نیست.</p>
-      )}
-
-      <p className="mt-5 px-1 text-label text-muted">
+      <p className="mt-6 px-1 text-pretty text-label text-muted">
         قیمت‌ها از فروشگاهِ موجودِ تأییدشده است. جایی که داده نداریم، حدس نمی‌زنیم.
       </p>
       <UnverifiedPrices left={left} right={right} />
@@ -152,20 +155,35 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
   );
 }
 
-function Decision({ facts }: { facts: Array<{ name: string; fact: string }> }) {
-  if (facts.length === 0) {
-    return <Note className="mt-3">از روی قیمت تأییدشده و ماندگاری، این دو به هم نزدیک‌اند.</Note>;
-  }
-
+function SharedBlock({
+  alike,
+  notes,
+  leftName,
+  rightName,
+}: {
+  alike: string;
+  notes: string;
+  leftName: string;
+  rightName: string;
+}) {
   return (
-    <ul className="mt-4 flex flex-col gap-2">
-      {facts.map((item) => (
-        <Card as="li" bordered={false} key={item.name} className="px-4 py-3">
-          <p className="text-body font-semibold">{item.name}</p>
-          <p className="mt-0.5 text-label text-muted">{item.fact}</p>
-        </Card>
-      ))}
-    </ul>
+    <section className="mt-7" aria-labelledby="shared-title">
+      <h2 id="shared-title" className="px-1 text-pretty text-title font-semibold">
+        مشترک بین {leftName} و {rightName}
+      </h2>
+      <Card className="mt-2 px-4 py-3.5">
+        {alike ? (
+          <div>
+            <p className="text-label text-muted">مشخصات</p>
+            <p className="mt-1 text-pretty text-body">{alike}</p>
+          </div>
+        ) : null}
+        <div className={alike ? "mt-3 border-t border-line pt-3" : undefined}>
+          <p className="text-label text-muted">نوت‌ها</p>
+          <p className="mt-1 text-pretty text-body">{notes || "نوت مشترکی در این نمونه نیست."}</p>
+        </div>
+      </Card>
+    </section>
   );
 }
 
@@ -177,7 +195,7 @@ function UnverifiedPrices({ left, right }: { left: Perfume; right: Perfume }) {
   });
   if (notes.length === 0) return null;
   return (
-    <ul className="mt-2 px-1 text-label text-muted">
+    <ul className="mt-2 space-y-1 px-1 text-pretty text-label text-muted">
       {notes.map((note) => (
         <li key={note}>{note}</li>
       ))}
@@ -189,23 +207,26 @@ function diffRows(left: Perfume, right: Perfume) {
   const rows: Array<{ label: string; values: [string, string] }> = [];
 
   const longevity: [string, string] = [
-    left.longevity ? performanceLabel("longevity", left.longevity) : "",
-    right.longevity ? performanceLabel("longevity", right.longevity) : "",
+    left.longevity ? performanceLabel("longevity", left.longevity) : "—",
+    right.longevity ? performanceLabel("longevity", right.longevity) : "—",
   ];
-  if (longevity[0] !== longevity[1] && (longevity[0] || longevity[1])) {
+  if (longevity[0] !== longevity[1]) {
     rows.push({ label: "ماندگاری", values: longevity });
   }
 
   const sillage: [string, string] = [
-    left.sillage ? performanceLabel("sillage", left.sillage) : "",
-    right.sillage ? performanceLabel("sillage", right.sillage) : "",
+    left.sillage ? performanceLabel("sillage", left.sillage) : "—",
+    right.sillage ? performanceLabel("sillage", right.sillage) : "—",
   ];
-  if (sillage[0] !== sillage[1] && (sillage[0] || sillage[1])) {
+  if (sillage[0] !== sillage[1]) {
     rows.push({ label: "پخش بو", values: sillage });
   }
 
-  const inspired: [string, string] = [inspiredName(left.inspiredBy), inspiredName(right.inspiredBy)];
-  if (inspired[0] !== inspired[1] && (inspired[0] || inspired[1])) {
+  const inspired: [string, string] = [
+    inspiredName(left.inspiredBy) || "—",
+    inspiredName(right.inspiredBy) || "—",
+  ];
+  if (inspired[0] !== inspired[1]) {
     rows.push({ label: "نزدیک به", values: inspired });
   }
 
@@ -247,7 +268,7 @@ function diffLine(left: Perfume, right: Perfume) {
     if (leftLead && rightLead && leftLead !== rightLead) {
       return `${left.nameFa} با ${leftLead} باز می‌شود؛ ${right.nameFa} با ${rightLead}.`;
     }
-    return "از روی نوت‌های ثبت‌شده، حال‌وهوایشان نزدیک است.";
+    return "";
   }
   const sweeter = leftSweet > rightSweet ? left : right;
   const drier = sweeter.slug === left.slug ? right : left;

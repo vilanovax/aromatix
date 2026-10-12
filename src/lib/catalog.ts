@@ -606,27 +606,66 @@ export function sharedAccordNames(left: Perfume, right: Perfume) {
   return left.accords.filter((accord) => names.has(accord.name)).map((accord) => accord.name);
 }
 
-export function decisionFacts(left: Perfume, right: Perfume) {
-  const facts: Array<{ name: string; fact: string }> = [];
+type DecisionEdge = { slug: string; name: string; criterion: string; fact: string };
+
+function decisionEdges(left: Perfume, right: Perfume): DecisionEdge[] {
+  const edges: DecisionEdge[] = [];
   if (left.longevity != null && right.longevity != null && left.longevity !== right.longevity) {
     const winner = left.longevity > right.longevity ? left : right;
-    facts.push({ name: winner.nameFa, fact: "ماندگاری بیشتر" });
+    edges.push({ slug: winner.slug, name: winner.nameFa, criterion: "ماندگاری", fact: "ماندگاری بیشتر" });
   }
   const leftPrice = leadOffer(left).price;
   const rightPrice = leadOffer(right).price;
   if (leftPrice !== rightPrice) {
     const cheaper = leftPrice < rightPrice ? left : right;
-    facts.push({ name: cheaper.nameFa, fact: "قیمت تأییدشده پایین‌تر" });
+    edges.push({
+      slug: cheaper.slug,
+      name: cheaper.nameFa,
+      criterion: "بودجه",
+      fact: "قیمت تأییدشده پایین‌تر",
+    });
   }
   if (left.sillage != null && right.sillage != null && left.sillage !== right.sillage) {
     const winner = left.sillage > right.sillage ? left : right;
-    facts.push({ name: winner.nameFa, fact: "پخش بوی بیشتر" });
+    edges.push({ slug: winner.slug, name: winner.nameFa, criterion: "پخش بو", fact: "پخش بوی بیشتر" });
   }
+  return edges;
+}
+
+export function decisionFacts(left: Perfume, right: Perfume) {
   const grouped = new Map<string, string[]>();
-  for (const item of facts) {
+  for (const item of decisionEdges(left, right)) {
     grouped.set(item.name, [...(grouped.get(item.name) ?? []), item.fact]);
   }
   return [...grouped].map(([name, items]) => ({ name, fact: items.join("، ") }));
+}
+
+export function decisionVerdict(left: Perfume, right: Perfume) {
+  const edges = decisionEdges(left, right);
+  if (edges.length === 0) {
+    return {
+      kind: "tie" as const,
+      body: "از روی قیمت تأییدشده و ماندگاری، این دو به هم نزدیک‌اند.",
+      leanSlug: null as string | null,
+    };
+  }
+
+  const winners = new Set(edges.map((edge) => edge.slug));
+  if (winners.size === 1) {
+    const winner = edges[0];
+    const facts = [...new Set(edges.map((edge) => edge.fact))];
+    return {
+      kind: "clear" as const,
+      body: `${winner.name} جلوتر است: ${facts.join("، ")}.`,
+      leanSlug: winner.slug,
+    };
+  }
+
+  return {
+    kind: "tradeoff" as const,
+    body: edges.map((edge) => `اگر ${edge.criterion} مهم‌تر است → ${edge.name}`).join("؛ ") + ".",
+    leanSlug: null as string | null,
+  };
 }
 
 export function performanceLabel(kind: "longevity" | "sillage", value: number) {

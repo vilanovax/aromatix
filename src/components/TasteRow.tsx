@@ -22,9 +22,11 @@ export function TasteRow({
   const [mounted, setMounted] = useState(false);
   const experienced = state?.rating != null && !state.disliked;
   const titleId = useId();
+  const supportId = useId();
   const rangeRef = useRef<HTMLInputElement>(null);
   const [rating, setRating] = useState(8);
   const [owned, setOwned] = useState(false);
+  const fill = `${((rating - 1) / 9) * 100}%`;
 
   useEffect(() => {
     setMounted(true);
@@ -46,61 +48,98 @@ export function TasteRow({
     setOpen(true);
   }
 
+  function closeExperience() {
+    setOpen(false);
+  }
+
   const sheet =
     open && mounted
       ? createPortal(
           <div className="fixed inset-0 z-40 flex items-end justify-center">
-            <button type="button" className="absolute inset-0 bg-ink/40" aria-label="بستن ثبت تجربه" onClick={() => setOpen(false)} />
+            <button
+              type="button"
+              className="absolute inset-0 bg-ink/40"
+              aria-label="بستن ثبت تجربه"
+              onClick={closeExperience}
+            />
             <div
               role="dialog"
               aria-modal="true"
               aria-labelledby={titleId}
-              className="sheet-panel relative z-10 w-full max-w-lg rounded-t-sheet bg-card px-5 pt-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
+              aria-describedby={supportId}
+              className="scroll-quiet sheet-panel relative z-10 w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-sheet bg-card px-5 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-sheet"
             >
-              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-line" />
-              <h2 id={titleId} className="text-title font-semibold">
-                {name}
-              </h2>
-              <p className="mt-1 text-body text-muted">چقدر از این عطر راضی هستی؟</p>
-              <p className="mt-4 text-display font-bold" aria-live="polite">
-                {faNum(rating)}
-                <span className="ms-1 text-body font-normal text-muted">از ۱۰</span>
-              </p>
-              <p className="mt-1 text-label text-muted">{ratingPhrase(rating)}</p>
-              <div className="mt-4 flex items-center justify-between text-label text-muted">
-                <span>اصلاً دوست ندارم</span>
-                <span>عاشقشم</span>
+              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-line" aria-hidden="true" />
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <h2 id={titleId} className="text-pretty text-title font-semibold">
+                    {name}
+                  </h2>
+                  <p id={supportId} className="mt-1 text-pretty text-body text-muted">
+                    چقدر از این عطر راضی هستی؟
+                  </p>
+                </div>
+                <Button
+                  variant="quiet"
+                  shape="pill"
+                  size="sm"
+                  onClick={closeExperience}
+                  className="shrink-0 px-3 py-2 text-body outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                >
+                  بستن
+                </Button>
               </div>
-              <input
-                ref={rangeRef}
-                type="range"
-                min={1}
-                max={10}
-                step={1}
-                value={rating}
-                aria-valuemin={1}
-                aria-valuemax={10}
-                aria-valuenow={rating}
-                aria-label="میزان رضایت"
-                onChange={(event) => setRating(Number(event.target.value))}
-                className="mt-2 h-11 w-full cursor-pointer accent-ink"
-              />
+
+              <div className="mt-5 rounded-panel bg-paper px-4 py-4 text-center">
+                <p className="text-display font-bold tabular-nums" aria-live="polite">
+                  {faNum(rating)}
+                  <span className="ms-1.5 text-body font-medium text-muted">از ۱۰</span>
+                </p>
+                <p className="mt-1.5 text-label text-muted">{ratingPhrase(rating)}</p>
+              </div>
+
+              <div className="mt-5">
+                <div className="mb-2 flex items-center justify-between gap-3 text-label text-muted">
+                  <span>اصلاً دوست ندارم</span>
+                  <span>عاشقشم</span>
+                </div>
+                <input
+                  ref={rangeRef}
+                  type="range"
+                  min={1}
+                  max={10}
+                  step={1}
+                  value={rating}
+                  aria-valuemin={1}
+                  aria-valuemax={10}
+                  aria-valuenow={rating}
+                  aria-valuetext={`${faNum(rating)} از ۱۰، ${ratingPhrase(rating)}`}
+                  aria-label="میزان رضایت"
+                  onChange={(event) => setRating(Number(event.target.value))}
+                  style={{ ["--range-fill" as string]: fill }}
+                  className="aroma-range h-11 w-full cursor-pointer"
+                />
+              </div>
+
               <Button
                 variant={owned ? "quiet" : "edge"}
                 shape="control"
                 size="lg"
                 aria-pressed={owned}
                 onClick={() => setOwned((current) => !current)}
-                className={cn("mt-4 w-full font-medium", owned && "border-transparent bg-moss text-ink")}
+                className={cn(
+                  "mt-5 w-full font-medium outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink",
+                  owned && "border-transparent bg-moss text-ink",
+                )}
               >
                 این عطر رو دارم
               </Button>
               <Button
                 size="lg"
-                className="mt-3 w-full"
+                className="mt-2.5 w-full"
                 onClick={() => {
                   saveExperience(slug, rating, owned);
-                  setOpen(false);
+                  closeExperience();
                 }}
               >
                 ثبت تجربه
@@ -109,10 +148,10 @@ export function TasteRow({
                 <Button
                   variant="quiet"
                   size="md"
-                  className="mt-1 w-full font-normal text-muted"
+                  className="mt-1 w-full font-normal text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
                   onClick={() => {
                     clearExperience(slug);
-                    setOpen(false);
+                    closeExperience();
                   }}
                 >
                   پاک کردن تجربه

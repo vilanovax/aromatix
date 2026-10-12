@@ -9,6 +9,7 @@ import { Note } from "@/components/Card";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { faNum } from "@/lib/format";
+import { perfumeHref } from "@/lib/nav";
 import { getEntry, relatedEntries, relatedPerfumes } from "@/lib/knowledge";
 
 export default function LearnEntryPage() {
@@ -84,11 +85,11 @@ export default function LearnEntryPage() {
               {perfumes.map((perfume) => (
                 <li key={perfume.slug}>
                   <div className="flex w-full items-center gap-3 rounded-panel border border-line bg-card p-2.5">
-                    <Link href={`/perfume/${perfume.slug}`} className="shrink-0 rounded-control">
+                    <Link href={perfumeHref(perfume.slug, `/learn/${entry.slug}`)} className="shrink-0 rounded-control">
                       <ScentMark perfume={perfume} className="h-16 w-12 rounded-control" />
                     </Link>
                     <span className="min-w-0 flex-1 text-start">
-                      <Link href={`/perfume/${perfume.slug}`} className="block font-medium">
+                      <Link href={perfumeHref(perfume.slug, `/learn/${entry.slug}`)} className="block font-medium">
                         {perfume.nameFa}
                       </Link>
                       <span className="block text-label text-muted">
@@ -96,7 +97,7 @@ export default function LearnEntryPage() {
                       </span>
                     </span>
                     <Link
-                      href={`/perfume/${perfume.slug}`}
+                      href={perfumeHref(perfume.slug, `/learn/${entry.slug}`)}
                       aria-label={`باز کردن ${perfume.nameFa}`}
                       className="shrink-0 rounded-control p-1 text-muted"
                     >

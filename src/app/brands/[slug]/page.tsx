@@ -8,12 +8,13 @@ import { PerfumePhoto } from "@/components/Bottle";
 import { ButtonLink } from "@/components/Button";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
-import { getBrand, getPerfume, perfumesByBrand } from "@/lib/catalog";
+import { getBrand, getPerfume, leadOffer, perfumesByBrand } from "@/lib/catalog";
 import { computeDna } from "@/lib/dna";
-import { countWord } from "@/lib/format";
+import { countWord, faNum, millionToman } from "@/lib/format";
+import { perfumeHref } from "@/lib/nav";
 import { suggestForBrand } from "@/lib/match";
 import { useAroma } from "@/lib/store";
-import type { Perfume } from "@/lib/types";
+import type { Perfume, UserPerfume } from "@/lib/types";
 
 export default function BrandPage() {
   return (
@@ -47,7 +48,7 @@ function BrandScreen() {
   const catalog = perfumesByBrand(brand.nameFa);
   const back =
     origin && origin.brand === brand.nameFa
-      ? { href: `/perfume/${origin.slug}`, label: "عطر" }
+      ? { href: `/perfume/${origin.slug}`, label: origin.nameFa }
       : { href: "/brands", label: "برندها" };
 
   return (
@@ -59,20 +60,21 @@ function BrandScreen() {
             <span dir="ltr" className="inline-block">
               {brand.nameEn}
             </span>
+            <span className="mx-1.5 text-faint">·</span>
+            {countWord(catalog.length)} عطر در آروما
           </p>
-          <p className="mt-2 text-label text-muted">{countWord(catalog.length)} عطر در آروما</p>
         </header>
 
-        <ForYou brandName={brand.nameFa} />
+        <ForYou brandName={brand.nameFa} brandSlug={brand.slug} />
 
         <section className="mt-8" aria-labelledby="catalog-title">
           <h2 id="catalog-title" className="text-title font-semibold">
-            عطرها
+            همهٔ عطرها
           </h2>
-          <ul className="mt-3 flex flex-col gap-2.5">
+          <ul className="mt-3 flex flex-col gap-2">
             {catalog.map((perfume) => (
               <li key={perfume.slug}>
-                <PerfumeRow perfume={perfume} detail={perfume.nameEn} latin />
+                <PerfumeRow perfume={perfume} from={`/brands/${brand.slug}`} />
               </li>
             ))}
           </ul>
@@ -82,59 +84,83 @@ function BrandScreen() {
   );
 }
 
-function ForYou({ brandName }: { brandName: string }) {
+function ForYou({ brandName, brandSlug }: { brandName: string; brandSlug: string }) {
   const { ready, library } = useAroma();
+  if (!ready) return null;
+
   const dna = computeDna(library, getPerfume);
-  const picks = suggestForBrand(brandName, library);
   const known = dna.stage === "early" || dna.stage === "dna";
 
-  if (!ready || (known && picks.length === 0)) return null;
+  if (!known) {
+    return (
+      <p className="mt-5 rounded-panel bg-moss px-4 py-3 text-pretty text-body">
+        چند عطری را که تجربه کردی امتیاز بده تا از {brandName} برایت جدا کنیم؛ یا با{" "}
+        <Link
+          href="/guide"
+          className="font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+        >
+          راهنمای انتخاب
+        </Link>{" "}
+        شروع کن.
+      </p>
+    );
+  }
+
+  const picks = suggestForBrand(brandName, library);
+  if (picks.length === 0) return null;
 
   return (
     <section className="mt-8" aria-labelledby="for-you-title">
       <h2 id="for-you-title" className="text-title font-semibold">
         از {brandName} برای تو
       </h2>
-      {known ? (
-        <>
-          <p className="mt-1 text-pretty text-body text-muted">{dna.sentence}</p>
-          <ul className="mt-3 flex flex-col gap-2.5">
-            {picks.map((perfume) => (
-              <li key={perfume.slug}>
-                <PerfumeRow perfume={perfume} detail={perfume.why} />
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <>
-          <p className="mt-1 text-pretty text-body text-muted">هنوز سلیقه‌ات را کم می‌شناسیم.</p>
-          <ButtonLink href="/guide" variant="edge" shape="control" size="md" className="mt-3">
-            راهنمای انتخاب
-          </ButtonLink>
-        </>
-      )}
+      <p className="mt-1 text-pretty text-label text-muted">{dna.sentence}</p>
+      <ul className="mt-3 flex flex-col gap-2">
+        {picks.map((perfume) => (
+          <li key={perfume.slug}>
+            <PerfumeRow perfume={perfume} from={`/brands/${brandSlug}`} why />
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }
 
-function PerfumeRow({ perfume, detail, latin = false }: { perfume: Perfume; detail: string; latin?: boolean }) {
+function PerfumeRow({ perfume, from, why = false }: { perfume: Perfume; from: string; why?: boolean }) {
+  const { library } = useAroma();
+  const offer = leadOffer(perfume);
+  const status = statusLabel(library[perfume.slug]);
+
   return (
     <Link
-      href={`/perfume/${perfume.slug}`}
-      className="pressable quiet flex min-h-16 items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+      href={perfumeHref(perfume.slug, from)}
+      className="pressable quiet flex items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
     >
-      <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-14 w-12 shrink-0 rounded-control" />
+      <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-16 w-13 shrink-0 rounded-control" />
       <span className="min-w-0 flex-1 text-start">
-        <span className="block text-body font-semibold">{perfume.nameFa}</span>
-        <span dir={latin ? "ltr" : undefined} className="mt-0.5 block text-pretty text-label text-muted">
-          {detail}
+        <span className="flex items-baseline justify-between gap-2">
+          <span className="truncate text-body font-semibold">{perfume.nameFa}</span>
+          {status ? <span className="shrink-0 text-label text-muted">{status}</span> : null}
         </span>
-        <span className="mt-2 block max-w-52">
-          <AccordMark accords={perfume.accords} />
-        </span>
+        {why ? (
+          <span className="mt-0.5 line-clamp-2 block text-pretty text-label text-muted">{perfume.why}</span>
+        ) : (
+          <span className="mt-1.5 block max-w-56">
+            <AccordMark accords={perfume.accords} names />
+          </span>
+        )}
+        <span className="mt-1 block text-label text-muted">{millionToman(offer.price)}</span>
       </span>
       <ForwardIcon className="size-5 shrink-0 text-muted" />
     </Link>
   );
+}
+
+function statusLabel(state: UserPerfume | undefined) {
+  if (!state) return null;
+  if (state.disliked) return "نپسندیدی";
+  if (state.rating != null) return `${faNum(state.rating)} از ۱۰`;
+  if (state.owned) return "داری";
+  if (state.wanted) return "می‌خوای";
+  return null;
 }

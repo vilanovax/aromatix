@@ -12,6 +12,7 @@ import { TasteRow } from "@/components/TasteRow";
 import { cheaperUnconfirmed, getPerfume, leadOffer, perfumes } from "@/lib/catalog";
 import { computeDna, shelfBucket } from "@/lib/dna";
 import { cn, faNum, millionToman } from "@/lib/format";
+import { perfumeHref } from "@/lib/nav";
 import { suggestForTaste, wantedNeighbors } from "@/lib/match";
 import { useAroma } from "@/lib/store";
 import type { Perfume, UserPerfume } from "@/lib/types";
@@ -179,11 +180,11 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
             <li key={perfume.slug}>
               <Card className="p-3">
                 <div className="flex items-center gap-3">
-                  <Link href={`/perfume/${perfume.slug}`} className="shrink-0 rounded-control">
+                  <Link href={perfumeHref(perfume.slug, "/shelf")} className="shrink-0 rounded-control">
                     <ScentMark perfume={perfume} className="h-16 w-14 rounded-control" />
                   </Link>
                   <span className="min-w-0 flex-1">
-                    <Link href={`/perfume/${perfume.slug}`} className="block font-semibold">
+                    <Link href={perfumeHref(perfume.slug, "/shelf")} className="block font-semibold">
                       {perfume.nameFa}
                     </Link>
                     <span className="mt-0.5 block text-label text-muted">
@@ -192,7 +193,7 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
                     </span>
                   </span>
                   <Link
-                    href={`/perfume/${perfume.slug}`}
+                    href={perfumeHref(perfume.slug, "/shelf")}
                     aria-label={`باز کردن ${perfume.nameFa}`}
                     className="shrink-0 rounded-control p-1 text-muted"
                   >
@@ -214,11 +215,11 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
   return (
     <Card as="li" className="p-3">
       <div className="flex items-center gap-3">
-        <Link href={`/perfume/${perfume.slug}`} className="shrink-0 rounded-control">
+        <Link href={perfumeHref(perfume.slug, "/shelf")} className="shrink-0 rounded-control">
           <ScentMark perfume={perfume} className={cn("h-20 w-16 rounded-control", muted && "opacity-55 grayscale")} />
         </Link>
         <span className="min-w-0 flex-1">
-          <Link href={`/perfume/${perfume.slug}`} className="block font-semibold">
+          <Link href={perfumeHref(perfume.slug, "/shelf")} className="block font-semibold">
             {perfume.nameFa}
           </Link>
           <span className="mt-0.5 block text-label text-muted">
@@ -234,7 +235,7 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
           </span>
         </span>
         <Link
-          href={`/perfume/${perfume.slug}`}
+          href={perfumeHref(perfume.slug, "/shelf")}
           aria-label={`باز کردن ${perfume.nameFa}`}
           className="shrink-0 rounded-control p-1 text-muted"
         >
