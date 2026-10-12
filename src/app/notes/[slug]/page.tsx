@@ -25,7 +25,7 @@ export default function NotePage() {
     return (
       <Shell composer back={{ href: "/", label: "شروع" }}>
         <div className="px-5 py-10">
-          <h1 className="text-xl font-bold">این نوت هنوز در دانشنامه نیست.</h1>
+          <h1 className="text-headline font-bold">این نوت هنوز در دانشنامه نیست.</h1>
         </div>
       </Shell>
     );
@@ -36,25 +36,25 @@ export default function NotePage() {
   return (
     <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
       <article className="px-5 pt-6 pb-12">
-        <p className="text-[13px] text-(--muted)">دانشنامه</p>
-        <h1 className="mt-2 text-[1.7rem] font-bold">{note.title}</h1>
+        <p className="text-label text-muted">دانشنامه</p>
+        <h1 className="mt-2 text-display font-bold">{note.title}</h1>
         <div className="mt-4 h-2 w-24 rounded-full bg-[#6E5436]" aria-hidden="true" />
         {note.body.map((paragraph) => (
-          <p key={paragraph} className="mt-4 text-[16px] leading-8">
+          <p key={paragraph} className="mt-4 text-body">
             {paragraph}
           </p>
         ))}
-        <p className="mt-4 text-[15px] leading-7 text-(--muted)">{note.wear}</p>
+        <p className="mt-4 text-body text-muted">{note.wear}</p>
         <section className="mt-10">
-          <h2 className="text-[15px] font-semibold">در این عطرها هست</h2>
+          <h2 className="text-body font-semibold">در این عطرها هست</h2>
           <ul className="mt-3 flex flex-col gap-2">
             {carriers.map((perfume) => (
               <li key={perfume.slug}>
-                <Link href={`/perfume/${perfume.slug}`} className="pressable flex items-center gap-3 rounded-2xl border border-(--line) bg-(--card) p-2.5">
-                  <ScentMark perfume={perfume} className="h-16 w-12 rounded-lg" />
+                <Link href={`/perfume/${perfume.slug}`} className="pressable flex items-center gap-3 rounded-panel border border-line bg-card p-2.5">
+                  <ScentMark perfume={perfume} className="h-16 w-12 rounded-control" />
                   <span>
                     <span className="block font-medium">{perfume.nameFa}</span>
-                    <span className="text-[13px] text-(--muted)">{perfume.brand}</span>
+                    <span className="text-label text-muted">{perfume.brand}</span>
                   </span>
                 </Link>
               </li>

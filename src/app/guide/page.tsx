@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BackIcon, CheckIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { BUDGETS, OCCASIONS, REFERENCES, SEASONS } from "@/lib/catalog";
@@ -13,49 +13,56 @@ type Step = "occasion" | "season" | "budget" | "reference";
 
 const STEPS: Step[] = ["occasion", "season", "budget", "reference"];
 
+const STEP_LABEL: Record<Step, string> = {
+  occasion: "موقعیت",
+  season: "فصل",
+  budget: "بودجه",
+  reference: "سلیقه",
+};
+
 const COPY: Record<Step, { title: string; support: string; helper: string }> = {
   occasion: {
     title: "کجا می‌خوای بزنی؟",
-    support: "یکی یا دو موقعیت را انتخاب کن؛ بر اساس همان، بو را می‌چینیم.",
+    support: "یکی یا دو تا را انتخاب کن.",
     helper: "حداقل یک موقعیت لازم است.",
   },
   season: {
     title: "هوا چطوره؟",
-    support: "فصل، خانوادهٔ بو را عوض می‌کند؛ یکی کافی است.",
+    support: "فصل، خانوادهٔ بو را مشخص می‌کند.",
     helper: "یک فصل را انتخاب کن.",
   },
   budget: {
     title: "تا چه قیمتی؟",
-    support: "سقف قیمت یک شیشه در فروشگاه‌های معرفی‌شده.",
+    support: "سقف یک شیشه در فروشگاه‌ها.",
     helper: "یک سقف بودجه را انتخاب کن.",
   },
   reference: {
-    title: "عطر آشنایی هست که دوستش داشته باشی؟",
-    support: "اختیاری است. اگر رد کنی هم پیشنهادها می‌آید.",
+    title: "عطر آشنایی دوست داری؟",
+    support: "اختیاری است؛ می‌توانی رد کنی.",
     helper: "",
   },
 };
 
 const OCCASION_META: Record<string, { hint: string; swatch: string }> = {
-  night: { hint: "گرم‌تر و ماندگارتر", swatch: "#8C4A32" },
-  office: { hint: "سبک؛ فضای مشترک را پر نکند", swatch: "#7FA58A" },
-  date: { hint: "نزدیک به پوست و گرم", swatch: "#B5816A" },
-  daily: { hint: "بی‌دردسر برای هر روز", swatch: "#6E93A3" },
+  night: { hint: "گرم و ماندگار", swatch: "#8C4A32" },
+  office: { hint: "سبک و جمع‌وجور", swatch: "#7FA58A" },
+  date: { hint: "نزدیک پوست", swatch: "#B5816A" },
+  daily: { hint: "بی‌دردسر", swatch: "#6E93A3" },
   sport: { hint: "خنک و تازه", swatch: "#C6B15A" },
 };
 
-const SEASON_HINT: Record<string, string> = {
-  summer: "تازه و سبک بهتر می‌نشیند",
-  winter: "گرم و شیرین جا می‌افتد",
-  mild: "تقریباً هر سبکی",
-  all: "یک عطر برای کل سال",
+const SEASON_META: Record<string, { hint: string; swatch: string }> = {
+  summer: { hint: "تازه و سبک", swatch: "#6E93A3" },
+  winter: { hint: "گرم و شیرین", swatch: "#8C4A32" },
+  mild: { hint: "تقریباً هر سبک", swatch: "#7FA58A" },
+  all: { hint: "برای کل سال", swatch: "#6E5436" },
 };
 
-const REFERENCE_HINT: Record<string, string> = {
-  sauvage: "تازه و تند",
-  aventus: "میوه‌ای و دودی",
-  angels: "شیرین و گرم",
-  none: "از صفر انتخاب کن",
+const REFERENCE_META: Record<string, { hint: string; swatch: string }> = {
+  sauvage: { hint: "تازه و تند", swatch: "#5C6164" },
+  aventus: { hint: "میوه‌ای و دودی", swatch: "#D2B15C" },
+  angels: { hint: "شیرین و گرم", swatch: "#C47B4A" },
+  none: { hint: "از صفر شروع کن", swatch: "#B7A99A" },
 };
 
 export default function GuidePage() {
@@ -67,6 +74,7 @@ export default function GuidePage() {
   const [budget, setBudget] = useState<number | null>(null);
   const [reference, setReference] = useState<string | null>(null);
   const [limitHit, setLimitHit] = useState(false);
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const current = STEPS[step];
   const optional = current === "reference";
@@ -75,6 +83,12 @@ export default function GuidePage() {
     (current === "season" && season !== null) ||
     (current === "budget" && budget !== null) ||
     (current === "reference" && reference !== null);
+
+  useEffect(() => {
+    return () => {
+      if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    };
+  }, []);
 
   function finish(nextReference: string | null) {
     if (!season || !budget || occasions.length === 0) return;
@@ -89,7 +103,11 @@ export default function GuidePage() {
     router.push("/results");
   }
 
-  function next() {
+  function goNext() {
+    if (advanceTimer.current) {
+      clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
     if (current === "reference") {
       finish(reference);
       return;
@@ -98,7 +116,19 @@ export default function GuidePage() {
     setStep((value) => value + 1);
   }
 
+  function scheduleAdvance() {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    advanceTimer.current = setTimeout(() => {
+      advanceTimer.current = null;
+      goNext();
+    }, 280);
+  }
+
   function toggleOccasion(id: string) {
+    if (advanceTimer.current) {
+      clearTimeout(advanceTimer.current);
+      advanceTimer.current = null;
+    }
     if (occasions.includes(id)) {
       setOccasions(occasions.filter((item) => item !== id));
       setLimitHit(false);
@@ -112,6 +142,32 @@ export default function GuidePage() {
     setLimitHit(false);
   }
 
+  function pickSeason(id: Season) {
+    setSeason(id);
+    scheduleAdvance();
+  }
+
+  function pickBudget(id: number) {
+    setBudget(id);
+    scheduleAdvance();
+  }
+
+  function pickReference(id: string) {
+    setReference(id);
+    scheduleAdvance();
+  }
+
+  const footerSummary =
+    current === "occasion" && occasions.length > 0
+      ? occasions.map((id) => OCCASIONS.find((item) => item.id === id)?.label).filter(Boolean).join(" و ")
+      : current === "season" && season
+        ? SEASONS.find((item) => item.id === season)?.short
+        : current === "budget" && budget
+          ? `تا ${faNum(budget)} میلیون`
+          : current === "reference" && reference
+            ? REFERENCES.find((item) => item.id === reference)?.label
+            : null;
+
   return (
     <Shell back={{ href: "/", label: "شروع" }}>
       <div className="flex min-h-full flex-col">
@@ -121,53 +177,54 @@ export default function GuidePage() {
               {STEPS.map((item, index) => (
                 <span
                   key={item}
+                  title={STEP_LABEL[item]}
                   className={cn(
                     "h-1 flex-1 rounded-full transition-colors duration-300",
-                    index <= step ? "bg-[var(--ink)]" : "bg-[var(--line)]",
+                    index <= step ? "bg-ink" : "bg-line",
                   )}
                 />
               ))}
             </div>
-            <p className="shrink-0 tabular-nums text-[12px] text-[var(--muted)]">
+            <p className="shrink-0 tabular-nums text-label text-muted">
               {faNum(step + 1)} از {faNum(STEPS.length)}
             </p>
           </div>
         </div>
 
-        <div key={current} className="step-in flex min-h-0 flex-1 flex-col px-5 pt-5 pb-3">
-          <h1 className="text-[1.55rem] font-bold leading-snug">{COPY[current].title}</h1>
-          <p className="mt-2 max-w-[22rem] text-[14px] leading-7 text-[var(--muted)]">{COPY[current].support}</p>
+        <div key={current} className="step-in flex min-h-0 flex-1 flex-col px-5 pt-5 pb-4">
+          <h1 className="text-headline font-bold">{COPY[current].title}</h1>
+          <p className="mt-2 max-w-[20rem] text-body text-muted">{COPY[current].support}</p>
 
-          {(occasions.length > 0 || season || budget) && current !== "occasion" ? (
+          {step > 0 ? (
             <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="انتخاب‌های تا اینجا">
               {occasions.map((id) => (
-                <li key={id} className="rounded-full bg-[var(--moss)] px-2.5 py-1 text-[12px]">
+                <li key={id} className="rounded-full bg-moss px-2.5 py-1 text-label">
                   {OCCASIONS.find((item) => item.id === id)?.label}
                 </li>
               ))}
               {season ? (
-                <li className="rounded-full bg-[var(--moss)] px-2.5 py-1 text-[12px]">
+                <li className="rounded-full bg-moss px-2.5 py-1 text-label">
                   {SEASONS.find((item) => item.id === season)?.short}
                 </li>
               ) : null}
-              {budget && (current === "budget" || current === "reference") ? (
-                <li className="rounded-full bg-[var(--moss)] px-2.5 py-1 text-[12px]">تا {faNum(budget)} میلیون</li>
+              {budget && current === "reference" ? (
+                <li className="rounded-full bg-moss px-2.5 py-1 text-label">تا {faNum(budget)} میلیون</li>
               ) : null}
             </ul>
           ) : null}
 
           {current === "occasion" && occasions.length > 0 ? (
-            <p className="mt-4 text-[13px] text-[var(--muted)]" aria-live="polite">
+            <p className="mt-3 text-label text-muted" aria-live="polite">
               {occasions.length === 2
                 ? "۲ از ۲ انتخاب شد؛ برای عوض کردن یکی را بردار."
-                : `${faNum(occasions.length)} از ۲ انتخاب شد.`}
+                : `${faNum(occasions.length)} از ۲ — می‌توانی یکی دیگر هم بزنی.`}
             </p>
           ) : null}
 
           <div
             className={cn(
               "mt-4",
-              current === "budget" ? "grid grid-cols-2 gap-2" : "flex flex-col gap-2",
+              current === "budget" || current === "season" ? "grid grid-cols-2 gap-2" : "flex flex-col gap-2",
             )}
             role="group"
             aria-label={COPY[current].title}
@@ -191,16 +248,18 @@ export default function GuidePage() {
                   <Choice
                     key={item.id}
                     pressed={season === item.id}
-                    hint={SEASON_HINT[item.id]}
-                    onClick={() => setSeason(item.id)}
+                    hint={SEASON_META[item.id].hint}
+                    swatch={SEASON_META[item.id].swatch}
+                    compact
+                    onClick={() => pickSeason(item.id)}
                   >
-                    {item.label}
+                    {item.short}
                   </Choice>
                 ))
               : null}
             {current === "budget"
               ? BUDGETS.map((item) => (
-                  <Choice key={item.id} pressed={budget === item.id} compact onClick={() => setBudget(item.id)}>
+                  <Choice key={item.id} pressed={budget === item.id} compact onClick={() => pickBudget(item.id)}>
                     {item.label}
                   </Choice>
                 ))
@@ -210,8 +269,9 @@ export default function GuidePage() {
                   <Choice
                     key={item.id}
                     pressed={reference === item.id}
-                    hint={REFERENCE_HINT[item.id]}
-                    onClick={() => setReference(item.id)}
+                    hint={REFERENCE_META[item.id].hint}
+                    swatch={REFERENCE_META[item.id].swatch}
+                    onClick={() => pickReference(item.id)}
                   >
                     {item.label}
                   </Choice>
@@ -220,26 +280,36 @@ export default function GuidePage() {
           </div>
 
           {limitHit ? (
-            <p role="status" className="mt-3 text-[13px] text-[var(--danger)]">
+            <p role="status" className="mt-3 text-label text-danger">
               حداکثر دو موقعیت. برای عوض کردن، یکی را بردار.
             </p>
           ) : null}
+
+          {current === "season" || current === "budget" || current === "reference" ? (
+            <p className="mt-auto pt-4 text-label text-muted">بعد از انتخاب، خودش می‌رود قدم بعد.</p>
+          ) : null}
         </div>
 
-        <div className="sticky bottom-0 border-t border-[var(--line)] bg-[var(--paper)]/95 px-5 pt-3 pb-[max(0.85rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
+        <div className="sticky bottom-0 border-t border-line bg-paper/95 px-5 pt-3 pb-[max(0.85rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
           {!ready && !optional ? (
-            <p className="mb-2 text-center text-[12px] text-[var(--muted)]">{COPY[current].helper}</p>
+            <p className="mb-2 text-center text-label text-muted">{COPY[current].helper}</p>
+          ) : footerSummary && current === "occasion" ? (
+            <p className="mb-2 text-center text-label text-muted">{footerSummary}</p>
           ) : null}
           <div className="flex gap-2">
             {step > 0 ? (
               <button
                 type="button"
                 onClick={() => {
+                  if (advanceTimer.current) {
+                    clearTimeout(advanceTimer.current);
+                    advanceTimer.current = null;
+                  }
                   setLimitHit(false);
                   setStep((value) => value - 1);
                 }}
                 aria-label="سؤال قبلی"
-                className="pressable edge grid size-12 shrink-0 place-items-center rounded-2xl border border-[var(--line)] bg-[var(--card)]"
+                className="pressable edge grid size-12 shrink-0 place-items-center rounded-panel border border-line bg-card"
               >
                 <BackIcon className="size-5" />
               </button>
@@ -248,7 +318,7 @@ export default function GuidePage() {
               <button
                 type="button"
                 onClick={() => finish(null)}
-                className="pressable edge min-h-12 flex-1 rounded-2xl border border-[var(--ink)] text-[15px] font-semibold"
+                className="pressable edge min-h-12 flex-1 rounded-panel border border-ink text-body leading-none font-semibold"
               >
                 رد کردن و دیدن پیشنهادها
               </button>
@@ -256,10 +326,10 @@ export default function GuidePage() {
               <button
                 type="button"
                 disabled={!ready}
-                onClick={next}
-                className="pressable solid min-h-12 flex-1 rounded-2xl bg-[var(--ink)] text-[15px] font-semibold text-[var(--paper)] disabled:bg-[var(--line)] disabled:text-[var(--muted)]"
+                onClick={goNext}
+                className="pressable solid min-h-12 flex-1 rounded-panel bg-ink text-body leading-none font-semibold text-paper disabled:bg-line disabled:text-muted"
               >
-                {optional ? "دیدن پیشنهادها" : "بعدی"}
+                {optional ? "دیدن پیشنهادها" : current === "occasion" ? "بعدی" : "ادامه"}
               </button>
             )}
           </div>
@@ -292,21 +362,23 @@ function Choice({
       aria-pressed={pressed}
       onClick={onClick}
       className={cn(
-        "pressable relative flex items-center gap-3 rounded-2xl border text-start transition-colors duration-150",
-        compact ? "min-h-[4.25rem] justify-center px-3 py-3 text-center" : "min-h-[3.35rem] px-3.5 py-2.5",
-        pressed
-          ? "border-[var(--ink)] bg-[var(--moss)]"
-          : "edge border-[var(--line)] bg-[var(--card)]",
+        "pressable relative flex items-center gap-3 rounded-panel border text-start transition-colors duration-150",
+        compact ? "min-h-[4.5rem] flex-col justify-center gap-1.5 px-3 py-3 text-center" : "min-h-12 px-3.5 py-2.5",
+        pressed ? "border-ink bg-moss" : "edge border-line bg-card",
       )}
     >
       {compact ? (
         <>
-          <span className={cn("text-[15px] leading-6", pressed ? "font-semibold" : "font-medium")}>{children}</span>
+          {swatch ? (
+            <span aria-hidden="true" className="size-2 rounded-full" style={{ background: swatch }} />
+          ) : null}
+          <span className={cn("text-body leading-none", pressed ? "font-semibold" : "font-medium")}>{children}</span>
+          {hint ? <span className="text-label text-muted">{hint}</span> : null}
           <span
             aria-hidden="true"
             className={cn(
               "absolute top-2.5 end-2.5 grid size-5 place-items-center rounded-full border",
-              pressed ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]" : "border-transparent",
+              pressed ? "border-ink bg-ink text-paper" : "border-transparent",
             )}
           >
             {pressed ? <CheckIcon className="size-3.5" /> : null}
@@ -315,22 +387,18 @@ function Choice({
       ) : (
         <>
           {swatch ? (
-            <span
-              aria-hidden="true"
-              className="size-2.5 shrink-0 rounded-full"
-              style={{ background: swatch }}
-            />
+            <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full" style={{ background: swatch }} />
           ) : null}
           <span className="min-w-0 flex-1">
-            <span className={cn("block text-[15px] leading-6", pressed && "font-semibold")}>{children}</span>
-            {hint ? <span className="mt-0.5 block text-[12px] leading-5 text-[var(--muted)]">{hint}</span> : null}
+            <span className={cn("block text-body leading-none", pressed && "font-semibold")}>{children}</span>
+            {hint ? <span className="mt-0.5 block text-label text-muted">{hint}</span> : null}
           </span>
           <span
             aria-hidden="true"
             className={cn(
               "grid size-5 shrink-0 place-items-center border transition-colors duration-150",
               multi ? "rounded-md" : "rounded-full",
-              pressed ? "border-[var(--ink)] bg-[var(--ink)] text-[var(--paper)]" : "border-[var(--line)] bg-[var(--paper)]",
+              pressed ? "border-ink bg-ink text-paper" : "border-line bg-paper",
             )}
           >
             {pressed ? <CheckIcon className="size-3.5" /> : null}

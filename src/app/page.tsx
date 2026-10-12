@@ -68,93 +68,91 @@ export default function HomePage() {
 
   return (
     <Shell>
-      <div className="flex min-h-full flex-col px-5 pt-6 pb-8">
-        <div>
-          <h1 className="text-[1.75rem] font-bold leading-[1.35]">چه عطری بهت میاد؟</h1>
-          <p className="mt-2.5 max-w-88 text-[15px] leading-7 text-(--muted)">
-            بگو کجا می‌خوای استفاده کنی، چه بوهایی دوست داری و چقدر می‌خوای هزینه کنی.
-          </p>
-          {memory ? (
-            <Link
-              href={memory.href}
-              className="pressable quiet mt-4 flex min-h-12 items-center rounded-2xl bg-(--moss) px-4 text-[14px] leading-6"
-            >
-              {memory.sentence}
-            </Link>
-          ) : null}
-
-          <form
-            className="mt-6"
-            onSubmit={(event) => {
-              event.preventDefault();
-              go(draft);
-            }}
-          >
-            <label htmlFor="wish" className="sr-only">
-              اسم عطر یا توصیف عطری که می‌خواهی
-            </label>
-            <div
-              className={`flex items-center gap-1 rounded-2xl border bg-(--card) p-1 ps-3.5 shadow-[0_6px_20px_-14px_rgba(28,33,31,0.35)] focus-within:border-(--ink) ${
-                error ? "border-(--danger)" : "border-(--line)"
-              }`}
-            >
-              <input
-                id="wish"
-                value={draft}
-                onChange={(event) => {
-                  setDraft(event.target.value);
-                  setError(false);
-                }}
-                placeholder="مثلاً قرار پاییزی، تا ۵ میلیون"
-                enterKeyHint="search"
-                autoComplete="off"
-                aria-invalid={error}
-                aria-describedby={error ? "wish-error" : "wish-hint"}
-                className="min-h-12 min-w-0 flex-1 bg-transparent text-[16px] outline-none placeholder:text-[#646d69]"
-              />
-              <button
-                type="submit"
-                className="pressable solid min-h-12 shrink-0 rounded-xl bg-(--ink) px-5 text-[15px] font-semibold text-(--paper)"
-              >
-                پیدا کن
-              </button>
-            </div>
-            {error ? (
-              <p id="wish-error" className="mt-2 text-[13px] leading-6 text-(--danger)">
-                اسم یک عطر، یا موقعیت، فصل و بودجه را بنویس؛ مثلاً «خمره» یا «محل کار، تابستون».
-              </p>
-            ) : (
-              <p id="wish-hint" className="mt-2 text-[13px] leading-6 text-(--muted)">
-                اسم عطر هم می‌تونی بنویسی، یا بگی دنبال چه رایحه‌ای هستی.
-              </p>
-            )}
-          </form>
-
-          <ul className="mt-4 flex flex-wrap gap-2" aria-label="نمونه‌ها">
-            {EXAMPLES.map((example) => (
-              <li key={example}>
-                <button
-                  type="button"
-                  onClick={() => go(example)}
-                  className="pressable edge inline-flex min-h-10 items-center rounded-full border border-(--line) bg-(--card) px-3.5 text-[13px]"
-                >
-                  {example}
-                </button>
-              </li>
-            ))}
-          </ul>
-
+      <div className="flex min-h-full flex-col px-5 pt-6 pb-[max(2rem,env(safe-area-inset-bottom))]">
+        <h1 className="text-display font-bold">چه عطری بهت میاد؟</h1>
+        <p className="mt-2.5 text-body text-balance text-muted">
+          بگو کجا می‌خوای استفاده کنی، چه بوهایی دوست داری و چقدر می‌خوای هزینه کنی.
+        </p>
+        {memory ? (
           <Link
-            href="/guide"
-            className="pressable quiet mt-7 flex min-h-14 items-center gap-3 rounded-2xl border border-(--line) px-4"
+            href={memory.href}
+            className="pressable quiet mt-4 flex min-h-12 items-center rounded-panel bg-moss px-4 py-3 text-body text-pretty"
           >
-            <span className="min-w-0 flex-1">
-              <span className="block text-[14px] font-semibold">مطمئن نیستی چه بنویسی؟</span>
-              <span className="mt-0.5 block text-[13px] text-(--muted)">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
-            </span>
-            <ForwardIcon className="size-5 shrink-0 text-(--muted)" />
+            {memory.sentence}
           </Link>
-        </div>
+        ) : null}
+
+        <form
+          className="mt-6"
+          onSubmit={(event) => {
+            event.preventDefault();
+            go(draft);
+          }}
+        >
+          <label htmlFor="wish" className="sr-only">
+            اسم عطر یا توصیف عطری که می‌خواهی
+          </label>
+          <div
+            className={`flex items-center gap-1 rounded-panel border bg-card p-1 ps-3.5 shadow-card focus-within:border-ink ${
+              error ? "border-danger" : "border-line"
+            }`}
+          >
+            <input
+              id="wish"
+              value={draft}
+              onChange={(event) => {
+                setDraft(event.target.value);
+                setError(false);
+              }}
+              placeholder="مثلاً قرار پاییزی، تا ۵ میلیون"
+              enterKeyHint="search"
+              autoComplete="off"
+              aria-invalid={error}
+              aria-describedby={error ? "wish-error" : "wish-hint"}
+              className="min-h-12 min-w-0 flex-1 bg-transparent text-input text-ellipsis outline-none placeholder:text-faint focus:text-clip"
+            />
+            <button
+              type="submit"
+              className="pressable solid min-h-12 shrink-0 rounded-control bg-ink px-5 text-body leading-none font-semibold text-paper"
+            >
+              پیدا کن
+            </button>
+          </div>
+          {error ? (
+            <p id="wish-error" role="alert" className="mt-2 text-label text-pretty text-danger">
+              اسم یک عطر، یا موقعیت، فصل و بودجه را بنویس؛ مثلاً «خمره» یا «محل کار، تابستون».
+            </p>
+          ) : (
+            <p id="wish-hint" className="mt-2 text-label text-pretty text-muted">
+              اسم عطر هم می‌تونی بنویسی، یا بگی دنبال چه رایحه‌ای هستی.
+            </p>
+          )}
+        </form>
+
+        <ul className="mt-3 flex flex-wrap gap-2" aria-label="نمونه‌ها">
+          {EXAMPLES.map((example) => (
+            <li key={example}>
+              <button
+                type="button"
+                onClick={() => go(example)}
+                className="pressable edge inline-flex min-h-11 items-center rounded-full border border-line bg-card px-3.5 text-label leading-none"
+              >
+                {example}
+              </button>
+            </li>
+          ))}
+        </ul>
+
+        <Link
+          href="/guide"
+          className="pressable quiet mt-10 flex min-h-14 items-center gap-3 rounded-panel border border-line bg-card px-4 py-3"
+        >
+          <span className="min-w-0 flex-1">
+            <span className="block text-body font-semibold">مطمئن نیستی چه بنویسی؟</span>
+            <span className="mt-0.5 block text-label text-muted">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
+          </span>
+          <ForwardIcon className="size-5 shrink-0 text-muted" />
+        </Link>
       </div>
     </Shell>
   );

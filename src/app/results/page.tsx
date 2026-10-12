@@ -17,12 +17,12 @@ export default function ResultsPage() {
   return (
     <Shell composer back={{ href: "/", label: "شروع" }}>
       {!ready || !profile ? (
-        <div className="px-5 py-8 text-[15px] text-(--muted)">{ready ? "از صفحهٔ شروع یک توصیف بنویس." : ""}</div>
+        <div className="px-5 py-8 text-body text-muted">{ready ? "از صفحهٔ شروع یک توصیف بنویس." : ""}</div>
       ) : (
         <div className="px-4 pt-5 pb-8">
           <header>
-            <h1 className="text-[1.45rem] font-bold leading-snug">{resultHeading(profile, results.length)}</h1>
-            <p className="mt-2 text-[13px] text-(--muted)">
+            <h1 className="text-headline font-bold">{resultHeading(profile, results.length)}</h1>
+            <p className="mt-2 text-label text-muted">
               تا {faNum(profile.budget)} میلیون تومان
               {profile.leaning && profile.leaning !== "any" ? ` · ${LEANINGS[profile.leaning].label}` : ""}
               {results.length > 0 && results.length < 5
@@ -30,7 +30,7 @@ export default function ResultsPage() {
                 : ""}
             </p>
             {profile.note ? (
-              <p className="mt-3 rounded-xl bg-(--moss) px-3 py-2.5 text-[15px] leading-7">{profile.note}</p>
+              <p className="mt-3 rounded-control bg-moss px-3 py-2.5 text-body">{profile.note}</p>
             ) : null}
             {results.length > 0 && profile.leaning == null ? (
               <LeaningQuestion profile={profile} onPick={setProfile} />
@@ -38,14 +38,14 @@ export default function ResultsPage() {
           </header>
 
           {results.length === 0 ? (
-            <div className="mt-8 rounded-2xl border border-(--line) bg-(--card) p-4">
-              <p className="text-[15px] leading-7">
+            <div className="mt-8 rounded-panel border border-line bg-card p-4">
+              <p className="text-body">
                 با بودجهٔ تا {faNum(profile.budget)} میلیون، برای این موقعیت عطر مطمئنی در این نمونه نیست.
               </p>
               {profile.budget < 8 ? (
                 <button
                   type="button"
-                  className="pressable solid mt-4 min-h-12 w-full rounded-2xl bg-(--ink) text-[15px] font-semibold text-(--paper)"
+                  className="pressable solid mt-4 min-h-12 w-full rounded-panel bg-ink text-body leading-none font-semibold text-paper"
                   onClick={() =>
                     setProfile({
                       ...profile,
@@ -57,7 +57,7 @@ export default function ResultsPage() {
                   بودجه را تا {faNum(profile.budget === 2 ? 5 : 8)} میلیون بالا ببر
                 </button>
               ) : (
-                <Link href="/guide" className="pressable mt-4 inline-flex min-h-12 items-center text-[15px] font-medium">
+                <Link href="/guide" className="pressable mt-4 inline-flex min-h-12 items-center text-body leading-none font-medium">
                   سؤال‌ها را عوض کن
                 </Link>
               )}
@@ -94,7 +94,7 @@ function LeaningQuestion({ profile, onPick }: { profile: Profile; onPick: (profi
           key={id}
           type="button"
           onClick={() => onPick({ ...profile, leaning: id, note: LEANINGS[id].note })}
-          className="pressable edge inline-flex min-h-9 items-center rounded-full border border-(--line) bg-(--card) px-3 text-[13px]"
+          className="pressable edge inline-flex min-h-9 items-center rounded-full border border-line bg-card px-3 text-label leading-none"
         >
           {LEANINGS[id].label}
         </button>
@@ -102,7 +102,7 @@ function LeaningQuestion({ profile, onPick }: { profile: Profile; onPick: (profi
       <button
         type="button"
         onClick={() => onPick({ ...profile, leaning: "any" })}
-        className="pressable quiet inline-flex min-h-9 items-center rounded-full px-2.5 text-[13px] text-(--muted)"
+        className="pressable quiet inline-flex min-h-9 items-center rounded-full px-2.5 text-label leading-none text-muted"
       >
         فرقی نمی‌کنه
       </button>

@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { AccordMark } from "@/components/AccordMark";
-import { ScentMark } from "@/components/Bottle";
-import { ForwardIcon } from "@/components/Icons";
+import { PerfumePhoto } from "@/components/Bottle";
+import { CheckIcon, ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
 import { cheaperUnconfirmed, getPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
-import { faNum, joinFa, millionToman } from "@/lib/format";
+import { cn, faNum, joinFa, millionToman } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 import type { Perfume } from "@/lib/types";
 
@@ -21,14 +21,18 @@ const LAYERS = [
 export default function PerfumePage() {
   const params = useParams<{ slug: string }>();
   const perfume = getPerfume(params.slug);
-  const { openShops } = useAroma();
+  const { openShops, compare, toggleCompare } = useAroma();
 
   if (!perfume) {
     return (
       <Shell back={{ href: "/results", label: "پیشنهادها" }}>
         <div className="px-5 py-10">
-          <h1 className="text-xl font-bold">این عطر در نمونه نیست.</h1>
-          <Link href="/results" className="mt-4 inline-flex min-h-11 items-center text-[15px] font-medium">
+          <h1 className="text-headline font-bold">این عطر در نمونه نیست.</h1>
+          <p className="mt-2 text-body text-muted">از پیشنهادها یکی را باز کن یا دوباره جستجو کن.</p>
+          <Link
+            href="/results"
+            className="pressable solid mt-5 inline-flex min-h-12 items-center rounded-panel bg-ink px-5 text-body leading-none font-semibold text-paper"
+          >
             برگشت به پیشنهادها
           </Link>
         </div>
@@ -39,38 +43,141 @@ export default function PerfumePage() {
   const offer = leadOffer(perfume);
   const cheaper = cheaperUnconfirmed(perfume);
   const similars = perfume.similar.map((slug) => getPerfume(slug)).filter((item) => item !== undefined);
+  const season = perfume.seasons.includes("all")
+    ? "همهٔ فصل‌ها"
+    : perfume.seasons.map(seasonName).join("، ");
+  const picked = compare.includes(perfume.slug);
 
   return (
     <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
-      <article className="px-5 pt-4 pb-10">
-        <ScentMark perfume={perfume} className="h-36 w-full rounded-3xl" />
-        <h1 className="mt-5 text-[1.7rem] font-bold leading-tight">{perfume.nameFa}</h1>
-        <p className="mt-1 text-[15px] text-(--muted)">{perfume.brand}</p>
-        <p dir="ltr" className="text-end text-[12px] text-(--muted)">
-          {perfume.nameEn}
-        </p>
-        <p className="mt-3 text-[13px] leading-6 text-(--muted)">
-          {perfume.concentration} · {faNum(perfume.volumeMl)} میلی‌لیتر
-        </p>
+      <article className="step-in px-5 pt-4 pb-10">
+        <figure className="overflow-hidden rounded-sheet">
+          <PerfumePhoto
+            perfume={perfume}
+            sizes="hero"
+            className="flex h-48 w-full items-center justify-center sm:h-56"
+            imgClassName="max-h-[92%] py-3"
+          />
+        </figure>
 
-        <div className="mt-6">
+        <header className="mt-4">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h1 className="text-display font-bold">{perfume.nameFa}</h1>
+              <p className="mt-1 text-body text-muted">
+                {perfume.brand}
+                <span className="mx-1.5 text-muted/40">،</span>
+                <span dir="ltr" className="inline-block">
+                  {perfume.nameEn}
+                </span>
+              </p>
+            </div>
+            <button
+              type="button"
+              aria-pressed={picked}
+              onClick={() => toggleCompare(perfume.slug)}
+              className={cn(
+                "pressable mt-1 inline-flex min-h-9 shrink-0 items-center gap-1 rounded-full border px-2.5 text-label leading-none",
+                picked ? "border-ink bg-ink text-paper" : "edge border-line bg-card text-muted",
+              )}
+            >
+              {picked ? <CheckIcon className="size-3.5" /> : null}
+              مقایسه
+            </button>
+          </div>
+
+          <ul className="mt-2.5 flex flex-wrap gap-1.5" aria-label="مشخصات شیشه">
+            <li className="rounded-full border border-line bg-card px-2.5 py-1 text-label text-muted">
+              {perfume.concentration}
+            </li>
+            <li className="rounded-full border border-line bg-card px-2.5 py-1 text-label text-muted">
+              {faNum(perfume.volumeMl)} میلی‌لیتر
+            </li>
+            {perfume.marketGender !== "مشترک" ? (
+              <li className="rounded-full border border-line bg-card px-2.5 py-1 text-label text-muted">
+                {perfume.marketGender}
+              </li>
+            ) : null}
+          </ul>
+        </header>
+
+        <div className="mt-4">
           <AccordMark accords={perfume.accords} labeled />
         </div>
 
-        <div className="mt-6 rounded-2xl bg-(--card) px-4 py-3.5">
-          <p className="text-[12px] font-semibold text-(--muted)">چرا این عطر؟</p>
-          <p className="mt-1.5 text-[16px] leading-8">{perfume.why}</p>
-        </div>
+        <p className="mt-4 rounded-panel bg-paper px-4 py-3.5 text-body">{perfume.why}</p>
 
-        <section className="mt-8">
-          <h2 className="text-[15px] font-semibold">نوت‌ها</h2>
-          <dl className="mt-3 space-y-3">
+        <button
+          type="button"
+          onClick={() => openShops(perfume.slug)}
+          className="pressable solid mt-4 flex min-h-14 w-full items-center justify-between gap-3 rounded-panel bg-ink px-4 text-start text-paper"
+        >
+          <span className="min-w-0">
+            <span className="block text-body font-semibold">
+              {offer ? `از ${millionToman(offer.price)}` : "فروشگاه‌ها"}
+            </span>
+            {offer ? (
+              <span className="mt-0.5 flex items-center gap-1.5 text-label text-paper/75">
+                <span
+                  aria-hidden="true"
+                  className={cn(
+                    "size-1.5 rounded-full",
+                    offer.stockConfirmed ? "bg-stock-ok-on-ink" : "bg-stock-pending-on-ink",
+                  )}
+                />
+                {offer.shop}
+                {offer.stockConfirmed ? `، موجود، بررسی ${offer.checkedOn}` : `، موجودی تأیید نشده`}
+              </span>
+            ) : null}
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-0.5 text-label">
+            فروشگاه‌ها
+            <ForwardIcon className="size-4" />
+          </span>
+        </button>
+        {cheaper ? (
+          <p className="mt-2 text-label text-muted">
+            در {cheaper.shop} {millionToman(cheaper.price)}، موجودی تأیید نشده
+          </p>
+        ) : null}
+
+        <section className="mt-6" aria-labelledby="taste-title">
+          <h2 id="taste-title" className="text-title font-semibold">
+            این عطر چطوره؟
+          </h2>
+          <p className="mt-1 text-label text-muted">برای قفسه و پیشنهاد بعدی نگه می‌داریم.</p>
+          <div className="mt-3">
+            <TasteRow slug={perfume.slug} />
+          </div>
+        </section>
+
+        <dl className="mt-7 divide-y divide-line rounded-panel border border-line bg-card px-4">
+          <Fact label="فصل" value={season} />
+          {perfume.longevity ? (
+            <Fact label="ماندگاری" value={performanceLabel("longevity", perfume.longevity)} />
+          ) : null}
+          {perfume.sillage ? (
+            <Fact label="پخش بو" value={performanceLabel("sillage", perfume.sillage)} />
+          ) : null}
+          {perfume.inspiredBy ? <Fact label="نزدیک به" value={inspiredName(perfume.inspiredBy)} /> : null}
+        </dl>
+        {perfume.inspiredBy ? (
+          <p className="mt-2 text-label text-muted">
+            شباهت بر اساس نوت‌های ثبت‌شده در آروماست، نه محصول برند اصلی.
+          </p>
+        ) : null}
+
+        <section className="mt-8" aria-labelledby="notes-title">
+          <h2 id="notes-title" className="text-title font-semibold">
+            نوت‌ها
+          </h2>
+          <dl className="mt-3 space-y-2.5">
             {LAYERS.map((layer) => {
               const notes = perfume.notes.filter((note) => note.layer === layer.id);
               if (notes.length === 0) return null;
               return (
-                <div key={layer.id} className="flex gap-3 text-[14px] leading-7">
-                  <dt className="w-14 shrink-0 text-(--muted)">{layer.label}</dt>
+                <div key={layer.id} className="flex gap-3 text-body">
+                  <dt className="w-12 shrink-0 pt-0.5 text-label text-muted">{layer.label}</dt>
                   <dd>
                     {notes.map((note, index) => (
                       <span key={note.name}>
@@ -91,60 +198,39 @@ export default function PerfumePage() {
           </dl>
         </section>
 
-        <dl className="mt-8 divide-y divide-(--line) rounded-2xl border border-(--line) bg-(--card) px-4">
-          <Fact label="فصل" value={perfume.seasons.includes("all") ? "همهٔ فصل‌ها" : perfume.seasons.map(seasonName).join("، ")} />
-          {perfume.longevity ? <Fact label="ماندگاری" value={performanceLabel("longevity", perfume.longevity)} /> : null}
-          {perfume.sillage ? <Fact label="پخش بو" value={performanceLabel("sillage", perfume.sillage)} /> : null}
-          {perfume.inspiredBy ? <Fact label="نزدیک به" value={inspiredName(perfume.inspiredBy)} /> : null}
-        </dl>
-        <p className="mt-3 text-[12px] leading-6 text-(--muted)">
-          شباهت بر اساس نوت‌های ثبت‌شده در آروماست، نه محصول برند اصلی.
-        </p>
-
-        <button
-          type="button"
-          onClick={() => openShops(perfume.slug)}
-          className="pressable solid mt-6 flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl bg-(--ink) px-4 text-start text-(--paper)"
-        >
-          <span>
-            <span className="block text-[15px] font-semibold">
-              {offer ? `از ${millionToman(offer.price)}` : "فروشگاه‌ها"}
-            </span>
-            {offer ? (
-              <span className="mt-0.5 block text-[12px] text-(--paper)/75">
-                {offer.shop}
-                {offer.stockConfirmed ? "، موجود" : "، موجودی تأیید نشده"}
-              </span>
-            ) : null}
-          </span>
-          <span className="inline-flex shrink-0 items-center text-[13px]">
-            فروشگاه‌ها
-            <ForwardIcon className="size-4" />
-          </span>
-        </button>
-        {cheaper ? (
-          <p className="mt-2 text-[12px] leading-6 text-(--muted)">
-            در {cheaper.shop} {millionToman(cheaper.price)}، موجودی تأیید نشده
-          </p>
-        ) : null}
-
-        <div className="mt-4">
-          <TasteRow slug={perfume.slug} />
-        </div>
-
         {similars.length > 0 ? (
-          <section className="mt-10">
-            <h2 className="text-[15px] font-semibold">مشابه‌ها</h2>
-            <div className="rail fade-end -mx-5 mt-3 flex gap-3 px-5 pb-1">
+          <section className="mt-9" aria-labelledby="similar-title">
+            <h2 id="similar-title" className="text-title font-semibold">
+              مشابه‌ها
+            </h2>
+            <ul className="mt-3 flex flex-col gap-2">
               {similars.map((item) => (
-                <Link key={item.slug} href={`/perfume/${item.slug}`} className="w-36 shrink-0">
-                  <ScentMark perfume={item} className="h-28 w-full rounded-2xl" />
-                  <p className="mt-2 text-[14px] font-semibold">{item.nameFa}</p>
-                  <p className="text-[12px] text-(--muted)">{item.brand}</p>
-                  <p className="mt-1 text-[12px] leading-5 text-(--muted)">{likeness(perfume, item)}</p>
-                </Link>
+                <li key={item.slug}>
+                  <Link
+                    href={`/perfume/${item.slug}`}
+                    className="pressable quiet flex items-center gap-3 rounded-panel border border-line bg-card px-3 py-2.5"
+                  >
+                    <PerfumePhoto
+                      perfume={item}
+                      sizes="thumb"
+                      className="h-14 w-12 shrink-0 rounded-control"
+                    />
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-body font-semibold">{item.nameFa}</span>
+                      <span className="mt-0.5 block text-label text-muted">
+                        {item.brand}
+                        <span className="mx-1 text-muted/40">،</span>
+                        {likeness(perfume, item)}
+                      </span>
+                      <span className="mt-2 block max-w-48">
+                        <AccordMark accords={item.accords} />
+                      </span>
+                    </span>
+                    <ForwardIcon className="size-5 shrink-0 text-muted" />
+                  </Link>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
         ) : null}
       </article>
@@ -154,8 +240,8 @@ export default function PerfumePage() {
 
 function Fact({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex gap-3 py-3.5 text-[14px]">
-      <dt className="w-20 shrink-0 text-(--muted)">{label}</dt>
+    <div className="flex gap-3 py-3.5 text-body">
+      <dt className="w-20 shrink-0 text-label text-muted">{label}</dt>
       <dd>{value}</dd>
     </div>
   );
