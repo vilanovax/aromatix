@@ -11,7 +11,8 @@ import { TermChip, TermText } from "@/components/TermSheet";
 import { CheckIcon, ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
-import { brandByName, cheaperUnconfirmed, getPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
+import { BrandLink } from "@/components/BrandLink";
+import { cheaperUnconfirmed, getPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
 import { entryForConcentration, entryForNote } from "@/lib/knowledge";
 import { cn, faNum, joinFa, millionToman } from "@/lib/format";
 import { useAroma } from "@/lib/store";
@@ -50,7 +51,6 @@ export default function PerfumePage() {
     .map((slug) => getPerfume(slug))
     .filter((item) => item !== undefined)
     .slice(0, 3);
-  const brand = brandByName(perfume.brand);
   const season = perfume.seasons.includes("all") ? null : perfume.seasons.map(seasonName).join("، ");
   const showFacts = Boolean(season || perfume.longevity || perfume.sillage || perfume.inspiredBy);
   const picked = compare.includes(perfume.slug);
@@ -74,16 +74,7 @@ export default function PerfumePage() {
             <div className="min-w-0">
               <h1 className="text-balance text-display font-bold">{perfume.nameFa}</h1>
               <p className="mt-1 text-pretty text-body text-muted">
-                {brand ? (
-                  <Link
-                    href={`/brands/${brand.slug}?from=${perfume.slug}`}
-                    className="underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
-                  >
-                    {perfume.brand}
-                  </Link>
-                ) : (
-                  perfume.brand
-                )}
+                <BrandLink name={perfume.brand} from={perfume.slug} />
                 <span className="mx-1.5 text-faint">،</span>
                 <span dir="ltr" className="inline-block">
                   {perfume.nameEn}
@@ -240,20 +231,27 @@ export default function PerfumePage() {
             <ul className="mt-3 flex flex-col gap-2.5">
               {similars.map((item) => (
                 <li key={item.slug}>
-                  <Link
-                    href={`/perfume/${item.slug}`}
-                    className="pressable quiet flex min-h-16 items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3"
-                  >
-                    <PerfumePhoto
-                      perfume={item}
-                      sizes="thumb"
-                      alt=""
-                      className="h-14 w-12 shrink-0 rounded-control"
-                    />
+                  <div className="flex min-h-16 items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3">
+                    <Link
+                      href={`/perfume/${item.slug}`}
+                      className="pressable quiet shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                    >
+                      <PerfumePhoto
+                        perfume={item}
+                        sizes="thumb"
+                        alt=""
+                        className="h-14 w-12 rounded-control"
+                      />
+                    </Link>
                     <span className="min-w-0 flex-1 text-start">
-                      <span className="block text-body font-semibold">{item.nameFa}</span>
+                      <Link
+                        href={`/perfume/${item.slug}`}
+                        className="block text-body font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                      >
+                        {item.nameFa}
+                      </Link>
                       <span className="mt-0.5 block text-pretty text-label text-muted">
-                        {item.brand}
+                        <BrandLink name={item.brand} from={item.slug} />
                         <span className="mx-1 text-faint">،</span>
                         {likeness(perfume, item)}
                       </span>
@@ -261,8 +259,14 @@ export default function PerfumePage() {
                         <AccordMark accords={item.accords} />
                       </span>
                     </span>
-                    <ForwardIcon className="size-5 shrink-0 text-muted" />
-                  </Link>
+                    <Link
+                      href={`/perfume/${item.slug}`}
+                      aria-label={`باز کردن ${item.nameFa}`}
+                      className="pressable quiet shrink-0 rounded-control p-1 text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                    >
+                      <ForwardIcon className="size-5" />
+                    </Link>
+                  </div>
                 </li>
               ))}
             </ul>

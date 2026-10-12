@@ -37,6 +37,33 @@ export function BookmarkIcon({ className }: IconProps) {
   );
 }
 
+export function ProfileIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">
+      <circle cx="10" cy="7" r="3.2" stroke="currentColor" strokeWidth="1.6" />
+      <path
+        d="M4.2 16.2c1.2-2.4 3.2-3.6 5.8-3.6s4.6 1.2 5.8 3.6"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+export function LearnIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M3.5 5.2c2.2-.9 4.3-.9 6.5 0v10.1c-2.2-.9-4.3-.9-6.5 0V5.2zM16.5 5.2c-2.2-.9-4.3-.9-6.5 0v10.1c2.2-.9 4.3-.9 6.5 0V5.2z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export function SendIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">

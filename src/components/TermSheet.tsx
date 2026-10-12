@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { Button, ButtonLink } from "@/components/Button";
 import { cn } from "@/lib/format";
@@ -7,9 +8,17 @@ import { getEntry } from "@/lib/knowledge";
 import { useAroma } from "@/lib/store";
 
 export function TermSheet() {
+  const pathname = usePathname();
   const { termFor, closeTerm } = useAroma();
   const closeRef = useRef<HTMLButtonElement>(null);
+  const closeTermRef = useRef(closeTerm);
   const entry = termFor ? getEntry(termFor) : undefined;
+
+  closeTermRef.current = closeTerm;
+
+  useEffect(() => {
+    closeTermRef.current();
+  }, [pathname]);
 
   useEffect(() => {
     if (!entry) return;
@@ -45,7 +54,7 @@ export function TermSheet() {
           </Button>
         </div>
         <p className="mt-4 text-pretty text-body">{entry.summary}</p>
-        <ButtonLink href={`/learn/${entry.slug}`} shape="control" size="md" className="mt-4" onClick={closeTerm}>
+        <ButtonLink href={`/learn/${entry.slug}`} shape="control" size="md" className="mt-4">
           ادامه در دانستنی‌ها
         </ButtonLink>
       </div>

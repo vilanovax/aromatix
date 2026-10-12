@@ -32,12 +32,12 @@ function BrandScreen() {
 
   if (!brand) {
     return (
-      <Shell composer back={{ href: "/", label: "خانه" }}>
+      <Shell composer back={{ href: "/brands", label: "برندها" }}>
         <div className="px-5 py-10">
           <h1 className="text-headline font-bold">این برند در نمونه نیست.</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">از صفحهٔ یک عطر به برندش برو.</p>
-          <ButtonLink href="/" className="mt-5">
-            برگشت به خانه
+          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">از فهرست برندها یکی را باز کن.</p>
+          <ButtonLink href="/brands" className="mt-5">
+            برگشت به برندها
           </ButtonLink>
         </div>
       </Shell>
@@ -48,7 +48,7 @@ function BrandScreen() {
   const back =
     origin && origin.brand === brand.nameFa
       ? { href: `/perfume/${origin.slug}`, label: "عطر" }
-      : { href: "/", label: "خانه" };
+      : { href: "/brands", label: "برندها" };
 
   return (
     <Shell composer back={back}>

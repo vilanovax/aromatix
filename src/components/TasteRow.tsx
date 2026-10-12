@@ -6,7 +6,16 @@ import { Button } from "@/components/Button";
 import { cn, faNum } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 
-export function TasteRow({ slug, name }: { slug: string; name: string }) {
+export function TasteRow({
+  slug,
+  name,
+  compact = false,
+}: {
+  slug: string;
+  name: string;
+  /** روی قفسه: وضعیت فعلی + یک عمل اصلی. */
+  compact?: boolean;
+}) {
   const { library, setWanted, setDisliked, saveExperience, clearExperience } = useAroma();
   const state = library[slug];
   const [open, setOpen] = useState(false);
@@ -35,6 +44,131 @@ export function TasteRow({ slug, name }: { slug: string; name: string }) {
     setRating(state?.rating ?? 8);
     setOwned(Boolean(state?.owned));
     setOpen(true);
+  }
+
+  const sheet =
+    open && mounted
+      ? createPortal(
+          <div className="fixed inset-0 z-40 flex items-end justify-center">
+            <button type="button" className="absolute inset-0 bg-ink/40" aria-label="بستن ثبت تجربه" onClick={() => setOpen(false)} />
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={titleId}
+              className="sheet-panel relative z-10 w-full max-w-lg rounded-t-sheet bg-card px-5 pt-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
+            >
+              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-line" />
+              <h2 id={titleId} className="text-title font-semibold">
+                {name}
+              </h2>
+              <p className="mt-1 text-body text-muted">چقدر از این عطر راضی هستی؟</p>
+              <p className="mt-4 text-display font-bold" aria-live="polite">
+                {faNum(rating)}
+                <span className="ms-1 text-body font-normal text-muted">از ۱۰</span>
+              </p>
+              <p className="mt-1 text-label text-muted">{ratingPhrase(rating)}</p>
+              <div className="mt-4 flex items-center justify-between text-label text-muted">
+                <span>اصلاً دوست ندارم</span>
+                <span>عاشقشم</span>
+              </div>
+              <input
+                ref={rangeRef}
+                type="range"
+                min={1}
+                max={10}
+                step={1}
+                value={rating}
+                aria-valuemin={1}
+                aria-valuemax={10}
+                aria-valuenow={rating}
+                aria-label="میزان رضایت"
+                onChange={(event) => setRating(Number(event.target.value))}
+                className="mt-2 h-11 w-full cursor-pointer accent-ink"
+              />
+              <Button
+                variant={owned ? "quiet" : "edge"}
+                shape="control"
+                size="lg"
+                aria-pressed={owned}
+                onClick={() => setOwned((current) => !current)}
+                className={cn("mt-4 w-full font-medium", owned && "border-transparent bg-moss text-ink")}
+              >
+                این عطر رو دارم
+              </Button>
+              <Button
+                size="lg"
+                className="mt-3 w-full"
+                onClick={() => {
+                  saveExperience(slug, rating, owned);
+                  setOpen(false);
+                }}
+              >
+                ثبت تجربه
+              </Button>
+              {experienced ? (
+                <Button
+                  variant="quiet"
+                  size="md"
+                  className="mt-1 w-full font-normal text-muted"
+                  onClick={() => {
+                    clearExperience(slug);
+                    setOpen(false);
+                  }}
+                >
+                  پاک کردن تجربه
+                </Button>
+              ) : null}
+            </div>
+          </div>,
+          document.body,
+        )
+      : null;
+
+  if (compact) {
+    return (
+      <>
+        <div className="flex items-center gap-2">
+          <span
+            className={cn(
+              "inline-flex min-h-9 items-center rounded-control px-2.5 text-label font-medium",
+              state?.disliked
+                ? "bg-clay text-danger"
+                : experienced
+                  ? "bg-ink text-paper"
+                  : state?.wanted
+                    ? "bg-moss text-ink"
+                    : state?.owned
+                      ? "bg-well text-ink"
+                      : "bg-well text-muted",
+            )}
+          >
+            {compactLabel(state, experienced)}
+          </span>
+          {!experienced && !state?.disliked ? (
+            <Button
+              variant="edge"
+              shape="control"
+              size="md"
+              onClick={openExperience}
+              className="min-h-9 flex-1 px-3 text-label font-medium"
+            >
+              تجربه کردم
+            </Button>
+          ) : experienced ? (
+            <Button
+              variant="quiet"
+              shape="control"
+              size="md"
+              onClick={openExperience}
+              className="min-h-9 flex-1 px-3 text-label font-normal text-muted"
+            >
+              تغییر امتیاز
+            </Button>
+          ) : null}
+        </div>
+        {sheet}
+      </>
+    );
   }
 
   return (
@@ -82,85 +216,22 @@ export function TasteRow({ slug, name }: { slug: string; name: string }) {
           دوست ندارم
         </Button>
       </div>
-
-      {open && mounted
-        ? createPortal(
-        <div className="fixed inset-0 z-40 flex items-end justify-center">
-          <button type="button" className="absolute inset-0 bg-ink/40" aria-label="بستن ثبت تجربه" onClick={() => setOpen(false)} />
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            className="sheet-panel relative z-10 w-full max-w-lg rounded-t-sheet bg-card px-5 pt-3 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
-          >
-            <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-line" />
-            <h2 id={titleId} className="text-title font-semibold">
-              {name}
-            </h2>
-            <p className="mt-1 text-body text-muted">چقدر از این عطر راضی هستی؟</p>
-            <p className="mt-4 text-display font-bold" aria-live="polite">
-              {faNum(rating)}
-              <span className="ms-1 text-body font-normal text-muted">از ۱۰</span>
-            </p>
-            <p className="mt-1 text-label text-muted">{ratingPhrase(rating)}</p>
-            <div className="mt-4 flex items-center justify-between text-label text-muted">
-              <span>اصلاً دوست ندارم</span>
-              <span>عاشقشم</span>
-            </div>
-            <input
-              ref={rangeRef}
-              type="range"
-              min={1}
-              max={10}
-              step={1}
-              value={rating}
-              aria-valuemin={1}
-              aria-valuemax={10}
-              aria-valuenow={rating}
-              aria-label="میزان رضایت"
-              onChange={(event) => setRating(Number(event.target.value))}
-              className="mt-2 h-11 w-full cursor-pointer accent-ink"
-            />
-            <Button
-              variant={owned ? "quiet" : "edge"}
-              shape="control"
-              size="lg"
-              aria-pressed={owned}
-              onClick={() => setOwned((current) => !current)}
-              className={cn("mt-4 w-full font-medium", owned && "border-transparent bg-moss text-ink")}
-            >
-              این عطر رو دارم
-            </Button>
-            <Button
-              size="lg"
-              className="mt-3 w-full"
-              onClick={() => {
-                saveExperience(slug, rating, owned);
-                setOpen(false);
-              }}
-            >
-              ثبت تجربه
-            </Button>
-            {experienced ? (
-              <Button
-                variant="quiet"
-                size="md"
-                className="mt-1 w-full font-normal text-muted"
-                onClick={() => {
-                  clearExperience(slug);
-                  setOpen(false);
-                }}
-              >
-                پاک کردن تجربه
-              </Button>
-            ) : null}
-          </div>
-        </div>,
-          document.body,
-        )
-        : null}
+      {sheet}
     </>
   );
+}
+
+function compactLabel(
+  state: { owned?: boolean; wanted?: boolean; disliked?: boolean; rating?: number | null } | undefined,
+  experienced: boolean,
+) {
+  if (state?.disliked) return "نپسندیدم";
+  if (experienced && state?.rating != null) {
+    return state.owned ? `دارم · ${faNum(state.rating)}` : `${faNum(state.rating)} از ۱۰`;
+  }
+  if (state?.owned) return "دارم";
+  if (state?.wanted) return "می‌خوام";
+  return "ثبت نشده";
 }
 
 function ratingPhrase(rating: number) {

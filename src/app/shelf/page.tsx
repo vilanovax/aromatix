@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AccordMark } from "@/components/AccordMark";
+import { BrandLink } from "@/components/BrandLink";
 import { ScentMark } from "@/components/Bottle";
 import { ButtonLink } from "@/components/Button";
 import { Card } from "@/components/Card";
@@ -36,20 +37,17 @@ export default function ShelfPage() {
   const dna = computeDna(library, getPerfume);
   const forMe = suggestForTaste(library);
   const neighbors = wantedNeighbors(library);
-  const counts = {
-    owned: entries.filter((entry) => entry.bucket === "owned").length,
-    experienced: entries.filter((entry) => entry.bucket === "experienced").length,
-    wanted: entries.filter((entry) => entry.bucket === "wanted").length,
-    disliked: entries.filter((entry) => entry.bucket === "disliked").length,
-  };
+  const hasExperience = dna.validCount > 0;
+  const stats = GROUPS.map((group) => ({
+    ...group,
+    value: entries.filter((entry) => entry.bucket === group.id).length,
+  })).filter((stat) => stat.value > 0);
 
   return (
-    <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
+    <Shell back={{ href: "/", label: "شروع" }}>
       <div className="px-5 pt-6 pb-10">
         <h1 className="text-headline font-bold">آرومای من</h1>
-        <p className="mt-1.5 text-body text-muted">
-          روی همین دستگاه می‌ماند و پیشنهاد بعدی را به سلیقه‌ات نزدیک‌تر می‌کند.
-        </p>
+        <p className="mt-1.5 text-body text-muted">سلیقه و مجموعه‌ات روی همین دستگاه.</p>
 
         {!ready ? null : entries.length === 0 ? (
           <div className="mt-8">
@@ -72,36 +70,62 @@ export default function ShelfPage() {
         ) : (
           <>
             <Card as="section" bordered={false} shadow="card" className="mt-6 p-4" aria-label="سلیقه تا اینجا">
-              <h2 className="text-label font-semibold">سلیقه‌ات تا اینجا</h2>
-              <p className="mt-2 text-body text-pretty">{dna.sentence}</p>
-              {dna.stage === "dna" && dna.top.length > 0 ? (
-                <ul className="mt-4 flex flex-col gap-3">
-                  {dna.top.map((family) => (
-                    <li key={family.id}>
-                      <div className="flex items-baseline justify-between gap-3 text-label">
-                        <span className="font-medium">{family.label}</span>
-                        <span className="text-muted">{faNum(family.percent)}٪</span>
-                      </div>
-                      <div className="mt-1.5 h-2 rounded-full bg-well" role="img" aria-label={`${family.label} ${faNum(family.percent)} درصد`}>
-                        <div
-                          className="h-full rounded-full"
-                          style={{ width: `${Math.max(family.percent, 4)}%`, background: family.color }}
-                        />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
+              {hasExperience ? (
+                <>
+                  <h2 className="text-label font-semibold">سلیقه‌ات تا اینجا</h2>
+                  <p className="mt-2 text-body text-pretty">{dna.sentence}</p>
+                  {dna.stage === "dna" && dna.top.length > 0 ? (
+                    <ul className="mt-4 flex flex-col gap-3">
+                      {dna.top.map((family) => (
+                        <li key={family.id}>
+                          <div className="flex items-baseline justify-between gap-3 text-label">
+                            <span className="font-medium">{family.label}</span>
+                            <span className="text-muted">{faNum(family.percent)}٪</span>
+                          </div>
+                          <div
+                            className="mt-1.5 h-2 rounded-full bg-well"
+                            role="img"
+                            aria-label={`${family.label} ${faNum(family.percent)} درصد`}
+                          >
+                            <div
+                              className="h-full rounded-full"
+                              style={{ width: `${Math.max(family.percent, 4)}%`, background: family.color }}
+                            />
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </>
+              ) : (
+                <>
+                  <h2 className="text-label font-semibold">هنوز سلیقه‌ات شکل نگرفته</h2>
+                  <p className="mt-2 text-body text-pretty">
+                    {stats.some((stat) => stat.id === "wanted")
+                      ? "از لیست پایین یکی را که بو کردی امتیاز بده تا سلیقه‌ات اینجا دیده شود."
+                      : "یک عطر را تجربه کن و امتیاز بده تا سلیقه‌ات اینجا دیده شود."}
+                  </p>
+                </>
+              )}
             </Card>
 
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              <Stat href="#owned" value={counts.owned} label="دارم" />
-              <Stat href="#experienced" value={counts.experienced} label="تجربه کردم" />
-              <Stat href="#wanted" value={counts.wanted} label="می‌خوام" />
-              <Stat href="#disliked" value={counts.disliked} label="نپسندیدم" />
-            </div>
+            {stats.length === 1 ? (
+              <p className="mt-4 text-body text-muted">
+                <a href={`#${stats[0].id}`} className="font-semibold text-ink underline-offset-4 hover:underline">
+                  {faNum(stats[0].value)} عطر در {stats[0].label}
+                </a>
+              </p>
+            ) : stats.length > 1 ? (
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {stats.map((stat) => (
+                  <Stat key={stat.id} href={`#${stat.id}`} value={stat.value} label={stat.label} />
+                ))}
+              </div>
+            ) : null}
 
-            <Suggest id="for-me" title="پیشنهاد مخصوص من" note="نزدیک سلیقه‌ات، و هنوز تجربه نکردی." items={forMe} />
+            {hasExperience ? (
+              <Suggest id="for-me" title="پیشنهاد مخصوص من" note="نزدیک سلیقه‌ات، و هنوز تجربه نکردی." items={forMe} />
+            ) : null}
             <Suggest id="near-wanted" title="نزدیک به چیزهایی که می‌خوای" note="از روی ویش‌لیست، نه از روی امتیاز." items={neighbors} />
 
             <div className="mt-8 flex flex-col gap-8">
@@ -132,17 +156,10 @@ export default function ShelfPage() {
 }
 
 function Stat({ href, value, label }: { href: string; value: number; label: string }) {
-  const className = "rounded-panel border border-line bg-card px-2 py-3 text-center";
-  const inner = (
-    <>
+  return (
+    <a href={href} className="pressable rounded-panel border border-line bg-card px-2 py-3 text-center">
       <span className="block text-headline font-bold">{faNum(value)}</span>
       <span className="mt-0.5 block text-label text-muted">{label}</span>
-    </>
-  );
-  if (value === 0) return <div className={className}>{inner}</div>;
-  return (
-    <a href={href} className={cn(className, "pressable")}>
-      {inner}
     </a>
   );
 }
@@ -161,17 +178,27 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
           return (
             <li key={perfume.slug}>
               <Card className="p-3">
-                <Link href={`/perfume/${perfume.slug}`} className="flex items-center gap-3 rounded-control">
-                  <ScentMark perfume={perfume} className="h-16 w-14 shrink-0 rounded-control" />
+                <div className="flex items-center gap-3">
+                  <Link href={`/perfume/${perfume.slug}`} className="shrink-0 rounded-control">
+                    <ScentMark perfume={perfume} className="h-16 w-14 rounded-control" />
+                  </Link>
                   <span className="min-w-0 flex-1">
-                    <span className="block font-semibold">{perfume.nameFa}</span>
+                    <Link href={`/perfume/${perfume.slug}`} className="block font-semibold">
+                      {perfume.nameFa}
+                    </Link>
                     <span className="mt-0.5 block text-label text-muted">
-                      {perfume.brand}
+                      <BrandLink name={perfume.brand} from={perfume.slug} />
                       {offer ? `، ${millionToman(offer.price)}` : ""}
                     </span>
                   </span>
-                  <ForwardIcon className="size-5 shrink-0 text-muted" />
-                </Link>
+                  <Link
+                    href={`/perfume/${perfume.slug}`}
+                    aria-label={`باز کردن ${perfume.nameFa}`}
+                    className="shrink-0 rounded-control p-1 text-muted"
+                  >
+                    <ForwardIcon className="size-5" />
+                  </Link>
+                </div>
               </Card>
             </li>
           );
@@ -186,12 +213,16 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
   const note = statusNote(state);
   return (
     <Card as="li" className="p-3">
-      <Link href={`/perfume/${perfume.slug}`} className="group flex items-center gap-3 rounded-control">
-        <ScentMark perfume={perfume} className={cn("h-20 w-16 shrink-0 rounded-control", muted && "opacity-55 grayscale")} />
+      <div className="flex items-center gap-3">
+        <Link href={`/perfume/${perfume.slug}`} className="shrink-0 rounded-control">
+          <ScentMark perfume={perfume} className={cn("h-20 w-16 rounded-control", muted && "opacity-55 grayscale")} />
+        </Link>
         <span className="min-w-0 flex-1">
-          <span className="block font-semibold">{perfume.nameFa}</span>
+          <Link href={`/perfume/${perfume.slug}`} className="block font-semibold">
+            {perfume.nameFa}
+          </Link>
           <span className="mt-0.5 block text-label text-muted">
-            {perfume.brand}
+            <BrandLink name={perfume.brand} from={perfume.slug} />
             {offer ? `، ${millionToman(offer.price)}` : ""}
           </span>
           {note ? <span className="mt-0.5 block text-label text-muted">{note}</span> : null}
@@ -202,10 +233,16 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
             <AccordMark accords={perfume.accords} />
           </span>
         </span>
-        <ForwardIcon className="size-5 shrink-0 text-muted" />
-      </Link>
+        <Link
+          href={`/perfume/${perfume.slug}`}
+          aria-label={`باز کردن ${perfume.nameFa}`}
+          className="shrink-0 rounded-control p-1 text-muted"
+        >
+          <ForwardIcon className="size-5" />
+        </Link>
+      </div>
       <div className="mt-3">
-        <TasteRow slug={perfume.slug} name={perfume.nameFa} />
+        <TasteRow slug={perfume.slug} name={perfume.nameFa} compact />
       </div>
     </Card>
   );
@@ -213,8 +250,6 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
 
 function statusNote(state: UserPerfume) {
   if (state.disliked && state.owned) return "داری، ولی نپسندیدی";
-  if (state.rating != null && state.owned) return `داری · ${faNum(state.rating)} از ۱۰`;
-  if (state.owned) return "داری، هنوز امتیاز ندادی";
-  if (state.rating != null) return `${faNum(state.rating)} از ۱۰`;
+  if (state.owned && state.rating == null) return "داری، هنوز امتیاز ندادی";
   return null;
 }

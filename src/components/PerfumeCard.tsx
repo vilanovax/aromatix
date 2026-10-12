@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { AccordMark } from "@/components/AccordMark";
+import { BrandLink } from "@/components/BrandLink";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Chip } from "@/components/Chip";
@@ -32,13 +33,17 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
         </Chip>
       </div>
 
-      <Link
-        href={`/perfume/${perfume.slug}`}
-        className="mt-1 block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
-      >
-        <h2 className="text-title font-semibold">{perfume.nameFa}</h2>
-        <p className="mt-0.5 text-label text-muted">{perfume.brand}</p>
-      </Link>
+      <div className="mt-1">
+        <Link
+          href={`/perfume/${perfume.slug}`}
+          className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+        >
+          <h2 className="text-title font-semibold">{perfume.nameFa}</h2>
+        </Link>
+        <p className="mt-0.5 text-label text-muted">
+          <BrandLink name={perfume.brand} from={perfume.slug} />
+        </p>
+      </div>
 
       <div className="mt-3">
         <AccordMark accords={perfume.accords} names />

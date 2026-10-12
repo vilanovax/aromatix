@@ -562,6 +562,16 @@ export function perfumesByBrand(nameFa: string) {
     .sort((a, b) => b.confidence - a.confidence || a.nameFa.localeCompare(b.nameFa, "fa"));
 }
 
+export function brandCatalog() {
+  return brands
+    .map((brand) => ({
+      ...brand,
+      count: perfumesByBrand(brand.nameFa).length,
+    }))
+    .filter((brand) => brand.count > 0)
+    .sort((a, b) => b.count - a.count || a.nameFa.localeCompare(b.nameFa, "fa"));
+}
+
 const SWEET_TOP = new Set(["وانیل", "خرما", "پرالین", "قهوه", "کارامل"]);
 const SWEET_BODY = new Set(["وانیل", "خرما", "پرالین", "کارامل"]);
 

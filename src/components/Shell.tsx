@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Assistant } from "@/components/Assistant";
 import { ButtonLink } from "@/components/Button";
-import { BackIcon, BookmarkIcon } from "@/components/Icons";
+import { BackIcon, LearnIcon, ProfileIcon } from "@/components/Icons";
 import { ShopSheet } from "@/components/ShopSheet";
 import { TermSheet } from "@/components/TermSheet";
 import { getPerfume } from "@/lib/catalog";
@@ -46,25 +46,35 @@ export function Shell({
           <Link href="/" className="px-2 text-title font-bold tracking-tight">
             آروما
           </Link>
-          <ButtonLink
-            href="/shelf"
-            variant="quiet"
-            shape="pill"
-            size="md"
-            aria-current={pathname === "/shelf" ? "page" : undefined}
-            aria-label={ready && saved > 0 ? `آرومای من، ${faNum(saved)} عطر` : "آرومای من"}
-            className="justify-self-end gap-1.5 ps-2.5 pe-3 font-normal"
-          >
-            <span className="relative">
-              <BookmarkIcon className="size-5" />
-              {ready && saved > 0 ? (
-                <span className="absolute -top-1.5 -inset-s-2 grid h-4 min-w-4 place-items-center rounded-full bg-ink px-1 text-badge font-semibold text-paper ring-2 ring-paper">
-                  {faNum(saved)}
-                </span>
-              ) : null}
-            </span>
-            من
-          </ButtonLink>
+          <div className="flex items-center justify-self-end gap-0.5">
+            <ButtonLink
+              href="/learn"
+              variant="quiet"
+              shape="pill"
+              size="icon"
+              aria-current={pathname.startsWith("/learn") ? "page" : undefined}
+              aria-label="دانستنی‌ها"
+            >
+              <LearnIcon className="size-5" />
+            </ButtonLink>
+            <ButtonLink
+              href="/shelf"
+              variant="quiet"
+              shape="pill"
+              size="icon"
+              aria-current={pathname === "/shelf" ? "page" : undefined}
+              aria-label={ready && saved > 0 ? `آرومای من، ${faNum(saved)} عطر` : "آرومای من"}
+            >
+              <span className="relative">
+                <ProfileIcon className="size-5" />
+                {ready && saved > 0 ? (
+                  <span className="absolute -top-1.5 -inset-s-2 grid h-4 min-w-4 place-items-center rounded-full bg-ink px-1 text-badge font-semibold text-paper ring-2 ring-paper">
+                    {faNum(saved)}
+                  </span>
+                ) : null}
+              </span>
+            </ButtonLink>
+          </div>
         </div>
       </header>
       <main className="scroll-quiet min-h-0 flex-1 overflow-y-auto overscroll-contain">{children}</main>

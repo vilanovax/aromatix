@@ -88,24 +88,12 @@ export default function HomePage() {
   return (
     <Shell>
       <div className="flex min-h-full flex-col px-5 pt-6 pb-[max(2rem,env(safe-area-inset-bottom))]">
-        <h1 className="text-display font-bold">چه عطری بهت میاد؟</h1>
-        <p className="mt-2.5 text-body text-balance text-muted">
-          بگو کجا می‌خوای استفاده کنی، چه بوهایی دوست داری و چقدر می‌خوای هزینه کنی.
-        </p>
-        {memory ? (
-          <ButtonLink
-            href={memory.href}
-            variant="quiet"
-            shape="panel"
-            size="lg"
-            onClick={() => {
-              if (memory.nudge) dismissNudge();
-            }}
-            className="mt-4 justify-start bg-moss px-4 py-3 text-pretty font-normal"
-          >
-            {memory.sentence}
-          </ButtonLink>
-        ) : null}
+        <header>
+          <h1 className="text-display font-bold text-balance">چه عطری بهت میاد؟</h1>
+          <p className="mt-2.5 max-w-[22rem] text-body text-pretty text-muted">
+            موقعیت، رایحه، یا بودجه را بنویس — یا اسم یک عطر آشنا.
+          </p>
+        </header>
 
         <form
           className="mt-6"
@@ -129,7 +117,7 @@ export default function HomePage() {
               enterKeyHint="search"
               autoComplete="off"
               aria-invalid={error}
-              aria-describedby={error ? "wish-error" : "wish-hint"}
+              aria-describedby={error ? "wish-error" : undefined}
               className="min-h-12 min-w-0 flex-1 bg-transparent text-input text-ellipsis outline-none placeholder:text-faint focus:text-clip"
             />
             <Button type="submit" shape="control" size="lg" className="shrink-0">
@@ -140,14 +128,10 @@ export default function HomePage() {
             <p id="wish-error" role="alert" className="mt-2 text-label text-pretty text-danger">
               اسم یک عطر، یک واژه مثل «وتیور»، یا موقعیت و بودجه را بنویس.
             </p>
-          ) : (
-            <p id="wish-hint" className="mt-2 text-label text-pretty text-muted">
-              اسم عطر هم می‌تونی بنویسی، یا بگی دنبال چه رایحه‌ای هستی.
-            </p>
-          )}
+          ) : null}
         </form>
 
-        <ul className="mt-3 flex flex-wrap gap-2" aria-label="نمونه‌ها">
+        <ul className="mt-4 flex flex-wrap gap-2" aria-label="نمونه‌ها">
           {EXAMPLES.map((example) => (
             <li key={example}>
               <Chip className="min-h-11 px-3.5" onClick={() => go(example)}>
@@ -157,27 +141,49 @@ export default function HomePage() {
           ))}
         </ul>
 
-          <ButtonLink
-            href="/learn"
-            variant="quiet"
-            className="mt-8 justify-start px-1 font-normal text-muted"
-          >
-            دانستنی‌ها — غلظت، ماندگاری، بچ‌کد
-          </ButtonLink>
-
-          <ButtonLink
-            href="/guide"
-            variant="quiet"
-            shape="panel"
-            size="xl"
-            className="mt-4 gap-3 border border-line bg-card px-4 py-3"
-          >
+        <ButtonLink
+          href="/guide"
+          variant="quiet"
+          shape="panel"
+          size="xl"
+          className="mt-7 gap-3 border border-line bg-card px-4 py-3"
+        >
           <span className="min-w-0 flex-1 text-start">
             <span className="block text-body font-semibold">مطمئن نیستی چه بنویسی؟</span>
             <span className="mt-0.5 block text-label text-muted">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
           </span>
           <ForwardIcon className="size-5 shrink-0 text-muted" />
         </ButtonLink>
+
+        <nav
+          aria-label="کاوش"
+          className="mt-5 flex flex-col items-start gap-2 text-label text-muted"
+        >
+          {memory ? (
+            <ButtonLink
+              href={memory.href}
+              variant="quiet"
+              size="sm"
+              onClick={() => {
+                if (memory.nudge) dismissNudge();
+              }}
+              className="justify-start px-0 text-start text-label text-pretty font-normal text-muted underline-offset-4 hover:underline"
+            >
+              {memory.sentence}
+            </ButtonLink>
+          ) : null}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <ButtonLink href="/brands" variant="quiet" className="justify-start px-0 font-normal text-muted">
+              برندها
+            </ButtonLink>
+            <span aria-hidden="true" className="text-line">
+              ·
+            </span>
+            <ButtonLink href="/learn" variant="quiet" className="justify-start px-0 font-normal text-muted">
+              دانستنی‌ها
+            </ButtonLink>
+          </div>
+        </nav>
       </div>
     </Shell>
   );

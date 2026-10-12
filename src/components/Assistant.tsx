@@ -9,6 +9,7 @@ import { Chip } from "@/components/Chip";
 import { SendIcon } from "@/components/Icons";
 import { respond, type AskContext, type Reply } from "@/lib/assistant";
 import { getPerfume } from "@/lib/catalog";
+import { featuredEntries, getEntry, relatedEntries } from "@/lib/knowledge";
 import { matchPerfumes } from "@/lib/match";
 import { useAroma } from "@/lib/store";
 
@@ -161,8 +162,27 @@ export function Assistant() {
 
 function promptsFor(pathname: string, hasProfile: boolean) {
   if (pathname.startsWith("/compare")) return ["کدوم شیرین‌تره؟", "کدوم برای من بهتره؟"];
-  if (pathname.startsWith("/learn")) return ["فرق EDP و EDT چیه؟", "بچ‌کد یعنی چی؟"];
+  if (pathname.startsWith("/learn")) return learnPrompts(pathname);
   if (pathname.startsWith("/perfume/")) return ["شبیه این چی داری؟", "برای تابستون خوبه؟"];
   if (pathname === "/results" && hasProfile) return ["ارزان‌تر", "خنک‌تر", "ماندگارتر", "متفاوت‌تر"];
   return [LEARN_PROMPT];
+}
+
+function learnPrompts(pathname: string) {
+  const slug = pathname.match(/^\/learn\/([^/]+)/)?.[1];
+  if (!slug) {
+    return featuredEntries()
+      .slice(0, 2)
+      .map((entry) => entry.ask);
+  }
+  const entry = getEntry(decodeURIComponent(slug));
+  if (!entry) return [LEARN_PROMPT];
+  const related = relatedEntries(entry)
+    .map((item) => item.ask)
+    .filter((ask) => ask !== entry.ask)
+    .slice(0, 2);
+  return related.length > 0 ? related : featuredEntries()
+    .filter((item) => item.slug !== entry.slug)
+    .slice(0, 2)
+    .map((item) => item.ask);
 }

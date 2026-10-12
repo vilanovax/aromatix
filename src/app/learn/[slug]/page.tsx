@@ -1,6 +1,8 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import Link from "next/link";
+import { BrandLink } from "@/components/BrandLink";
 import { ScentMark } from "@/components/Bottle";
 import { ButtonLink } from "@/components/Button";
 import { Note } from "@/components/Card";
@@ -68,8 +70,8 @@ export default function LearnEntryPage() {
 
         {entry.myth ? (
           <Note tone="moss" className="mt-8 rounded-panel px-4 py-3.5 text-pretty">
-            <span className="block font-semibold">{entry.myth.claim}</span>
-            <span className="mt-1.5 block">{entry.myth.reality}</span>
+            <span className="block font-semibold">{entry.myth.reality}</span>
+            <span className="mt-1.5 block text-label text-muted">باور رایج: {entry.myth.claim}</span>
           </Note>
         ) : null}
 
@@ -81,19 +83,26 @@ export default function LearnEntryPage() {
             <ul className="mt-3 flex flex-col gap-2">
               {perfumes.map((perfume) => (
                 <li key={perfume.slug}>
-                  <ButtonLink
-                    href={`/perfume/${perfume.slug}`}
-                    variant="quiet"
-                    shape="panel"
-                    className="w-full gap-3 border border-line bg-card p-2.5 font-normal"
-                  >
-                    <ScentMark perfume={perfume} className="h-16 w-12 rounded-control" />
+                  <div className="flex w-full items-center gap-3 rounded-panel border border-line bg-card p-2.5">
+                    <Link href={`/perfume/${perfume.slug}`} className="shrink-0 rounded-control">
+                      <ScentMark perfume={perfume} className="h-16 w-12 rounded-control" />
+                    </Link>
                     <span className="min-w-0 flex-1 text-start">
-                      <span className="block font-medium">{perfume.nameFa}</span>
-                      <span className="text-label text-muted">{perfume.brand}</span>
+                      <Link href={`/perfume/${perfume.slug}`} className="block font-medium">
+                        {perfume.nameFa}
+                      </Link>
+                      <span className="block text-label text-muted">
+                        <BrandLink name={perfume.brand} from={perfume.slug} />
+                      </span>
                     </span>
-                    <ForwardIcon className="size-5 shrink-0 text-muted" />
-                  </ButtonLink>
+                    <Link
+                      href={`/perfume/${perfume.slug}`}
+                      aria-label={`باز کردن ${perfume.nameFa}`}
+                      className="shrink-0 rounded-control p-1 text-muted"
+                    >
+                      <ForwardIcon className="size-5" />
+                    </Link>
+                  </div>
                 </li>
               ))}
             </ul>

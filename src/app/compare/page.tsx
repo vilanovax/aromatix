@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { AccordMark } from "@/components/AccordMark";
+import { BrandLink } from "@/components/BrandLink";
 import { ButtonLink } from "@/components/Button";
 import { Card, Note } from "@/components/Card";
 import { Shell } from "@/components/Shell";
@@ -75,20 +76,23 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
         {[left, right].map((perfume) => {
           const lean = leanSlug === perfume.slug;
           return (
-            <Link
+            <div
               key={perfume.slug}
-              href={`/perfume/${perfume.slug}`}
               className={cn("rounded-panel border bg-card p-3", lean ? "border-ink" : "border-line")}
             >
-              <span className="block text-title font-semibold">{perfume.nameFa}</span>
-              <span className="mt-0.5 block text-label text-muted">{perfume.brand}</span>
-              <span className="mt-3 block">
+              <Link href={`/perfume/${perfume.slug}`} className="block text-title font-semibold">
+                {perfume.nameFa}
+              </Link>
+              <span className="mt-0.5 block text-label text-muted">
+                <BrandLink name={perfume.brand} from={perfume.slug} />
+              </span>
+              <Link href={`/perfume/${perfume.slug}`} className="mt-3 block">
                 <AccordMark accords={perfume.accords} />
-              </span>
-              <span className="mt-2.5 block text-body font-semibold">
+              </Link>
+              <Link href={`/perfume/${perfume.slug}`} className="mt-2.5 block text-body font-semibold">
                 {millionToman(leadOffer(perfume).price)}
-              </span>
-            </Link>
+              </Link>
+            </div>
           );
         })}
       </div>

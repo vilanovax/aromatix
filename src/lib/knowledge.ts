@@ -7,6 +7,8 @@ export type KnowledgeEntry = {
   slug: string;
   title: string;
   support: string;
+  /** چیپ کوتاه دستیار؛ باید با aliases جور شود. */
+  ask: string;
   aliases: string[];
   group: KnowledgeGroup;
   minutes: number;
@@ -33,6 +35,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "edp-vs-edt",
     title: "فرق ادوتویلت و ادوپرفیوم چیست؟",
     support: "EDT · EDP · اکستریت",
+    ask: "فرق EDP و EDT چیه؟",
     aliases: [
       "edp",
       "edt",
@@ -72,6 +75,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "notes-accords",
     title: "نت، آکورد و هرم بو",
     support: "شروع، میانه، پایه",
+    ask: "نت و آکورد یعنی چی؟",
     aliases: ["نت", "نوت", "آکورد", "هرم", "هرم بویایی", "note", "accord", "pyramid", "تاپ نوت"],
     group: "basics",
     minutes: 3,
@@ -88,6 +92,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "longevity-sillage",
     title: "ماندگاری و پخش بو",
     support: "چقدر می‌ماند، تا کجا می‌رود",
+    ask: "ماندگاری و پخش بو؟",
     aliases: ["ماندگاری", "پخش", "پخش بو", "سیاژ", "sillage", "longevity", "عملکرد"],
     group: "basics",
     minutes: 3,
@@ -108,6 +113,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "how-to-spray",
     title: "عطر را کجا و چند بار بزنیم؟",
     support: "فاصله، تعداد، مالش نده",
+    ask: "عطر رو کجا بزنم؟",
     aliases: ["اسپری", "چطور بزنم", "کجا بزنم", "تعداد پاشش", "زدن عطر"],
     group: "wear",
     minutes: 3,
@@ -125,6 +131,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "skin-test",
     title: "عطر را چطور تست کنیم؟",
     support: "کاغذ کافی نیست",
+    ask: "عطر رو چطور تست کنم؟",
     aliases: ["تست عطر", "تستر روی پوست", "بلاتر", "نمونه"],
     group: "wear",
     minutes: 3,
@@ -141,6 +148,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "storage",
     title: "عطر را چطور نگه داریم؟",
     support: "نور، گرما، حمام",
+    ask: "عطر رو چطور نگه دارم؟",
     aliases: ["نگهداری", "خراب شدن عطر", "تاریخ عطر", "انبار"],
     group: "wear",
     minutes: 2,
@@ -157,7 +165,8 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "batch-code",
     title: "بچ‌کد چه چیزی را ثابت می‌کند؟",
     support: "کد تولید، نه مدرک اصل بودن",
-    aliases: ["بچ کد", "بچ‌کد", "batch code", "batchcode", "کد تولید"],
+    ask: "بچ‌کد یعنی چی؟",
+    aliases: ["بچ کد", "بچ‌کد", "بچکد", "batch code", "batchcode", "کد تولید"],
     group: "buy",
     minutes: 4,
     featured: true,
@@ -178,6 +187,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "testers-decants-dupes",
     title: "تستر، دکانت و دوپ",
     support: "قبل از شیشهٔ کامل",
+    ask: "تستر و دوپ چیه؟",
     aliases: ["تستر", "دکانت", "دوپ", "کپی", "شرکتی", "dupe", "decant", "tester"],
     group: "buy",
     minutes: 4,
@@ -194,6 +204,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "vetiver",
     title: "وتیور",
     support: "Vetiver",
+    ask: "وتیور چه بویی دارد؟",
     aliases: ["وتیور", "vetiver", "vetivert"],
     group: "basics",
     minutes: 2,
@@ -211,6 +222,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "musk",
     title: "مشک",
     support: "Musk",
+    ask: "مشک چه بویی دارد؟",
     aliases: ["مشک", "musk", "ماسک"],
     group: "basics",
     minutes: 2,
@@ -228,6 +240,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "amber",
     title: "عنبر",
     support: "Amber",
+    ask: "عنبر چه بویی دارد؟",
     aliases: ["عنبر", "amber", "امبر"],
     group: "basics",
     minutes: 2,
@@ -245,6 +258,7 @@ export const knowledge: KnowledgeEntry[] = [
     slug: "natural-vs-synthetic",
     title: "طبیعی و سنتتیک",
     support: "مواد اولیه",
+    ask: "طبیعی بهتره یا سنتتیک؟",
     aliases: ["طبیعی", "سنتتیک", "مصنوعی", "مواد اولیه", "synthetic", "natural"],
     group: "basics",
     minutes: 3,
