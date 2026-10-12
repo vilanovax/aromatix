@@ -64,6 +64,17 @@ export function LearnIcon({ className }: IconProps) {
   );
 }
 
+export function BrandsIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">
+      <rect x="3.5" y="4" width="5.5" height="5.5" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="11" y="4" width="5.5" height="5.5" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="3.5" y="11.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+      <rect x="11" y="11.5" width="5.5" height="5.5" rx="1.2" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
 export function SendIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">

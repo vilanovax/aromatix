@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Assistant } from "@/components/Assistant";
 import { ButtonLink } from "@/components/Button";
-import { BackIcon, LearnIcon, ProfileIcon } from "@/components/Icons";
+import { BackIcon, BrandsIcon, LearnIcon, ProfileIcon } from "@/components/Icons";
 import { ShopSheet } from "@/components/ShopSheet";
 import { TermSheet } from "@/components/TermSheet";
 import { getPerfume } from "@/lib/catalog";
@@ -55,6 +55,16 @@ export function Shell({
             آروما
           </Link>
           <div className="flex items-center justify-self-end gap-0.5">
+            <ButtonLink
+              href="/brands"
+              variant="quiet"
+              shape="pill"
+              size="icon"
+              aria-current={pathname.startsWith("/brands") ? "page" : undefined}
+              aria-label="برندها"
+            >
+              <BrandsIcon className="size-5" />
+            </ButtonLink>
             <ButtonLink
               href="/learn"
               variant="quiet"

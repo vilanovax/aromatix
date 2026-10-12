@@ -132,6 +132,20 @@ export default function HomePage() {
           ) : null}
         </form>
 
+        {memory ? (
+          <ButtonLink
+            href={memory.href}
+            variant="quiet"
+            size="sm"
+            onClick={() => {
+              if (memory.nudge) dismissNudge();
+            }}
+            className="mt-3 justify-start px-0 text-start text-label text-pretty font-normal text-muted underline-offset-4 hover:underline"
+          >
+            {memory.sentence}
+          </ButtonLink>
+        ) : null}
+
         <ul className="mt-4 flex flex-wrap gap-2" aria-label="نمونه‌ها">
           {EXAMPLES.map((example) => (
             <li key={example}>
@@ -155,36 +169,6 @@ export default function HomePage() {
           </span>
           <ForwardIcon className="size-5 shrink-0 text-muted" />
         </ButtonLink>
-
-        <nav
-          aria-label="کاوش"
-          className="mt-5 flex flex-col items-start gap-2 text-label text-muted"
-        >
-          {memory ? (
-            <ButtonLink
-              href={memory.href}
-              variant="quiet"
-              size="sm"
-              onClick={() => {
-                if (memory.nudge) dismissNudge();
-              }}
-              className="justify-start px-0 text-start text-label text-pretty font-normal text-muted underline-offset-4 hover:underline"
-            >
-              {memory.sentence}
-            </ButtonLink>
-          ) : null}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <ButtonLink href="/brands" variant="quiet" className="justify-start px-0 font-normal text-muted">
-              برندها
-            </ButtonLink>
-            <span aria-hidden="true" className="text-line">
-              ·
-            </span>
-            <ButtonLink href="/learn" variant="quiet" className="justify-start px-0 font-normal text-muted">
-              دانستنی‌ها
-            </ButtonLink>
-          </div>
-        </nav>
       </div>
     </Shell>
   );
