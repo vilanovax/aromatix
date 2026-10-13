@@ -1,0 +1,245 @@
+[
+  {
+    "id": "table.CatalogBrand",
+    "label": "Create table \"CatalogBrand\"",
+    "summary": "Creates table \"CatalogBrand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "CatalogBrand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"CatalogBrand\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogBrand\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"CatalogBrand\"",
+        "sql": "CREATE TABLE \"aroma\".\"CatalogBrand\" (\n  \"nameEn\" text NOT NULL,\n  \"nameFa\" text NOT NULL,\n  \"slug\" text NOT NULL,\n  PRIMARY KEY (\"slug\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"CatalogBrand\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogBrand\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.CatalogPerfume",
+    "label": "Create table \"CatalogPerfume\"",
+    "summary": "Creates table \"CatalogPerfume\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "CatalogPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"CatalogPerfume\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogPerfume\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"CatalogPerfume\"",
+        "sql": "CREATE TABLE \"aroma\".\"CatalogPerfume\" (\n  \"brandSlug\" text NOT NULL,\n  \"document\" text NOT NULL,\n  \"nameEn\" text NOT NULL,\n  \"nameFa\" text NOT NULL,\n  \"slug\" text NOT NULL,\n  \"updatedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  PRIMARY KEY (\"slug\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"CatalogPerfume\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogPerfume\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.aroma.User.role",
+    "label": "Add column \"role\" to \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "role",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"role\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "User",
+          "role"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"role\"",
+        "sql": "ALTER TABLE \"aroma\".\"User\" ADD COLUMN \"role\" text DEFAULT 'member' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"role\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "User",
+          "role"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "checkConstraint.User.User_role_check_f6a6b253",
+    "label": "Add check constraint \"User_role_check_f6a6b253\" on \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "checkConstraint",
+        "name": "User_role_check_f6a6b253",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"User_role_check_f6a6b253\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_role_check_f6a6b253",
+          "aroma",
+          "\"aroma\".\"User\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add check constraint \"User_role_check_f6a6b253\"",
+        "sql": "ALTER TABLE \"aroma\".\"User\" ADD CONSTRAINT \"User_role_check_f6a6b253\" CHECK (\"role\" IN ('member', 'admin'))"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"User_role_check_f6a6b253\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_role_check_f6a6b253",
+          "aroma",
+          "\"aroma\".\"User\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.CatalogPerfume.CatalogPerfume_brandSlug_idx_a888b2c1",
+    "label": "Create index \"CatalogPerfume_brandSlug_idx_a888b2c1\" on \"CatalogPerfume\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "CatalogPerfume_brandSlug_idx_a888b2c1",
+        "table": "CatalogPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"CatalogPerfume_brandSlug_idx_a888b2c1\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogPerfume_brandSlug_idx_a888b2c1\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"CatalogPerfume_brandSlug_idx_a888b2c1\"",
+        "sql": "CREATE INDEX \"CatalogPerfume_brandSlug_idx_a888b2c1\" ON \"aroma\".\"CatalogPerfume\" (\"brandSlug\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"CatalogPerfume_brandSlug_idx_a888b2c1\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogPerfume_brandSlug_idx_a888b2c1\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.CatalogPerfume.CatalogPerfume_brandSlug_fkey",
+    "label": "Add foreign key \"CatalogPerfume_brandSlug_fkey\" on \"CatalogPerfume\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "foreignKey",
+        "name": "CatalogPerfume_brandSlug_fkey",
+        "table": "CatalogPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"CatalogPerfume_brandSlug_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "CatalogPerfume_brandSlug_fkey",
+          "aroma",
+          "\"aroma\".\"CatalogPerfume\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"CatalogPerfume_brandSlug_fkey\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogPerfume\"\nADD CONSTRAINT \"CatalogPerfume_brandSlug_fkey\"\nFOREIGN KEY (\"brandSlug\")\nREFERENCES \"aroma\".\"CatalogBrand\" (\"slug\")\nON DELETE RESTRICT"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"CatalogPerfume_brandSlug_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "CatalogPerfume_brandSlug_fkey",
+          "aroma",
+          "\"aroma\".\"CatalogPerfume\""
+        ]
+      }
+    ]
+  }
+]

@@ -1,6 +1,7 @@
 "use client";
 
 import { useParams } from "next/navigation";
+import { useEffect } from "react";
 import Link from "next/link";
 import { BrandLink } from "@/components/BrandLink";
 import { ScentMark } from "@/components/Bottle";
@@ -9,12 +10,17 @@ import { Note } from "@/components/Card";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { faNum } from "@/lib/format";
+import { formatShamsi } from "@/lib/jalali";
+import { recordUsage } from "@/lib/usage";
 import { perfumeHref } from "@/lib/nav";
 import { getEntry, relatedEntries, relatedPerfumes } from "@/lib/knowledge";
 
 export default function LearnEntryPage() {
   const params = useParams<{ slug: string }>();
   const entry = getEntry(params.slug);
+  useEffect(() => {
+    if (entry) recordUsage("article_view", entry.slug);
+  }, [entry]);
 
   if (!entry) {
     return (
@@ -41,6 +47,8 @@ export default function LearnEntryPage() {
           {entry.support}
           <span className="mx-1.5 text-faint">·</span>
           {faNum(entry.minutes)} دقیقه
+          <span className="mx-1.5 text-faint">·</span>
+          {formatShamsi(entry.publishedOn)}
         </p>
         {entry.mark ? (
           <div className="mt-4 h-2 w-24 rounded-full" style={{ background: entry.mark }} aria-hidden="true" />

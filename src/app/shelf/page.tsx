@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { AccountStrip } from "@/components/AccountStrip";
 import { AccordMark } from "@/components/AccordMark";
 import { BrandLink } from "@/components/BrandLink";
 import { ScentMark } from "@/components/Bottle";
@@ -9,7 +10,7 @@ import { Card } from "@/components/Card";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
-import { cheaperUnconfirmed, getPerfume, leadOffer, perfumes } from "@/lib/catalog";
+import { cheaperUnconfirmed, getPerfume, isPublicPerfume, leadOffer, publishedPerfumes } from "@/lib/catalog";
 import { computeDna, shelfBucket } from "@/lib/dna";
 import { cn, faNum, millionToman } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
@@ -17,9 +18,7 @@ import { suggestForTaste, wantedNeighbors } from "@/lib/match";
 import { useAroma } from "@/lib/store";
 import type { Perfume, UserPerfume } from "@/lib/types";
 
-const SAMPLES = ["khamrah", "fakhar", "hayaati"]
-  .map((slug) => getPerfume(slug))
-  .filter((item): item is Perfume => Boolean(item));
+const SAMPLE_SLUGS = ["khamrah", "fakhar", "hayaati"];
 
 const GROUPS = [
   { id: "owned", label: "دارم", dot: "bg-ink" },
@@ -30,10 +29,11 @@ const GROUPS = [
 
 export default function ShelfPage() {
   const { ready, library } = useAroma();
+  const samples = SAMPLE_SLUGS.map((slug) => getPerfume(slug)).filter((item): item is Perfume => isPublicPerfume(item));
   const entries = Object.entries(library)
     .map(([slug, state]) => ({ perfume: getPerfume(slug), state, bucket: shelfBucket(state) }))
     .filter((entry): entry is { perfume: Perfume; state: UserPerfume; bucket: NonNullable<ReturnType<typeof shelfBucket>> } =>
-      Boolean(entry.perfume && entry.bucket),
+      Boolean(entry.perfume && entry.bucket && isPublicPerfume(entry.perfume)),
     );
   const dna = computeDna(library, getPerfume);
   const forMe = suggestForTaste(library);
@@ -51,6 +51,7 @@ export default function ShelfPage() {
         <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">
           سلیقه و مجموعه‌ات روی همین دستگاه.
         </p>
+        <AccountStrip />
 
         {!ready ? null : entries.length === 0 ? (
           <div className="mt-8">
@@ -60,7 +61,7 @@ export default function ShelfPage() {
                 داخل صفحهٔ هر عطر بزن «تجربه کردم» یا «می‌خوام» تا سلیقه‌ات اینجا جمع شود.
               </p>
               <div className="mt-4 flex gap-2">
-                {SAMPLES.map((perfume) => (
+                {samples.map((perfume) => (
                   <ScentMark key={perfume.slug} perfume={perfume} className="h-24 flex-1 rounded-control" />
                 ))}
               </div>
@@ -69,7 +70,7 @@ export default function ShelfPage() {
               </ButtonLink>
             </Card>
             <p className="mt-4 text-label text-muted">
-              از بین {faNum(perfumes.length)} عطر نمونه می‌توانی شروع کنی.
+              از بین {faNum(publishedPerfumes().length)} عطر نمونه می‌توانی شروع کنی.
             </p>
           </div>
         ) : (

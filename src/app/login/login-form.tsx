@@ -1,0 +1,101 @@
+"use client";
+
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { AuthFrame } from "@/components/AuthFrame";
+import { Button } from "@/components/Button";
+import { TextField } from "@/components/TextField";
+import { useAccount } from "@/lib/account";
+import type { PublicUser } from "@/lib/auth/public-user";
+
+export function safeNext(value: string | null) {
+  if (!value || !value.startsWith("/") || value.startsWith("//") || value.startsWith("/login") || value.startsWith("/register")) {
+    return "/account";
+  }
+  return value;
+}
+
+export function LoginForm() {
+  const router = useRouter();
+  const params = useSearchParams();
+  const next = safeNext(params.get("next"));
+  const { setUser } = useAccount();
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  async function submit(event: React.FormEvent) {
+    event.preventDefault();
+    setPending(true);
+    setError(null);
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ phone, password }),
+      });
+      const data = (await response.json()) as { user?: PublicUser; error?: string };
+      if (!response.ok || !data.user) {
+        setError(data.error ?? "شماره یا رمز درست نیست.");
+        return;
+      }
+      setUser(data.user);
+      router.push(next);
+      router.refresh();
+    } catch {
+      setError("الان حساب در دسترس نیست. کمی بعد دوباره امتحان کن.");
+    } finally {
+      setPending(false);
+    }
+  }
+
+  return (
+    <AuthFrame title="ورود" lede="قفسه و سلیقه‌ات روی همین شماره می‌ماند.">
+      <form method="post" onSubmit={submit}>
+        <TextField
+          id="phone"
+          label="موبایل"
+          className="mt-0"
+          latinDigits
+          inputMode="tel"
+          autoComplete="username"
+          dir="ltr"
+          placeholder="0912..."
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+          error={Boolean(error)}
+        />
+        <TextField
+          id="password"
+          label="رمز"
+          type="password"
+          latinDigits
+          autoComplete="current-password"
+          dir="ltr"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          error={Boolean(error)}
+        />
+        {error ? (
+          <p role="alert" className="mt-3 text-label text-pretty text-danger">
+            {error}
+          </p>
+        ) : null}
+        <Button type="submit" className="mt-5 w-full" disabled={pending || !phone.trim() || !password}>
+          {pending ? "در حال ورود…" : "ورود"}
+        </Button>
+      </form>
+      <p className="mt-4 text-center text-body text-muted">
+        حساب نداری؟{" "}
+        <Link
+          href={`/register?next=${encodeURIComponent(next)}`}
+          className="font-semibold text-ink underline-offset-4 hover:underline"
+        >
+          ثبت‌نام
+        </Link>
+      </p>
+    </AuthFrame>
+  );
+}

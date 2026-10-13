@@ -12,7 +12,7 @@ export function BrandLink({
   className?: string;
 }) {
   const brand = brandByName(name);
-  if (!brand) {
+  if (!brand?.active) {
     return <span className={className}>{name}</span>;
   }
 

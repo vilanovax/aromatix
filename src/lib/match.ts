@@ -3,8 +3,9 @@ import {
   isSweet,
   leadOffer,
   leaningShare,
+  publishedPerfumes,
+  isPublicPerfume,
   occasionLabel,
-  perfumes,
   referenceLabel,
   seasonShort,
 } from "@/lib/catalog";
@@ -17,7 +18,7 @@ const FLOOR = 2;
 export function matchPerfumes(profile: Profile, library: Record<string, UserPerfume | undefined>) {
   const dna = computeDna(library, getPerfume);
   const relevant = relevanceGate(profile);
-  const scored = perfumes
+  const scored = publishedPerfumes()
     .filter(relevant)
     .map((perfume) => ({ perfume, score: scorePerfume(perfume, profile, dna) }))
     .filter((item) => item.score >= FLOOR)
@@ -46,7 +47,7 @@ function suggestFromDna(library: Record<string, UserPerfume | undefined>, limit:
   if (dna.stage !== "early" && dna.stage !== "dna") return [];
   if (dna.top.length === 0) return [];
 
-  return perfumes
+  return publishedPerfumes()
     .filter(
       (perfume) =>
         (brandName == null || perfume.brand === brandName) &&
@@ -73,13 +74,13 @@ export function wantedNeighbors(library: Record<string, UserPerfume | undefined>
 
   for (const [slug] of wanted) {
     const perfume = getPerfume(slug);
-    if (!perfume) continue;
+    if (!isPublicPerfume(perfume)) continue;
     for (const similar of perfume.similar) {
       if (seen.has(similar) || similar === slug) continue;
       const state = library[similar];
       if (blocked(state, true)) continue;
       const item = getPerfume(similar);
-      if (!item) continue;
+      if (!isPublicPerfume(item)) continue;
       seen.add(similar);
       picks.push(item);
       if (picks.length >= limit) return picks;
@@ -93,7 +94,7 @@ function relevanceGate(profile: Profile) {
 
   const reference = profile.reference && profile.reference !== "none" ? profile.reference : null;
   if (reference) {
-    const direct = perfumes.filter((perfume) => perfume.inspiredBy === reference);
+    const direct = publishedPerfumes().filter((perfume) => perfume.inspiredBy === reference);
     const family = new Set(direct.flatMap((perfume) => [perfume.slug, ...perfume.similar]));
     return (perfume: Perfume) => family.has(perfume.slug);
   }

@@ -60,10 +60,10 @@ export default function BrandsIndexPage() {
                           {brand.nameEn}
                         </span>
                       </span>
-                      <span className="mt-1 line-clamp-1 block text-label text-muted">
+                      <span className="mt-1 line-clamp-2 block text-label text-muted">
                         {countWord(brand.count)} عطر
                         <span className="mx-1.5 text-faint">·</span>
-                        {sample}
+                        {brand.description || sample}
                       </span>
                     </span>
                     <ForwardIcon className="size-5 shrink-0 text-muted" />

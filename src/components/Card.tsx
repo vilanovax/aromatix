@@ -75,11 +75,12 @@ export function Note({
   tone = "moss",
   className,
   children,
+  ...props
 }: {
   tone?: "moss" | "paper";
   className?: string;
   children: React.ReactNode;
-}) {
+} & Omit<React.HTMLAttributes<HTMLParagraphElement>, "className" | "children">) {
   return (
     <p
       className={cn(
@@ -87,6 +88,7 @@ export function Note({
         tone === "moss" ? "bg-moss" : "bg-paper",
         className,
       )}
+      {...props}
     >
       {children}
     </p>

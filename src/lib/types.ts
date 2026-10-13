@@ -20,6 +20,8 @@ export type ShopOffer = {
   shop: string;
   price: number;
   checkedOn: string;
+  /** زمان دقیق بررسی؛ برای صف قیمت کهنه در مدیریت. */
+  checkedAt?: string;
   stockConfirmed: boolean;
   href: string;
 };
@@ -49,6 +51,8 @@ export type Perfume = {
   similar: string[];
   shops: ShopOffer[];
   confidence: number;
+  /** نام‌هایی که دستیار علاوه بر نام فارسی و انگلیسی می‌شناسد. */
+  aliases?: string[];
 };
 
 export type Profile = {

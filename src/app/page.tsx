@@ -15,7 +15,14 @@ import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
 import type { UserPerfume } from "@/lib/types";
 
-const EXAMPLES = ["مهمانی شب زمستون", "محل کار، تابستون", "شبیه ساواج", "۹ پی‌ام"];
+const STARTS = [
+  { label: "پاییزی", query: "پاییز" },
+  { label: "شبیه ساواج", query: "شبیه ساواج" },
+  { label: "هدیه", query: "هدیه" },
+  { label: "زیر ۳ میلیون", query: "زیر ۳ میلیون" },
+  { label: "ماندگار", query: "ماندگار" },
+  { label: "تازه و خنک", query: "تازه و خنک" },
+] as const;
 const NUDGE = "داریم سلیقه‌ات رو بهتر می‌شناسیم. دوست داری چند عطر جدید متناسب با انتخاب‌هات ببینی؟";
 
 function recall(library: Record<string, UserPerfume>, dna: DnaProfile, nudgeReady: boolean) {
@@ -146,15 +153,18 @@ export default function HomePage() {
           </ButtonLink>
         ) : null}
 
-        <ul className="mt-4 flex flex-wrap gap-2" aria-label="نمونه‌ها">
-          {EXAMPLES.map((example) => (
-            <li key={example}>
-              <Chip className="min-h-11 px-3.5" onClick={() => go(example)}>
-                {example}
-              </Chip>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-5">
+          <p className="text-label text-muted">شروع سریع</p>
+          <ul className="mt-2.5 flex flex-wrap gap-2" aria-label="شروع سریع">
+            {STARTS.map((item) => (
+              <li key={item.label}>
+                <Chip className="min-h-11 px-3.5" onClick={() => go(item.query)}>
+                  {item.label}
+                </Chip>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <ButtonLink
           href="/guide"

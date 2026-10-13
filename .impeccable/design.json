@@ -1,62 +1,92 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-11T15:02:55Z",
+  "generatedAt": "2026-10-12T12:55:00.000Z",
   "title": "Design System: آروما",
   "extensions": {
     "colorMeta": {
       "ink": {
         "role": "primary",
-        "displayName": "Ink Charcoal",
-        "canonical": "#1c211f",
-        "tonalRamp": ["#111614", "#1c211f", "#2a322e", "#3d4742", "#5a655f", "#8a948e", "#c5cbc7", "#e7ebe8"]
+        "displayName": "Bottle Teal",
+        "canonical": "#023a4b",
+        "tonalRamp": ["#011820", "#012b38", "#023a4b", "#1a5566", "#3d7585", "#6e9aa6", "#a8c4cc", "#d9e6ea"]
+      },
+      "ink-hover": {
+        "role": "primary",
+        "displayName": "Ink Hover",
+        "canonical": "#012b38",
+        "tonalRamp": ["#011018", "#011820", "#012b38", "#023a4b", "#1a5566", "#3d7585", "#6e9aa6", "#a8c4cc"]
       },
       "paper": {
         "role": "neutral",
-        "displayName": "Paper Sage",
-        "canonical": "#e7ebe8",
-        "tonalRamp": ["#9aa39e", "#b8c0bb", "#cfd6d1", "#dbe0dd", "#e1e6e3", "#e7ebe8", "#f1f4f2", "#fbfcfb"]
+        "displayName": "Paper Mist",
+        "canonical": "#e9edee",
+        "tonalRamp": ["#9aa8ad", "#b8c4c8", "#cfd8db", "#dce3e5", "#e2e8ea", "#e9edee", "#f3f6f7", "#fbfcfc"]
       },
       "desk": {
         "role": "neutral",
         "displayName": "Desk Mist",
-        "canonical": "#dbe0dd",
-        "tonalRamp": ["#8f9893", "#aeb6b1", "#c5ccc8", "#d5dbd7", "#dbe0dd", "#e1e6e3", "#e7ebe8", "#f4f6f5"]
+        "canonical": "#dce3e5",
+        "tonalRamp": ["#8f9da2", "#aeb9bd", "#c5ced1", "#d2dbde", "#dce3e5", "#e2e8ea", "#e9edee", "#f4f7f8"]
       },
       "card": {
         "role": "neutral",
-        "displayName": "Card Cream",
-        "canonical": "#fbfcfb",
-        "tonalRamp": ["#c5cbc7", "#d5dbd7", "#e1e6e3", "#e7ebe8", "#f1f4f2", "#f7f9f8", "#fbfcfb", "#ffffff"]
+        "displayName": "Card",
+        "canonical": "#fbfcfc",
+        "tonalRamp": ["#c5ced1", "#d2dbde", "#e2e8ea", "#e9edee", "#f1f4f5", "#f7f9fa", "#fbfcfc", "#ffffff"]
       },
       "muted": {
         "role": "neutral",
-        "displayName": "Muted Leaf",
-        "canonical": "#4e5854",
-        "tonalRamp": ["#1c211f", "#2a322e", "#3d4742", "#4e5854", "#6b7470", "#8a948e", "#b8c0bb", "#d5dbd7"]
+        "displayName": "Muted Slate",
+        "canonical": "#4a5b62",
+        "tonalRamp": ["#023a4b", "#1a5566", "#2f4a52", "#4a5b62", "#62737a", "#8a9aa0", "#b8c4c8", "#dce3e5"]
+      },
+      "faint": {
+        "role": "neutral",
+        "displayName": "Faint Slate",
+        "canonical": "#62737a",
+        "tonalRamp": ["#2f4a52", "#4a5b62", "#62737a", "#7a8a90", "#9aa8ad", "#b8c4c8", "#d2dbde", "#e9edee"]
       },
       "line": {
         "role": "neutral",
         "displayName": "Hairline",
-        "canonical": "#d5dbd7",
-        "tonalRamp": ["#8a948e", "#aeb6b1", "#c5cbc7", "#d0d6d2", "#d5dbd7", "#e1e6e3", "#e7ebe8", "#f4f6f5"]
+        "canonical": "#d2dbde",
+        "tonalRamp": ["#8a9aa0", "#aeb9bd", "#c5ced1", "#ccd5d8", "#d2dbde", "#dce3e5", "#e9edee", "#f4f7f8"]
       },
       "press": {
         "role": "neutral",
         "displayName": "Press Fog",
-        "canonical": "#e1e6e3",
-        "tonalRamp": ["#9aa39e", "#b8c0bb", "#cfd6d1", "#dbe0dd", "#e1e6e3", "#e7ebe8", "#f1f4f2", "#fbfcfb"]
+        "canonical": "#dfe6e8",
+        "tonalRamp": ["#9aa8ad", "#b8c4c8", "#cfd8db", "#d8e0e2", "#dfe6e8", "#e9edee", "#f1f4f5", "#fbfcfc"]
       },
       "moss": {
         "role": "secondary",
-        "displayName": "Moss Wash",
-        "canonical": "#dbe5de",
-        "tonalRamp": ["#4F8A62", "#6e9a7c", "#8fb09a", "#b0c7b8", "#c8d9ce", "#dbe5de", "#e8f0ea", "#f3f7f4"]
+        "displayName": "Teal Wash",
+        "canonical": "#d9e6ea",
+        "tonalRamp": ["#1a5566", "#3d7585", "#6e9aa6", "#9bbbc4", "#bfd4da", "#d9e6ea", "#e8f1f3", "#f4f9fa"]
+      },
+      "brass": {
+        "role": "tertiary",
+        "displayName": "Brass Swirl",
+        "canonical": "#c7a769",
+        "tonalRamp": ["#6e5436", "#8a6e4c", "#a08b62", "#c7a769", "#d4bc8a", "#e2d4b0", "#f0e8d4", "#faf6ee"]
       },
       "clay": {
         "role": "tertiary",
         "displayName": "Clay Blush",
         "canonical": "#efe0dc",
         "tonalRamp": ["#8e3d32", "#a65d3f", "#c47b6a", "#d4a89a", "#e2c4ba", "#efe0dc", "#f6ece9", "#fbf6f4"]
+      },
+      "well": {
+        "role": "neutral",
+        "displayName": "Well",
+        "canonical": "#e2e8ea",
+        "tonalRamp": ["#9aa8ad", "#b8c4c8", "#cfd8db", "#d8e0e2", "#e2e8ea", "#e9edee", "#f1f4f5", "#fbfcfc"]
+      },
+      "taste-try": {
+        "role": "secondary",
+        "displayName": "Taste Try",
+        "canonical": "#7fa58a",
+        "tonalRamp": ["#3d5c48", "#547a60", "#6e9478", "#7fa58a", "#9bbba4", "#b8d0c0", "#d9e6ea", "#f0f6f2"]
       },
       "danger": {
         "role": "primary",
@@ -75,57 +105,70 @@
         "displayName": "Stock Pending",
         "canonical": "#B8A27A",
         "tonalRamp": ["#6e5436", "#8a6e4c", "#a08b62", "#B8A27A", "#c4b15a", "#d2c4a0", "#e8dfc8", "#f7f3e8"]
+      },
+      "stock-ok-on-ink": {
+        "role": "secondary",
+        "displayName": "Stock Ok On Ink",
+        "canonical": "#7dba92",
+        "tonalRamp": ["#336348", "#4F8A62", "#6e9a7c", "#7dba92", "#9bcfad", "#bfe0cb", "#dbe5de", "#f3f7f4"]
+      },
+      "stock-pending-on-ink": {
+        "role": "tertiary",
+        "displayName": "Stock Pending On Ink",
+        "canonical": "#d4c19a",
+        "tonalRamp": ["#8a6e4c", "#a08b62", "#B8A27A", "#d4c19a", "#e0d2b0", "#ebe2cc", "#f4edd8", "#faf6ee"]
       }
     },
     "typographyMeta": {
-      "display": { "displayName": "Display", "purpose": "تیتر هوم و لحظه‌های تصمیم اصلی." },
-      "headline": { "displayName": "Headline", "purpose": "تیتر نتایج، راهنما، قفسه، جزئیات." },
-      "title": { "displayName": "Title", "purpose": "نام عطر روی کارت و عنوان بخش." },
-      "body": { "displayName": "Body", "purpose": "توضیح، why، و متن پشتیبان." },
-      "label": { "displayName": "Label", "purpose": "متا، بج، راهنمای کوتاه، نوار پیشرفت." }
+      "display": { "displayName": "Display", "purpose": "تیتر هوم و هیروهای تصمیم." },
+      "headline": { "displayName": "Headline", "purpose": "تیتر صفحات بخش: نتایج، راهنما، قفسه، دانستنی‌ها." },
+      "title": { "displayName": "Title", "purpose": "نام عطر، تیتر بخش، عنوان شیت." },
+      "body": { "displayName": "Body", "purpose": "توضیح، why، پاسخ دستیار." },
+      "label": { "displayName": "Label", "purpose": "متا، بج، راهنمای کمکی." },
+      "input": { "displayName": "Input", "purpose": "فیلد متنی موبایل؛ حداقل ۱۶px." }
     },
     "shadows": [
       {
-        "name": "card-lift",
-        "value": "0 6px 20px -14px rgba(28,33,31,0.35)",
-        "purpose": "اینپوت هوم و کارت‌های مهم روی paper."
+        "name": "card",
+        "value": "0 6px 20px -16px rgb(2 58 75 / 0.4)",
+        "purpose": "بلند کردن FieldShell هوم و دستیار."
       },
       {
-        "name": "soft-panel",
-        "value": "0 6px 20px -16px rgba(28,33,31,0.4)",
-        "purpose": "سؤال leaning و کارت سلیقهٔ قفسه."
+        "name": "sheet",
+        "value": "0 8px 24px -12px rgb(2 58 75 / 0.18)",
+        "purpose": "شیت فروشگاه، واژه، تجربه، و کارت پاسخ دستیار."
       },
       {
-        "name": "assistant-sheet",
-        "value": "0 8px 24px -12px rgba(28,33,31,0.18)",
-        "purpose": "پاسخ شناور دستیار."
-      },
-      {
-        "name": "desktop-frame",
-        "value": "0 0 48px rgba(28,33,31,0.06)",
+        "name": "frame",
+        "value": "0 0 48px rgb(2 58 75 / 0.06)",
         "purpose": "قاب شل روی sm+."
+      },
+      {
+        "name": "range-thumb",
+        "value": "0 2px 8px -2px rgb(2 58 75 / 0.35)",
+        "purpose": "دستگیرهٔ اسلایدر تجربه."
       }
     ],
     "motion": [
       {
         "name": "ease-out",
         "value": "cubic-bezier(0.23, 1, 0.32, 1)",
-        "purpose": "انتقال pressable و انیمیشن‌های کوتاه UI."
+        "purpose": "انتقال pressable و انیمیشن شیت/گام."
       },
       {
-        "name": "press-duration",
-        "value": "140ms",
-        "purpose": "مدت transition لمس."
+        "name": "press",
+        "value": "transform 140ms ease-out; scale(0.97) on active",
+        "purpose": "بازخورد لمس روی کنترل‌ها."
       },
       {
-        "name": "rise",
-        "value": "220ms translateY(12px→0)",
-        "purpose": "ورود شیت/پنل."
+        "name": "sheet-rise",
+        "value": "rise 220ms ease-out (translateY 12px → 0)",
+        "purpose": "ورود شیت پایین."
       },
       {
-        "name": "step",
-        "value": "240ms opacity+translateX",
-        "purpose": "جابه‌جایی قدم راهنما."
+        "name": "step-in",
+        "value": "step 240ms ease-out (opacity + translateX)",
+        "purpose": "تعویض قدم راهنما و ورود صفحه."
       }
     ],
     "breakpoints": [
@@ -137,76 +180,86 @@
       "name": "Primary Button",
       "kind": "button",
       "refersTo": "button-primary",
-      "description": "اقدام اصلی: پیدا کن، بعدی، فروشگاه‌ها.",
-      "html": "<button class=\"ds-btn-primary\">پیدا کن</button>",
-      "css": ".ds-btn-primary{background:#1c211f;color:#e7ebe8;min-height:48px;padding:12px 20px;border:none;border-radius:16px;font:600 15px/1 Vazirmatn,Tahoma,sans-serif;cursor:pointer;transition:background 140ms cubic-bezier(0.23,1,0.32,1),transform 140ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-primary:hover{background:#111614}.ds-btn-primary:active{transform:scale(0.97)}.ds-btn-primary:focus-visible{outline:2px solid #1c211f;outline-offset:2px}.ds-btn-primary:disabled{background:#d5dbd7;color:#4e5854}"
+      "description": "CTA اصلی solid با جوهر بطری.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">پیدا کن</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 20px; border: none; border-radius: 16px; background: #023a4b; color: #e9edee; font-family: Vazirmatn, Tahoma, sans-serif; font-size: 15px; font-weight: 600; line-height: 1; cursor: pointer; transition: background-color 140ms cubic-bezier(0.23, 1, 0.32, 1), transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-primary:hover { background: #012b38; } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid #023a4b; outline-offset: 2px; } .ds-btn-primary:disabled { background: #d2dbde; color: #4a5b62; cursor: not-allowed; transform: none; }"
     },
     {
       "name": "Edge Button",
       "kind": "button",
       "refersTo": "button-edge",
-      "description": "اقدام ثانویه با حاشیه؛ رد کردن راهنما یا گزینه.",
-      "html": "<button class=\"ds-btn-edge\">رد کردن و دیدن پیشنهادها</button>",
-      "css": ".ds-btn-edge{background:#fbfcfb;color:#1c211f;min-height:48px;padding:12px 16px;border:1px solid #d5dbd7;border-radius:16px;font:600 15px/1 Vazirmatn,Tahoma,sans-serif;cursor:pointer;transition:border-color 140ms cubic-bezier(0.23,1,0.32,1),transform 140ms cubic-bezier(0.23,1,0.32,1)}.ds-btn-edge:hover{border-color:#1c211f}.ds-btn-edge:active{transform:scale(0.97)}.ds-btn-edge:focus-visible{outline:2px solid #1c211f;outline-offset:2px}"
+      "description": "دکمهٔ ثانویه با حاشیهٔ hairline.",
+      "html": "<button class=\"ds-btn-edge\" type=\"button\">مقایسه</button>",
+      "css": ".ds-btn-edge { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 16px; border: 1px solid #d2dbde; border-radius: 16px; background: #fbfcfc; color: #023a4b; font-family: Vazirmatn, Tahoma, sans-serif; font-size: 15px; font-weight: 500; line-height: 1; cursor: pointer; transition: border-color 140ms cubic-bezier(0.23, 1, 0.32, 1), transform 140ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-btn-edge:hover { border-color: #023a4b; } .ds-btn-edge:active { transform: scale(0.97); } .ds-btn-edge:focus-visible { outline: 2px solid #023a4b; outline-offset: 2px; }"
     },
     {
-      "name": "Search Field",
-      "kind": "input",
-      "refersTo": "input-shell",
-      "description": "پوستهٔ ترکیبی اینپوت + دکمهٔ solid.",
-      "html": "<div class=\"ds-input-shell\"><input class=\"ds-input\" placeholder=\"مثلاً قرار پاییزی، تا ۵ میلیون\" /><button class=\"ds-btn-primary ds-input-go\">پیدا کن</button></div>",
-      "css": ".ds-input-shell{display:flex;align-items:center;gap:4px;background:#fbfcfb;border:1px solid #d5dbd7;border-radius:16px;padding:4px 4px 4px 14px;box-shadow:0 6px 20px -14px rgba(28,33,31,0.35)}.ds-input-shell:focus-within{border-color:#1c211f}.ds-input{flex:1;min-height:48px;border:0;background:transparent;font:400 16px/1.4 Vazirmatn,Tahoma,sans-serif;color:#1c211f;outline:none}.ds-input::placeholder{color:#646d69}.ds-input-go{border-radius:12px;min-height:48px}"
-    },
-    {
-      "name": "Chip",
+      "name": "Filter Chip",
       "kind": "chip",
       "refersTo": "chip",
-      "description": "نمونهٔ هوم و میان‌بر دستیار.",
-      "html": "<button class=\"ds-chip\">مهمانی شب زمستون</button>",
-      "css": ".ds-chip{display:inline-flex;align-items:center;min-height:40px;padding:8px 14px;border:1px solid #d5dbd7;border-radius:9999px;background:#fbfcfb;color:#1c211f;font:400 13px/1 Vazirmatn,Tahoma,sans-serif;cursor:pointer;transition:border-color 140ms cubic-bezier(0.23,1,0.32,1),transform 140ms cubic-bezier(0.23,1,0.32,1)}.ds-chip:hover{border-color:#1c211f}.ds-chip:active{transform:scale(0.97)}"
+      "description": "چیپ فیلتر؛ انتخاب‌شده پر از ink.",
+      "html": "<div class=\"ds-chip-row\"><button class=\"ds-chip\" type=\"button\">مبانی</button><button class=\"ds-chip ds-chip-selected\" type=\"button\" aria-pressed=\"true\">همه</button></div>",
+      "css": ".ds-chip-row { display: flex; gap: 8px; font-family: Vazirmatn, Tahoma, sans-serif; } .ds-chip { display: inline-flex; align-items: center; min-height: 44px; padding: 8px 14px; border: 1px solid #d2dbde; border-radius: 9999px; background: #fbfcfc; color: #023a4b; font-size: 13px; font-weight: 500; line-height: 1; cursor: pointer; } .ds-chip-selected { border-color: #023a4b; background: #023a4b; color: #e9edee; } .ds-chip:focus-visible { outline: 2px solid #023a4b; outline-offset: 2px; }"
     },
     {
-      "name": "Guide Choice",
+      "name": "Soft Chip",
       "kind": "chip",
-      "refersTo": "chip-selected",
-      "description": "گزینهٔ راهنما؛ انتخاب‌شده با moss.",
-      "html": "<button class=\"ds-choice ds-choice-on\" aria-pressed=\"true\"><span class=\"ds-swatch\"></span><span class=\"ds-choice-text\"><strong>مهمانی شب</strong><small>گرم‌تر و ماندگارتر</small></span><span class=\"ds-check\"></span></button>",
-      "css": ".ds-choice{display:flex;align-items:center;gap:12px;width:100%;min-height:54px;padding:10px 14px;border:1px solid #d5dbd7;border-radius:16px;background:#fbfcfb;text-align:start;cursor:pointer;font-family:Vazirmatn,Tahoma,sans-serif}.ds-choice-on{background:#dbe5de;border-color:#1c211f}.ds-swatch{width:10px;height:10px;border-radius:9999px;background:#8C4A32;flex:0 0 auto}.ds-choice-text{flex:1;display:flex;flex-direction:column;gap:2px}.ds-choice-text strong{font:600 15px/1.4 Vazirmatn,Tahoma,sans-serif;color:#1c211f}.ds-choice-text small{font:400 12px/1.4 Vazirmatn,Tahoma,sans-serif;color:#4e5854}.ds-check{width:20px;height:20px;border-radius:6px;background:#1c211f}"
+      "refersTo": "soft-chip",
+      "description": "چیپ نرم moss برای انتخاب‌های حمل‌شده.",
+      "html": "<span class=\"ds-soft-chip\">مهمانی شب</span>",
+      "css": ".ds-soft-chip { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 9999px; background: #d9e6ea; color: #023a4b; font-family: Vazirmatn, Tahoma, sans-serif; font-size: 13px; font-weight: 500; }"
     },
     {
-      "name": "Perfume Card",
+      "name": "Field Shell",
+      "kind": "input",
+      "refersTo": "input-shell",
+      "description": "پوستهٔ ترکیبی جستجو/سؤال با دکمهٔ داخلی.",
+      "html": "<form class=\"ds-field\"><input class=\"ds-field-input\" type=\"search\" placeholder=\"بپرس یا پیشنهاد را اصلاح کن\" /><button class=\"ds-field-send\" type=\"submit\" aria-label=\"بفرست\"><svg viewBox=\"0 0 20 20\" width=\"20\" height=\"20\" fill=\"none\" aria-hidden=\"true\"><path d=\"M15 10H5M9 5.5L4.5 10 9 14.5\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button></form>",
+      "css": ".ds-field { display: flex; align-items: center; gap: 4px; padding: 4px 4px 4px 14px; border: 1px solid #d2dbde; border-radius: 16px; background: #fbfcfc; box-shadow: 0 6px 20px -16px rgb(2 58 75 / 0.4); font-family: Vazirmatn, Tahoma, sans-serif; } .ds-field:focus-within { border-color: #023a4b; } .ds-field-input { flex: 1; min-width: 0; min-height: 48px; border: none; background: transparent; color: #023a4b; font-size: 16px; outline: none; } .ds-field-input::placeholder { color: #62737a; } .ds-field-send { display: grid; place-items: center; width: 44px; height: 44px; border: none; border-radius: 12px; background: #023a4b; color: #e9edee; cursor: pointer; } .ds-field-send:disabled { background: #d2dbde; color: #4a5b62; }"
+    },
+    {
+      "name": "Card Surface",
       "kind": "card",
       "refersTo": "card-surface",
-      "description": "کارت پیشنهاد با why و آکورد.",
-      "html": "<article class=\"ds-card\"><header><span>پیشنهاد اول</span><button class=\"ds-chip\">مقایسه</button></header><h3>خمره</h3><p class=\"ds-muted\">لطافه</p><div class=\"ds-accord\"></div><div class=\"ds-why\"><small>چرا این عطر؟</small><p>خرما، دارچین و وانیل گرم است.</p></div></article>",
-      "css": ".ds-card{background:#fbfcfb;border:1px solid #d5dbd7;border-radius:16px;padding:14px;color:#1c211f;font-family:Vazirmatn,Tahoma,sans-serif}.ds-card header{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#4e5854;margin-bottom:10px}.ds-card h3{margin:0;font:600 1.05rem/1.4 Vazirmatn,Tahoma,sans-serif}.ds-muted{margin:4px 0 0;font-size:13px;color:#4e5854}.ds-accord{margin-top:12px;height:8px;border-radius:9999px;background:linear-gradient(90deg,#8C4A32 34%,#C4A574 28%,#A65D3F 22%,#B7A99A 16%)}.ds-why{margin-top:14px;background:#e7ebe8;border-radius:12px;padding:10px 12px}.ds-why small{display:block;font:600 12px/1 Vazirmatn,Tahoma,sans-serif;color:#4e5854}.ds-why p{margin:6px 0 0;font:400 15px/1.75 Vazirmatn,Tahoma,sans-serif}"
+      "description": "کارت تخت با حاشیهٔ hairline.",
+      "html": "<article class=\"ds-card\"><h3 class=\"ds-card-title\">خمره</h3><p class=\"ds-card-meta\">لطافه · ۳٫۶۵ میلیون تومان</p></article>",
+      "css": ".ds-card { padding: 14px; border: 1px solid #d2dbde; border-radius: 16px; background: #fbfcfc; color: #023a4b; font-family: Vazirmatn, Tahoma, sans-serif; } .ds-card-title { margin: 0; font-size: 1.05rem; font-weight: 600; line-height: 1.4; } .ds-card-meta { margin: 4px 0 0; font-size: 13px; font-weight: 500; color: #4a5b62; }"
     },
     {
-      "name": "App Shell",
+      "name": "Assistant Reply",
+      "kind": "card",
+      "refersTo": "assistant-reply",
+      "description": "پاسخ دستیار روی Teal Wash با سایهٔ sheet.",
+      "html": "<div class=\"ds-reply\"><div class=\"ds-reply-head\"><p class=\"ds-reply-title\">ماندگاری و پخش بو</p><button class=\"ds-reply-close\" type=\"button\">بستن</button></div><p class=\"ds-reply-body\">ماندگاری این است که بو روی پوستت تا کی حس می‌شود.</p></div>",
+      "css": ".ds-reply { padding: 16px; border-radius: 16px; background: #d9e6ea; color: #023a4b; box-shadow: 0 8px 24px -12px rgb(2 58 75 / 0.18); font-family: Vazirmatn, Tahoma, sans-serif; } .ds-reply-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; } .ds-reply-title { margin: 0; font-size: 1.05rem; font-weight: 600; } .ds-reply-close { border: none; background: transparent; color: #4a5b62; font-size: 15px; cursor: pointer; } .ds-reply-body { margin: 8px 0 0; font-size: 15px; line-height: 1.75; }"
+    },
+    {
+      "name": "Shell Header",
       "kind": "nav",
       "refersTo": "shell",
-      "description": "قاب موبایل با هدر سه ستونه.",
-      "html": "<div class=\"ds-shell\"><header class=\"ds-nav\"><button class=\"ds-nav-link\">شروع</button><strong>آروما</strong><button class=\"ds-nav-link\">قفسه</button></header><main class=\"ds-main\">محتوا</main></div>",
-      "css": ".ds-shell{max-width:32rem;min-height:100dvh;margin:0 auto;background:#e7ebe8;color:#1c211f;font-family:Vazirmatn,Tahoma,sans-serif;display:flex;flex-direction:column}.ds-nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:8px 12px;border-bottom:1px solid #d5dbd7}.ds-nav strong{font:700 16px/1 Vazirmatn,Tahoma,sans-serif;text-align:center}.ds-nav-link{background:transparent;border:0;min-height:44px;color:#4e5854;font:400 14px/1 Vazirmatn,Tahoma,sans-serif;cursor:pointer}.ds-nav-link:last-child{justify-self:end}.ds-main{flex:1;padding:20px}"
+      "description": "هدر سه ستونه با علامت بطری و قفسه.",
+      "html": "<header class=\"ds-shell-header\"><button class=\"ds-shell-back\" type=\"button\">شروع</button><a class=\"ds-shell-brand\" href=\"#\">آروما</a><div class=\"ds-shell-actions\"><button class=\"ds-shell-icon\" type=\"button\" aria-label=\"آرومای من\"><span class=\"ds-shell-badge\">۵</span></button></div></header>",
+      "css": ".ds-shell-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 8px 12px; border-bottom: 1px solid #d2dbde; background: #e9edee; font-family: Vazirmatn, Tahoma, sans-serif; color: #023a4b; } .ds-shell-back { justify-self: start; border: none; background: transparent; color: #4a5b62; font-size: 15px; cursor: pointer; } .ds-shell-brand { justify-self: center; font-size: 1.05rem; font-weight: 700; color: #023a4b; text-decoration: none; } .ds-shell-actions { justify-self: end; } .ds-shell-icon { position: relative; width: 44px; height: 44px; border: none; border-radius: 9999px; background: transparent; cursor: pointer; } .ds-shell-badge { position: absolute; top: 4px; inset-inline-start: 4px; display: grid; place-items: center; min-width: 16px; height: 16px; padding: 0 4px; border-radius: 9999px; background: #c7a769; color: #023a4b; font-size: 10px; font-weight: 600; box-shadow: 0 0 0 2px #e9edee; }"
     },
     {
       "name": "Accord Mark",
       "kind": "custom",
-      "refersTo": "card-surface",
-      "description": "امضای بصری نسبت آکوردها.",
-      "html": "<div class=\"ds-accord-mark\" role=\"img\" aria-label=\"نسبت آکوردها\"><span style=\"flex:34;background:#8C4A32\"></span><span style=\"flex:28;background:#C4A574\"></span><span style=\"flex:22;background:#A65D3F\"></span><span style=\"flex:16;background:#B7A99A\"></span></div>",
-      "css": ".ds-accord-mark{display:flex;height:8px;gap:2px;width:100%}.ds-accord-mark span{display:block;min-width:4px;height:100%;border-radius:9999px}"
+      "refersTo": null,
+      "description": "امضای بصری: نوار نسبت آکوردها.",
+      "html": "<div class=\"ds-accord\" role=\"img\" aria-label=\"وانیل، پرالین، چوب\"><span class=\"ds-accord-seg\" style=\"flex:0.4;background:#C4A574\"></span><span class=\"ds-accord-seg\" style=\"flex:0.32;background:#B5816A\"></span><span class=\"ds-accord-seg\" style=\"flex:0.28;background:#6E5436\"></span></div>",
+      "css": ".ds-accord { display: flex; width: 100%; height: 8px; overflow: hidden; border-radius: 9999px; background: #e2e8ea; } .ds-accord-seg { display: block; min-width: 0; height: 100%; }"
     }
   ],
   "narrative": {
     "northStar": "میز آرام عطرساز",
-    "overview": "آروما مثل میز کار تمیز یک عطرساز است: کاغذ سبز–خاکستری ملایم، جوهر تیره، بطری روی سطح روشن. نه ویترین طلایی بوتیک، نه داشبورد شلوغ. رابط باید حس دستیار صمیمی بدهد — سبک، سریع، قابل لمس روی موبایل.\n\nتراکم متوسط–کم: یک کار در هر بخش، تیتر کوتاه، یک جملهٔ پشتیبان، کنترل‌های بزرگ. عمق با لایهٔ تُنال (paper / card / moss) و سایه‌های خیلی نرم ساخته می‌شود، نه با گلو یا گرادیان بنفش.\n\nضدمرجعهای تأییدشده: بنر ترند، منوی پایین شلوغ، کارت‌های یکسان آیکون+تیتر، کلیشهٔ طلا/مشکی لوکس عطر، و آواتار ربات برای «هوشمند» نشان دادن محصول.",
+    "overview": "آروما مثل میز کار تمیز یک عطرساز است: کاغذ خاکستری خنک، جوهر سبزآبی تیرهٔ لوگو، بطری روی سطح روشن. نه ویترین طلایی بوتیک، نه داشبورد شلوغ. رابط باید حس دستیار صمیمی بدهد — سبک، سریع، قابل لمس روی موبایل.\n\nتراکم متوسط–کم: یک کار در هر بخش، تیتر کوتاه، یک جملهٔ پشتیبان، کنترل‌های بزرگ. عمق با لایهٔ تُنال (paper / card / moss) و سایه‌های خیلی نرم ساخته می‌شود، نه با گلو یا گرادیان بنفش.\n\nضدمرجعهای تأییدشده: بنر ترند، منوی پایین شلوغ، کارت‌های یکسان آیکون+تیتر، کلیشهٔ طلا/مشکی لوکس عطر، و آواتار ربات برای «هوشمند» نشان دادن محصول.",
     "keyCharacteristics": [
       "RTL فارسی با Vazirmatn؛ ارقام فارسی در UI",
-      "پالت خنثی سبز–خاکستری + جوهر تیره؛ اکسنت فقط در آکورد و وضعیت",
-      "شل موبایل max-w حدود ۳۲rem؛ دسکتاپ فقط قاب و سایهٔ محیطی",
+      "پالت خنثی خنک + جوهر سبزآبی لوگو (#023a4b)؛ برنجی لوگو فقط به‌عنوان اکسنت کوچک برند",
+      "لوگو: بطری با موج برنجی، در هدر کنار واژهٔ «آروما» و در آیکون اپ",
+      "شل موبایل max-w-lg (~32rem)؛ دسکتاپ فقط قاب و سایهٔ محیطی",
       "امضای بصری: نوار نسبت آکورد (Accord Mark)",
-      "حرکت کوتاه با ease-out و احترام به reduced-motion"
+      "حرکت کوتاه با ease-out و احترام به prefers-reduced-motion",
+      "شیت‌های پایین با handle، بستن، و safe-area یکدست"
     ],
     "rules": [
       {
@@ -216,7 +269,7 @@
       },
       {
         "name": "The No Luxury Cliché Rule",
-        "body": "طلا، مشکی براق، و گرادیان بنفش–ایندیگو برای این محصول ممنوع‌اند مگر دارایی واقعی برند عطر در محتوا.",
+        "body": "مشکی براق، گرادیان بنفش–ایندیگو، و طلای ویترینی ممنوع‌اند. تنها طلای مجاز برنجی خود لوگوست، در اندازهٔ کوچک و کنار سبزآبی.",
         "section": "colors"
       },
       {
@@ -238,15 +291,17 @@
     "dos": [
       "Do مسیرهای شروع را هم‌زمان روشن نگه دار: اسم عطر، توصیف آزاد، راهنما.",
       "Do از توکن‌های --paper/--ink/--card/--moss استفاده کن؛ رنگ جدید فقط برای معنای داده.",
-      "Do لمس‌پذیری و RTL را قبل از زیباسازی دسکتاپ چک کن.",
-      "Do توضیح why و Accord Mark را نزدیک پیشنهاد نگه دار."
+      "Do لمس‌پذیری، فوکوس ink، و RTL را قبل از زیباسازی دسکتاپ چک کن.",
+      "Do توضیح why و Accord Mark را نزدیک پیشنهاد نگه دار.",
+      "Do موجودی تأییدنشده را با نقطهٔ pending و بدون لینک خرید نشان بده."
     ],
     "donts": [
       "Don't بنر ترند، منوی پایین شلوغ، یا لوگوی غول‌پیکر به هوم اضافه کن.",
       "Don't با حدس، ردیف خالی مقایسه یا پیشنهاد نامطمئن را پر کن.",
       "Don't آواتار چت یا حباب‌های تزئینی برای «دستیار» بساز.",
       "Don't Inter/Roboto/سیستم پیش‌فرض را جایگزین Vazirmatn کن.",
-      "Don't تم بنفش–ایندیگو یا طلایی–مشکی لوکس پیش‌فرض AI را وارد کن."
+      "Don't تم بنفش–ایندیگو یا طلایی–مشکی لوکس پیش‌فرض AI را وارد کن.",
+      "Don't لینک برند را داخل لینک عطر تو‌در‌تو بگذار."
     ]
   }
 }

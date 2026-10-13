@@ -1,0 +1,100 @@
+// use prisma-8
+
+enum UserRole {
+  @@type("pg/text@1")
+  member = "member"
+  admin  = "admin"
+}
+
+namespace aroma {
+  model User {
+    id           Int               @id @default(autoincrement())
+    phone        String            @unique
+    passwordHash String
+    name         String
+    avatarId     String            @default("ink")
+    role         UserRole          @default(member)
+    access       String            @default("*")
+    createdAt    TimestamptzString @default(now())
+    sessions     Session[]
+    perfumes     UserPerfume[]
+  }
+
+  model Session {
+    id        Int               @id @default(autoincrement())
+    tokenHash String            @unique
+    userId    Int
+    user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+    expiresAt TimestamptzString
+    createdAt TimestamptzString @default(now())
+
+    @@index([userId])
+  }
+
+  model LoginAttempt {
+    id        Int               @id @default(autoincrement())
+    phone     String
+    createdAt TimestamptzString @default(now())
+
+    @@index([phone, createdAt])
+  }
+
+  model UserPerfume {
+    id          Int                @id @default(autoincrement())
+    userId      Int
+    user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+    perfumeSlug String
+    owned       Boolean            @default(false)
+    wanted      Boolean            @default(false)
+    tried       Boolean            @default(false)
+    disliked    Boolean            @default(false)
+    rating      Int?
+    ratedAt     TimestamptzString?
+    inferred    Boolean            @default(false)
+
+    @@unique([userId, perfumeSlug])
+    @@index([userId])
+  }
+
+  model CatalogBrand {
+    slug        String           @id
+    nameFa      String
+    nameEn      String
+    description String           @default("")
+    active      Boolean          @default(true)
+    perfumes    CatalogPerfume[]
+  }
+
+  model CatalogPerfume {
+    slug      String            @id
+    nameFa    String
+    nameEn    String
+    brandSlug String
+    brand     CatalogBrand      @relation(fields: [brandSlug], references: [slug], onDelete: Restrict)
+    document  String
+    updatedAt TimestamptzString @default(now())
+
+    @@index([brandSlug])
+  }
+
+  model LearnArticle {
+    slug        String            @id
+    title       String
+    active      Boolean           @default(true)
+    sort        Int               @default(0)
+    display     String            @default("row")
+    publishedOn String
+    document    String
+    updatedAt   TimestamptzString @default(now())
+  }
+
+  model UsageEvent {
+    id        Int               @id @default(autoincrement())
+    kind      String
+    subject   String
+    userId    Int?
+    createdAt TimestamptzString @default(now())
+
+    @@index([createdAt])
+  }
+}

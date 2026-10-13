@@ -212,13 +212,14 @@ export function TasteRow({
 
   return (
     <>
-      <div role="group" aria-label="نظر تو" className="grid grid-cols-3 gap-1">
+      <div role="group" aria-label="نظر تو" className="grid grid-cols-3 items-end gap-1">
         <Button
           variant={state?.wanted ? "quiet" : "edge"}
           shape="control"
           size="md"
           aria-pressed={Boolean(state?.wanted)}
-          aria-label={state?.owned ? "این عطر را داری" : "می‌خوام"}
+          aria-label={state?.owned ? "می‌خوام؛ چون این عطر را داری غیرفعال است" : "می‌خوام"}
+          title={state?.owned ? "چون این عطر را داری، می‌خوام لازم نیست" : undefined}
           disabled={Boolean(state?.owned)}
           onClick={() => setWanted(slug)}
           className={cn(
@@ -228,19 +229,29 @@ export function TasteRow({
         >
           می‌خوام
         </Button>
-        <Button
-          variant={experienced ? "quiet" : "edge"}
-          shape="control"
-          size="md"
-          aria-pressed={Boolean(experienced)}
-          onClick={openExperience}
-          className={cn(
-            "min-h-11 px-1 text-label font-normal",
-            experienced && "border-transparent bg-ink font-semibold text-paper",
-          )}
-        >
-          تجربه کردم
-        </Button>
+        <div className="flex flex-col items-center gap-1.5">
+          {state?.owned ? (
+            <span className="inline-flex min-h-7 max-w-full items-center justify-center rounded-control bg-moss px-2 text-center text-label font-semibold text-ink">
+              در قفسه‌ام
+              {experienced && state.rating != null ? (
+                <span className="ms-1 font-medium tabular-nums text-muted">{faNum(state.rating)}/۱۰</span>
+              ) : null}
+            </span>
+          ) : null}
+          <Button
+            variant={experienced ? "quiet" : "edge"}
+            shape="control"
+            size="md"
+            aria-pressed={Boolean(experienced)}
+            onClick={openExperience}
+            className={cn(
+              "min-h-11 w-full px-1 text-label font-normal",
+              experienced && "border-transparent bg-ink font-semibold text-paper",
+            )}
+          >
+            تجربه کردم
+          </Button>
+        </div>
         <Button
           variant={state?.disliked ? "quiet" : "edge"}
           shape="control"

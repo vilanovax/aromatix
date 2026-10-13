@@ -1,0 +1,80 @@
+[
+  {
+    "id": "table.UsageEvent",
+    "label": "Create table \"UsageEvent\"",
+    "summary": "Creates table \"UsageEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "UsageEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"UsageEvent\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UsageEvent\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"UsageEvent\"",
+        "sql": "CREATE TABLE \"aroma\".\"UsageEvent\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"kind\" text NOT NULL,\n  \"subject\" text NOT NULL,\n  \"userId\" int4,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"UsageEvent\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UsageEvent\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UsageEvent.UsageEvent_createdAt_idx_9575dbd7",
+    "label": "Create index \"UsageEvent_createdAt_idx_9575dbd7\" on \"UsageEvent\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "UsageEvent_createdAt_idx_9575dbd7",
+        "table": "UsageEvent"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UsageEvent_createdAt_idx_9575dbd7\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UsageEvent_createdAt_idx_9575dbd7\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UsageEvent_createdAt_idx_9575dbd7\"",
+        "sql": "CREATE INDEX \"UsageEvent_createdAt_idx_9575dbd7\" ON \"aroma\".\"UsageEvent\" (\"createdAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UsageEvent_createdAt_idx_9575dbd7\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UsageEvent_createdAt_idx_9575dbd7\""
+        ]
+      }
+    ]
+  }
+]

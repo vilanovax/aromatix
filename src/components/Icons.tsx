@@ -82,3 +82,31 @@ export function SendIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+export function EyeIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M2.5 10S5.5 4.5 10 4.5 17.5 10 17.5 10 14.5 15.5 10 15.5 2.5 10 2.5 10z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <circle cx="10" cy="10" r="2.4" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+}
+
+export function EyeOffIcon({ className }: IconProps) {
+  return (
+    <svg viewBox="0 0 20 20" className={className} fill="none" aria-hidden="true">
+      <path
+        d="M3 3.5l14 13M8.2 8.4A2.4 2.4 0 0 0 11.6 11.8M6.1 6.3C4.3 7.4 2.5 10 2.5 10S5.5 15.5 10 15.5c1.3 0 2.5-.4 3.5-1M9.2 4.6c.3 0 .5-.1.8-.1C14.5 4.5 17.5 10 17.5 10c-.4.7-1 1.5-1.7 2.3"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "column.aroma.User.access",
+    "label": "Add column \"access\" to \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "access",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"access\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "User",
+          "access"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"access\"",
+        "sql": "ALTER TABLE \"aroma\".\"User\" ADD COLUMN \"access\" text DEFAULT '*' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"access\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "User",
+          "access"
+        ]
+      }
+    ]
+  }
+]

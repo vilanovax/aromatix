@@ -2,6 +2,7 @@ import {
   decisionFacts,
   findPerfumeByName,
   getPerfume,
+  isPublicPerfume,
   leadOffer,
   leaningShare,
   referenceLabel,
@@ -169,6 +170,7 @@ export function parseLine(input: string): Profile | null {
   if (/قرار/.test(text)) occasions.push("date");
   if (/ورزش/.test(text)) occasions.push("sport");
   if (/روزمره|هر روز/.test(text)) occasions.push("daily");
+  if (/هدیه/.test(text) && occasions.length === 0) occasions.push("date");
 
   let budget = 8;
   const amount = text.match(/(?:تا|زیر|کمتر از)\s*(\d+)/);
@@ -178,14 +180,25 @@ export function parseLine(input: string): Profile | null {
     budget = value;
   }
 
+  let shift: Profile["shift"] = "none";
+  if (/ماندگار/.test(text)) shift = "lasting";
+  else if (/تازه|خنک/.test(text)) shift = "fresh";
+
+  let note: string | null = null;
+  if (/پاییز/.test(text)) note = "برای هوای پاییزی چیده شد.";
+  else if (/هدیه/.test(text)) note = "برای هدیه چیده شد.";
+  else if (shift === "lasting") note = "عطرهای ماندگارتر جلو آمده‌اند.";
+  else if (shift === "fresh") note = "عطرهای تازه‌تر و خنک‌تر جلو آمده‌اند.";
+  else if (amount) note = `سقف بودجه تا ${budget} میلیون تومان.`;
+
   return {
     occasions: occasions.slice(0, 2),
     season,
     budget,
     reference: referenceIn(text),
-    shift: "none",
+    shift,
     leaning: leaningIn(text),
-    note: null,
+    note,
   };
 }
 
@@ -346,7 +359,7 @@ function fitWhy(pick: Perfume, other: Perfume, profile: Profile) {
 }
 
 function similarReply(perfume: Perfume): Reply {
-  const similars = perfume.similar.map((slug) => getPerfume(slug)).filter((item) => item !== undefined);
+  const similars = perfume.similar.map((slug) => getPerfume(slug)).filter((item) => isPublicPerfume(item));
   if (similars.length === 0) return { kind: "miss", body: "برای این عطر مشابهی در نمونه نیست." };
   const body = similars
     .map((item) => {
@@ -383,8 +396,9 @@ function mentionsNight(text: string) {
 
 function hasScene(text: string) {
   return (
-    /زمست|تابست|گرما|سرد|معتدل|بهار|پاییز|کار|اداری|دفتر|قرار|ورزش|روزمره|هر روز|تا\s*\d|زیر\s*\d|میلیون|شیرین|وانیل|تلخ|چوبی|دودی|مرکبات|لیمو|ترنج|آبی|دریا/.test(text) ||
-    mentionsNight(text)
+    /زمست|تابست|گرما|سرد|معتدل|بهار|پاییز|کار|اداری|دفتر|قرار|ورزش|روزمره|هر روز|هدیه|ماندگار|تازه|خنک|تا\s*\d|زیر\s*\d|میلیون|شیرین|وانیل|تلخ|چوبی|دودی|مرکبات|لیمو|ترنج|آبی|دریا/.test(
+      text,
+    ) || mentionsNight(text)
   );
 }
 

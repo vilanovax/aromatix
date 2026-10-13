@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import type { LegacyTaste, Profile, UserPerfume } from "@/lib/types";
 import { emptyUserPerfume, isEmptyUserPerfume } from "@/lib/types";
+import { recordUsage } from "@/lib/usage";
 
 type Persisted = {
   profile: Profile | null;
@@ -157,6 +158,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         });
       },
       openShops: (slug) => {
+        recordUsage("shop_open", slug);
         setTermFor(null);
         setShopFor(slug);
       },

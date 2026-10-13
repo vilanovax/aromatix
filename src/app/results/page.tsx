@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Button, ButtonLink } from "@/components/Button";
 import { Card, Note } from "@/components/Card";
 import { Chip } from "@/components/Chip";
@@ -10,11 +10,19 @@ import { LEANINGS } from "@/lib/catalog";
 import { countWord, faNum } from "@/lib/format";
 import { matchPerfumes, resultHeading } from "@/lib/match";
 import { useAroma } from "@/lib/store";
+import { recordUsages } from "@/lib/usage";
 import type { Leaning, Profile } from "@/lib/types";
 
 export default function ResultsPage() {
   const { ready, profile, setProfile, library } = useAroma();
   const results = useMemo(() => (profile ? matchPerfumes(profile, library) : []), [profile, library]);
+  useEffect(() => {
+    if (results.length === 0) return;
+    recordUsages(
+      "recommendation",
+      results.map((perfume) => perfume.slug),
+    );
+  }, [results]);
 
   return (
     <Shell composer back={{ href: "/", label: "شروع" }}>

@@ -33,7 +33,7 @@ export const REFERENCES = [
   { id: "none", label: "هیچ‌کدام" },
 ] as const;
 
-export const perfumes: Perfume[] = [
+const seedPerfumes: Perfume[] = [
   {
     slug: "khamrah",
     nameFa: "خمره",
@@ -478,20 +478,55 @@ export const perfumes: Perfume[] = [
   },
 ];
 
-export const perfumeBySlug = Object.fromEntries(perfumes.map((perfume) => [perfume.slug, perfume]));
-
 export type Brand = {
   slug: string;
   nameFa: string;
   nameEn: string;
+  description: string;
+  active: boolean;
 };
 
-export const brands: Brand[] = [
-  { slug: "lattafa", nameFa: "لطافه", nameEn: "Lattafa" },
-  { slug: "armaf", nameFa: "آرماف", nameEn: "Armaf" },
-  { slug: "afnan", nameFa: "افنان", nameEn: "Afnan" },
-  { slug: "maison-alhambra", nameFa: "میسون الحمرا", nameEn: "Maison Alhambra" },
-  { slug: "french-avenue", nameFa: "فرنچ اونیو", nameEn: "French Avenue" },
+export type CatalogSnapshot = {
+  perfumes: Perfume[];
+  brands: Brand[];
+};
+
+const seedBrands: Brand[] = [
+  {
+    slug: "lattafa",
+    nameFa: "لطافه",
+    nameEn: "Lattafa",
+    description: "برند اماراتی با عطرهای گرم و شیرین. در آروما بیشتر برای شب، قرار و هوای معتدل بررسی شده.",
+    active: true,
+  },
+  {
+    slug: "armaf",
+    nameFa: "آرماف",
+    nameEn: "Armaf",
+    description: "برند اماراتی. کلاب دِ نویت و مایلستون این‌جا هستند و برای استفادهٔ روزمره بررسی شده‌اند.",
+    active: true,
+  },
+  {
+    slug: "afnan",
+    nameFa: "افنان",
+    nameEn: "Afnan",
+    description: "برند اماراتی. ۹ پی‌ام عطر شاخص این فهرست است، با وانیل و ادویه برای شب.",
+    active: true,
+  },
+  {
+    slug: "maison-alhambra",
+    nameFa: "میسون الحمرا",
+    nameEn: "Maison Alhambra",
+    description: "زیرمجموعهٔ لطافه، با عطرهایی که بوی نزدیک به عطرهای طراح دارند.",
+    active: true,
+  },
+  {
+    slug: "french-avenue",
+    nameFa: "فرنچ اونیو",
+    nameEn: "French Avenue",
+    description: "برند اماراتی با عطرهای غلیظ و شیرین. لیکویید برون در این فهرست است.",
+    active: true,
+  },
 ];
 
 export const LEANINGS: Record<Leaning, { label: string; note: string; accords: string[] }> = {
@@ -506,7 +541,7 @@ export function leaningShare(perfume: Perfume, leaning: Leaning) {
   return perfume.accords.reduce((sum, accord) => (wanted.has(accord.name) ? sum + accord.strength : sum), 0);
 }
 
-const NAME_ALIASES: Record<string, string[]> = {
+export const seedAliases: Record<string, string[]> = {
   khamrah: ["khamrah"],
   "kismet-angel": ["kismet", "کیسمت"],
   "liquid-brun": ["liquid brun", "لیکوئید برون"],
@@ -521,18 +556,68 @@ const NAME_ALIASES: Record<string, string[]> = {
   emeer: ["emeer", "امیر لطافه"],
 };
 
-const NAME_INDEX = perfumes
-  .flatMap((perfume) =>
-    [perfume.nameFa, perfume.nameEn, ...(NAME_ALIASES[perfume.slug] ?? [])].map((alias) => ({
-      alias: alias.toLowerCase().replace(/[ِ]/g, ""),
-      perfume,
+type NameHit = { alias: string; perfume: Perfume };
+
+function aliasesOf(perfume: Perfume) {
+  return perfume.aliases ?? seedAliases[perfume.slug] ?? [];
+}
+
+function indexNames(list: Perfume[]): NameHit[] {
+  return list
+    .flatMap((perfume) =>
+      [perfume.nameFa, perfume.nameEn, ...aliasesOf(perfume)].map((alias) => ({
+        alias: alias.toLowerCase().replace(/[ِ]/g, ""),
+        perfume,
+      })),
+    )
+    .sort((a, b) => b.alias.length - a.alias.length);
+}
+
+export function seedSnapshot(): CatalogSnapshot {
+  return {
+    brands: seedBrands.map((brand) => ({ ...brand })),
+    perfumes: seedPerfumes.map((perfume) => ({
+      ...perfume,
+      accords: perfume.accords.map((accord) => ({ ...accord })),
+      notes: perfume.notes.map((note) => ({ ...note })),
+      shops: perfume.shops.map((shop) => ({ ...shop })),
+      aliases: [...(seedAliases[perfume.slug] ?? [])],
     })),
-  )
-  .sort((a, b) => b.alias.length - a.alias.length);
+  };
+}
+
+let live = seedSnapshot();
+let liveBySlug = Object.fromEntries(live.perfumes.map((perfume) => [perfume.slug, perfume]));
+let liveNames = indexNames(live.perfumes);
+
+export function allPerfumes() {
+  return live.perfumes;
+}
+
+export function allBrands() {
+  return live.brands;
+}
+
+export function publishedPerfumes() {
+  const active = new Set(live.brands.filter((brand) => brand.active).map((brand) => brand.nameFa));
+  return live.perfumes.filter((perfume) => active.has(perfume.brand));
+}
+
+export function isPublicPerfume(perfume: Perfume | undefined) {
+  if (!perfume) return false;
+  const brand = live.brands.find((item) => item.nameFa === perfume.brand);
+  return Boolean(brand?.active);
+}
+
+export function installCatalog(next: CatalogSnapshot) {
+  live = next;
+  liveBySlug = Object.fromEntries(next.perfumes.map((perfume) => [perfume.slug, perfume]));
+  liveNames = indexNames(publishedPerfumes());
+}
 
 export function findPerfumeByName(text: string) {
   const haystack = ` ${text.toLowerCase().replace(/[ِ]/g, "")} `;
-  const hit = NAME_INDEX.find(({ alias }) => {
+  const hit = liveNames.find(({ alias }) => {
     const at = haystack.indexOf(alias);
     if (at < 0) return false;
     return !isLetter(haystack[at - 1]) && !isLetter(haystack[at + alias.length]);
@@ -545,25 +630,26 @@ function isLetter(char: string | undefined) {
 }
 
 export function getPerfume(slug: string) {
-  return perfumeBySlug[slug];
+  return liveBySlug[slug];
 }
 
 export function getBrand(slug: string) {
-  return brands.find((brand) => brand.slug === slug);
+  return live.brands.find((brand) => brand.slug === slug);
 }
 
 export function brandByName(nameFa: string) {
-  return brands.find((brand) => brand.nameFa === nameFa);
+  return live.brands.find((brand) => brand.nameFa === nameFa);
 }
 
 export function perfumesByBrand(nameFa: string) {
-  return perfumes
+  return live.perfumes
     .filter((perfume) => perfume.brand === nameFa)
     .sort((a, b) => b.confidence - a.confidence || a.nameFa.localeCompare(b.nameFa, "fa"));
 }
 
 export function brandCatalog() {
-  return brands
+  return live.brands
+    .filter((brand) => brand.active)
     .map((brand) => ({
       ...brand,
       count: perfumesByBrand(brand.nameFa).length,

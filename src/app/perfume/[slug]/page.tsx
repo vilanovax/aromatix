@@ -13,7 +13,7 @@ import { CheckIcon, ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
 import { BrandLink } from "@/components/BrandLink";
-import { cheaperUnconfirmed, getPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
+import { cheaperUnconfirmed, getPerfume, isPublicPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
 import { entryForConcentration, entryForNote } from "@/lib/knowledge";
 import { cn, faNum, joinFa, millionToman } from "@/lib/format";
 import { perfumeHref, resolvePerfumeBack } from "@/lib/nav";
@@ -37,7 +37,8 @@ export default function PerfumePage() {
 function PerfumeScreen() {
   const params = useParams<{ slug: string }>();
   const search = useSearchParams();
-  const perfume = getPerfume(params.slug);
+  const found = getPerfume(params.slug);
+  const perfume = isPublicPerfume(found) ? found : undefined;
   const { openShops, compare, toggleCompare } = useAroma();
   const back = resolvePerfumeBack(search.get("from"));
 
@@ -61,7 +62,7 @@ function PerfumeScreen() {
   const cheaper = cheaperUnconfirmed(perfume);
   const similars = perfume.similar
     .map((slug) => getPerfume(slug))
-    .filter((item) => item !== undefined)
+    .filter((item) => isPublicPerfume(item))
     .slice(0, 3);
   const season = perfume.seasons.includes("all") ? null : perfume.seasons.map(seasonName).join("، ");
   const showFacts = Boolean(season || perfume.longevity || perfume.sillage || perfume.inspiredBy);

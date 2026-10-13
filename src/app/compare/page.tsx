@@ -12,6 +12,7 @@ import {
   cheaperUnconfirmed,
   decisionVerdict,
   getPerfume,
+  isPublicPerfume,
   leadOffer,
   performanceLabel,
   sweetness,
@@ -34,8 +35,10 @@ function CompareScreen() {
   const { compare } = useAroma();
   const a = params.get("a") ?? compare[0];
   const b = params.get("b") ?? compare[1];
-  const left = a ? getPerfume(a) : undefined;
-  const right = b ? getPerfume(b) : undefined;
+  const leftPerfume = a ? getPerfume(a) : undefined;
+  const rightPerfume = b ? getPerfume(b) : undefined;
+  const left = isPublicPerfume(leftPerfume) ? leftPerfume : undefined;
+  const right = isPublicPerfume(rightPerfume) ? rightPerfume : undefined;
 
   return (
     <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>

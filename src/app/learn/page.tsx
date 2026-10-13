@@ -12,10 +12,11 @@ import {
   entriesInGroup,
   featuredEntries,
   findKnowledge,
-  knowledge,
+  publishedEntries,
   type KnowledgeEntry,
   type KnowledgeGroup,
 } from "@/lib/knowledge";
+import { formatShamsi } from "@/lib/jalali";
 
 export default function LearnIndexPage() {
   const [query, setQuery] = useState("");
@@ -26,7 +27,9 @@ export default function LearnIndexPage() {
     if (!searching) return [];
     const match = findKnowledge(q);
     if (match) return [match];
-    return knowledge.filter((entry) => hay(entry, q));
+    return publishedEntries()
+      .filter((entry) => hay(entry, q))
+      .sort((a, b) => a.sort - b.sort);
   }, [q, searching]);
   const featured = featuredEntries();
   const featuredSlugs = new Set(featured.map((entry) => entry.slug));
@@ -133,6 +136,8 @@ export default function LearnIndexPage() {
                         <span className="mt-1 block text-label text-muted">
                           {faNum(entry.minutes)} دقیقه
                           <span className="mx-1.5 text-faint">·</span>
+                          {formatShamsi(entry.publishedOn)}
+                          <span className="mx-1.5 text-faint">·</span>
                           {groupLabel(entry.group)}
                         </span>
                       </span>
@@ -199,6 +204,8 @@ function EntryList({
                     <span className="mx-1.5 text-faint">·</span>
                   </>
                 ) : null}
+                {formatShamsi(entry.publishedOn)}
+                <span className="mx-1.5 text-faint">·</span>
                 {entry.support}
               </span>
             </span>

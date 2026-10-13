@@ -1,0 +1,41 @@
+[
+  {
+    "id": "table.LearnArticle",
+    "label": "Create table \"LearnArticle\"",
+    "summary": "Creates table \"LearnArticle\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "LearnArticle"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"LearnArticle\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"LearnArticle\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"LearnArticle\"",
+        "sql": "CREATE TABLE \"aroma\".\"LearnArticle\" (\n  \"active\" bool DEFAULT true NOT NULL,\n  \"display\" text DEFAULT 'row' NOT NULL,\n  \"document\" text NOT NULL,\n  \"publishedOn\" text NOT NULL,\n  \"slug\" text NOT NULL,\n  \"sort\" int4 DEFAULT 0 NOT NULL,\n  \"title\" text NOT NULL,\n  \"updatedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  PRIMARY KEY (\"slug\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"LearnArticle\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"LearnArticle\""
+        ]
+      }
+    ]
+  }
+]

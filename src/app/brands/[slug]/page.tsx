@@ -31,7 +31,7 @@ function BrandScreen() {
   const from = search.get("from");
   const origin = from ? getPerfume(from) : undefined;
 
-  if (!brand) {
+  if (!brand?.active) {
     return (
       <Shell composer back={{ href: "/brands", label: "برندها" }}>
         <div className="px-5 py-10">
@@ -63,6 +63,7 @@ function BrandScreen() {
             <span className="mx-1.5 text-faint">·</span>
             {countWord(catalog.length)} عطر در آروما
           </p>
+          {brand.description ? <p className="mt-4 max-w-[36rem] text-pretty text-body">{brand.description}</p> : null}
         </header>
 
         <ForYou brandName={brand.nameFa} brandSlug={brand.slug} />

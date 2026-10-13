@@ -1,0 +1,86 @@
+[
+  {
+    "id": "column.aroma.CatalogBrand.active",
+    "label": "Add column \"active\" to \"CatalogBrand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "active",
+        "table": "CatalogBrand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"active\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "active"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"active\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogBrand\" ADD COLUMN \"active\" bool DEFAULT true NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"active\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "active"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.aroma.CatalogBrand.description",
+    "label": "Add column \"description\" to \"CatalogBrand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "description",
+        "table": "CatalogBrand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"description\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "description"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"description\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogBrand\" ADD COLUMN \"description\" text DEFAULT '' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"description\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "description"
+        ]
+      }
+    ]
+  }
+]

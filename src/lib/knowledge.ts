@@ -1,7 +1,8 @@
-import { perfumes } from "@/lib/catalog";
+import { publishedPerfumes } from "@/lib/catalog";
 import type { Perfume } from "@/lib/types";
 
 export type KnowledgeGroup = "basics" | "wear" | "buy";
+export type ArticleDisplay = "card" | "row";
 
 export type KnowledgeEntry = {
   slug: string;
@@ -22,6 +23,10 @@ export type KnowledgeEntry = {
   accordNames?: string[];
   concentrationLabels?: string[];
   mark?: string;
+  active: boolean;
+  sort: number;
+  display: ArticleDisplay;
+  publishedOn: string;
 };
 
 export const KNOWLEDGE_GROUPS: Array<{ id: KnowledgeGroup; label: string; support: string }> = [
@@ -30,7 +35,24 @@ export const KNOWLEDGE_GROUPS: Array<{ id: KnowledgeGroup; label: string; suppor
   { id: "buy", label: "خرید", support: "بچ‌کد، تستر، دوپ" },
 ];
 
-export const knowledge: KnowledgeEntry[] = [
+type KnowledgeSource = Omit<KnowledgeEntry, "active" | "sort" | "display" | "publishedOn">;
+
+const PUBLISHED_ON: Record<string, string> = {
+  "edp-vs-edt": "2025-11-02",
+  "notes-accords": "2025-11-20",
+  "longevity-sillage": "2025-12-08",
+  "how-to-spray": "2025-12-26",
+  "skin-test": "2026-01-14",
+  storage: "2026-02-02",
+  "batch-code": "2026-02-20",
+  "testers-decants-dupes": "2026-03-10",
+  vetiver: "2026-03-28",
+  musk: "2026-04-16",
+  amber: "2026-05-04",
+  "natural-vs-synthetic": "2026-05-22",
+};
+
+const knowledge: KnowledgeSource[] = [
   {
     slug: "edp-vs-edt",
     title: "فرق ادوتویلت و ادوپرفیوم چیست؟",
@@ -277,23 +299,61 @@ export const knowledge: KnowledgeEntry[] = [
   },
 ];
 
-const bySlug = Object.fromEntries(knowledge.map((entry) => [entry.slug, entry]));
+function normalize(entry: KnowledgeSource, index: number): KnowledgeEntry {
+  return {
+    ...entry,
+    active: true,
+    sort: index,
+    display: entry.featured ? "card" : "row",
+    publishedOn: PUBLISHED_ON[entry.slug] ?? "2026-01-01",
+  };
+}
+
+export function seedArticles(): KnowledgeEntry[] {
+  return knowledge.map((entry, index) => normalize(entry, index));
+}
+
+let live = seedArticles();
+let bySlug = Object.fromEntries(live.map((entry) => [entry.slug, entry]));
+
+export function installKnowledge(entries: KnowledgeEntry[]) {
+  live = [...entries].sort(byEditorial);
+  bySlug = Object.fromEntries(live.map((entry) => [entry.slug, entry]));
+}
+
+export function allEntries() {
+  return live;
+}
+
+export function publishedEntries() {
+  return live.filter((entry) => entry.active);
+}
+
+function byEditorial(a: KnowledgeEntry, b: KnowledgeEntry) {
+  return a.sort - b.sort || a.title.localeCompare(b.title, "fa");
+}
 
 export function getEntry(slug: string) {
-  return bySlug[slug];
+  const entry = bySlug[slug];
+  if (!entry?.active) return undefined;
+  return entry;
 }
 
 export function featuredEntries() {
-  return knowledge.filter((entry) => entry.featured);
+  return publishedEntries()
+    .filter((entry) => entry.display === "card")
+    .sort(byEditorial);
 }
 
 export function entriesInGroup(group: KnowledgeGroup) {
-  return knowledge.filter((entry) => entry.group === group);
+  return publishedEntries()
+    .filter((entry) => entry.group === group)
+    .sort(byEditorial);
 }
 
 export function findKnowledge(input: string) {
   const haystack = ` ${normalizeTerm(input)} `;
-  const ranked = knowledge
+  const ranked = publishedEntries()
     .flatMap((entry) =>
       [entry.title, entry.slug.replaceAll("-", " "), ...entry.aliases].map((alias) => ({
         alias: normalizeTerm(alias),
@@ -312,19 +372,19 @@ export function findKnowledge(input: string) {
 }
 
 export function entryForNote(name: string) {
-  return knowledge.find((entry) => entry.noteNames?.includes(name));
+  return publishedEntries().find((entry) => entry.noteNames?.includes(name));
 }
 
 export function entryForAccord(name: string) {
-  return knowledge.find((entry) => entry.accordNames?.includes(name));
+  return publishedEntries().find((entry) => entry.accordNames?.includes(name));
 }
 
 export function entryForConcentration(label: string) {
-  return knowledge.find((entry) => entry.concentrationLabels?.includes(label));
+  return publishedEntries().find((entry) => entry.concentrationLabels?.includes(label));
 }
 
 export function relatedPerfumes(entry: KnowledgeEntry, limit = 5): Perfume[] {
-  const matches = perfumes.filter((perfume) => {
+  const matches = publishedPerfumes().filter((perfume) => {
     if (entry.slug === "testers-decants-dupes") return Boolean(perfume.inspiredBy);
     if (entry.concentrationLabels?.includes(perfume.concentration)) return true;
     if (entry.noteNames?.some((name) => perfume.notes.some((note) => note.name === name))) return true;
@@ -335,7 +395,7 @@ export function relatedPerfumes(entry: KnowledgeEntry, limit = 5): Perfume[] {
 }
 
 export function relatedEntries(entry: KnowledgeEntry) {
-  return entry.related.map((slug) => bySlug[slug]).filter((item): item is KnowledgeEntry => Boolean(item));
+  return entry.related.map((slug) => getEntry(slug)).filter((item): item is KnowledgeEntry => Boolean(item));
 }
 
 function normalizeTerm(input: string) {

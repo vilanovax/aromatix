@@ -1,0 +1,519 @@
+[
+  {
+    "id": "schema.aroma",
+    "label": "Create schema \"aroma\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"aroma\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"aroma\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "schema.public",
+    "label": "Create schema \"public\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres"
+    },
+    "precheck": [],
+    "execute": [
+      {
+        "description": "Create schema \"public\"",
+        "sql": "CREATE SCHEMA IF NOT EXISTS \"public\"",
+        "params": []
+      }
+    ],
+    "postcheck": []
+  },
+  {
+    "id": "table.LoginAttempt",
+    "label": "Create table \"LoginAttempt\"",
+    "summary": "Creates table \"LoginAttempt\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "LoginAttempt"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"LoginAttempt\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"LoginAttempt\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"LoginAttempt\"",
+        "sql": "CREATE TABLE \"aroma\".\"LoginAttempt\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"phone\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"LoginAttempt\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"LoginAttempt\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.Session",
+    "label": "Create table \"Session\"",
+    "summary": "Creates table \"Session\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "Session"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Session\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"Session\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Session\"",
+        "sql": "CREATE TABLE \"aroma\".\"Session\" (\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"expiresAt\" timestamptz NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"tokenHash\" text NOT NULL,\n  \"userId\" int4 NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Session\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"Session\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.User",
+    "label": "Create table \"User\"",
+    "summary": "Creates table \"User\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"User\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"User\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"User\"",
+        "sql": "CREATE TABLE \"aroma\".\"User\" (\n  \"avatarId\" text DEFAULT 'ink' NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"name\" text NOT NULL,\n  \"passwordHash\" text NOT NULL,\n  \"phone\" text NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"User\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"User\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "table.UserPerfume",
+    "label": "Create table \"UserPerfume\"",
+    "summary": "Creates table \"UserPerfume\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "UserPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"UserPerfume\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UserPerfume\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"UserPerfume\"",
+        "sql": "CREATE TABLE \"aroma\".\"UserPerfume\" (\n  \"disliked\" bool DEFAULT false NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"inferred\" bool DEFAULT false NOT NULL,\n  \"owned\" bool DEFAULT false NOT NULL,\n  \"perfumeSlug\" text NOT NULL,\n  \"ratedAt\" timestamptz,\n  \"rating\" int4,\n  \"tried\" bool DEFAULT false NOT NULL,\n  \"userId\" int4 NOT NULL,\n  \"wanted\" bool DEFAULT false NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"UserPerfume\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UserPerfume\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.Session.Session_tokenHash_key",
+    "label": "Add unique constraint on \"Session\" (tokenHash)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "unique",
+        "name": "Session_tokenHash_key",
+        "table": "Session"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"Session_tokenHash_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Session_tokenHash_key",
+          "aroma",
+          "\"aroma\".\"Session\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"Session_tokenHash_key\"",
+        "sql": "ALTER TABLE \"aroma\".\"Session\" ADD CONSTRAINT \"Session_tokenHash_key\" UNIQUE (\"tokenHash\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"Session_tokenHash_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Session_tokenHash_key",
+          "aroma",
+          "\"aroma\".\"Session\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.User.User_phone_key",
+    "label": "Add unique constraint on \"User\" (phone)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "unique",
+        "name": "User_phone_key",
+        "table": "User"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"User_phone_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_phone_key",
+          "aroma",
+          "\"aroma\".\"User\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"User_phone_key\"",
+        "sql": "ALTER TABLE \"aroma\".\"User\" ADD CONSTRAINT \"User_phone_key\" UNIQUE (\"phone\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"User_phone_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "User_phone_key",
+          "aroma",
+          "\"aroma\".\"User\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unique.UserPerfume.UserPerfume_userId_perfumeSlug_key",
+    "label": "Add unique constraint on \"UserPerfume\" (userId, perfumeSlug)",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "unique",
+        "name": "UserPerfume_userId_perfumeSlug_key",
+        "table": "UserPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure constraint \"UserPerfume_userId_perfumeSlug_key\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "UserPerfume_userId_perfumeSlug_key",
+          "aroma",
+          "\"aroma\".\"UserPerfume\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add unique constraint \"UserPerfume_userId_perfumeSlug_key\"",
+        "sql": "ALTER TABLE \"aroma\".\"UserPerfume\" ADD CONSTRAINT \"UserPerfume_userId_perfumeSlug_key\" UNIQUE (\"userId\", \"perfumeSlug\")"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify constraint \"UserPerfume_userId_perfumeSlug_key\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "UserPerfume_userId_perfumeSlug_key",
+          "aroma",
+          "\"aroma\".\"UserPerfume\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.LoginAttempt.LoginAttempt_phone_createdAt_idx_898659e9",
+    "label": "Create index \"LoginAttempt_phone_createdAt_idx_898659e9\" on \"LoginAttempt\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "LoginAttempt_phone_createdAt_idx_898659e9",
+        "table": "LoginAttempt"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"LoginAttempt_phone_createdAt_idx_898659e9\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"LoginAttempt_phone_createdAt_idx_898659e9\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"LoginAttempt_phone_createdAt_idx_898659e9\"",
+        "sql": "CREATE INDEX \"LoginAttempt_phone_createdAt_idx_898659e9\" ON \"aroma\".\"LoginAttempt\" (\"phone\", \"createdAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"LoginAttempt_phone_createdAt_idx_898659e9\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"LoginAttempt_phone_createdAt_idx_898659e9\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.Session.Session_userId_idx_a489d58a",
+    "label": "Create index \"Session_userId_idx_a489d58a\" on \"Session\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "Session_userId_idx_a489d58a",
+        "table": "Session"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"Session_userId_idx_a489d58a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"Session_userId_idx_a489d58a\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"Session_userId_idx_a489d58a\"",
+        "sql": "CREATE INDEX \"Session_userId_idx_a489d58a\" ON \"aroma\".\"Session\" (\"userId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"Session_userId_idx_a489d58a\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"Session_userId_idx_a489d58a\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.UserPerfume.UserPerfume_userId_idx_a489d58a",
+    "label": "Create index \"UserPerfume_userId_idx_a489d58a\" on \"UserPerfume\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "UserPerfume_userId_idx_a489d58a",
+        "table": "UserPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"UserPerfume_userId_idx_a489d58a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UserPerfume_userId_idx_a489d58a\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"UserPerfume_userId_idx_a489d58a\"",
+        "sql": "CREATE INDEX \"UserPerfume_userId_idx_a489d58a\" ON \"aroma\".\"UserPerfume\" (\"userId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"UserPerfume_userId_idx_a489d58a\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"UserPerfume_userId_idx_a489d58a\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.Session.Session_userId_fkey",
+    "label": "Add foreign key \"Session_userId_fkey\" on \"Session\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "foreignKey",
+        "name": "Session_userId_fkey",
+        "table": "Session"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"Session_userId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Session_userId_fkey",
+          "aroma",
+          "\"aroma\".\"Session\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"Session_userId_fkey\"",
+        "sql": "ALTER TABLE \"aroma\".\"Session\"\nADD CONSTRAINT \"Session_userId_fkey\"\nFOREIGN KEY (\"userId\")\nREFERENCES \"aroma\".\"User\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"Session_userId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "Session_userId_fkey",
+          "aroma",
+          "\"aroma\".\"Session\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.UserPerfume.UserPerfume_userId_fkey",
+    "label": "Add foreign key \"UserPerfume_userId_fkey\" on \"UserPerfume\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "foreignKey",
+        "name": "UserPerfume_userId_fkey",
+        "table": "UserPerfume"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"UserPerfume_userId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "UserPerfume_userId_fkey",
+          "aroma",
+          "\"aroma\".\"UserPerfume\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"UserPerfume_userId_fkey\"",
+        "sql": "ALTER TABLE \"aroma\".\"UserPerfume\"\nADD CONSTRAINT \"UserPerfume_userId_fkey\"\nFOREIGN KEY (\"userId\")\nREFERENCES \"aroma\".\"User\" (\"id\")\nON DELETE CASCADE"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"UserPerfume_userId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "UserPerfume_userId_fkey",
+          "aroma",
+          "\"aroma\".\"UserPerfume\""
+        ]
+      }
+    ]
+  }
+]
