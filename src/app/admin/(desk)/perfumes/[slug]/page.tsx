@@ -23,7 +23,13 @@ export default async function EditPerfumePage({ params }: { params: Promise<Para
 
   return (
     <div className="mx-auto max-w-3xl">
-      <PerfumeForm mode="edit" perfume={perfume} brands={allBrands()} shops={allShops()} others={allPerfumes()} />
+      <PerfumeForm
+        mode="edit"
+        perfume={perfume}
+        brands={allBrands()}
+        shops={allShops()}
+        others={allPerfumes().map((item) => ({ slug: item.slug, nameFa: item.nameFa }))}
+      />
     </div>
   );
 }

@@ -26,8 +26,7 @@ export default async function BrandsPage() {
     <div>
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-label text-brass">کاتالوگ</p>
-          <h1 className="mt-1 text-headline font-bold">برندها</h1>
+          <h1 className="text-headline font-bold">برندها</h1>
           <p className="mt-1 text-label text-muted">
             {store === "ready" ? `${faNum(rows.length)} برند، ${faNum(activeCount)} فعال` : "هنوز چیزی منتشر نشده"}
           </p>

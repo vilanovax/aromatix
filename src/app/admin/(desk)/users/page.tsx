@@ -15,8 +15,7 @@ export default async function UsersPage() {
 
   return (
     <div>
-      <p className="text-label text-brass">حساب‌ها</p>
-      <h1 className="mt-1 text-headline font-bold">کاربران</h1>
+      <h1 className="text-headline font-bold">کاربران</h1>
       <p className="mt-2 text-body text-muted">
         {faNum(rows.length)} حساب، {faNum(admins)} مدیر
       </p>

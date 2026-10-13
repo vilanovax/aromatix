@@ -23,7 +23,13 @@ export default async function NewPerfumePage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <PerfumeForm mode="create" perfume={perfume} brands={brands} shops={shops} others={allPerfumes()} />
+      <PerfumeForm
+        mode="create"
+        perfume={perfume}
+        brands={brands}
+        shops={shops}
+        others={allPerfumes().map((item) => ({ slug: item.slug, nameFa: item.nameFa }))}
+      />
     </div>
   );
 }

@@ -27,15 +27,26 @@ export type UsageReport = {
   unseen: UsageRow[];
 };
 
-export async function loadUsageReport(days: number, perfumes: Perfume[]): Promise<UsageReport | null> {
+export type UsageEventRow = { kind: string; subject: string };
+
+export async function loadUsageEvents(days: number): Promise<UsageEventRow[] | null> {
   const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
   try {
-    const rows = await db.orm.aroma.UsageEvent.where((row) => row.createdAt.gte(since)).select("kind", "subject").all();
-    return summarize(days, rows, perfumes);
+    return await db.orm.aroma.UsageEvent.where((row) => row.createdAt.gte(since)).select("kind", "subject").all();
   } catch (error) {
     console.error(error);
     return null;
   }
+}
+
+export function usageFromEvents(days: number, rows: UsageEventRow[], perfumes: Perfume[]): UsageReport {
+  return summarize(days, rows, perfumes);
+}
+
+export async function loadUsageReport(days: number, perfumes: Perfume[]): Promise<UsageReport | null> {
+  const rows = await loadUsageEvents(days);
+  if (!rows) return null;
+  return usageFromEvents(days, rows, perfumes);
 }
 
 function summarize(

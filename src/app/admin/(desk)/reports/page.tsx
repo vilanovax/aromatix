@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { buildCatalogReport, type CountRow, type GapRow } from "@/lib/admin/catalog-report";
-import { loadUsageReport, type UsageRow } from "@/lib/admin/usage-report";
+import { loadUsageEvents, usageFromEvents, type UsageReport, type UsageRow } from "@/lib/admin/usage-report";
 import { loadCatalog } from "@/lib/catalog-server";
 import { faNum, millionToman } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
@@ -14,9 +14,9 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
   await guardSection("reports");
   const params = await searchParams;
   const days = params.days === "30" ? 30 : 7;
-  const snapshot = await loadCatalog();
+  const [snapshot, events] = await Promise.all([loadCatalog(), loadUsageEvents(days)]);
   const report = buildCatalogReport(snapshot.perfumes);
-  const usage = await loadUsageReport(days, snapshot.perfumes);
+  const usage = events ? usageFromEvents(days, events, snapshot.perfumes) : null;
   const catalogMax = Math.max(1, report.total);
   const usagePanels = usage && usage.total > 0 ? usageBlocks(usage) : [];
 
@@ -166,7 +166,7 @@ function Coverage({ label, percent, gaps }: { label: string; percent: number; ga
   );
 }
 
-function usageBlocks(usage: NonNullable<Awaited<ReturnType<typeof loadUsageReport>>>) {
+function usageBlocks(usage: UsageReport) {
   const blocks: { title: string; body: React.ReactNode }[] = [];
   if (usage.demand.length > 0) {
     blocks.push({

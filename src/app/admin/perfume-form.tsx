@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deletePerfume, savePerfume } from "@/app/admin/actions";
+import { formatCheckedOn } from "@/lib/admin/health";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Chip } from "@/components/Chip";
@@ -50,7 +51,7 @@ export function PerfumeForm({
   perfume: Perfume;
   brands: Brand[];
   shops: Shop[];
-  others: Perfume[];
+  others: { slug: string; nameFa: string }[];
 }) {
   const router = useRouter();
   const [draft, setDraft] = useState(perfume);
@@ -59,6 +60,31 @@ export function PerfumeForm({
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [pending, setPending] = useState(false);
+  const [baseline, setBaseline] = useState(() => formValue(perfume, perfume.tags.join("، "), (perfume.aliases ?? []).join("، ")));
+  const dirty = formValue(draft, tags, aliases) !== baseline;
+
+  useEffect(() => {
+    if (!dirty) return;
+    function onLeave(event: BeforeUnloadEvent) {
+      event.preventDefault();
+    }
+    function onClick(event: MouseEvent) {
+      const anchor = (event.target as Element | null)?.closest("a");
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href.startsWith("#")) return;
+      if (!window.confirm("تغییرها ذخیره نشده. از این صفحه بروی؟")) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+    }
+    window.addEventListener("beforeunload", onLeave);
+    document.addEventListener("click", onClick, true);
+    return () => {
+      window.removeEventListener("beforeunload", onLeave);
+      document.removeEventListener("click", onClick, true);
+    };
+  }, [dirty]);
 
   function patch(next: Partial<Perfume>) {
     setSaved(false);
@@ -83,12 +109,12 @@ export function PerfumeForm({
       setError(result.error);
       return;
     }
+    setBaseline(formValue({ ...draft, tags: splitList(tags), aliases: splitList(aliases) }, tags, aliases));
+    setSaved(true);
     router.refresh();
     if (mode === "create" && result.slug) {
       router.push(`/admin/perfumes/${result.slug}`);
-      return;
     }
-    setSaved(true);
   }
 
   async function remove() {
@@ -110,8 +136,11 @@ export function PerfumeForm({
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="truncate text-title font-semibold">{draft.nameFa || "عطر جدید"}</p>
-            <p className={error ? "truncate text-label text-danger" : "truncate text-label text-faint"} role={error ? "alert" : "status"}>
-              {error ?? (saved ? "ذخیره شد" : draft.brand || "هنوز ذخیره نشده")}
+            <p
+              className={error || dirty ? "truncate text-label text-danger" : "truncate text-label text-faint"}
+              role={error ? "alert" : "status"}
+            >
+              {error ?? (dirty ? "تغییر ذخیره نشده" : saved ? "ذخیره شد" : mode === "create" ? "هنوز ذخیره نشده" : draft.brand)}
             </p>
           </div>
           <Button type="submit" size="md" disabled={pending}>
@@ -121,9 +150,9 @@ export function PerfumeForm({
         <nav className="mt-2 flex gap-1.5 overflow-x-auto" aria-label="بخش‌های فرم">
           {[
             ["shops", "قیمت"],
+            ["identity", "هویت"],
             ["scent", "بو"],
             ["use", "استفاده"],
-            ["identity", "هویت"],
             ["links", "ارتباط"],
           ].map(([id, label]) => (
             <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-line bg-card px-3 py-1.5 text-label">
@@ -192,11 +221,16 @@ export function PerfumeForm({
                 />
                 موجودی تأیید شده
               </label>
-              <div className="flex items-center justify-between gap-2">
+              <div className="flex flex-wrap items-center justify-between gap-2 sm:col-span-2">
                 <p className="text-label text-faint">{shop.checkedOn || "هنوز تاریخ بررسی ندارد"}</p>
-                <Button type="button" variant="edge" size="sm" onClick={() => removeShop(index)} disabled={draft.shops.length === 1}>
-                  حذف
-                </Button>
+                <div className="flex gap-2">
+                  <Button type="button" variant="edge" size="sm" onClick={() => markChecked(index)}>
+                    دوباره بررسی کردم
+                  </Button>
+                  <Button type="button" variant="edge" size="sm" onClick={() => removeShop(index)} disabled={draft.shops.length === 1}>
+                    حذف
+                  </Button>
+                </div>
               </div>
             </div>
           ))}
@@ -224,7 +258,9 @@ export function PerfumeForm({
         >
           فروشگاه جدید
         </Button>
-        <p className="mt-2 text-label text-faint">اگر قیمت، موجودی یا لینک عوض شود، تاریخ بررسی امروز ثبت می‌شود.</p>
+        <p className="mt-2 text-label text-faint">
+          اگر قیمت، موجودی یا لینک عوض شود، یا «دوباره بررسی کردم» را بزنی، تاریخ بررسی با ذخیره امروز می‌شود. خودِ قیمت عوض نمی‌شود.
+        </p>
       </Section>
 
       <Section id="identity" title="هویت">
@@ -509,6 +545,11 @@ export function PerfumeForm({
     patch({ shops: draft.shops.map((item, i) => (i === index ? { ...item, ...next } : item)) });
   }
 
+  function markChecked(index: number) {
+    const now = new Date();
+    updateShop(index, { checkedOn: formatCheckedOn(now), checkedAt: now.toISOString() });
+  }
+
   function removeShop(index: number) {
     patch({ shops: draft.shops.filter((_, i) => i !== index) });
   }
@@ -562,4 +603,8 @@ function splitList(value: string) {
     .split(/[،,]/)
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function formValue(value: Perfume, tagText: string, aliasText: string) {
+  return JSON.stringify({ ...value, tags: splitList(tagText), aliases: splitList(aliasText) });
 }

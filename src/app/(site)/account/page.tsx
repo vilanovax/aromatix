@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AccountScreen } from "@/app/account/account-screen";
+import { AccountScreen } from "@/app/(site)/account/account-screen";
 
 export const metadata: Metadata = { title: "حساب · آروما" };
 

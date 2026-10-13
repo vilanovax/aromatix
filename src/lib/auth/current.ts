@@ -1,4 +1,5 @@
 import "server-only";
+import { cache } from "react";
 import { db } from "@/prisma/db";
 import { isAvatarId } from "@/lib/auth/avatars";
 import { displayPhone } from "@/lib/auth/phone";
@@ -35,7 +36,7 @@ function expired(expiresAt: string) {
   return Number.isNaN(time) || time <= Date.now();
 }
 
-export async function currentUser() {
+export const currentUser = cache(async function currentUser() {
   const token = await readSessionToken();
   if (!token) return null;
 
@@ -55,7 +56,7 @@ export async function currentUser() {
     return null;
   }
   return toPublic(user);
-}
+});
 
 export async function openSession(userId: number) {
   const token = newSessionToken();

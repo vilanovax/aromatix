@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { safeNext } from "@/app/login/login-form";
+import { safeNext } from "@/app/(site)/login/login-form";
 import { AuthFrame } from "@/components/AuthFrame";
 import { Button } from "@/components/Button";
 import { Note } from "@/components/Card";

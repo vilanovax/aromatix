@@ -1,9 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Vazirmatn } from "next/font/google";
-import { CatalogBridge } from "@/components/CatalogBridge";
-import { AccountProvider } from "@/lib/account";
-import { loadCatalog } from "@/lib/catalog-server";
-import { loadArticles } from "@/lib/knowledge-server";
 import { Providers } from "@/lib/store";
 import "./globals.css";
 
@@ -35,16 +31,11 @@ export const viewport: Viewport = {
   interactiveWidget: "resizes-content",
 };
 
-export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [snapshot, articles] = await Promise.all([loadCatalog(), loadArticles()]);
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="fa" dir="rtl" className={vazir.variable}>
       <body>
-        <CatalogBridge snapshot={snapshot} articles={articles}>
-          <Providers>
-            <AccountProvider>{children}</AccountProvider>
-          </Providers>
-        </CatalogBridge>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

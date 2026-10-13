@@ -26,7 +26,8 @@ function stampShops(next: ShopOffer[], previous: ShopOffer[] | undefined, now: D
       prior &&
       prior.price === shop.price &&
       prior.stockConfirmed === shop.stockConfirmed &&
-      prior.checkedOn === shop.checkedOn;
+      prior.checkedOn === shop.checkedOn &&
+      (prior.checkedAt ?? "") === (shop.checkedAt ?? "");
     if (unchanged && prior.checkedAt) return { ...shop, checkedOn: prior.checkedOn, checkedAt: prior.checkedAt };
     if (unchanged && prior) return { ...shop, checkedOn: prior.checkedOn, checkedAt: prior.checkedAt };
     return { ...shop, checkedOn: formatCheckedOn(now), checkedAt: now.toISOString() };

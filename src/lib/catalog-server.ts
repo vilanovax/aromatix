@@ -24,7 +24,7 @@ function perfumeFromDocument(
   }
 }
 
-export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => {
+const loadCatalogState = cache(async (): Promise<{ store: CatalogStore; snapshot: CatalogSnapshot }> => {
   try {
     const [brands, rows] = await Promise.all([
       db.orm.aroma.CatalogBrand.orderBy((row) => row.nameFa.asc()).all(),
@@ -33,7 +33,7 @@ export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => {
     if (rows.length === 0) {
       const seed = seedSnapshot();
       installCatalog(seed);
-      return seed;
+      return { store: "empty", snapshot: seed };
     }
     const shops = await readyShops();
     const brandName = new Map(brands.map((brand) => [brand.slug, brand.nameFa]));
@@ -59,14 +59,18 @@ export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => {
       perfumes,
     };
     installCatalog(snapshot);
-    return snapshot;
+    return { store: "ready", snapshot };
   } catch (error) {
     console.error(error);
     const seed = seedSnapshot();
     installCatalog(seed);
-    return seed;
+    return { store: "offline", snapshot: seed };
   }
 });
+
+export const loadCatalogBundle = loadCatalogState;
+
+export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => (await loadCatalogState()).snapshot);
 
 async function readyShops(): Promise<Shop[]> {
   let rows = await db.orm.aroma.CatalogShop.orderBy((row) => row.nameFa.asc()).all();
@@ -91,12 +95,4 @@ async function readyShops(): Promise<Shop[]> {
   }));
 }
 
-export async function catalogStoreStatus(): Promise<CatalogStore> {
-  try {
-    const rows = await db.orm.aroma.CatalogPerfume.select("slug").all();
-    return rows.length === 0 ? "empty" : "ready";
-  } catch (error) {
-    console.error(error);
-    return "offline";
-  }
-}
+export const catalogStoreStatus = cache(async (): Promise<CatalogStore> => (await loadCatalogState()).store);

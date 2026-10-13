@@ -3,7 +3,7 @@ import { ArticleIndex, type ArticleRow } from "@/app/admin/article-index";
 import { PublishLearn } from "@/app/admin/publish-learn";
 import { ButtonLink } from "@/components/Button";
 import { Card } from "@/components/Card";
-import { articleStoreStatus, articleViewCounts, loadArticles } from "@/lib/knowledge-server";
+import { articleViewCounts, loadArticleDesk } from "@/lib/knowledge-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
 
@@ -11,9 +11,7 @@ export const metadata: Metadata = { title: "دانستنی‌ها · مدیری�
 
 export default async function LearnAdminPage() {
   await guardSection("learn");
-  const store = await articleStoreStatus();
-  const articles = store === "ready" ? await loadArticles() : [];
-  const views = store === "ready" ? await articleViewCounts() : new Map<string, number>();
+  const [{ store, articles }, views] = await Promise.all([loadArticleDesk(), articleViewCounts()]);
   const rows: ArticleRow[] = articles.map((entry) => ({
     slug: entry.slug,
     title: entry.title,
@@ -30,8 +28,7 @@ export default async function LearnAdminPage() {
     <div>
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
-          <p className="text-label text-brass">کاتالوگ</p>
-          <h1 className="mt-1 text-headline font-bold">دانستنی‌ها</h1>
+          <h1 className="text-headline font-bold">دانستنی‌ها</h1>
           <p className="mt-1 text-label text-muted">
             {store === "ready" ? `${faNum(rows.length)} مقاله، ${faNum(activeCount)} فعال` : "هنوز چیزی منتشر نشده"}
           </p>

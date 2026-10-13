@@ -36,11 +36,18 @@ async function loadAdmins(selfId: number): Promise<SettingsAdmin[]> {
 }
 
 async function loadCounts() {
-  const [brands, perfumes, articles, users] = await Promise.all([
+  const [brands, shops, perfumes, articles, users] = await Promise.all([
     db.orm.aroma.CatalogBrand.select("slug").all(),
+    db.orm.aroma.CatalogShop.select("slug").all(),
     db.orm.aroma.CatalogPerfume.select("slug").all(),
     db.orm.aroma.LearnArticle.select("slug").all(),
     db.orm.aroma.User.select("id").all(),
   ]);
-  return { brands: brands.length, perfumes: perfumes.length, articles: articles.length, users: users.length };
+  return {
+    brands: brands.length,
+    shops: shops.length,
+    perfumes: perfumes.length,
+    articles: articles.length,
+    users: users.length,
+  };
 }

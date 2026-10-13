@@ -54,7 +54,23 @@ export const loadArticles = cache(async (): Promise<KnowledgeEntry[]> => {
   }
 });
 
-export async function articleStoreStatus(): Promise<ArticleStore> {
+export const loadArticleDesk = cache(async (): Promise<{ store: ArticleStore; articles: KnowledgeEntry[] }> => {
+  try {
+    const rows = await db.orm.aroma.LearnArticle.orderBy((row) => row.sort.asc()).all();
+    if (rows.length === 0) return { store: "empty", articles: [] };
+    const articles = rows.flatMap((row) => {
+      const entry = fromRow(row);
+      return entry ? [entry] : [];
+    });
+    installKnowledge(articles);
+    return { store: "ready", articles };
+  } catch (error) {
+    console.error(error);
+    return { store: "offline", articles: [] };
+  }
+});
+
+export const articleStoreStatus = cache(async (): Promise<ArticleStore> => {
   try {
     const rows = await db.orm.aroma.LearnArticle.select("slug").all();
     return rows.length === 0 ? "empty" : "ready";
@@ -62,7 +78,7 @@ export async function articleStoreStatus(): Promise<ArticleStore> {
     console.error(error);
     return "offline";
   }
-}
+});
 
 export async function articleViewCounts() {
   const counts = new Map<string, number>();

@@ -39,7 +39,7 @@ export default async function PerfumesPage() {
           <p className="mt-2 max-w-2xl text-pretty text-body text-muted">
             {store === "ready"
               ? issues.length > 0
-                ? `${faNum(snapshot.perfumes.length)} عطر منتشرشده، ${faNum(new Set(issues.map((issue) => issue.slug)).size)} تا با مورد باز. نام، فرم را باز می‌کند؛ برچسب، همان بخش را.`
+                ? `${faNum(snapshot.perfumes.length)} عطر منتشرشده، ${faNum(new Set(issues.map((issue) => issue.slug)).size)} تا با ${faNum(issues.length)} مورد باز. نام، فرم را باز می‌کند؛ برچسب، همان بخش را.`
                 : `${faNum(snapshot.perfumes.length)} عطر منتشرشده. مورد بازی نیست.`
               : "هنوز چیزی منتشر نشده"}
           </p>

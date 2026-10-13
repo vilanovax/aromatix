@@ -17,6 +17,7 @@ export type SettingsAdmin = {
 
 export type BackupCounts = {
   brands: number;
+  shops: number;
   perfumes: number;
   articles: number;
   users: number;
@@ -276,6 +277,7 @@ function SectionChecks({ selected, onToggle }: { selected: readonly AdminSection
 function BackupCard({ counts }: { counts: BackupCounts }) {
   const lines = [
     ["برند", counts.brands],
+    ["فروشگاه", counts.shops],
     ["عطر", counts.perfumes],
     ["دانستنی", counts.articles],
     ["حساب", counts.users],
@@ -285,7 +287,7 @@ function BackupCard({ counts }: { counts: BackupCounts }) {
     <section>
       <h2 className="text-title font-semibold">بک‌آپ</h2>
       <p className="mt-1 max-w-xl text-pretty text-body text-muted">
-        یک فایل JSON از برندها، عطرها، دانستنی‌ها و حساب‌ها. رمز و نشست داخل فایل نیست.
+        یک فایل JSON از برندها، فروشگاه‌ها، عطرها، دانستنی‌ها و حساب‌ها. رمز و نشست داخل فایل نیست.
       </p>
       <ul className="mt-3 flex flex-wrap gap-2">
         {lines.map(([label, count]) => (

@@ -4,7 +4,7 @@ import { PublishCatalogButton } from "@/app/admin/publish-button";
 import { Card } from "@/components/Card";
 import { catalogIssues, type CatalogIssue } from "@/lib/admin/health";
 import { loginWindowStart } from "@/lib/auth/limits";
-import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
+import { loadCatalogBundle } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 import { faNum } from "@/lib/format";
 import { db } from "@/prisma/db";
@@ -13,20 +13,19 @@ export const metadata: Metadata = { title: "نمای کلی · مدیریت آر
 
 export default async function AdminHomePage() {
   await guardSection("overview");
-  const store = await catalogStoreStatus();
-  const snapshot = await loadCatalog();
+  const [{ store, snapshot }, stats] = await Promise.all([loadCatalogBundle(), readStats()]);
   const issues = store === "ready" ? catalogIssues(snapshot.perfumes) : [];
   const groups = groupIssues(issues, snapshot.perfumes);
-  const stats = await readStats();
 
   const ready = store === "ready";
+  const openPerfumes = new Set(issues.map((issue) => issue.slug)).size;
 
   return (
     <div>
       <h1 className="text-headline font-bold text-balance">نمای کلی</h1>
       <p className="mt-2 max-w-2xl text-pretty text-body text-muted">
         {ready && issues.length > 0
-          ? `${faNum(issues.length)} مورد باز است. نام عطر کل فرم را باز می‌کند؛ برچسب، همان بخش را.`
+          ? `${faNum(openPerfumes)} عطر، ${faNum(issues.length)} مورد باز است. نام عطر کل فرم را باز می‌کند؛ برچسب، همان بخش را.`
           : ready
             ? "مورد بازی در کاتالوگ نیست."
             : "اول کاتالوگ را منتشر کن تا صف بررسی و عددها از پایگاه بیایند."}
