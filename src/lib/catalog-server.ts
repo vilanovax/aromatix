@@ -1,6 +1,6 @@
 import "server-only";
 import { cache } from "react";
-import { installCatalog, seedSnapshot, type CatalogSnapshot } from "@/lib/catalog";
+import { installCatalog, seedShops, seedSnapshot, type CatalogSnapshot, type Shop } from "@/lib/catalog";
 import type { Perfume } from "@/lib/types";
 import { db } from "@/prisma/db";
 
@@ -35,6 +35,7 @@ export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => {
       installCatalog(seed);
       return seed;
     }
+    const shops = await readyShops();
     const brandName = new Map(brands.map((brand) => [brand.slug, brand.nameFa]));
     const perfumes = rows.flatMap((row) => {
       const perfume = perfumeFromDocument(
@@ -54,6 +55,7 @@ export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => {
         description: brand.description,
         active: brand.active,
       })),
+      shops,
       perfumes,
     };
     installCatalog(snapshot);
@@ -65,6 +67,29 @@ export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => {
     return seed;
   }
 });
+
+async function readyShops(): Promise<Shop[]> {
+  let rows = await db.orm.aroma.CatalogShop.orderBy((row) => row.nameFa.asc()).all();
+  if (rows.length === 0) {
+    for (const shop of seedShops) {
+      const existing = await db.orm.aroma.CatalogShop.where((row) => row.slug.eq(shop.slug)).select("slug").first();
+      if (!existing) await db.orm.aroma.CatalogShop.create(shop);
+    }
+    rows = await db.orm.aroma.CatalogShop.orderBy((row) => row.nameFa.asc()).all();
+  }
+  return rows.map((shop) => ({
+    slug: shop.slug,
+    nameFa: shop.nameFa,
+    nameEn: shop.nameEn,
+    description: shop.description,
+    website: shop.website,
+    instagram: shop.instagram,
+    telegram: shop.telegram,
+    phone: shop.phone,
+    city: shop.city,
+    active: shop.active,
+  }));
+}
 
 export async function catalogStoreStatus(): Promise<CatalogStore> {
   try {

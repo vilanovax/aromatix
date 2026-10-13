@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef } from "react";
 import { Button, buttonClass } from "@/components/Button";
-import { getPerfume } from "@/lib/catalog";
+import { getPerfume, shownOffers } from "@/lib/catalog";
 import { cn, millionToman } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 import type { ShopOffer } from "@/lib/types";
@@ -12,7 +12,7 @@ export function ShopSheet() {
   const closeRef = useRef<HTMLButtonElement>(null);
   const perfume = shopFor ? getPerfume(shopFor) : undefined;
   const shops = useMemo(
-    () => (perfume ? [...perfume.shops].sort(compareShops) : []),
+    () => (perfume ? shownOffers(perfume).sort(compareShops) : []),
     [perfume],
   );
 
@@ -60,6 +60,9 @@ export function ShopSheet() {
           </Button>
         </div>
 
+        {shops.length === 0 ? (
+          <p className="mt-5 text-body text-muted">فروشگاه فعالی برای این عطر نیست.</p>
+        ) : (
         <ul className="mt-5 divide-y divide-line">
           {shops.map((shop) => (
             <li key={shop.shop} className="py-4">
@@ -102,6 +105,7 @@ export function ShopSheet() {
             </li>
           ))}
         </ul>
+        )}
       </div>
     </div>
   );

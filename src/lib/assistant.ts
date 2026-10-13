@@ -3,7 +3,7 @@ import {
   findPerfumeByName,
   getPerfume,
   isPublicPerfume,
-  leadOffer,
+  publicLead,
   leaningShare,
   referenceLabel,
   sharedAccordNames,
@@ -302,8 +302,10 @@ function fitReply(profile: Profile | null, left: Perfume, right: Perfume): Reply
   const leftScore = fitScore(left, profile);
   const rightScore = fitScore(right, profile);
   if (leftScore === rightScore) {
-    const priced = leadOffer(left).price !== leadOffer(right).price;
-    const cheaper = leadOffer(left).price <= leadOffer(right).price ? left : right;
+    const leftPrice = publicLead(left)?.price;
+    const rightPrice = publicLead(right)?.price;
+    const priced = leftPrice != null && rightPrice != null && leftPrice !== rightPrice;
+    const cheaper = priced && leftPrice <= rightPrice ? left : right;
     const dearer = cheaper.slug === left.slug ? right : left;
     return {
       kind: "compare",
@@ -330,7 +332,8 @@ function fitScore(perfume: Perfume, profile: Profile) {
   if (profile.season === "all" || perfume.seasons.includes("all") || perfume.seasons.includes(profile.season)) score += 2;
   score += profile.occasions.filter((occasion) => perfume.occasions.includes(occasion)).length * 2;
   if (profile.leaning && profile.leaning !== "any") score += leaningShare(perfume, profile.leaning) * 4;
-  if (leadOffer(perfume).price <= profile.budget * 1_000_000) score += 1;
+  const price = publicLead(perfume)?.price;
+  if (price != null && price <= profile.budget * 1_000_000) score += 1;
   return score;
 }
 
@@ -354,7 +357,9 @@ function fitWhy(pick: Perfume, other: Perfume, profile: Profile) {
     return "به سلیقه‌ای که انتخاب کردی نزدیک‌تر است.";
   }
   if ((pick.longevity ?? 0) > (other.longevity ?? 0)) return "ماندگاری بیشتری در داده دارد.";
-  if (leadOffer(pick).price < leadOffer(other).price) return "قیمت تأییدشده‌اش پایین‌تر است.";
+  const pickPrice = publicLead(pick)?.price;
+  const otherPrice = publicLead(other)?.price;
+  if (pickPrice != null && otherPrice != null && pickPrice < otherPrice) return "قیمت تأییدشده‌اش پایین‌تر است.";
   return "جزئیات را در مقایسه ببین.";
 }
 

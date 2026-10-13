@@ -65,6 +65,19 @@ namespace aroma {
     perfumes    CatalogPerfume[]
   }
 
+  model CatalogShop {
+    slug        String  @id
+    nameFa      String
+    nameEn      String
+    description String  @default("")
+    website     String  @default("")
+    instagram   String  @default("")
+    telegram    String  @default("")
+    phone       String  @default("")
+    city        String  @default("")
+    active      Boolean @default(true)
+  }
+
   model CatalogPerfume {
     slug      String            @id
     nameFa    String

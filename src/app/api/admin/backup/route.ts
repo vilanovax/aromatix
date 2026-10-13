@@ -9,8 +9,20 @@ export async function GET() {
   const admin = await requireSection("settings");
   if (!admin) return new Response("به تنظیمات دسترسی نداری.", { status: 403 });
 
-  const [brands, perfumes, articles, users] = await Promise.all([
+  const [brands, shops, perfumes, articles, users] = await Promise.all([
     db.orm.aroma.CatalogBrand.select("slug", "nameFa", "nameEn", "description", "active").all(),
+    db.orm.aroma.CatalogShop.select(
+      "slug",
+      "nameFa",
+      "nameEn",
+      "description",
+      "website",
+      "instagram",
+      "telegram",
+      "phone",
+      "city",
+      "active",
+    ).all(),
     db.orm.aroma.CatalogPerfume.select("slug", "nameFa", "nameEn", "brandSlug", "document", "updatedAt").all(),
     db.orm.aroma.LearnArticle.select("slug", "title", "active", "sort", "display", "publishedOn", "document", "updatedAt").all(),
     db.orm.aroma.User.select("id", "name", "phone", "role", "access", "createdAt").all(),
@@ -19,6 +31,7 @@ export async function GET() {
   const body = {
     exportedAt: new Date().toISOString(),
     brands,
+    shops,
     perfumes: perfumes.map((row) => ({ ...row, document: parseDocument(row.document) })),
     articles: articles.map((row) => ({ ...row, document: parseDocument(row.document) })),
     users: users.map((row) => ({

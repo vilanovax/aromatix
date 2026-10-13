@@ -1,4 +1,4 @@
-import type { Leaning, Perfume } from "@/lib/types";
+import type { Leaning, Perfume, ShopOffer } from "@/lib/types";
 
 const narsiso = "https://narsiso.com";
 const atrarya = "https://atrarya.com";
@@ -486,10 +486,63 @@ export type Brand = {
   active: boolean;
 };
 
+export type Shop = {
+  slug: string;
+  nameFa: string;
+  nameEn: string;
+  description: string;
+  website: string;
+  instagram: string;
+  telegram: string;
+  phone: string;
+  city: string;
+  active: boolean;
+};
+
 export type CatalogSnapshot = {
   perfumes: Perfume[];
   brands: Brand[];
+  shops: Shop[];
 };
+
+export const seedShops: Shop[] = [
+  {
+    slug: "narsiso",
+    nameFa: "نرسیسو",
+    nameEn: "Narsiso",
+    description: "فروشگاه آنلاین عطر. چند قیمت تأییدشدهٔ این کاتالوگ از اینجا ثبت شده.",
+    website: narsiso,
+    instagram: "",
+    telegram: "",
+    phone: "",
+    city: "",
+    active: true,
+  },
+  {
+    slug: "atrarya",
+    nameFa: "عطرآریا",
+    nameEn: "Atrarya",
+    description: "فروشگاه آنلاین عطر. قیمت خمره و چند عطر دیگر این کاتالوگ از اینجا بررسی شده.",
+    website: atrarya,
+    instagram: "",
+    telegram: "",
+    phone: "",
+    city: "",
+    active: true,
+  },
+  {
+    slug: "liliome",
+    nameFa: "لیلیوم",
+    nameEn: "Liliome",
+    description: "فروشگاه آنلاین عطر. قیمت کیسمت انجل، کلاب دِ نویت و مایلستون از اینجا ثبت شده.",
+    website: liliome,
+    instagram: "",
+    telegram: "",
+    phone: "",
+    city: "",
+    active: true,
+  },
+];
 
 const seedBrands: Brand[] = [
   {
@@ -576,6 +629,7 @@ function indexNames(list: Perfume[]): NameHit[] {
 export function seedSnapshot(): CatalogSnapshot {
   return {
     brands: seedBrands.map((brand) => ({ ...brand })),
+    shops: seedShops.map((shop) => ({ ...shop })),
     perfumes: seedPerfumes.map((perfume) => ({
       ...perfume,
       accords: perfume.accords.map((accord) => ({ ...accord })),
@@ -596,6 +650,30 @@ export function allPerfumes() {
 
 export function allBrands() {
   return live.brands;
+}
+
+export function allShops() {
+  return live.shops;
+}
+
+export function getShop(slug: string) {
+  return live.shops.find((shop) => shop.slug === slug);
+}
+
+export function shopByName(nameFa: string) {
+  return live.shops.find((shop) => shop.nameFa === nameFa);
+}
+
+/** A shop that is not in the directory still shows. A defined inactive shop does not. */
+export function shownOffers(perfume: Perfume) {
+  return perfume.shops.filter((offer) => {
+    const shop = shopByName(offer.shop);
+    return !shop || shop.active;
+  });
+}
+
+export function publicLead(perfume: Perfume) {
+  return cheapest(shownOffers(perfume));
 }
 
 export function publishedPerfumes() {
@@ -671,20 +749,24 @@ export function sweetness(perfume: Perfume) {
   }, 0);
 }
 
-export function leadOffer(perfume: Perfume) {
-  const confirmed = perfume.shops.filter((shop) => shop.stockConfirmed);
-  const pool = confirmed.length > 0 ? confirmed : perfume.shops;
+function cheapest(offers: ShopOffer[]) {
+  if (offers.length === 0) return null;
+  const confirmed = offers.filter((shop) => shop.stockConfirmed);
+  const pool = confirmed.length > 0 ? confirmed : offers;
   return pool.reduce((best, shop) => (shop.price < best.price ? shop : best));
 }
 
+export function leadOffer(perfume: Perfume) {
+  const offer = cheapest(perfume.shops);
+  if (!offer) throw new Error(`عطر ${perfume.slug} فروشگاه ندارد.`);
+  return offer;
+}
+
 export function cheaperUnconfirmed(perfume: Perfume) {
-  const lead = leadOffer(perfume);
-  if (!lead.stockConfirmed) return null;
-  return (
-    perfume.shops
-      .filter((shop) => !shop.stockConfirmed && shop.price < lead.price)
-      .sort((a, b) => a.price - b.price)[0] ?? null
-  );
+  const offers = shownOffers(perfume);
+  const lead = cheapest(offers);
+  if (!lead?.stockConfirmed) return null;
+  return offers.filter((shop) => !shop.stockConfirmed && shop.price < lead.price).sort((a, b) => a.price - b.price)[0] ?? null;
 }
 
 export function sharedAccordNames(left: Perfume, right: Perfume) {
@@ -700,9 +782,9 @@ function decisionEdges(left: Perfume, right: Perfume): DecisionEdge[] {
     const winner = left.longevity > right.longevity ? left : right;
     edges.push({ slug: winner.slug, name: winner.nameFa, criterion: "ماندگاری", fact: "ماندگاری بیشتر" });
   }
-  const leftPrice = leadOffer(left).price;
-  const rightPrice = leadOffer(right).price;
-  if (leftPrice !== rightPrice) {
+  const leftPrice = publicLead(left)?.price;
+  const rightPrice = publicLead(right)?.price;
+  if (leftPrice != null && rightPrice != null && leftPrice !== rightPrice) {
     const cheaper = leftPrice < rightPrice ? left : right;
     edges.push({
       slug: cheaper.slug,

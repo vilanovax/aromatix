@@ -10,7 +10,7 @@ import { Card } from "@/components/Card";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
-import { cheaperUnconfirmed, getPerfume, isPublicPerfume, leadOffer, publishedPerfumes } from "@/lib/catalog";
+import { cheaperUnconfirmed, getPerfume, isPublicPerfume, publicLead, publishedPerfumes } from "@/lib/catalog";
 import { computeDna, shelfBucket } from "@/lib/dna";
 import { cn, faNum, millionToman } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
@@ -186,7 +186,7 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
       <p className="mt-1 text-label text-muted">{note}</p>
       <ul className="mt-3.5 flex flex-col gap-2">
         {items.map((perfume) => {
-          const offer = leadOffer(perfume);
+          const offer = publicLead(perfume);
           const href = perfumeHref(perfume.slug, "/shelf");
           return (
             <li key={perfume.slug}>
@@ -223,7 +223,7 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
 }
 
 function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPerfume; muted: boolean }) {
-  const offer = leadOffer(perfume);
+  const offer = publicLead(perfume);
   const note = statusNote(state);
   return (
     <Card as="li" className="p-3.5">

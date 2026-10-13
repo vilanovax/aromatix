@@ -6,7 +6,7 @@ import { deletePerfume, savePerfume } from "@/app/admin/actions";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Chip } from "@/components/Chip";
-import { OCCASIONS, REFERENCES, SEASONS, type Brand } from "@/lib/catalog";
+import { OCCASIONS, REFERENCES, SEASONS, type Brand, type Shop } from "@/lib/catalog";
 import { cn, millionToman } from "@/lib/format";
 import type { Accord, BottleShape, Note, Perfume, Season, ShopOffer } from "@/lib/types";
 
@@ -43,11 +43,13 @@ export function PerfumeForm({
   mode,
   perfume,
   brands,
+  shops,
   others,
 }: {
   mode: "create" | "edit";
   perfume: Perfume;
   brands: Brand[];
+  shops: Shop[];
   others: Perfume[];
 }) {
   const router = useRouter();
@@ -136,7 +138,34 @@ export function PerfumeForm({
           {draft.shops.map((shop, index) => (
             <div key={index} className="grid gap-2 rounded-control border border-line p-3 sm:grid-cols-2">
               <Field label="فروشگاه">
-                <input className={control} value={shop.shop} onChange={(event) => updateShop(index, { shop: event.target.value })} />
+                {shops.length > 0 ? (
+                  <select
+                    className={control}
+                    value={shop.shop}
+                    onChange={(event) => {
+                      const name = event.target.value;
+                      const next = shops.find((item) => item.nameFa === name);
+                      const prior = shops.find((item) => item.nameFa === shop.shop);
+                      const href =
+                        !shop.href || shop.href === "https://" || (prior?.website && shop.href === prior.website)
+                          ? next?.website || "https://"
+                          : shop.href;
+                      updateShop(index, { shop: name, href });
+                    }}
+                  >
+                    {shop.shop && !shops.some((item) => item.nameFa === shop.shop) ? (
+                      <option value={shop.shop}>{shop.shop}</option>
+                    ) : null}
+                    {shops.map((item) => (
+                      <option key={item.slug} value={item.nameFa}>
+                        {item.nameFa}
+                        {item.active ? "" : " · غیرفعال"}
+                      </option>
+                    ))}
+                  </select>
+                ) : (
+                  <input className={control} value={shop.shop} onChange={(event) => updateShop(index, { shop: event.target.value })} />
+                )}
               </Field>
               <Field label="قیمت، تومان">
                 <input
@@ -177,11 +206,21 @@ export function PerfumeForm({
           variant="quiet"
           size="sm"
           className="mt-3"
-          onClick={() =>
+          onClick={() => {
+            const next = shops.find((item) => item.active) ?? shops[0];
             patch({
-              shops: [...draft.shops, { shop: "", price: 1_000_000, checkedOn: "", stockConfirmed: false, href: "https://" }],
-            })
-          }
+              shops: [
+                ...draft.shops,
+                {
+                  shop: next?.nameFa ?? "",
+                  price: 1_000_000,
+                  checkedOn: "",
+                  stockConfirmed: false,
+                  href: next?.website || "https://",
+                },
+              ],
+            });
+          }}
         >
           فروشگاه جدید
         </Button>

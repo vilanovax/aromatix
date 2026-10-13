@@ -1,11 +1,11 @@
 import {
   getPerfume,
   isSweet,
-  leadOffer,
   leaningShare,
   publishedPerfumes,
   isPublicPerfume,
   occasionLabel,
+  publicLead,
   referenceLabel,
   seasonShort,
 } from "@/lib/catalog";
@@ -167,7 +167,7 @@ export function resultHeading(profile: Profile, count: number) {
 }
 
 function shownPrice(perfume: Perfume) {
-  return leadOffer(perfume).price;
+  return publicLead(perfume)?.price ?? Number.POSITIVE_INFINITY;
 }
 
 export function withinBudget(perfume: Perfume, budget: number) {

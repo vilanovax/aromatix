@@ -13,7 +13,7 @@ import { CheckIcon, ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
 import { BrandLink } from "@/components/BrandLink";
-import { cheaperUnconfirmed, getPerfume, isPublicPerfume, leadOffer, performanceLabel, sharedAccordNames } from "@/lib/catalog";
+import { cheaperUnconfirmed, getPerfume, isPublicPerfume, performanceLabel, publicLead, sharedAccordNames } from "@/lib/catalog";
 import { entryForConcentration, entryForNote } from "@/lib/knowledge";
 import { cn, faNum, joinFa, millionToman } from "@/lib/format";
 import { perfumeHref, resolvePerfumeBack } from "@/lib/nav";
@@ -58,7 +58,7 @@ function PerfumeScreen() {
     );
   }
 
-  const offer = leadOffer(perfume);
+  const offer = publicLead(perfume);
   const cheaper = cheaperUnconfirmed(perfume);
   const similars = perfume.similar
     .map((slug) => getPerfume(slug))

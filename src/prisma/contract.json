@@ -12,6 +12,10 @@
       "model": "CatalogPerfume",
       "namespace": "aroma"
     },
+    "CatalogShop": {
+      "model": "CatalogShop",
+      "namespace": "aroma"
+    },
     "LearnArticle": {
       "model": "LearnArticle",
       "namespace": "aroma"
@@ -204,6 +208,117 @@
               },
               "namespaceId": "aroma",
               "table": "CatalogPerfume"
+            }
+          },
+          "CatalogShop": {
+            "fields": {
+              "active": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/bool@1",
+                  "kind": "scalar"
+                }
+              },
+              "city": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "description": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "instagram": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "nameEn": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "nameFa": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "phone": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "slug": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "telegram": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "website": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "active": {
+                  "column": "active"
+                },
+                "city": {
+                  "column": "city"
+                },
+                "description": {
+                  "column": "description"
+                },
+                "instagram": {
+                  "column": "instagram"
+                },
+                "nameEn": {
+                  "column": "nameEn"
+                },
+                "nameFa": {
+                  "column": "nameFa"
+                },
+                "phone": {
+                  "column": "phone"
+                },
+                "slug": {
+                  "column": "slug"
+                },
+                "telegram": {
+                  "column": "telegram"
+                },
+                "website": {
+                  "column": "website"
+                }
+              },
+              "namespaceId": "aroma",
+              "table": "CatalogShop"
             }
           },
           "LearnArticle": {
@@ -881,6 +996,96 @@
               },
               "uniques": []
             },
+            "CatalogShop": {
+              "columns": {
+                "active": {
+                  "codecId": "pg/bool@1",
+                  "dataType": "pg/bool",
+                  "default": {
+                    "kind": "literal",
+                    "value": true
+                  },
+                  "nullable": false
+                },
+                "city": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "description": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "instagram": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "nameEn": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "nameFa": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "phone": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "slug": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "telegram": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "website": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [],
+              "primaryKey": {
+                "columns": [
+                  "slug"
+                ]
+              },
+              "uniques": []
+            },
             "LearnArticle": {
               "columns": {
                 "active": {
@@ -1365,7 +1570,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "6c5bb9bf776b396ea9b5b6e6658d591dbed6cd22c1a3f2b4a9837e697861a640"
+    "storageHash": "6429a7381af8d8ede2a62dc3e1592b5b8fb74b473c8934a20f71f78854172fdf"
   },
   "capabilities": {
     "postgres": {

@@ -8,7 +8,7 @@ import { PerfumePhoto } from "@/components/Bottle";
 import { ButtonLink } from "@/components/Button";
 import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
-import { getBrand, getPerfume, leadOffer, perfumesByBrand } from "@/lib/catalog";
+import { getBrand, getPerfume, perfumesByBrand, publicLead } from "@/lib/catalog";
 import { computeDna } from "@/lib/dna";
 import { countWord, faNum, millionToman } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
@@ -129,7 +129,7 @@ function ForYou({ brandName, brandSlug }: { brandName: string; brandSlug: string
 
 function PerfumeRow({ perfume, from, why = false }: { perfume: Perfume; from: string; why?: boolean }) {
   const { library } = useAroma();
-  const offer = leadOffer(perfume);
+  const offer = publicLead(perfume);
   const status = statusLabel(library[perfume.slug]);
 
   return (
@@ -150,7 +150,7 @@ function PerfumeRow({ perfume, from, why = false }: { perfume: Perfume; from: st
             <AccordMark accords={perfume.accords} names />
           </span>
         )}
-        <span className="mt-1 block text-label text-muted">{millionToman(offer.price)}</span>
+        {offer ? <span className="mt-1 block text-label text-muted">{millionToman(offer.price)}</span> : null}
       </span>
       <ForwardIcon className="size-5 shrink-0 text-muted" />
     </Link>

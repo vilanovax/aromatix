@@ -3,6 +3,7 @@ export const ADMIN_SECTIONS = [
   { id: "reports", label: "گزارش", href: "/admin/reports", group: "کار" },
   { id: "perfumes", label: "عطرها", href: "/admin/perfumes", group: "کاتالوگ" },
   { id: "brands", label: "برندها", href: "/admin/brands", group: "کاتالوگ" },
+  { id: "shops", label: "فروشگاه‌ها", href: "/admin/shops", group: "کاتالوگ" },
   { id: "learn", label: "دانستنی‌ها", href: "/admin/learn", group: "کاتالوگ" },
   { id: "users", label: "کاربران", href: "/admin/users", group: "حساب‌ها" },
   { id: "settings", label: "تنظیمات", href: "/admin/settings", group: "حساب‌ها" },

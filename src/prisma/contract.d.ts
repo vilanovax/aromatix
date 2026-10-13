@@ -18,7 +18,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'6c5bb9bf776b396ea9b5b6e6658d591dbed6cd22c1a3f2b4a9837e697861a640'>;
+  StorageHashBase<'6429a7381af8d8ede2a62dc3e1592b5b8fb74b473c8934a20f71f78854172fdf'>;
 export type ExecutionHash = ExecutionHashBase<string>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
@@ -248,6 +248,18 @@ export type FieldOutputTypes = {
       readonly slug: CodecTypes['pg/text@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
+    readonly CatalogShop: {
+      readonly active: CodecTypes['pg/bool@1']['output'];
+      readonly city: CodecTypes['pg/text@1']['output'];
+      readonly description: CodecTypes['pg/text@1']['output'];
+      readonly instagram: CodecTypes['pg/text@1']['output'];
+      readonly nameEn: CodecTypes['pg/text@1']['output'];
+      readonly nameFa: CodecTypes['pg/text@1']['output'];
+      readonly phone: CodecTypes['pg/text@1']['output'];
+      readonly slug: CodecTypes['pg/text@1']['output'];
+      readonly telegram: CodecTypes['pg/text@1']['output'];
+      readonly website: CodecTypes['pg/text@1']['output'];
+    };
     readonly LearnArticle: {
       readonly active: CodecTypes['pg/bool@1']['output'];
       readonly display: CodecTypes['pg/text@1']['output'];
@@ -318,6 +330,18 @@ export type FieldInputTypes = {
       readonly nameFa: CodecTypes['pg/text@1']['input'];
       readonly slug: CodecTypes['pg/text@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    };
+    readonly CatalogShop: {
+      readonly active: CodecTypes['pg/bool@1']['input'];
+      readonly city: CodecTypes['pg/text@1']['input'];
+      readonly description: CodecTypes['pg/text@1']['input'];
+      readonly instagram: CodecTypes['pg/text@1']['input'];
+      readonly nameEn: CodecTypes['pg/text@1']['input'];
+      readonly nameFa: CodecTypes['pg/text@1']['input'];
+      readonly phone: CodecTypes['pg/text@1']['input'];
+      readonly slug: CodecTypes['pg/text@1']['input'];
+      readonly telegram: CodecTypes['pg/text@1']['input'];
+      readonly website: CodecTypes['pg/text@1']['input'];
     };
     readonly LearnArticle: {
       readonly active: CodecTypes['pg/bool@1']['input'];
@@ -390,6 +414,18 @@ export type StorageColumnTypes = {
       readonly slug: CodecTypes['pg/text@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
+    readonly CatalogShop: {
+      readonly active: CodecTypes['pg/bool@1']['output'];
+      readonly city: CodecTypes['pg/text@1']['output'];
+      readonly description: CodecTypes['pg/text@1']['output'];
+      readonly instagram: CodecTypes['pg/text@1']['output'];
+      readonly nameEn: CodecTypes['pg/text@1']['output'];
+      readonly nameFa: CodecTypes['pg/text@1']['output'];
+      readonly phone: CodecTypes['pg/text@1']['output'];
+      readonly slug: CodecTypes['pg/text@1']['output'];
+      readonly telegram: CodecTypes['pg/text@1']['output'];
+      readonly website: CodecTypes['pg/text@1']['output'];
+    };
     readonly LearnArticle: {
       readonly active: CodecTypes['pg/bool@1']['output'];
       readonly display: CodecTypes['pg/text@1']['output'];
@@ -460,6 +496,18 @@ export type StorageColumnInputTypes = {
       readonly nameFa: CodecTypes['pg/text@1']['input'];
       readonly slug: CodecTypes['pg/text@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    };
+    readonly CatalogShop: {
+      readonly active: CodecTypes['pg/bool@1']['input'];
+      readonly city: CodecTypes['pg/text@1']['input'];
+      readonly description: CodecTypes['pg/text@1']['input'];
+      readonly instagram: CodecTypes['pg/text@1']['input'];
+      readonly nameEn: CodecTypes['pg/text@1']['input'];
+      readonly nameFa: CodecTypes['pg/text@1']['input'];
+      readonly phone: CodecTypes['pg/text@1']['input'];
+      readonly slug: CodecTypes['pg/text@1']['input'];
+      readonly telegram: CodecTypes['pg/text@1']['input'];
+      readonly website: CodecTypes['pg/text@1']['input'];
     };
     readonly LearnArticle: {
       readonly active: CodecTypes['pg/bool@1']['input'];
@@ -536,6 +584,19 @@ export namespace Models {
     brand: aroma_CatalogBrand;
     readonly [RelationKeys]?: 'brand';
   };
+  export type aroma_CatalogShop = {
+    active: CodecTypes['pg/bool@1']['output'];
+    city: CodecTypes['pg/text@1']['output'];
+    description: CodecTypes['pg/text@1']['output'];
+    instagram: CodecTypes['pg/text@1']['output'];
+    nameEn: CodecTypes['pg/text@1']['output'];
+    nameFa: CodecTypes['pg/text@1']['output'];
+    phone: CodecTypes['pg/text@1']['output'];
+    slug: CodecTypes['pg/text@1']['output'];
+    telegram: CodecTypes['pg/text@1']['output'];
+    website: CodecTypes['pg/text@1']['output'];
+    readonly [RelationKeys]?: never;
+  };
   export type aroma_LearnArticle = {
     active: CodecTypes['pg/bool@1']['output'];
     display: CodecTypes['pg/text@1']['output'];
@@ -603,6 +664,7 @@ export declare const models: {
   aroma: {
     CatalogBrand: Models.aroma_CatalogBrand;
     CatalogPerfume: Models.aroma_CatalogPerfume;
+    CatalogShop: Models.aroma_CatalogShop;
     LearnArticle: Models.aroma_LearnArticle;
     LoginAttempt: Models.aroma_LoginAttempt;
     Session: Models.aroma_Session;
@@ -741,6 +803,102 @@ type ContractBase = Omit<
                   };
                 },
               ];
+            };
+            readonly CatalogShop: {
+              columns: {
+                readonly active: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
+                  };
+                  readonly many: false;
+                };
+                readonly city: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly description: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly instagram: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly nameEn: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly nameFa: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly phone: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly slug: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly telegram: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly website: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['slug'] };
+              uniques: readonly [];
+              indexes: readonly [];
+              foreignKeys: readonly [];
             };
             readonly LearnArticle: {
               columns: {
@@ -1179,6 +1337,10 @@ type ContractBase = Omit<
       readonly namespace: 'aroma' & NamespaceId;
       readonly model: 'CatalogPerfume';
     };
+    readonly CatalogShop: {
+      readonly namespace: 'aroma' & NamespaceId;
+      readonly model: 'CatalogShop';
+    };
     readonly LearnArticle: {
       readonly namespace: 'aroma' & NamespaceId;
       readonly model: 'LearnArticle';
@@ -1304,6 +1466,67 @@ type ContractBase = Omit<
                 readonly nameFa: { readonly column: 'nameFa' };
                 readonly slug: { readonly column: 'slug' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
+              };
+            };
+          };
+          readonly CatalogShop: {
+            readonly fields: {
+              readonly active: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
+              readonly city: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly description: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly instagram: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nameEn: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly nameFa: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly phone: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly slug: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly telegram: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly website: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'CatalogShop';
+              readonly namespaceId: 'aroma';
+              readonly fields: {
+                readonly active: { readonly column: 'active' };
+                readonly city: { readonly column: 'city' };
+                readonly description: { readonly column: 'description' };
+                readonly instagram: { readonly column: 'instagram' };
+                readonly nameEn: { readonly column: 'nameEn' };
+                readonly nameFa: { readonly column: 'nameFa' };
+                readonly phone: { readonly column: 'phone' };
+                readonly slug: { readonly column: 'slug' };
+                readonly telegram: { readonly column: 'telegram' };
+                readonly website: { readonly column: 'website' };
               };
             };
           };

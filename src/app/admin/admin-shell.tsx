@@ -112,29 +112,26 @@ function Menu({
         <p className="text-label text-brass">آروما</p>
         <p className="mt-1 text-title font-bold">مدیریت</p>
       </div>
-      <nav className="mt-4 min-h-0 flex-1 space-y-4 overflow-y-auto px-3 pb-4" aria-label="بخش‌های مدیریت">
+      <nav className="mt-4 min-h-0 flex-1 space-y-3 overflow-y-auto px-3 pb-4" aria-label="بخش‌های مدیریت">
         {groups.map((group) => (
-          <div key={group.label}>
-            <p className="px-3 text-label text-paper/45">{group.label}</p>
-            <div className="mt-1 space-y-1">
-              {group.links.map((link) => {
-                const active = link.href === "/admin" ? pathname === "/admin" : pathname.startsWith(link.href);
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    aria-current={active ? "page" : undefined}
-                    onClick={onNavigate}
-                    className={cn(
-                      "block rounded-control px-3 py-2.5 text-label",
-                      active ? "bg-paper font-medium text-ink" : "text-paper/80 hover:bg-white/10",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </div>
+          <div key={group.label} className="space-y-1">
+            {group.links.map((link) => {
+              const active = link.href === "/admin" ? pathname === "/admin" : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  onClick={onNavigate}
+                  className={cn(
+                    "block rounded-control px-3 py-2.5 text-label",
+                    active ? "bg-paper font-medium text-ink" : "text-paper/80 hover:bg-white/10",
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         ))}
       </nav>

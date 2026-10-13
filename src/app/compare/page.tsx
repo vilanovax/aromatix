@@ -13,7 +13,7 @@ import {
   decisionVerdict,
   getPerfume,
   isPublicPerfume,
-  leadOffer,
+  publicLead,
   performanceLabel,
   sweetness,
 } from "@/lib/catalog";
@@ -85,6 +85,7 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
         {[left, right].map((perfume) => {
           const lean = verdict.leanSlug === perfume.slug;
           const href = perfumeHref(perfume.slug, fromPath);
+          const offer = publicLead(perfume);
           return (
             <Card
               key={perfume.slug}
@@ -106,7 +107,7 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
                 className="mt-3 block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
               >
                 <AccordMark accords={perfume.accords} />
-                <span className="mt-2.5 block text-body font-semibold">{millionToman(leadOffer(perfume).price)}</span>
+                <span className="mt-2.5 block text-body font-semibold">{offer ? millionToman(offer.price) : "—"}</span>
               </Link>
             </Card>
           );

@@ -7,7 +7,7 @@ import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Chip } from "@/components/Chip";
 import { CheckIcon } from "@/components/Icons";
-import { cheaperUnconfirmed, leadOffer } from "@/lib/catalog";
+import { cheaperUnconfirmed, publicLead } from "@/lib/catalog";
 import { cn, faNum, millionToman, ordinalWord } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
@@ -15,7 +15,7 @@ import type { Perfume } from "@/lib/types";
 
 export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number }) {
   const { compare, toggleCompare, openShops } = useAroma();
-  const offer = leadOffer(perfume);
+  const offer = publicLead(perfume);
   const cheaper = cheaperUnconfirmed(perfume);
   const picked = compare.includes(perfume.slug);
 
@@ -59,19 +59,27 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
         className="mt-3 w-full flex-col items-start border-t border-line pt-3 text-start font-normal"
       >
         <span className="text-body font-semibold">
-          {millionToman(offer.price)}
-          <span className="font-normal text-muted">، {offer.shop}</span>
+          {offer ? (
+            <>
+              {millionToman(offer.price)}
+              <span className="font-normal text-muted">، {offer.shop}</span>
+            </>
+          ) : (
+            "فروشگاه فعالی نیست"
+          )}
         </span>
-        <span className="mt-1 flex items-center gap-1.5 text-label text-muted">
-          <span
-            aria-hidden="true"
-            className={cn("size-1.5 shrink-0 rounded-full", offer.stockConfirmed ? "bg-stock-ok" : "bg-stock-pending")}
-          />
-          <span className="min-w-0 text-pretty">
-            {offer.stockConfirmed ? `موجود، بررسی ${offer.checkedOn}` : `آخرین قیمت ${offer.checkedOn}`}
-            {cheaper ? ` · ${cheaper.shop} ${millionToman(cheaper.price)}` : ""}
+        {offer ? (
+          <span className="mt-1 flex items-center gap-1.5 text-label text-muted">
+            <span
+              aria-hidden="true"
+              className={cn("size-1.5 shrink-0 rounded-full", offer.stockConfirmed ? "bg-stock-ok" : "bg-stock-pending")}
+            />
+            <span className="min-w-0 text-pretty">
+              {offer.stockConfirmed ? `موجود، بررسی ${offer.checkedOn}` : `آخرین قیمت ${offer.checkedOn}`}
+              {cheaper ? ` · ${cheaper.shop} ${millionToman(cheaper.price)}` : ""}
+            </span>
           </span>
-        </span>
+        ) : null}
       </Button>
 
       <p className="sr-only">رتبهٔ {faNum(rank)}</p>

@@ -5,7 +5,7 @@ import { formatCheckedOn } from "@/lib/admin/health";
 import { parsePerfumeInput, type PerfumeInput } from "@/lib/admin/perfume-input";
 import { requireSection } from "@/lib/auth/admin";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
-import { allBrands, allPerfumes, brandByName, seedSnapshot } from "@/lib/catalog";
+import { allBrands, allPerfumes, allShops, brandByName, seedSnapshot } from "@/lib/catalog";
 import type { Perfume, ShopOffer } from "@/lib/types";
 import { db } from "@/prisma/db";
 
@@ -113,6 +113,9 @@ export async function publishSeedCatalog(): Promise<ActionResult> {
     for (const brand of seed.brands) {
       await db.orm.aroma.CatalogBrand.create(brand);
     }
+    for (const shop of seed.shops) {
+      await db.orm.aroma.CatalogShop.create(shop);
+    }
     const now = new Date().toISOString();
     for (const perfume of seed.perfumes) {
       const brand = seed.brands.find((item) => item.nameFa === perfume.brand);
@@ -219,6 +222,151 @@ export async function updateBrand(input: {
   } catch (error) {
     console.error(error);
     return { ok: false, error: "برند ذخیره نشد." };
+  }
+}
+
+function cleanLine(value: unknown, max: number) {
+  const text = typeof value === "string" ? value.trim().replace(/\s+/g, " ") : "";
+  return text.slice(0, max);
+}
+
+function readShopFields(input: {
+  nameFa?: unknown;
+  nameEn?: unknown;
+  description?: unknown;
+  website?: unknown;
+  instagram?: unknown;
+  telegram?: unknown;
+  phone?: unknown;
+  city?: unknown;
+  active?: unknown;
+}) {
+  const nameFa = cleanLine(input.nameFa, 40);
+  const nameEn = cleanLine(input.nameEn, 40);
+  const description = cleanLine(input.description, 400);
+  const website = cleanLine(input.website, 200);
+  const instagram = cleanLine(input.instagram, 80);
+  const telegram = cleanLine(input.telegram, 80);
+  const phone = cleanLine(input.phone, 20);
+  const city = cleanLine(input.city, 40);
+  const active = input.active !== false;
+  if (nameFa.length < 2 || nameEn.length < 2) return { ok: false as const, error: "نام فارسی و انگلیسی فروشگاه را بنویس." };
+  if (website && !/^https:\/\/\S+$/.test(website)) return { ok: false as const, error: "وب‌سایت باید با https:// شروع شود." };
+  return { ok: true as const, nameFa, nameEn, description, website, instagram, telegram, phone, city, active };
+}
+
+export async function createShop(input: {
+  slug?: unknown;
+  nameFa?: unknown;
+  nameEn?: unknown;
+  description?: unknown;
+  website?: unknown;
+  instagram?: unknown;
+  telegram?: unknown;
+  phone?: unknown;
+  city?: unknown;
+}): Promise<ActionResult> {
+  if (!(await requireSection("shops"))) return denied();
+  const slug = typeof input.slug === "string" ? input.slug.trim().toLowerCase() : "";
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) return { ok: false, error: "اسلاگ فروشگاه فقط حرف کوچک، عدد و خط تیره باشد." };
+  const fields = readShopFields({ ...input, active: true });
+  if (!fields.ok) return fields;
+  await loadCatalog();
+  if (allShops().some((shop) => shop.slug === slug || shop.nameFa === fields.nameFa)) {
+    return { ok: false, error: "این فروشگاه قبلاً هست." };
+  }
+  try {
+    const stored = await db.orm.aroma.CatalogPerfume.select("slug").all();
+    if (stored.length === 0) return { ok: false, error: "اول کاتالوگ اولیه را منتشر کن." };
+    await db.orm.aroma.CatalogShop.create({
+      slug,
+      nameFa: fields.nameFa,
+      nameEn: fields.nameEn,
+      description: fields.description,
+      website: fields.website,
+      instagram: fields.instagram,
+      telegram: fields.telegram,
+      phone: fields.phone,
+      city: fields.city,
+      active: true,
+    });
+    publish();
+    return { ok: true, slug };
+  } catch (error) {
+    console.error(error);
+    return { ok: false, error: "فروشگاه ذخیره نشد." };
+  }
+}
+
+export async function updateShop(input: {
+  slug?: unknown;
+  nameFa?: unknown;
+  nameEn?: unknown;
+  description?: unknown;
+  website?: unknown;
+  instagram?: unknown;
+  telegram?: unknown;
+  phone?: unknown;
+  city?: unknown;
+  active?: unknown;
+}): Promise<ActionResult> {
+  if (!(await requireSection("shops"))) return denied();
+  const slug = typeof input.slug === "string" ? input.slug : "";
+  const fields = readShopFields(input);
+  if (!fields.ok) return fields;
+  await loadCatalog();
+  const current = allShops().find((shop) => shop.slug === slug);
+  if (!current) return { ok: false, error: "این فروشگاه در فهرست نیست." };
+  if (allShops().some((shop) => shop.slug !== slug && shop.nameFa === fields.nameFa)) {
+    return { ok: false, error: "فروشگاه دیگری با این نام فارسی هست." };
+  }
+  try {
+    await db.orm.aroma.CatalogShop.where((row) => row.slug.eq(slug)).update({
+      nameFa: fields.nameFa,
+      nameEn: fields.nameEn,
+      description: fields.description,
+      website: fields.website,
+      instagram: fields.instagram,
+      telegram: fields.telegram,
+      phone: fields.phone,
+      city: fields.city,
+      active: fields.active,
+    });
+    if (current.nameFa !== fields.nameFa) {
+      const rows = await db.orm.aroma.CatalogPerfume.all();
+      const now = new Date().toISOString();
+      for (const row of rows) {
+        const perfume = JSON.parse(row.document) as Perfume;
+        if (!perfume.shops?.some((offer) => offer.shop === current.nameFa)) continue;
+        perfume.shops = perfume.shops.map((offer) => (offer.shop === current.nameFa ? { ...offer, shop: fields.nameFa } : offer));
+        await db.orm.aroma.CatalogPerfume.where((item) => item.slug.eq(row.slug)).update({
+          document: JSON.stringify(perfume),
+          updatedAt: now,
+        });
+      }
+    }
+    publish();
+    return { ok: true, slug };
+  } catch (error) {
+    console.error(error);
+    return { ok: false, error: "فروشگاه ذخیره نشد." };
+  }
+}
+
+export async function setShopActive(input: { slug?: unknown; active?: unknown }): Promise<ActionResult> {
+  if (!(await requireSection("shops"))) return denied();
+  const slug = typeof input.slug === "string" ? input.slug : "";
+  const active = input.active === true;
+  await loadCatalog();
+  const current = allShops().find((shop) => shop.slug === slug);
+  if (!current) return { ok: false, error: "این فروشگاه در فهرست نیست." };
+  try {
+    await db.orm.aroma.CatalogShop.where((row) => row.slug.eq(slug)).update({ active });
+    publish();
+    return { ok: true, slug };
+  } catch (error) {
+    console.error(error);
+    return { ok: false, error: "وضعیت فروشگاه عوض نشد." };
   }
 }
 

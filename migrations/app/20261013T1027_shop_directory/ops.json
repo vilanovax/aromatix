@@ -1,0 +1,41 @@
+[
+  {
+    "id": "table.CatalogShop",
+    "label": "Create table \"CatalogShop\"",
+    "summary": "Creates table \"CatalogShop\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "CatalogShop"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"CatalogShop\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogShop\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"CatalogShop\"",
+        "sql": "CREATE TABLE \"aroma\".\"CatalogShop\" (\n  \"active\" bool DEFAULT true NOT NULL,\n  \"city\" text DEFAULT '' NOT NULL,\n  \"description\" text DEFAULT '' NOT NULL,\n  \"instagram\" text DEFAULT '' NOT NULL,\n  \"nameEn\" text NOT NULL,\n  \"nameFa\" text NOT NULL,\n  \"phone\" text DEFAULT '' NOT NULL,\n  \"slug\" text NOT NULL,\n  \"telegram\" text DEFAULT '' NOT NULL,\n  \"website\" text DEFAULT '' NOT NULL,\n  PRIMARY KEY (\"slug\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"CatalogShop\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogShop\""
+        ]
+      }
+    ]
+  }
+]
