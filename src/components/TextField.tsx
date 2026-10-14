@@ -1,9 +1,9 @@
 "use client";
 
 import { useId, useState } from "react";
-import { FieldShell } from "@/components/Card";
-import { Button } from "@/components/Button";
-import { EyeIcon, EyeOffIcon } from "@/components/Icons";
+import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input, Label } from "@/components/ui/input";
 import { toAsciiDigits } from "@/lib/auth/phone";
 import { cn } from "@/lib/format";
 
@@ -34,46 +34,44 @@ export function TextField({
 
   return (
     <div className={cn("mt-4", className)}>
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={fieldId} className="text-label text-muted">
-          {label}
-        </label>
+      <div className="mb-1.5 flex items-baseline justify-between gap-3">
+        <Label htmlFor={fieldId}>{label}</Label>
         {hint ? (
-          <p id={hintId} className="text-label text-faint">
+          <p id={hintId} className="text-label text-muted-foreground">
             {hint}
           </p>
         ) : null}
       </div>
-      <FieldShell error={error} className={cn("mt-1.5 ps-3.5", isPassword ? "pe-1" : "pe-3.5")}>
-        <input
-          id={fieldId}
-          type={inputType}
-          aria-invalid={error}
-          aria-describedby={hintId}
-          className="min-h-12 min-w-0 flex-1 bg-transparent text-input outline-none placeholder:text-faint"
-          {...props}
-          onChange={(event) => {
-            if (latinDigits) {
-              event.target.value = toAsciiDigits(event.target.value);
-            }
-            onChange?.(event);
-          }}
-        />
-        {isPassword ? (
-          <Button
-            type="button"
-            variant="quiet"
-            shape="pill"
-            size="icon"
-            aria-label={revealed ? "پنهان کردن رمز" : "نشان دادن رمز"}
-            aria-pressed={revealed}
-            onClick={() => setRevealed((value) => !value)}
-            className="shrink-0 text-muted"
-          >
-            {revealed ? <EyeOffIcon className="size-5" /> : <EyeIcon className="size-5" />}
-          </Button>
-        ) : null}
-      </FieldShell>
+      <Input
+        id={fieldId}
+        type={inputType}
+        aria-invalid={error || undefined}
+        aria-describedby={hintId}
+        className={isPassword ? undefined : "!h-12"}
+        groupClassName={isPassword ? "!h-12 pe-1" : undefined}
+        endAddon={
+          isPassword ? (
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              aria-label={revealed ? "پنهان کردن رمز" : "نشان دادن رمز"}
+              aria-pressed={revealed}
+              onClick={() => setRevealed((value) => !value)}
+              className="!size-11"
+            >
+              {revealed ? <EyeOff strokeWidth={1.5} /> : <Eye strokeWidth={1.5} />}
+            </Button>
+          ) : undefined
+        }
+        {...props}
+        onChange={(event) => {
+          if (latinDigits) {
+            event.target.value = toAsciiDigits(event.target.value);
+          }
+          onChange?.(event);
+        }}
+      />
     </div>
   );
 }

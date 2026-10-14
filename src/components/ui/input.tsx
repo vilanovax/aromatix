@@ -8,20 +8,22 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
   endAddon?: React.ReactNode;
   /** Optional error message; renders below and sets aria-invalid. */
   error?: string;
+  /** Extra classes for the grouped field chrome (when an addon is present). */
+  groupClassName?: string;
 }
 
 /**
  * ورودی متن. Persian text is RTL by default; pass `dir="ltr"` for phone
  * numbers, emails and codes so digits keep their natural order.
  */
-export function Input({ className, type, startAddon, endAddon, error, id, dir, ...props }: InputProps) {
+export function Input({ className, type, startAddon, endAddon, error, groupClassName, id, dir, ...props }: InputProps) {
   const grouped = Boolean(startAddon || endAddon);
   const input = (
     <input
       id={id}
       type={type}
       dir={grouped ? undefined : dir}
-      aria-invalid={error ? true : undefined}
+      aria-invalid={error ? true : props["aria-invalid"]}
       className={cn(
         "flex w-full min-w-0 text-sm text-foreground placeholder:text-muted-foreground/70",
         "disabled:cursor-not-allowed disabled:opacity-50",
@@ -46,8 +48,9 @@ export function Input({ className, type, startAddon, endAddon, error, id, dir, .
       dir={dir}
       className={cn(
         "flex h-10 w-full items-center gap-2 rounded-field border border-input bg-field shadow-field px-3 text-sm transition-colors",
+        groupClassName,
         "focus-within:border-transparent focus-within:ring-2 focus-within:ring-ring/60",
-        error && "border-destructive/60",
+        (error || props["aria-invalid"]) && "border-destructive/60",
       )}
     >
       {startAddon && <span className="shrink-0 text-muted-foreground">{startAddon}</span>}

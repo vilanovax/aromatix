@@ -3,10 +3,12 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Avatar } from "@/components/Avatar";
-import { Button, ButtonLink } from "@/components/Button";
-import { Card, Note } from "@/components/Card";
 import { TextField } from "@/components/TextField";
 import { Shell } from "@/components/Shell";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useAccount } from "@/lib/account";
 import { AVATARS, avatarLabel } from "@/lib/auth/avatars";
 import type { PublicUser } from "@/lib/auth/public-user";
@@ -42,7 +44,15 @@ export function AccountScreen() {
   if (!ready || !user) {
     return (
       <Shell back={{ href: "/shelf", label: "آرومای من" }}>
-        <div className="px-5 pt-6" />
+        <div className="vf app px-5 pt-6" aria-hidden>
+          <Card className="flex items-center gap-4 p-4">
+            <Skeleton className="size-16 shrink-0 rounded-full" />
+            <div className="min-w-0 flex-1 space-y-2">
+              <Skeleton className="h-5 w-32" />
+              <Skeleton className="h-4 w-24" />
+            </div>
+          </Card>
+        </div>
       </Shell>
     );
   }
@@ -84,103 +94,90 @@ export function AccountScreen() {
 
   return (
     <Shell back={{ href: "/shelf", label: "آرومای من" }}>
-      <div className="relative overflow-hidden px-5 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 h-48 bg-[radial-gradient(110%_80%_at_50%_-20%,color-mix(in_srgb,var(--color-moss)_88%,transparent),transparent)]"
-        />
+      <div className="vf app px-5 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+        {welcome ? (
+          <Alert className="mb-4">حسابت ساخته شد. آواتار و اسم را همین‌جا می‌توانی تنظیم کنی.</Alert>
+        ) : null}
 
-        <div className="relative">
-          {welcome ? (
-            <Note className="mb-4 text-pretty" role="status">
-              حسابت ساخته شد. آواتار و اسم را همین‌جا می‌توانی تنظیم کنی.
-            </Note>
-          ) : null}
+        <Card className="flex items-center gap-4 p-4">
+          <Avatar id={avatarId} className="size-16 aspect-square shrink-0 ring-2 ring-brand/40" />
+          <div className="min-w-0 flex-1">
+            <h1 className="truncate text-headline font-bold">{name.trim() || user.name}</h1>
+            <p className="mt-1 text-body text-muted-foreground">
+              <bdi dir="ltr">{user.phone}</bdi>
+            </p>
+            <p className="mt-1 text-label text-muted-foreground">{avatarLabel(avatarId)}</p>
+          </div>
+        </Card>
 
-          <Card shadow="sheet" className="flex items-center gap-4 px-4 py-4">
-            <Avatar id={avatarId} className="size-16 shrink-0 ring-2 ring-brass/40" />
-            <div className="min-w-0 flex-1">
-              <h1 className="truncate text-headline font-bold">{name.trim() || user.name}</h1>
-              <p className="mt-1 text-body text-muted">
-                <bdi dir="ltr">{user.phone}</bdi>
-              </p>
-              <p className="mt-1 text-label text-faint">{avatarLabel(avatarId)}</p>
+        <form className="mt-5" method="post" onSubmit={save}>
+          <Card className="px-4 py-4">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-label text-muted-foreground">آواتار</p>
+              <p className="text-label text-muted-foreground">یکی را انتخاب کن</p>
             </div>
+            <div className="mt-3 grid grid-cols-4 gap-3">
+              {AVATARS.map((avatar) => {
+                const selected = avatar.id === avatarId;
+                return (
+                  <Button
+                    key={avatar.id}
+                    type="button"
+                    variant={selected ? "secondary" : "outline"}
+                    aria-pressed={selected}
+                    aria-label={avatar.label}
+                    onClick={() => {
+                      setAvatarId(avatar.id);
+                      setSaved(false);
+                    }}
+                    className={cn("!size-16 !rounded-surface", selected && "ring-2 ring-primary", !selected && "!bg-card")}
+                  >
+                    <Avatar id={avatar.id} className="size-11 aspect-square" />
+                  </Button>
+                );
+              })}
+            </div>
+
+            <TextField
+              id="account-name"
+              label="اسم"
+              autoComplete="name"
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+                setSaved(false);
+              }}
+              error={Boolean(error)}
+            />
+
+            {error ? (
+              <Alert variant="destructive" className="mt-4">
+                {error}
+              </Alert>
+            ) : null}
+            {saved ? (
+              <Alert variant="success" className="mt-4">
+                تغییرات ذخیره شد.
+              </Alert>
+            ) : null}
+
+            <Button
+              type="submit"
+              size="lg"
+              className="mt-5 min-h-12 w-full"
+              disabled={pending || !dirty || name.trim().length < 2}
+            >
+              {pending ? "در حال ذخیره…" : "ذخیره تغییرات"}
+            </Button>
           </Card>
+        </form>
 
-          <form className="mt-5" method="post" onSubmit={save}>
-            <Card shadow="card" className="px-4 py-4">
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="text-label text-muted">آواتار</p>
-                <p className="text-label text-faint">یکی را انتخاب کن</p>
-              </div>
-              <div className="mt-3 grid grid-cols-4 gap-2.5">
-                {AVATARS.map((avatar) => {
-                  const selected = avatar.id === avatarId;
-                  return (
-                    <button
-                      key={avatar.id}
-                      type="button"
-                      aria-pressed={selected}
-                      aria-label={avatar.label}
-                      onClick={() => {
-                        setAvatarId(avatar.id);
-                        setSaved(false);
-                      }}
-                      className={cn(
-                        "grid h-16 place-items-center rounded-panel border transition-[background-color,box-shadow,border-color]",
-                        selected
-                          ? "border-ink bg-moss shadow-card ring-2 ring-ink/15"
-                          : "border-line bg-card hover:bg-press",
-                      )}
-                    >
-                      <Avatar id={avatar.id} className="size-11" />
-                    </button>
-                  );
-                })}
-              </div>
-
-              <TextField
-                id="account-name"
-                label="اسم"
-                autoComplete="name"
-                value={name}
-                onChange={(event) => {
-                  setName(event.target.value);
-                  setSaved(false);
-                }}
-                error={Boolean(error)}
-              />
-
-              {error ? (
-                <p role="alert" className="mt-3 text-label text-pretty text-danger">
-                  {error}
-                </p>
-              ) : null}
-              {saved ? (
-                <Note className="mt-3 text-pretty" role="status">
-                  تغییرات ذخیره شد.
-                </Note>
-              ) : null}
-
-              <Button type="submit" className="mt-5 w-full" disabled={pending || !dirty || name.trim().length < 2}>
-                {pending ? "در حال ذخیره…" : "ذخیره تغییرات"}
-              </Button>
-            </Card>
-          </form>
-
-          <ButtonLink href="/shelf" variant="edge" className="mt-4 w-full">
-            برو به آرومای من
-          </ButtonLink>
-          <Button
-            type="button"
-            variant="quiet"
-            className="mt-2 w-full text-muted"
-            onClick={() => void logout()}
-          >
-            خروج از حساب
-          </Button>
-        </div>
+        <Button href="/shelf" variant="outline" size="lg" className="mt-4 min-h-12 w-full">
+          برو به آرومای من
+        </Button>
+        <Button type="button" variant="ghost" className="mt-2 min-h-11 w-full" onClick={() => void logout()}>
+          خروج از حساب
+        </Button>
       </div>
     </Shell>
   );

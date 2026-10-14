@@ -216,51 +216,51 @@ textarea {
   --range-fill: 0%;
   appearance: none;
   background: transparent;
-  accent-color: var(--ink);
+  accent-color: var(--primary, var(--ink));
 }
 
 .aroma-range::-webkit-slider-runnable-track {
-  height: 0.375rem;
+  height: 0.5rem;
   border-radius: 9999px;
   background: linear-gradient(
     to left,
-    var(--ink) 0,
-    var(--ink) var(--range-fill),
-    var(--line) var(--range-fill),
-    var(--line) 100%
+    var(--primary, var(--ink)) 0,
+    var(--primary, var(--ink)) var(--range-fill),
+    var(--border, var(--line)) var(--range-fill),
+    var(--border, var(--line)) 100%
   );
 }
 
 .aroma-range::-webkit-slider-thumb {
   appearance: none;
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-top: -0.6875rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-top: -1.125rem;
   border-radius: 9999px;
   border: 2px solid var(--card);
-  background: var(--ink);
-  box-shadow: 0 2px 8px -2px rgb(2 58 75 / 0.35);
+  background: var(--primary, var(--ink));
+  box-shadow: var(--depth-surface);
 }
 
 .aroma-range::-moz-range-track {
-  height: 0.375rem;
+  height: 0.5rem;
   border-radius: 9999px;
-  background: var(--line);
+  background: var(--border, var(--line));
 }
 
 .aroma-range::-moz-range-progress {
-  height: 0.375rem;
+  height: 0.5rem;
   border-radius: 9999px;
-  background: var(--ink);
+  background: var(--primary, var(--ink));
 }
 
 .aroma-range::-moz-range-thumb {
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 9999px;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 2px solid var(--card);
-  background: var(--ink);
-  box-shadow: 0 2px 8px -2px rgb(2 58 75 / 0.35);
+  border-radius: 9999px;
+  background: var(--primary, var(--ink));
+  box-shadow: var(--depth-surface);
 }
 
 .aroma-range:focus-visible {
@@ -268,12 +268,12 @@ textarea {
 }
 
 .aroma-range:focus-visible::-webkit-slider-thumb {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--ring, var(--ink));
   outline-offset: 2px;
 }
 
 .aroma-range:focus-visible::-moz-range-thumb {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--ring, var(--ink));
   outline-offset: 2px;
 }
 
@@ -355,6 +355,38 @@ html[data-admin-theme="light"] .vf {
   --brand: #c7a769;
   --brand-foreground: #023a4b;
   --field: #fbfcfc;
+  --depth-surface: 0 6px 20px -16px rgb(2 58 75 / 0.4);
+  --depth-overlay: 0 8px 24px -12px rgb(2 58 75 / 0.18);
+}
+/* اپ عمومی روشن می‌ماند؛ متن و خط قبلی روی بقیهٔ صفحه‌ها کار می‌کنند. */
+html[data-admin-theme="light"] .vf.app,
+.vf.app {
+  color-scheme: light;
+  --background: #e9edee;
+  --foreground: #023a4b;
+  --card: #fbfcfc;
+  --card-foreground: #023a4b;
+  --popover: #fbfcfc;
+  --popover-foreground: #023a4b;
+  --primary: #023a4b;
+  --primary-foreground: #fbfcfc;
+  --secondary: #dfe6e8;
+  --secondary-foreground: #023a4b;
+  --muted: #4a5b62;
+  --muted-foreground: #4a5b62;
+  --accent: #dfe6e8;
+  --accent-foreground: #023a4b;
+  --destructive: #8e3d32;
+  --success: #4f8a62;
+  --warning: #b8a27a;
+  --border: #d2dbde;
+  --input: #d2dbde;
+  --ring: #023a4b;
+  --brand: #c7a769;
+  --brand-foreground: #023a4b;
+  --field: #fbfcfc;
+  --line: #d2dbde;
+  --press: #dfe6e8;
   --depth-surface: 0 6px 20px -16px rgb(2 58 75 / 0.4);
   --depth-overlay: 0 8px 24px -12px rgb(2 58 75 / 0.18);
 }

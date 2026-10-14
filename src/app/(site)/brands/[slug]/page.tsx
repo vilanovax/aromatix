@@ -3,11 +3,15 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
+import { ChevronLeft, Store } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
 import { PerfumePhoto } from "@/components/Bottle";
-import { ButtonLink } from "@/components/Button";
-import { ForwardIcon } from "@/components/Icons";
 import { Shell } from "@/components/Shell";
+import { Alert } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { getBrand, getPerfume, perfumesByBrand, publicLead } from "@/lib/catalog";
 import { computeDna } from "@/lib/dna";
 import { countWord, faNum, millionToman } from "@/lib/format";
@@ -34,13 +38,17 @@ function BrandScreen() {
   if (!brand?.active) {
     return (
       <Shell composer back={{ href: "/brands", label: "برندها" }}>
-        <div className="px-5 py-10">
-          <h1 className="text-headline font-bold">این برند در نمونه نیست.</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">از فهرست برندها یکی را باز کن.</p>
-          <ButtonLink href="/brands" className="mt-5">
-            برگشت به برندها
-          </ButtonLink>
-        </div>
+        <EmptyState
+          className="vf app mx-5 my-10"
+          icon={Store}
+          title="این برند در نمونه نیست"
+          description="از فهرست برندها یکی را باز کن."
+          action={
+            <Button href="/brands" className="min-h-11">
+              برگشت به برندها
+            </Button>
+          }
+        />
       </Shell>
     );
   }
@@ -53,14 +61,14 @@ function BrandScreen() {
 
   return (
     <Shell composer back={back}>
-      <article className="step-in px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+      <article className="vf app step-in px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <header>
           <h1 className="text-balance text-display font-bold">{brand.nameFa}</h1>
-          <p className="mt-1 text-body text-muted">
+          <p className="mt-1 text-body text-muted-foreground">
             <span dir="ltr" className="inline-block">
               {brand.nameEn}
             </span>
-            <span className="mx-1.5 text-faint">·</span>
+            <span className="mx-2">·</span>
             {countWord(catalog.length)} عطر در آروما
           </p>
           {brand.description ? <p className="mt-4 max-w-[36rem] text-pretty text-body">{brand.description}</p> : null}
@@ -72,7 +80,7 @@ function BrandScreen() {
           <h2 id="catalog-title" className="text-title font-semibold">
             همهٔ عطرها
           </h2>
-          <ul className="mt-3 flex flex-col gap-2">
+          <ul className="mt-4 flex flex-col gap-3">
             {catalog.map((perfume) => (
               <li key={perfume.slug}>
                 <PerfumeRow perfume={perfume} from={`/brands/${brand.slug}`} />
@@ -94,16 +102,16 @@ function ForYou({ brandName, brandSlug }: { brandName: string; brandSlug: string
 
   if (!known) {
     return (
-      <p className="mt-5 rounded-panel bg-moss px-4 py-3 text-pretty text-body">
+      <Alert className="mt-5">
         چند عطری را که تجربه کردی امتیاز بده تا از {brandName} برایت جدا کنیم؛ یا با{" "}
         <Link
           href="/guide"
-          className="font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink"
+          className="font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           راهنمای انتخاب
         </Link>{" "}
         شروع کن.
-      </p>
+      </Alert>
     );
   }
 
@@ -115,8 +123,8 @@ function ForYou({ brandName, brandSlug }: { brandName: string; brandSlug: string
       <h2 id="for-you-title" className="text-title font-semibold">
         از {brandName} برای تو
       </h2>
-      <p className="mt-1 text-pretty text-label text-muted">{dna.sentence}</p>
-      <ul className="mt-3 flex flex-col gap-2">
+      <p className="mt-1 text-pretty text-label text-muted-foreground">{dna.sentence}</p>
+      <ul className="mt-4 flex flex-col gap-3">
         {picks.map((perfume) => (
           <li key={perfume.slug}>
             <PerfumeRow perfume={perfume} from={`/brands/${brandSlug}`} why />
@@ -133,27 +141,29 @@ function PerfumeRow({ perfume, from, why = false }: { perfume: Perfume; from: st
   const status = statusLabel(library[perfume.slug]);
 
   return (
-    <Link
-      href={perfumeHref(perfume.slug, from)}
-      className="pressable quiet flex items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
-    >
-      <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-16 w-13 shrink-0 rounded-control" />
-      <span className="min-w-0 flex-1 text-start">
-        <span className="flex items-baseline justify-between gap-2">
-          <span className="truncate text-body font-semibold">{perfume.nameFa}</span>
-          {status ? <span className="shrink-0 text-label text-muted">{status}</span> : null}
-        </span>
-        {why ? (
-          <span className="mt-0.5 line-clamp-2 block text-pretty text-label text-muted">{perfume.why}</span>
-        ) : (
-          <span className="mt-1.5 block max-w-56">
-            <AccordMark accords={perfume.accords} names />
+    <Card className="p-0">
+      <Link
+        href={perfumeHref(perfume.slug, from)}
+        className="flex min-h-16 items-center gap-3 rounded-surface p-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+      >
+        <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-16 w-12 shrink-0 rounded-control" />
+        <span className="min-w-0 flex-1 text-start">
+          <span className="flex items-baseline justify-between gap-2">
+            <span className="truncate text-body font-semibold">{perfume.nameFa}</span>
+            {status ? <Badge variant="secondary">{status}</Badge> : null}
           </span>
-        )}
-        {offer ? <span className="mt-1 block text-label text-muted">{millionToman(offer.price)}</span> : null}
-      </span>
-      <ForwardIcon className="size-5 shrink-0 text-muted" />
-    </Link>
+          {why ? (
+            <span className="mt-1 line-clamp-2 block text-pretty text-label text-muted-foreground">{perfume.why}</span>
+          ) : (
+            <span className="mt-2 block max-w-56">
+              <AccordMark accords={perfume.accords} names />
+            </span>
+          )}
+          {offer ? <span className="mt-1 block text-label text-muted-foreground">{millionToman(offer.price)}</span> : null}
+        </span>
+        <ChevronLeft className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+      </Link>
+    </Card>
   );
 }
 

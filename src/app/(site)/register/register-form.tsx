@@ -5,9 +5,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { safeNext } from "@/app/(site)/login/login-form";
 import { AuthFrame } from "@/components/AuthFrame";
-import { Button } from "@/components/Button";
-import { Note } from "@/components/Card";
 import { TextField } from "@/components/TextField";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import { useAccount } from "@/lib/account";
 import type { PublicUser } from "@/lib/auth/public-user";
 
@@ -63,10 +63,10 @@ export function RegisterForm() {
   if (createdName) {
     return (
       <AuthFrame title="حساب ساخته شد" lede={`${createdName}، خوش آمدی.`}>
-        <Note className="mt-0 text-pretty">
+        <Alert>
           قفسه و سلیقه‌ات از این به بعد روی همین شماره می‌ماند. می‌توانی آواتار را در حساب عوض کنی.
-        </Note>
-        <Button type="button" className="mt-5 w-full" onClick={continueAfterCreate}>
+        </Alert>
+        <Button type="button" size="lg" className="mt-5 min-h-12 w-full" onClick={continueAfterCreate}>
           ادامه
         </Button>
       </AuthFrame>
@@ -111,19 +111,19 @@ export function RegisterForm() {
           error={Boolean(error)}
         />
         {error ? (
-          <p role="alert" className="mt-3 text-label text-pretty text-danger">
+          <Alert variant="destructive" className="mt-4">
             {error}
-          </p>
+          </Alert>
         ) : null}
-        <Button type="submit" className="mt-5 w-full" disabled={pending || !ready}>
+        <Button type="submit" size="lg" className="mt-5 min-h-12 w-full" disabled={pending || !ready}>
           {pending ? "در حال ساخت حساب…" : "ساخت حساب"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-body text-muted">
+      <p className="mt-4 text-center text-body text-muted-foreground">
         حساب داری؟{" "}
         <Link
           href={`/login?next=${encodeURIComponent(next)}`}
-          className="font-semibold text-ink underline-offset-4 hover:underline"
+          className="font-semibold text-foreground underline-offset-4 hover:underline"
         >
           ورود
         </Link>

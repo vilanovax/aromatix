@@ -2,10 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/Button";
-import { SoftChip } from "@/components/Chip";
-import { BackIcon, CheckIcon } from "@/components/Icons";
+import { Check, ChevronRight } from "lucide-react";
 import { Shell } from "@/components/Shell";
+import { Alert } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { BUDGETS, OCCASIONS, REFERENCES, SEASONS } from "@/lib/catalog";
 import { cn, faNum } from "@/lib/format";
 import { useAroma } from "@/lib/store";
@@ -172,26 +173,26 @@ export default function GuidePage() {
 
   return (
     <Shell back={{ href: "/", label: "شروع" }}>
-      <div className="flex min-h-full flex-col">
+      <div className="vf app flex min-h-full flex-col">
         <div className="px-5 pt-5">
           <div
             className="flex items-center gap-3"
             role="group"
             aria-label={`قدم ${faNum(step + 1)} از ${faNum(STEPS.length)}: ${STEP_LABEL[current]}`}
           >
-            <div className="flex flex-1 gap-1.5" aria-hidden="true">
+            <div className="flex flex-1 gap-2" aria-hidden="true">
               {STEPS.map((item, index) => (
                 <span
                   key={item}
                   title={STEP_LABEL[item]}
                   className={cn(
-                    "h-1.5 flex-1 rounded-full transition-colors duration-300",
-                    index <= step ? "bg-ink" : "bg-line",
+                    "h-2 flex-1 rounded-full transition-colors duration-300",
+                    index <= step ? "bg-primary" : "bg-border",
                   )}
                 />
               ))}
             </div>
-            <p className="shrink-0 tabular-nums text-label text-muted">
+            <p className="shrink-0 tabular-nums text-label text-muted-foreground">
               {faNum(step + 1)} از {faNum(STEPS.length)}
             </p>
           </div>
@@ -199,30 +200,30 @@ export default function GuidePage() {
 
         <div key={current} className="step-in flex min-h-0 flex-1 flex-col px-5 pt-6 pb-4">
           <h1 className="text-balance text-headline font-bold">{COPY[current].title}</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">{COPY[current].support}</p>
+          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted-foreground">{COPY[current].support}</p>
 
           {step > 0 ? (
-            <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="انتخاب‌های تا اینجا">
+            <ul className="mt-4 flex flex-wrap gap-2" aria-label="انتخاب‌های تا اینجا">
               {occasions.map((id) => (
                 <li key={id}>
-                  <SoftChip>{OCCASIONS.find((item) => item.id === id)?.label}</SoftChip>
+                  <Badge className="rounded-full bg-secondary px-3">{OCCASIONS.find((item) => item.id === id)?.label}</Badge>
                 </li>
               ))}
               {season ? (
                 <li>
-                  <SoftChip>{SEASONS.find((item) => item.id === season)?.short}</SoftChip>
+                  <Badge className="rounded-full bg-secondary px-3">{SEASONS.find((item) => item.id === season)?.short}</Badge>
                 </li>
               ) : null}
               {budget && current === "reference" ? (
                 <li>
-                  <SoftChip>تا {faNum(budget)} میلیون</SoftChip>
+                  <Badge className="rounded-full bg-secondary px-3">تا {faNum(budget)} میلیون</Badge>
                 </li>
               ) : null}
             </ul>
           ) : null}
 
           {current === "occasion" && occasions.length > 0 ? (
-            <p className="mt-3.5 text-label text-muted" aria-live="polite">
+            <p className="mt-4 text-label text-muted-foreground" aria-live="polite">
               {occasions.length === 2
                 ? "۲ از ۲ انتخاب شد؛ برای عوض کردن یکی را بردار."
                 : `${faNum(occasions.length)} از ۲ — می‌توانی یکی دیگر هم بزنی.`}
@@ -232,7 +233,7 @@ export default function GuidePage() {
           <div
             className={cn(
               step > 0 || (current === "occasion" && occasions.length > 0) ? "mt-4" : "mt-5",
-              current === "budget" || current === "season" ? "grid grid-cols-2 gap-2.5" : "flex flex-col gap-2",
+              current === "budget" || current === "season" ? "grid grid-cols-2 gap-3" : "flex flex-col gap-2",
             )}
             role="group"
             aria-label={COPY[current].title}
@@ -288,27 +289,27 @@ export default function GuidePage() {
           </div>
 
           {limitHit ? (
-            <p role="status" className="mt-3.5 text-pretty text-label text-danger">
+            <Alert variant="destructive" className="mt-4">
               حداکثر دو موقعیت. برای عوض کردن، یکی را بردار.
-            </p>
+            </Alert>
           ) : null}
 
           {current === "season" || current === "budget" || current === "reference" ? (
-            <p className="mt-auto pt-5 text-label text-muted">بعد از انتخاب، خودش می‌رود قدم بعد.</p>
+            <p className="mt-auto pt-5 text-label text-muted-foreground">بعد از انتخاب، خودش می‌رود قدم بعد.</p>
           ) : null}
         </div>
 
-        <div className="sticky bottom-0 border-t border-line bg-paper/95 px-5 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
+        <div className="sticky bottom-0 border-t border-border bg-background/95 px-5 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
           {!ready && !optional ? (
-            <p className="mb-2.5 text-center text-label text-muted">{COPY[current].helper}</p>
+            <p className="mb-3 text-center text-label text-muted-foreground">{COPY[current].helper}</p>
           ) : footerSummary && current === "occasion" ? (
-            <p className="mb-2.5 text-center text-label text-muted">{footerSummary}</p>
+            <p className="mb-3 text-center text-label text-muted-foreground">{footerSummary}</p>
           ) : null}
           <div className="flex gap-2">
             {step > 0 ? (
               <Button
-                variant="edge"
-                size="icon-panel"
+                variant="outline"
+                size="icon"
                 aria-label="سؤال قبلی"
                 onClick={() => {
                   if (advanceTimer.current) {
@@ -318,16 +319,17 @@ export default function GuidePage() {
                   setLimitHit(false);
                   setStep((value) => value - 1);
                 }}
+                className="min-h-12 min-w-12"
               >
-                <BackIcon className="size-5" />
+                <ChevronRight strokeWidth={2} />
               </Button>
             ) : null}
             {optional && !reference ? (
-              <Button variant="edge" className="flex-1 border-ink" onClick={() => finish(null)}>
+              <Button variant="outline" className="min-h-12 flex-1" onClick={() => finish(null)}>
                 رد کردن و دیدن پیشنهادها
               </Button>
             ) : (
-              <Button disabled={!ready} className="flex-1" onClick={goNext}>
+              <Button disabled={!ready} size="lg" className="min-h-12 flex-1" onClick={goNext}>
                 {optional ? "دیدن پیشنهادها" : current === "occasion" ? "بعدی" : "ادامه"}
               </Button>
             )}
@@ -356,56 +358,53 @@ function Choice({
   children: React.ReactNode;
 }) {
   return (
-    <button
-      type="button"
+    <Button
+      variant={pressed ? "secondary" : "outline"}
+      size="lg"
       aria-pressed={pressed}
       onClick={onClick}
       className={cn(
-        "pressable relative flex items-center gap-3 rounded-panel border text-start outline-offset-2 transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-ink",
-        compact ? "min-h-[4.75rem] flex-col justify-center gap-1.5 px-3 py-3.5 text-center" : "min-h-14 px-3.5 py-3",
-        pressed ? "border-ink bg-moss" : "edge border-line bg-card",
+        "relative w-full !h-auto !whitespace-normal gap-3 font-medium",
+        compact ? "min-h-20 !flex-col !justify-center px-3 py-4 text-center" : "min-h-14 !justify-start px-4 py-3 text-start",
+        pressed ? "ring-2 ring-primary" : "!bg-card",
       )}
     >
       {compact ? (
         <>
-          {swatch ? (
-            <span aria-hidden="true" className="size-2.5 rounded-full" style={{ background: swatch }} />
-          ) : null}
+          {swatch ? <span aria-hidden="true" className="size-2 rounded-full" style={{ background: swatch }} /> : null}
           <span className={cn("text-body leading-snug", pressed ? "font-semibold" : "font-medium")}>{children}</span>
-          {hint ? <span className="text-label text-muted">{hint}</span> : null}
+          {hint ? <span className="text-label font-normal text-muted-foreground">{hint}</span> : null}
           <span
             aria-hidden="true"
             className={cn(
-              "absolute top-2.5 end-2.5 grid size-5 place-items-center rounded-full border transition-colors duration-150",
-              pressed ? "border-ink bg-ink text-paper" : "border-transparent",
+              "absolute top-2 end-2 grid size-5 place-items-center rounded-full border",
+              pressed ? "border-primary bg-primary text-primary-foreground" : "border-transparent",
             )}
           >
-            {pressed ? <CheckIcon className="size-3.5" /> : null}
+            {pressed ? <Check strokeWidth={2} /> : null}
           </span>
         </>
       ) : (
         <>
-          {swatch ? (
-            <span aria-hidden="true" className="size-2.5 shrink-0 rounded-full" style={{ background: swatch }} />
-          ) : null}
+          {swatch ? <span aria-hidden="true" className="size-2 shrink-0 rounded-full" style={{ background: swatch }} /> : null}
           <span className="min-w-0 flex-1">
             <span className={cn("block text-body leading-snug", pressed ? "font-semibold" : "font-medium")}>
               {children}
             </span>
-            {hint ? <span className="mt-1 block text-label text-muted">{hint}</span> : null}
+            {hint ? <span className="mt-1 block text-label font-normal text-muted-foreground">{hint}</span> : null}
           </span>
           <span
             aria-hidden="true"
             className={cn(
-              "grid size-6 shrink-0 place-items-center border transition-colors duration-150",
+              "grid size-6 shrink-0 place-items-center border",
               multi ? "rounded-md" : "rounded-full",
-              pressed ? "border-ink bg-ink text-paper" : "border-line bg-card",
+              pressed ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card",
             )}
           >
-            {pressed ? <CheckIcon className="size-3.5" /> : null}
+            {pressed ? <Check strokeWidth={2} /> : null}
           </span>
         </>
       )}
-    </button>
+    </Button>
   );
 }

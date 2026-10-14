@@ -4,8 +4,9 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { AuthFrame } from "@/components/AuthFrame";
-import { Button } from "@/components/Button";
 import { TextField } from "@/components/TextField";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
 import { useAccount } from "@/lib/account";
 import type { PublicUser } from "@/lib/auth/public-user";
 
@@ -79,19 +80,19 @@ export function LoginForm() {
           error={Boolean(error)}
         />
         {error ? (
-          <p role="alert" className="mt-3 text-label text-pretty text-danger">
+          <Alert variant="destructive" className="mt-4">
             {error}
-          </p>
+          </Alert>
         ) : null}
-        <Button type="submit" className="mt-5 w-full" disabled={pending || !phone.trim() || !password}>
+        <Button type="submit" size="lg" className="mt-5 min-h-12 w-full" disabled={pending || !phone.trim() || !password}>
           {pending ? "در حال ورود…" : "ورود"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-body text-muted">
+      <p className="mt-4 text-center text-body text-muted-foreground">
         حساب نداری؟{" "}
         <Link
           href={`/register?next=${encodeURIComponent(next)}`}
-          className="font-semibold text-ink underline-offset-4 hover:underline"
+          className="font-semibold text-foreground underline-offset-4 hover:underline"
         >
           ثبت‌نام
         </Link>

@@ -196,7 +196,7 @@ export function PerfumeForm({
               <input
                 aria-label="انتخاب رنگ درپوش"
                 type="color"
-                className="size-10 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
+                className="size-11 shrink-0 cursor-pointer rounded-control border border-border bg-field p-1 shadow-field [&::-webkit-color-swatch]:rounded-control [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch-wrapper]:p-0"
                 value={safeHex(draft.cap)}
                 onChange={(event) => patch({ cap: event.target.value })}
               />
@@ -225,7 +225,7 @@ export function PerfumeForm({
               <input
                 aria-label="رنگ آکورد"
                 type="color"
-                className="size-10 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
+                className="size-11 shrink-0 cursor-pointer rounded-control border border-border bg-field p-1 shadow-field [&::-webkit-color-swatch]:rounded-control [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch-wrapper]:p-0"
                 value={safeHex(accord.color)}
                 onChange={(event) => updateAccord(index, { color: event.target.value })}
               />

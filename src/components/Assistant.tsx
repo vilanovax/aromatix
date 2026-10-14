@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Button, ButtonLink } from "@/components/Button";
-import { Card, FieldShell } from "@/components/Card";
-import { Chip } from "@/components/Chip";
-import { SendIcon } from "@/components/Icons";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { respond, type AskContext, type Reply } from "@/lib/assistant";
 import { getPerfume } from "@/lib/catalog";
 import { featuredEntries, getEntry, relatedEntries } from "@/lib/knowledge";
@@ -66,50 +66,34 @@ export function Assistant({ quiet = false }: { quiet?: boolean }) {
   }
 
   return (
-    <div className="border-t border-line bg-paper px-5 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
+    <div className="vf app border-t border-border bg-background px-5 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))]">
       {reply ? (
         <div ref={replyRef}>
-          <Card
-            bordered={false}
-            shadow="sheet"
-            className="scroll-quiet sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain bg-moss p-4"
-            aria-live="polite"
-          >
+          <Card className="sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain !bg-secondary p-4" aria-live="polite">
             <div className="flex items-start justify-between gap-3">
               <p className="min-w-0 text-title font-semibold">
                 {reply.kind === "learn" || reply.kind === "compare" ? reply.title : "آروما"}
               </p>
-              <Button
-                variant="quiet"
-                shape="pill"
-                size="sm"
-                onClick={() => setReply(null)}
-                className="shrink-0 -me-1 px-3 py-2 text-body text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
-              >
+              <Button variant="ghost" onClick={() => setReply(null)} className="min-h-11 shrink-0 px-3">
                 بستن
               </Button>
             </div>
             <p className="mt-2 text-pretty text-body">{reply.body}</p>
             {reply.kind === "refine" ? (
-              <p className="mt-2 text-label text-muted">فهرست بالا با همین اصلاح چیده شد.</p>
+              <p className="mt-2 text-label text-muted-foreground">فهرست بالا با همین اصلاح چیده شد.</p>
             ) : null}
             {reply.kind === "learn" && reply.href ? (
               <Link
                 href={reply.href}
-                className="mt-3.5 inline-flex min-h-11 items-center text-body font-semibold leading-none underline-offset-4 outline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-ink"
+                className="mt-3 inline-flex min-h-11 items-center text-body font-semibold underline-offset-4 outline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-ring"
               >
                 {reply.hrefLabel}
               </Link>
             ) : null}
             {reply.kind === "compare" ? (
-              <ButtonLink
-                href={`/compare?a=${reply.a}&b=${reply.b}`}
-                shape="control"
-                size="lg"
-                className="mt-3.5 w-full outline-offset-2 focus-visible:outline-2 focus-visible:outline-paper"
-              >
+              <Button href={`/compare?a=${reply.a}&b=${reply.b}`} size="lg" className="mt-4 min-h-12 w-full">
                 مقایسه این دو
-              </ButtonLink>
+              </Button>
             ) : null}
           </Card>
         </div>
@@ -118,26 +102,29 @@ export function Assistant({ quiet = false }: { quiet?: boolean }) {
       {quiet || prompts.length === 0 ? null : chipsOpen ? (
         <div className="rail fade-end -mx-5 flex gap-2 px-5 pb-3" aria-label="پیشنهادهای سریع">
           {prompts.map((prompt) => (
-            <Chip key={prompt} className="px-3.5" onClick={() => ask(prompt)}>
+            <Button
+              key={prompt}
+              type="button"
+              variant="outline"
+              onClick={() => ask(prompt)}
+              className="min-h-11 shrink-0 !rounded-full !bg-card px-4 font-medium"
+            >
               {prompt}
-            </Chip>
+            </Button>
           ))}
         </div>
       ) : (
         <Button
-          variant="quiet"
-          shape="pill"
-          size="sm"
+          type="button"
+          variant="ghost"
           onClick={() => setChipsOpen(true)}
-          className="mb-2.5 min-h-9 px-3 text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+          className="mb-3 min-h-11 px-3 font-medium text-muted-foreground"
         >
           پیشنهادهای سریع
         </Button>
       )}
 
-      <FieldShell
-        as="form"
-        className="ps-3.5 shadow-card"
+      <form
         onSubmit={(event) => {
           event.preventDefault();
           ask(draft);
@@ -146,7 +133,7 @@ export function Assistant({ quiet = false }: { quiet?: boolean }) {
         <label className="sr-only" htmlFor="ask">
           سؤال یا اصلاح پیشنهاد
         </label>
-        <input
+        <Input
           id="ask"
           value={draft}
           onChange={(event) => setDraft(event.target.value)}
@@ -161,19 +148,14 @@ export function Assistant({ quiet = false }: { quiet?: boolean }) {
           placeholder={quiet ? "بعد از مقایسه بپرس…" : "بپرس یا پیشنهاد را اصلاح کن"}
           enterKeyHint="send"
           autoComplete="off"
-          className="min-h-12 min-w-0 flex-1 bg-transparent text-input outline-none placeholder:text-faint"
+          groupClassName="!h-12"
+          endAddon={
+            <Button type="submit" size="icon" disabled={!draft.trim()} aria-label="بفرست" className="!size-11">
+              <ArrowLeft strokeWidth={2} />
+            </Button>
+          }
         />
-        <Button
-          type="submit"
-          shape="control"
-          size="icon"
-          disabled={!draft.trim()}
-          aria-label="بفرست"
-          className="outline-offset-2 focus-visible:outline-2 focus-visible:outline-paper"
-        >
-          <SendIcon className="size-5" />
-        </Button>
-      </FieldShell>
+      </form>
     </div>
   );
 }

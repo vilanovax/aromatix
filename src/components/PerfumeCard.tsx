@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
 import { BrandLink } from "@/components/BrandLink";
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
-import { Chip } from "@/components/Chip";
-import { CheckIcon } from "@/components/Icons";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { cheaperUnconfirmed, publicLead } from "@/lib/catalog";
 import { cn, faNum, millionToman, ordinalWord } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
@@ -20,28 +19,30 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
   const picked = compare.includes(perfume.slug);
 
   return (
-    <Card as="article" shadow="card" className="p-3.5">
+    <Card className="p-4">
       <div className="flex items-start justify-between gap-3">
-        <p className="pt-2 text-label font-medium text-muted">پیشنهاد {ordinalWord(rank)}</p>
-        <Chip
-          selected={picked}
+        <p className="pt-2 text-label font-medium text-muted-foreground">پیشنهاد {ordinalWord(rank)}</p>
+        <Button
+          variant={picked ? "default" : "outline"}
+          size="sm"
+          aria-pressed={picked}
           onClick={() => toggleCompare(perfume.slug)}
           aria-label={picked ? `حذف ${perfume.nameFa} از مقایسه` : `افزودن ${perfume.nameFa} به مقایسه`}
-          className="gap-1 px-3"
+          className={cn("min-h-11 !rounded-full px-3 font-medium", !picked && "!bg-card")}
         >
-          {picked ? <CheckIcon className="size-3.5" /> : null}
+          {picked ? <Check strokeWidth={2} /> : null}
           مقایسه
-        </Chip>
+        </Button>
       </div>
 
       <div className="mt-1">
         <Link
           href={perfumeHref(perfume.slug, "/results")}
-          className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+          className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
         >
           <h2 className="text-title font-semibold">{perfume.nameFa}</h2>
         </Link>
-        <p className="mt-0.5 text-label text-muted">
+        <p className="mt-1 text-label text-muted-foreground">
           <BrandLink name={perfume.brand} from={perfume.slug} />
         </p>
       </div>
@@ -50,29 +51,28 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
         <AccordMark accords={perfume.accords} names />
       </div>
 
-      <p className="mt-2.5 text-pretty text-body">{perfume.why}</p>
+      <p className="mt-3 text-pretty text-body">{perfume.why}</p>
 
       <Button
-        variant="quiet"
-        shape="control"
+        variant="ghost"
         onClick={() => openShops(perfume.slug)}
-        className="mt-3 w-full flex-col items-start border-t border-line pt-3 text-start font-normal"
+        className="mt-3 !h-auto w-full !flex-col !items-start !justify-start gap-1 !whitespace-normal border-t border-border pt-3 text-start font-normal"
       >
         <span className="text-body font-semibold">
           {offer ? (
             <>
               {millionToman(offer.price)}
-              <span className="font-normal text-muted">، {offer.shop}</span>
+              <span className="font-normal text-muted-foreground">، {offer.shop}</span>
             </>
           ) : (
             "فروشگاه فعالی نیست"
           )}
         </span>
         {offer ? (
-          <span className="mt-1 flex items-center gap-1.5 text-label text-muted">
+          <span className="mt-1 flex items-center gap-2 text-label font-normal text-muted-foreground">
             <span
               aria-hidden="true"
-              className={cn("size-1.5 shrink-0 rounded-full", offer.stockConfirmed ? "bg-stock-ok" : "bg-stock-pending")}
+              className={cn("size-2 shrink-0 rounded-full", offer.stockConfirmed ? "bg-stock-ok" : "bg-stock-pending")}
             />
             <span className="min-w-0 text-pretty">
               {offer.stockConfirmed ? `موجود، بررسی ${offer.checkedOn}` : `آخرین قیمت ${offer.checkedOn}`}

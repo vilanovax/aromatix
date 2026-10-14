@@ -19,7 +19,7 @@ export function AccordMark({
 
   return (
     <div>
-      <div className="flex h-2 gap-0.5" role="img" aria-label={`نسبت آکوردها: ${label}`}>
+      <div className="flex h-2 gap-1" role="img" aria-label={`نسبت آکوردها: ${label}`}>
         {ranked.map((accord) => (
           <span
             key={accord.name}
@@ -29,14 +29,14 @@ export function AccordMark({
         ))}
       </div>
       {names && topNames.length > 0 ? (
-        <p className="mt-1.5 text-label leading-5 text-muted">{topNames.join(" · ")}</p>
+        <p className="mt-2 text-label leading-5 text-muted-foreground">{topNames.join("، ")}</p>
       ) : null}
       {labeled ? (
         <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
           {ranked.map((accord) => (
-            <li key={accord.name} className="flex items-center gap-1.5 text-label text-muted">
+            <li key={accord.name} className="flex items-center gap-2 text-label text-muted-foreground">
               <span className="size-2 rounded-full" style={{ background: accord.color }} />
-              <span className="text-ink">{accord.name}</span>
+              <span className="text-foreground">{accord.name}</span>
               <span>{faNum(Math.round((accord.strength / total) * 100))}٪</span>
             </li>
           ))}

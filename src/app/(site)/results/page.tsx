@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { Button, ButtonLink } from "@/components/Button";
-import { Card, Note } from "@/components/Card";
-import { Chip } from "@/components/Chip";
 import { PerfumeCard } from "@/components/PerfumeCard";
 import { Shell } from "@/components/Shell";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { LEANINGS } from "@/lib/catalog";
 import { countWord, faNum } from "@/lib/format";
 import { matchPerfumes, resultHeading } from "@/lib/match";
@@ -27,36 +28,37 @@ export default function ResultsPage() {
   return (
     <Shell composer back={{ href: "/", label: "شروع" }}>
       {!ready ? (
-        <div className="px-5 py-8 text-body text-muted" aria-busy="true">
+        <div className="vf app px-5 py-8 text-body text-muted-foreground" aria-busy="true">
           در حال آماده‌سازی…
         </div>
       ) : !profile ? (
-        <div className="px-5 py-8">
-          <h1 className="text-headline font-bold">هنوز پیشنهادی نداری</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">
-            از صفحهٔ شروع یک توصیف بنویس، یا با چند سؤال کوتاه راهنمایی شو.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <ButtonLink href="/" size="lg">
-              رفتن به شروع
-            </ButtonLink>
-            <ButtonLink href="/guide" variant="edge" size="lg">
-              سؤال‌های کوتاه
-            </ButtonLink>
-          </div>
-        </div>
+        <EmptyState
+          className="vf app mx-5 my-8"
+          title="هنوز پیشنهادی نداری"
+          description="از صفحهٔ شروع یک توصیف بنویس، یا با چند سؤال کوتاه راهنمایی شو."
+          action={
+            <div className="flex flex-wrap justify-center gap-2">
+              <Button href="/" className="min-h-11">
+                رفتن به شروع
+              </Button>
+              <Button href="/guide" variant="outline" className="min-h-11">
+                سؤال‌های کوتاه
+              </Button>
+            </div>
+          }
+        />
       ) : (
-        <div className="px-4 pt-5 pb-8">
+        <div className="vf app px-4 pt-5 pb-8">
           <header>
             <h1 className="text-balance text-headline font-bold">{resultHeading(profile, results.length)}</h1>
-            <p className="mt-2 text-pretty text-body text-muted">
+            <p className="mt-2 text-pretty text-body text-muted-foreground">
               تا {faNum(profile.budget)} میلیون تومان
               {profile.leaning && profile.leaning !== "any" ? ` · ${LEANINGS[profile.leaning].label}` : ""}
               {results.length > 0 && results.length < 5
                 ? ` · فقط ${countWord(results.length)} پیشنهاد مطمئن`
                 : ""}
             </p>
-            {profile.note ? <Note className="mt-3">{profile.note}</Note> : null}
+            {profile.note ? <Alert className="mt-3">{profile.note}</Alert> : null}
             {results.length > 0 && profile.leaning == null ? (
               <LeaningQuestion profile={profile} onPick={setProfile} />
             ) : null}
@@ -69,7 +71,7 @@ export default function ResultsPage() {
               </p>
               {profile.budget < 8 ? (
                 <Button
-                  className="mt-4 w-full"
+                  className="mt-4 min-h-12 w-full"
                   onClick={() =>
                     setProfile({
                       ...profile,
@@ -81,13 +83,13 @@ export default function ResultsPage() {
                   بودجه را تا {faNum(profile.budget === 2 ? 5 : 8)} میلیون بالا ببر
                 </Button>
               ) : (
-                <ButtonLink href="/guide" variant="quiet" size="lg" className="mt-4 font-medium">
+                <Button href="/guide" variant="ghost" className="mt-4 min-h-12 w-full">
                   سؤال‌ها را عوض کن
-                </ButtonLink>
+                </Button>
               )}
             </Card>
           ) : (
-            <ol className="mt-5 flex list-none flex-col gap-3.5 p-0">
+            <ol className="mt-5 flex list-none flex-col gap-4 p-0">
               {results.map((perfume, index) => (
                 <li key={perfume.slug}>
                   <PerfumeCard perfume={perfume} rank={index + 1} />
@@ -108,15 +110,28 @@ function LeaningQuestion({ profile, onPick }: { profile: Profile; onPick: (profi
   const pair: [Leaning, Leaning] = fresh ? ["citrus", "aquatic"] : ["sweet", "woody"];
 
   return (
-    <div role="group" aria-label="گرایش بو، اختیاری" className="mt-3.5 flex flex-wrap items-center gap-2">
+    <div role="group" aria-label="گرایش بو، اختیاری" className="mt-4 flex flex-wrap items-center gap-2">
       {pair.map((id) => (
-        <Chip key={id} onClick={() => onPick({ ...profile, leaning: id, note: LEANINGS[id].note })}>
+        <Button
+          key={id}
+          type="button"
+          variant="outline"
+          size="md"
+          onClick={() => onPick({ ...profile, leaning: id, note: LEANINGS[id].note })}
+          className="min-h-11 !rounded-full !bg-card px-4 font-medium"
+        >
           {LEANINGS[id].label}
-        </Chip>
+        </Button>
       ))}
-      <Chip muted onClick={() => onPick({ ...profile, leaning: "any" })}>
+      <Button
+        type="button"
+        variant="ghost"
+        size="md"
+        onClick={() => onPick({ ...profile, leaning: "any" })}
+        className="min-h-11 !rounded-full px-4 font-normal text-muted-foreground"
+      >
         فرقی نمی‌کنه
-      </Chip>
+      </Button>
     </div>
   );
 }

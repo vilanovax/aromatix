@@ -2,11 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button, ButtonLink } from "@/components/Button";
-import { FieldShell } from "@/components/Card";
-import { Chip } from "@/components/Chip";
-import { ForwardIcon } from "@/components/Icons";
+import { ChevronLeft } from "lucide-react";
 import { Shell } from "@/components/Shell";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { findPerfume, isPerfumeLookup, parseLine } from "@/lib/assistant";
 import { findKnowledge } from "@/lib/knowledge";
 import { getPerfume } from "@/lib/catalog";
@@ -95,10 +96,10 @@ export default function HomePage() {
 
   return (
     <Shell>
-      <div className="flex min-h-full flex-col px-5 pt-6 pb-[max(2rem,env(safe-area-inset-bottom))]">
+      <div className="vf app flex min-h-full flex-col px-5 pt-6 pb-[max(2rem,env(safe-area-inset-bottom))]">
         <header>
-          <h1 className="text-display font-bold text-balance">چه عطری بهت میاد؟</h1>
-          <p className="mt-2.5 max-w-[22rem] text-body text-pretty text-muted">
+          <h1 className="text-balance text-display font-bold">چه عطری بهت میاد؟</h1>
+          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted-foreground">
             موقعیت، رایحه، یا بودجه را بنویس — یا اسم یک عطر آشنا.
           </p>
         </header>
@@ -113,72 +114,77 @@ export default function HomePage() {
           <label htmlFor="wish" className="sr-only">
             اسم عطر یا توصیف عطری که می‌خواهی
           </label>
-          <FieldShell error={error} className="ps-3.5 shadow-card">
-            <input
-              id="wish"
-              value={draft}
-              onChange={(event) => {
-                setDraft(event.target.value);
-                setError(false);
-              }}
-              placeholder="مثلاً قرار پاییزی، تا ۵ میلیون"
-              enterKeyHint="search"
-              autoComplete="off"
-              aria-invalid={error}
-              aria-describedby={error ? "wish-error" : undefined}
-              className="min-h-12 min-w-0 flex-1 bg-transparent text-input text-ellipsis outline-none placeholder:text-faint focus:text-clip"
-            />
-            <Button type="submit" shape="control" size="lg" className="shrink-0">
-              پیدا کن
-            </Button>
-          </FieldShell>
+          <Input
+            id="wish"
+            value={draft}
+            onChange={(event) => {
+              setDraft(event.target.value);
+              setError(false);
+            }}
+            placeholder="مثلاً قرار پاییزی، تا ۵ میلیون"
+            enterKeyHint="search"
+            autoComplete="off"
+            aria-invalid={error || undefined}
+            aria-describedby={error ? "wish-error" : undefined}
+            groupClassName={error ? "!h-12 ps-4 !border-destructive" : "!h-12 ps-4"}
+            endAddon={
+              <Button type="submit" size="sm" className="min-h-11">
+                پیدا کن
+              </Button>
+            }
+          />
           {error ? (
-            <p id="wish-error" role="alert" className="mt-2 text-label text-pretty text-danger">
+            <Alert variant="destructive" id="wish-error" className="mt-3">
               اسم یک عطر، یک واژه مثل «وتیور»، یا موقعیت و بودجه را بنویس.
-            </p>
+            </Alert>
           ) : null}
         </form>
 
         {memory ? (
-          <ButtonLink
+          <Button
             href={memory.href}
-            variant="quiet"
-            size="sm"
+            variant="ghost"
             onClick={() => {
               if (memory.nudge) dismissNudge();
             }}
-            className="mt-3 justify-start px-0 text-start text-label text-pretty font-normal text-muted underline-offset-4 hover:underline"
+            className="mt-3 !h-auto !justify-start !whitespace-normal px-0 text-start text-label font-normal text-muted-foreground underline-offset-4 hover:underline"
           >
             {memory.sentence}
-          </ButtonLink>
+          </Button>
         ) : null}
 
         <div className="mt-5">
-          <p className="text-label text-muted">شروع سریع</p>
-          <ul className="mt-2.5 flex flex-wrap gap-2" aria-label="شروع سریع">
+          <p className="text-label text-muted-foreground">شروع سریع</p>
+          <ul className="mt-2 flex flex-wrap gap-2" aria-label="شروع سریع">
             {STARTS.map((item) => (
               <li key={item.label}>
-                <Chip className="min-h-11 px-3.5" onClick={() => go(item.query)}>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="md"
+                  onClick={() => go(item.query)}
+                  className="min-h-11 !rounded-full !bg-card px-4 font-medium"
+                >
                   {item.label}
-                </Chip>
+                </Button>
               </li>
             ))}
           </ul>
         </div>
 
-        <ButtonLink
-          href="/guide"
-          variant="quiet"
-          shape="panel"
-          size="xl"
-          className="mt-7 gap-3 border border-line bg-card px-4 py-3"
-        >
-          <span className="min-w-0 flex-1 text-start">
-            <span className="block text-body font-semibold">مطمئن نیستی چه بنویسی؟</span>
-            <span className="mt-0.5 block text-label text-muted">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
-          </span>
-          <ForwardIcon className="size-5 shrink-0 text-muted" />
-        </ButtonLink>
+        <Card className="mt-7 p-0">
+          <Button
+            href="/guide"
+            variant="ghost"
+            className="!h-auto min-h-14 w-full !justify-between gap-3 !whitespace-normal px-4 py-3 text-start"
+          >
+            <span className="min-w-0 flex-1">
+              <span className="block text-body font-semibold">مطمئن نیستی چه بنویسی؟</span>
+              <span className="mt-1 block text-label font-normal text-muted-foreground">چهار سؤال کوتاه؛ حدود یک دقیقه</span>
+            </span>
+            <ChevronLeft strokeWidth={1.5} />
+          </Button>
+        </Card>
       </div>
     </Shell>
   );

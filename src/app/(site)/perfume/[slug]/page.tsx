@@ -3,16 +3,19 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
+import { Check, ChevronLeft, SearchX } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
 import { PerfumePhoto } from "@/components/Bottle";
-import { Button, ButtonLink } from "@/components/Button";
-import { Card, Note } from "@/components/Card";
-import { Chip, MetaChip } from "@/components/Chip";
-import { TermChip, TermText } from "@/components/TermSheet";
-import { CheckIcon, ForwardIcon } from "@/components/Icons";
+import { TermChip } from "@/components/TermSheet";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
 import { BrandLink } from "@/components/BrandLink";
+import { Alert } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cheaperUnconfirmed, getPerfume, isPublicPerfume, performanceLabel, publicLead, sharedAccordNames } from "@/lib/catalog";
 import { entryForConcentration, entryForNote } from "@/lib/knowledge";
 import { cn, faNum, joinFa, millionToman } from "@/lib/format";
@@ -45,15 +48,17 @@ function PerfumeScreen() {
   if (!perfume) {
     return (
       <Shell back={back}>
-        <div className="px-5 py-10">
-          <h1 className="text-headline font-bold">این عطر در نمونه نیست.</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted">
-            از پیشنهادها یکی را باز کن یا دوباره جستجو کن.
-          </p>
-          <ButtonLink href={back.href} className="mt-5">
-            برگشت به {back.label}
-          </ButtonLink>
-        </div>
+        <EmptyState
+          className="vf app mx-5 my-10"
+          icon={SearchX}
+          title="این عطر در نمونه نیست"
+          description="از پیشنهادها یکی را باز کن یا دوباره جستجو کن."
+          action={
+            <Button href={back.href} className="min-h-11">
+              برگشت به {back.label}
+            </Button>
+          }
+        />
       </Shell>
     );
   }
@@ -69,11 +74,15 @@ function PerfumeScreen() {
   const picked = compare.includes(perfume.slug);
   const concentrationEntry = entryForConcentration(perfume.concentration);
   const similarFrom = `/perfume/${perfume.slug}`;
+  const layers = LAYERS.map((layer) => ({
+    ...layer,
+    notes: perfume.notes.filter((note) => note.layer === layer.id),
+  })).filter((layer) => layer.notes.length > 0);
 
   return (
     <Shell composer back={back}>
-      <article className="step-in px-5 pt-4 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-        <figure className="overflow-hidden rounded-sheet bg-well">
+      <article className="vf app step-in px-5 pt-4 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+        <figure className="overflow-hidden rounded-surface bg-secondary">
           <PerfumePhoto
             perfume={perfume}
             sizes="hero"
@@ -87,38 +96,42 @@ function PerfumeScreen() {
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <h1 className="text-balance text-display font-bold">{perfume.nameFa}</h1>
-              <p className="mt-1 text-pretty text-body text-muted">
+              <p className="mt-1 text-pretty text-body text-muted-foreground">
                 <BrandLink name={perfume.brand} from={perfume.slug} />
-                <span className="mx-1.5 text-faint">،</span>
+                <span className="mx-2">،</span>
                 <span dir="ltr" className="inline-block">
                   {perfume.nameEn}
                 </span>
               </p>
             </div>
-            <Chip
-              selected={picked}
-              onClick={() => toggleCompare(perfume.slug)}
+            <Button
+              variant={picked ? "default" : "outline"}
+              size="sm"
+              aria-pressed={picked}
               aria-label={picked ? `حذف ${perfume.nameFa} از مقایسه` : `افزودن ${perfume.nameFa} به مقایسه`}
-              className="mt-0.5 gap-1 shrink-0"
+              onClick={() => toggleCompare(perfume.slug)}
+              className={cn("mt-1 min-h-11 shrink-0 !rounded-full px-3 font-medium", !picked && "!bg-card")}
             >
-              {picked ? <CheckIcon className="size-3.5" /> : null}
+              {picked ? <Check strokeWidth={2} /> : null}
               مقایسه
-            </Chip>
+            </Button>
           </div>
 
-          <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="مشخصات شیشه">
+          <ul className="mt-3 flex flex-wrap items-center gap-2" aria-label="مشخصات شیشه">
             <li>
               {concentrationEntry ? (
                 <TermChip slug={concentrationEntry.slug}>{perfume.concentration}</TermChip>
               ) : (
-                <MetaChip>{perfume.concentration}</MetaChip>
+                <Badge className="rounded-full bg-secondary px-3">{perfume.concentration}</Badge>
               )}
             </li>
             <li>
-              <MetaChip>{faNum(perfume.volumeMl)} میلی‌لیتر</MetaChip>
+              <Badge className="rounded-full bg-secondary px-3">{faNum(perfume.volumeMl)} میلی‌لیتر</Badge>
             </li>
             {perfume.marketGender !== "مشترک" ? (
-              <li className="self-center text-label text-muted">{perfume.marketGender}</li>
+              <li>
+                <Badge variant="secondary">{perfume.marketGender}</Badge>
+              </li>
             ) : null}
           </ul>
         </header>
@@ -127,114 +140,117 @@ function PerfumeScreen() {
           <AccordMark accords={perfume.accords} names />
         </div>
 
-        <Note tone="paper" className="mt-5 rounded-panel px-4 py-3.5 text-pretty">
-          {perfume.why}
-        </Note>
+        <Alert className="mt-5">{perfume.why}</Alert>
 
         <Button
-          size="xl"
+          size="lg"
           onClick={() => openShops(perfume.slug)}
-          className="mt-5 w-full justify-between gap-3 px-4 text-start"
+          className="mt-5 !h-auto w-full !justify-between gap-3 !whitespace-normal px-4 py-3 text-start"
         >
           <span className="min-w-0">
             <span className="block text-body font-semibold">
               {offer ? `از ${millionToman(offer.price)}` : "فروشگاه‌ها"}
             </span>
             {offer ? (
-              <span className="mt-1 flex items-center gap-1.5 text-label leading-5 text-paper/80">
+              <span className="mt-1 flex items-center gap-2 text-label font-normal leading-5 text-primary-foreground/80">
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "size-1.5 shrink-0 rounded-full",
+                    "size-2 shrink-0 rounded-full",
                     offer.stockConfirmed ? "bg-stock-ok-on-ink" : "bg-stock-pending-on-ink",
                   )}
                 />
                 <span className="min-w-0 text-pretty">
                   {offer.shop}
-                  {offer.stockConfirmed ? `، موجود، بررسی ${offer.checkedOn}` : `، موجودی تأیید نشده`}
+                  {offer.stockConfirmed ? `، موجود، بررسی ${offer.checkedOn}` : "، موجودی تأیید نشده"}
                 </span>
               </span>
             ) : null}
           </span>
-          <span className="inline-flex shrink-0 items-center gap-0.5 text-label font-medium">
+          <span className="inline-flex shrink-0 items-center gap-1 text-label font-medium">
             فروشگاه‌ها
-            <ForwardIcon className="size-4" />
+            <ChevronLeft strokeWidth={2} />
           </span>
         </Button>
         {cheaper ? (
-          <p className="mt-2 text-pretty text-label text-muted">
+          <Alert variant="warning" className="mt-3">
             در {cheaper.shop} {millionToman(cheaper.price)}، موجودی تأیید نشده
-          </p>
+          </Alert>
         ) : null}
 
         <section className="mt-8" aria-labelledby="taste-title">
           <h2 id="taste-title" className="text-title font-semibold">
             این عطر چطوره؟
           </h2>
-          <p className="mt-1 text-pretty text-label text-muted">
+          <p className="mt-1 text-pretty text-label text-muted-foreground">
             برای آرومای من و پیشنهاد بعدی نگه می‌داریم.
           </p>
-          <div className="mt-3 rounded-panel bg-paper p-1.5">
+          <Card className="mt-3 p-2">
             <TasteRow slug={perfume.slug} name={perfume.nameFa} />
-          </div>
+          </Card>
         </section>
 
         {showFacts ? (
-          <Card as="dl" className="mt-8 divide-y divide-line px-4">
-            {season ? <Fact label="فصل" value={season} /> : null}
-            {perfume.longevity ? (
-              <Fact
-                label="ماندگاری"
-                term="longevity-sillage"
-                value={performanceLabel("longevity", perfume.longevity)}
-              />
-            ) : null}
-            {perfume.sillage ? (
-              <Fact
-                label="پخش بو"
-                term="longevity-sillage"
-                value={performanceLabel("sillage", perfume.sillage)}
-              />
-            ) : null}
-            {perfume.inspiredBy ? <Fact label="نزدیک به" value={inspiredName(perfume.inspiredBy)} /> : null}
+          <Card className="mt-8 px-4">
+            <dl className="divide-y divide-border">
+              {season ? <Fact label="فصل" value={season} /> : null}
+              {perfume.longevity ? (
+                <Fact
+                  label="ماندگاری"
+                  term="longevity-sillage"
+                  value={performanceLabel("longevity", perfume.longevity)}
+                />
+              ) : null}
+              {perfume.sillage ? (
+                <Fact
+                  label="پخش بو"
+                  term="longevity-sillage"
+                  value={performanceLabel("sillage", perfume.sillage)}
+                />
+              ) : null}
+              {perfume.inspiredBy ? <Fact label="نزدیک به" value={inspiredName(perfume.inspiredBy)} /> : null}
+            </dl>
           </Card>
         ) : null}
         {perfume.inspiredBy ? (
-          <p className="mt-2 text-pretty text-label text-muted">
+          <p className="mt-2 text-pretty text-label text-muted-foreground">
             شباهت بر اساس نوت‌های ثبت‌شده در آروماست، نه محصول برند اصلی.
           </p>
         ) : null}
 
-        {perfume.notes.length > 0 ? (
-          <details className="group mt-8">
-            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 rounded-control text-title font-semibold focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink [&::-webkit-details-marker]:hidden">
+        {layers.length > 0 ? (
+          <section className="mt-8" aria-labelledby="pyramid-title">
+            <h2 id="pyramid-title" className="text-title font-semibold">
               هرم بو
-              <span className="text-label font-normal text-muted group-open:hidden">نمایش</span>
-              <span className="hidden text-label font-normal text-muted group-open:inline">بستن</span>
-            </summary>
-            <dl className="mt-3 space-y-3">
-              {LAYERS.map((layer) => {
-                const notes = perfume.notes.filter((note) => note.layer === layer.id);
-                if (notes.length === 0) return null;
-                return (
-                  <div key={layer.id} className="flex gap-3 text-body">
-                    <dt className="w-12 shrink-0 pt-0.5 text-label text-muted">{layer.label}</dt>
-                    <dd className="min-w-0 text-pretty">
-                      {notes.map((note, index) => {
-                        const lesson = entryForNote(note.name);
-                        return (
-                          <span key={note.name}>
-                            {index > 0 ? "، " : null}
-                            {lesson ? <TermText slug={lesson.slug}>{note.name}</TermText> : note.name}
-                          </span>
-                        );
-                      })}
-                    </dd>
-                  </div>
-                );
-              })}
-            </dl>
-          </details>
+            </h2>
+            <Tabs defaultValue={layers[0].id} variant="underline" className="mt-3">
+              <TabsList aria-label="لایه‌های بو">
+                {layers.map((layer) => (
+                  <TabsTrigger key={layer.id} value={layer.id}>
+                    {layer.label}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {layers.map((layer) => (
+                <TabsContent key={layer.id} value={layer.id}>
+                  <ul className="flex flex-wrap gap-2">
+                    {layer.notes.map((note) => {
+                      const lesson = entryForNote(note.name);
+                      return (
+                        <li key={note.name}>
+                          {lesson ? (
+                            <TermChip slug={lesson.slug}>{note.name}</TermChip>
+                          ) : (
+                            <span className="inline-flex min-h-11 items-center text-body">{note.name}</span>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </TabsContent>
+              ))}
+            </Tabs>
+          </section>
         ) : null}
 
         {similars.length > 0 ? (
@@ -242,45 +258,42 @@ function PerfumeScreen() {
             <h2 id="similar-title" className="text-title font-semibold">
               مشابه‌ها
             </h2>
-            <ul className="mt-3 flex flex-col gap-2.5">
+            <ul className="mt-3 flex flex-col gap-3">
               {similars.map((item) => (
                 <li key={item.slug}>
-                  <div className="flex min-h-16 items-center gap-3 rounded-panel border border-line bg-card p-2.5 pe-3">
+                  <Card className="flex min-h-16 items-center gap-3 p-3">
                     <Link
                       href={perfumeHref(item.slug, similarFrom)}
-                      className="pressable quiet shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                      className="shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
                     >
-                      <PerfumePhoto
-                        perfume={item}
-                        sizes="thumb"
-                        alt=""
-                        className="h-14 w-12 rounded-control"
-                      />
+                      <PerfumePhoto perfume={item} sizes="thumb" alt="" className="h-14 w-12 rounded-control" />
                     </Link>
                     <span className="min-w-0 flex-1 text-start">
                       <Link
                         href={perfumeHref(item.slug, similarFrom)}
-                        className="block text-body font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                        className="block text-body font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
                       >
                         {item.nameFa}
                       </Link>
-                      <span className="mt-0.5 block text-pretty text-label text-muted">
+                      <span className="mt-1 block text-pretty text-label text-muted-foreground">
                         <BrandLink name={item.brand} from={item.slug} />
-                        <span className="mx-1 text-faint">،</span>
+                        <span className="mx-1">،</span>
                         {likeness(perfume, item)}
                       </span>
                       <span className="mt-2 block max-w-52">
                         <AccordMark accords={item.accords} />
                       </span>
                     </span>
-                    <Link
+                    <Button
                       href={perfumeHref(item.slug, similarFrom)}
+                      variant="ghost"
+                      size="icon"
                       aria-label={`باز کردن ${item.nameFa}`}
-                      className="pressable quiet shrink-0 rounded-control p-1 text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                      className="min-h-11 min-w-11 shrink-0"
                     >
-                      <ForwardIcon className="size-5" />
-                    </Link>
-                  </div>
+                      <ChevronLeft strokeWidth={1.5} />
+                    </Button>
+                  </Card>
                 </li>
               ))}
             </ul>
@@ -293,11 +306,15 @@ function PerfumeScreen() {
 
 function Fact({ label, value, term }: { label: string; value: string; term?: string }) {
   return (
-    <div className="flex gap-3 py-3.5 text-body">
-      <dt className="w-20 shrink-0 text-label text-muted">
-        {term ? <TermText slug={term} className="text-label text-muted">{label}</TermText> : label}
+    <div className="flex items-center justify-between gap-3 py-3 text-body">
+      <dt className="shrink-0">
+        {term ? (
+          <TermChip slug={term}>{label}</TermChip>
+        ) : (
+          <span className="text-label text-muted-foreground">{label}</span>
+        )}
       </dt>
-      <dd className="min-w-0 text-pretty">{value}</dd>
+      <dd className="min-w-0 text-pretty text-end">{value}</dd>
     </div>
   );
 }

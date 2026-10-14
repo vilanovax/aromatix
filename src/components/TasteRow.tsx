@@ -2,8 +2,9 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { Button } from "@/components/Button";
-import { cn, faNum } from "@/lib/format";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { faNum } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 
 export function TasteRow({
@@ -55,10 +56,10 @@ export function TasteRow({
   const sheet =
     open && mounted
       ? createPortal(
-          <div className="fixed inset-0 z-40 flex items-end justify-center">
+          <div className="vf app fixed inset-0 z-40 flex items-end justify-center bg-transparent">
             <button
               type="button"
-              className="absolute inset-0 bg-ink/40"
+              className="absolute inset-0 bg-foreground/40"
               aria-label="بستن ثبت تجربه"
               onClick={closeExperience}
             />
@@ -67,39 +68,33 @@ export function TasteRow({
               aria-modal="true"
               aria-labelledby={titleId}
               aria-describedby={supportId}
-              className="scroll-quiet sheet-panel relative z-10 w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-sheet bg-card px-5 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-sheet"
+              className="vf app sheet-panel scroll-quiet relative z-10 w-full max-w-lg overflow-y-auto overscroll-contain rounded-t-surface border border-border bg-card px-5 pt-3 pb-[max(1.5rem,env(safe-area-inset-bottom))] shadow-surface"
             >
-              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-line" aria-hidden="true" />
+              <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-border" aria-hidden="true" />
               <div className="flex items-start justify-between gap-3">
                 <div className="min-w-0">
                   <h2 id={titleId} className="text-pretty text-title font-semibold">
                     {name}
                   </h2>
-                  <p id={supportId} className="mt-1 text-pretty text-body text-muted">
+                  <p id={supportId} className="mt-1 text-pretty text-body text-muted-foreground">
                     چقدر از این عطر راضی هستی؟
                   </p>
                 </div>
-                <Button
-                  variant="quiet"
-                  shape="pill"
-                  size="sm"
-                  onClick={closeExperience}
-                  className="shrink-0 px-3 py-2 text-body outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
-                >
+                <Button variant="ghost" size="md" onClick={closeExperience} className="min-h-11 shrink-0 px-3">
                   بستن
                 </Button>
               </div>
 
-              <div className="mt-5 rounded-panel bg-paper px-4 py-4 text-center">
+              <div className="mt-5 rounded-surface bg-secondary px-4 py-4 text-center">
                 <p className="text-display font-bold tabular-nums" aria-live="polite">
                   {faNum(rating)}
-                  <span className="ms-1.5 text-body font-medium text-muted">از ۱۰</span>
+                  <span className="ms-2 text-body font-medium text-muted-foreground">از ۱۰</span>
                 </p>
-                <p className="mt-1.5 text-label text-muted">{ratingPhrase(rating)}</p>
+                <p className="mt-2 text-label text-muted-foreground">{ratingPhrase(rating)}</p>
               </div>
 
               <div className="mt-5">
-                <div className="mb-2 flex items-center justify-between gap-3 text-label text-muted">
+                <div className="mb-2 flex items-center justify-between gap-3 text-label text-muted-foreground">
                   <span>اصلاً دوست ندارم</span>
                   <span>عاشقشم</span>
                 </div>
@@ -122,21 +117,17 @@ export function TasteRow({
               </div>
 
               <Button
-                variant={owned ? "quiet" : "edge"}
-                shape="control"
+                variant={owned ? "secondary" : "outline"}
                 size="lg"
                 aria-pressed={owned}
                 onClick={() => setOwned((current) => !current)}
-                className={cn(
-                  "mt-5 w-full font-medium outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink",
-                  owned && "border-transparent bg-moss text-ink",
-                )}
+                className="mt-5 min-h-12 w-full"
               >
                 این عطر رو دارم
               </Button>
               <Button
                 size="lg"
-                className="mt-2.5 w-full"
+                className="mt-3 min-h-12 w-full"
                 onClick={() => {
                   saveExperience(slug, rating, owned);
                   closeExperience();
@@ -146,9 +137,9 @@ export function TasteRow({
               </Button>
               {experienced ? (
                 <Button
-                  variant="quiet"
+                  variant="ghost"
                   size="md"
-                  className="mt-1 w-full font-normal text-muted outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                  className="mt-1 min-h-11 w-full font-normal text-muted-foreground"
                   onClick={() => {
                     clearExperience(slug);
                     closeExperience();
@@ -167,39 +158,22 @@ export function TasteRow({
     return (
       <>
         <div className="flex items-center gap-2">
-          <span
-            className={cn(
-              "inline-flex min-h-9 items-center rounded-control px-2.5 text-label font-medium",
-              state?.disliked
-                ? "bg-clay text-danger"
-                : experienced
-                  ? "bg-ink text-paper"
-                  : state?.wanted
-                    ? "bg-moss text-ink"
-                    : state?.owned
-                      ? "bg-well text-ink"
-                      : "bg-well text-muted",
-            )}
+          <Badge
+            variant={state?.disliked ? "destructive" : "secondary"}
+            className="inline-flex min-h-11 items-center rounded-control bg-secondary px-3"
           >
             {compactLabel(state, experienced)}
-          </span>
+          </Badge>
           {!experienced && !state?.disliked ? (
-            <Button
-              variant="edge"
-              shape="control"
-              size="md"
-              onClick={openExperience}
-              className="min-h-9 flex-1 px-3 text-label font-medium"
-            >
+            <Button variant="outline" size="md" onClick={openExperience} className="min-h-11 flex-1 px-3">
               تجربه کردم
             </Button>
           ) : experienced ? (
             <Button
-              variant="quiet"
-              shape="control"
+              variant="ghost"
               size="md"
               onClick={openExperience}
-              className="min-h-9 flex-1 px-3 text-label font-normal text-muted"
+              className="min-h-11 flex-1 px-3 font-normal text-muted-foreground"
             >
               تغییر امتیاز
             </Button>
@@ -214,54 +188,42 @@ export function TasteRow({
     <>
       <div role="group" aria-label="نظر تو" className="grid grid-cols-3 items-end gap-1">
         <Button
-          variant={state?.wanted ? "quiet" : "edge"}
-          shape="control"
+          variant={state?.wanted ? "secondary" : "outline"}
           size="md"
           aria-pressed={Boolean(state?.wanted)}
           aria-label={state?.owned ? "می‌خوام؛ چون این عطر را داری غیرفعال است" : "می‌خوام"}
           title={state?.owned ? "چون این عطر را داری، می‌خوام لازم نیست" : undefined}
           disabled={Boolean(state?.owned)}
           onClick={() => setWanted(slug)}
-          className={cn(
-            "min-h-11 px-1 text-label font-normal disabled:opacity-45",
-            state?.wanted && "border-transparent bg-moss font-semibold text-ink",
-          )}
+          className="min-h-11 !whitespace-normal px-1 font-normal"
         >
           می‌خوام
         </Button>
-        <div className="flex flex-col items-center gap-1.5">
+        <div className="flex flex-col items-center gap-2">
           {state?.owned ? (
-            <span className="inline-flex min-h-7 max-w-full items-center justify-center rounded-control bg-moss px-2 text-center text-label font-semibold text-ink">
+            <Badge variant="secondary" className="rounded-control bg-secondary px-2 text-center">
               در قفسه‌ام
               {experienced && state.rating != null ? (
-                <span className="ms-1 font-medium tabular-nums text-muted">{faNum(state.rating)}/۱۰</span>
+                <span className="ms-1 font-medium tabular-nums">{faNum(state.rating)}/۱۰</span>
               ) : null}
-            </span>
+            </Badge>
           ) : null}
           <Button
-            variant={experienced ? "quiet" : "edge"}
-            shape="control"
+            variant={experienced ? "default" : "outline"}
             size="md"
             aria-pressed={Boolean(experienced)}
             onClick={openExperience}
-            className={cn(
-              "min-h-11 w-full px-1 text-label font-normal",
-              experienced && "border-transparent bg-ink font-semibold text-paper",
-            )}
+            className="min-h-11 w-full !whitespace-normal px-1 font-normal"
           >
             تجربه کردم
           </Button>
         </div>
         <Button
-          variant={state?.disliked ? "quiet" : "edge"}
-          shape="control"
+          variant={state?.disliked ? "destructive" : "outline"}
           size="md"
           aria-pressed={Boolean(state?.disliked)}
           onClick={() => setDisliked(slug)}
-          className={cn(
-            "min-h-11 px-1 text-label font-normal",
-            state?.disliked && "border-transparent bg-clay font-semibold text-danger",
-          )}
+          className="min-h-11 !whitespace-normal px-1 font-normal"
         >
           دوست ندارم
         </Button>

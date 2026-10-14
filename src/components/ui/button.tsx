@@ -27,7 +27,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   href?: string;
 }
 
-export function Button({ className, variant = "default", size = "md", type = "button", href, children, ...props }: ButtonProps) {
+export function Button({ className, variant = "default", size = "md", type = "button", href, children, ref, ...props }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const classes = cn(
     "inline-flex items-center justify-center whitespace-nowrap rounded-control font-semibold transition-all duration-(--motion) ease-motion",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
@@ -37,9 +37,28 @@ export function Button({ className, variant = "default", size = "md", type = "bu
     sizes[size],
     className,
   );
-  if (href) return <Link href={href} className={classes}>{children}</Link>;
+  if (href) {
+    if (/^https?:\/\//.test(href)) {
+      return (
+        <a href={href} className={classes} target="_blank" rel="noreferrer" aria-label={props["aria-label"]}>
+          {children}
+        </a>
+      );
+    }
+    return (
+      <Link
+        href={href}
+        className={classes}
+        aria-label={props["aria-label"]}
+        aria-current={props["aria-current"]}
+        onClick={props.onClick as React.MouseEventHandler<HTMLAnchorElement> | undefined}
+      >
+        {children}
+      </Link>
+    );
+  }
   return (
-    <button type={type} className={classes} {...props}>
+    <button ref={ref} type={type} className={classes} {...props}>
       {children}
     </button>
   );

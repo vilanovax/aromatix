@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
-import { ButtonLink } from "@/components/Button";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { useAccount } from "@/lib/account";
 
 export function AccountStrip() {
@@ -11,30 +13,33 @@ export function AccountStrip() {
 
   if (!user) {
     return (
-      <div className="mt-5 flex items-center justify-between gap-3 rounded-panel border border-line bg-card p-4">
-        <div>
+      <Card className="mt-5 flex items-center justify-between gap-3 p-4">
+        <div className="min-w-0">
           <p className="text-title font-semibold">حساب آروما</p>
-          <p className="text-label text-muted">اسم و آواتار، با شمارهٔ موبایل</p>
+          <p className="text-label text-muted-foreground">اسم و آواتار، با شمارهٔ موبایل</p>
         </div>
-        <ButtonLink href="/login" size="md">
+        <Button href="/login" className="min-h-11 shrink-0">
           ورود
-        </ButtonLink>
-      </div>
+        </Button>
+      </Card>
     );
   }
 
   return (
-    <Link
-      href="/account"
-      className="mt-5 flex items-center gap-3 rounded-panel border border-line bg-card p-3"
-    >
-      <Avatar id={user.avatarId} />
-      <span className="min-w-0">
-        <span className="block truncate text-title font-semibold">{user.name}</span>
-        <span className="block text-label text-muted">
-          <bdi dir="ltr">{user.phone}</bdi>
+    <Card className="mt-5 p-0">
+      <Link
+        href="/account"
+        className="flex min-h-16 items-center gap-3 rounded-surface p-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+      >
+        <Avatar id={user.avatarId} />
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-title font-semibold">{user.name}</span>
+          <span className="block text-label text-muted-foreground">
+            <bdi dir="ltr">{user.phone}</bdi>
+          </span>
         </span>
-      </span>
-    </Link>
+        <ChevronLeft className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+      </Link>
+    </Card>
   );
 }

@@ -3,11 +3,15 @@
 import Link from "next/link";
 import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
+import { Scale } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
 import { BrandLink } from "@/components/BrandLink";
-import { ButtonLink } from "@/components/Button";
-import { Card, Note } from "@/components/Card";
 import { Shell } from "@/components/Shell";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Separator } from "@/components/ui/separator";
 import {
   cheaperUnconfirmed,
   decisionVerdict,
@@ -43,20 +47,22 @@ function CompareScreen() {
   return (
     <Shell composer back={{ href: "/results", label: "پیشنهادها" }}>
       {!left || !right || left.slug === right.slug ? (
-        <div className="px-5 py-8">
-          <h1 className="text-headline font-bold">دو عطر را انتخاب کن</h1>
-          <p className="mt-3 max-w-[22rem] text-pretty text-body text-muted">
-            روی پیشنهادها یا صفحهٔ عطر، «مقایسه» را بزن. با دوتایی شدن، نوار پایین جدول را باز می‌کند.
-          </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <ButtonLink href="/results" size="md" className="px-5">
-              پیشنهادها
-            </ButtonLink>
-            <ButtonLink href="/shelf" variant="edge" size="md" className="px-5">
-              آرومای من
-            </ButtonLink>
-          </div>
-        </div>
+        <EmptyState
+          className="vf app mx-5 my-8"
+          icon={Scale}
+          title="دو عطر را انتخاب کن"
+          description="روی پیشنهادها یا صفحهٔ عطر، «مقایسه» را بزن. با دوتایی شدن، نوار پایین جدول را باز می‌کند."
+          action={
+            <div className="flex flex-wrap justify-center gap-2">
+              <Button href="/results" className="min-h-11">
+                پیشنهادها
+              </Button>
+              <Button href="/shelf" variant="outline" className="min-h-11">
+                آرومای من
+              </Button>
+            </div>
+          }
+        />
       ) : (
         <CompareBody left={left} right={right} />
       )}
@@ -73,41 +79,36 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
   const fromPath = `/compare?a=${left.slug}&b=${right.slug}`;
 
   return (
-    <div className="px-4 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+    <div className="vf app px-4 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
       <h1 className="px-1 text-balance text-headline font-bold">
         {left.nameFa} یا {right.nameFa}؟
       </h1>
 
-      <Note className="mt-3 text-pretty">{verdict.body}</Note>
-      {scent ? <p className="mt-3 px-1 text-pretty text-body text-muted">{scent}</p> : null}
+      <Alert className="mt-3">{verdict.body}</Alert>
+      {scent ? <p className="mt-3 px-1 text-pretty text-body text-muted-foreground">{scent}</p> : null}
 
-      <div className="mt-5 grid grid-cols-2 gap-2.5">
+      <div className="mt-5 grid grid-cols-2 gap-3">
         {[left, right].map((perfume) => {
           const lean = verdict.leanSlug === perfume.slug;
           const href = perfumeHref(perfume.slug, fromPath);
           const offer = publicLead(perfume);
           return (
-            <Card
-              key={perfume.slug}
-              as="div"
-              shadow={lean ? "card" : "none"}
-              className={cn("p-3.5", lean ? "border-ink" : undefined)}
-            >
+            <Card key={perfume.slug} className={cn("p-4", lean && "ring-2 ring-primary")}>
               <Link
                 href={href}
-                className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
               >
                 <span className="block text-title font-semibold">{perfume.nameFa}</span>
               </Link>
-              <span className="mt-0.5 block text-label">
+              <span className="mt-1 block text-label text-muted-foreground">
                 <BrandLink name={perfume.brand} from={perfume.slug} />
               </span>
               <Link
                 href={href}
-                className="mt-3 block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ink"
+                className="mt-3 block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
               >
                 <AccordMark accords={perfume.accords} />
-                <span className="mt-2.5 block text-body font-semibold">{offer ? millionToman(offer.price) : "—"}</span>
+                <span className="mt-3 block text-body font-semibold">{offer ? millionToman(offer.price) : "—"}</span>
               </Link>
             </Card>
           );
@@ -115,33 +116,33 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
       </div>
 
       {diffs.length > 0 ? (
-        <section className="mt-7" aria-labelledby="diff-title">
+        <section className="mt-8" aria-labelledby="diff-title">
           <h2 id="diff-title" className="px-1 text-title font-semibold">
             تفاوت‌ها
           </h2>
-          <div className="mt-2 grid grid-cols-2 gap-2.5 px-1 text-label text-muted" aria-hidden="true">
+          <div className="mt-2 grid grid-cols-2 gap-3 px-1 text-label text-muted-foreground" aria-hidden="true">
             <span>{left.nameFa}</span>
             <span>{right.nameFa}</span>
           </div>
-          <Card className="mt-2 overflow-hidden p-0">
+          <Card className="mt-2 px-4 py-1">
             {diffs.map((row, index) => (
-              <div
-                key={row.label}
-                className={cn("px-3.5 py-3", index > 0 && "border-t border-line")}
-              >
-                <p className="text-label text-muted">{row.label}</p>
-                <div className="mt-1.5 grid grid-cols-2 gap-2.5 text-body">
-                  {row.values.map((value, valueIndex) => (
-                    <p
-                      key={`${row.label}-${valueIndex}`}
-                      className={cn(
-                        "min-w-0 text-pretty",
-                        value === "—" ? "text-muted" : "font-medium text-ink",
-                      )}
-                    >
-                      {value}
-                    </p>
-                  ))}
+              <div key={row.label}>
+                {index > 0 ? <Separator /> : null}
+                <div className="py-3">
+                  <p className="text-label text-muted-foreground">{row.label}</p>
+                  <div className="mt-2 grid grid-cols-2 gap-3 text-body">
+                    {row.values.map((value, valueIndex) => (
+                      <p
+                        key={`${row.label}-${valueIndex}`}
+                        className={cn(
+                          "min-w-0 text-pretty",
+                          value === "—" ? "text-muted-foreground" : "font-medium text-foreground",
+                        )}
+                      >
+                        {value}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </div>
             ))}
@@ -151,7 +152,7 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
 
       <SharedBlock alike={alike} notes={notes} leftName={left.nameFa} rightName={right.nameFa} />
 
-      <p className="mt-6 px-1 text-pretty text-label text-muted">
+      <p className="mt-6 px-1 text-pretty text-label text-muted-foreground">
         قیمت‌ها از فروشگاهِ موجودِ تأییدشده است. جایی که داده نداریم، حدس نمی‌زنیم.
       </p>
       <UnverifiedPrices left={left} right={right} />
@@ -171,19 +172,20 @@ function SharedBlock({
   rightName: string;
 }) {
   return (
-    <section className="mt-7" aria-labelledby="shared-title">
+    <section className="mt-8" aria-labelledby="shared-title">
       <h2 id="shared-title" className="px-1 text-pretty text-title font-semibold">
         مشترک بین {leftName} و {rightName}
       </h2>
-      <Card className="mt-2 px-4 py-3.5">
+      <Card className="mt-2 px-4 py-4">
         {alike ? (
           <div>
-            <p className="text-label text-muted">مشخصات</p>
+            <p className="text-label text-muted-foreground">مشخصات</p>
             <p className="mt-1 text-pretty text-body">{alike}</p>
           </div>
         ) : null}
-        <div className={alike ? "mt-3 border-t border-line pt-3" : undefined}>
-          <p className="text-label text-muted">نوت‌ها</p>
+        {alike ? <Separator className="my-3" /> : null}
+        <div>
+          <p className="text-label text-muted-foreground">نوت‌ها</p>
           <p className="mt-1 text-pretty text-body">{notes || "نوت مشترکی در این نمونه نیست."}</p>
         </div>
       </Card>
@@ -199,11 +201,13 @@ function UnverifiedPrices({ left, right }: { left: Perfume; right: Perfume }) {
   });
   if (notes.length === 0) return null;
   return (
-    <ul className="mt-2 space-y-1 px-1 text-pretty text-label text-muted">
-      {notes.map((note) => (
-        <li key={note}>{note}</li>
-      ))}
-    </ul>
+    <Alert variant="warning" className="mt-3">
+      <ul className="space-y-1">
+        {notes.map((note) => (
+          <li key={note}>{note}</li>
+        ))}
+      </ul>
+    </Alert>
   );
 }
 
