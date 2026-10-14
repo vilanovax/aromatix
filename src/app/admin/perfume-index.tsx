@@ -4,6 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { AccordMark } from "@/components/AccordMark";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
+import { SearchInput } from "@/components/ui/search-input";
+import { Select } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn, faNum } from "@/lib/format";
 import type { Accord } from "@/lib/types";
 
@@ -96,74 +102,40 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
   return (
     <div className="mt-5">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <label className="block min-w-0 flex-1">
-          <span className="sr-only">جستجو در عطرها</span>
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="نام، برند یا اسلاگ"
-            className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
-          />
-        </label>
+        <div className="min-w-0 flex-1">
+          <SearchInput value={query} onChange={setQuery} placeholder="نام، برند یا اسلاگ" aria-label="جستجو در عطرها" />
+        </div>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex rounded-control border border-border bg-card p-1" role="group" aria-label="مدل نمایش">
-            {VIEWS.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                aria-pressed={view === item.id}
-                onClick={() => setView(item.id)}
-                className={cn(
-                  "min-h-11 rounded-control px-3 text-label focus-visible:outline-2 focus-visible:outline-ring",
-                  view === item.id ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground",
-                )}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
+          <Tabs value={view} defaultValue="grid" onValueChange={(next) => setView(next as View)}>
+            <TabsList aria-label="مدل نمایش">
+              {VIEWS.map((item) => (
+                <TabsTrigger key={item.id} value={item.id}>
+                  {item.label}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
           {openCount > 0 ? (
-            <button
-              type="button"
-              aria-pressed={openOnly}
-              onClick={() => setOpenOnly((value) => !value)}
-              className={cn(
-                "min-h-11 rounded-control px-3 text-label focus-visible:outline-2 focus-visible:outline-ring",
-                openOnly ? "bg-primary font-medium text-primary-foreground" : "border border-border bg-card text-foreground",
-              )}
-            >
+            <Button type="button" size="sm" variant={openOnly ? "default" : "outline"} aria-pressed={openOnly} onClick={() => setOpenOnly((value) => !value)}>
               موارد باز
-            </button>
+            </Button>
           ) : null}
-          <label className="min-w-0 flex-1 sm:flex-none">
-            <span className="sr-only">برند</span>
-            <select
+          <div className="min-w-0 flex-1 sm:w-40 sm:flex-none">
+            <Select
+              aria-label="برند"
               value={brandName ? picked : ""}
               onChange={(event) => chooseBrand(event.target.value)}
-              className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ring sm:w-40"
-            >
-              <option value="">همهٔ برندها</option>
-              {brands.map((item) => (
-                <option key={item.slug} value={item.slug}>
-                  {item.nameFa}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="min-w-0 flex-1 sm:flex-none">
-            <span className="sr-only">مرتب‌سازی</span>
-            <select
+              options={[{ value: "", label: "همهٔ برندها" }, ...brands.map((item) => ({ value: item.slug, label: item.nameFa }))]}
+            />
+          </div>
+          <div className="min-w-0 flex-1 sm:w-36 sm:flex-none">
+            <Select
+              aria-label="مرتب‌سازی"
               value={sort}
               onChange={(event) => setSort(event.target.value as Sort)}
-              className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ring sm:w-36"
-            >
-              {SORTS.map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
-          </label>
+              options={SORTS.map((item) => ({ value: item.id, label: item.label }))}
+            />
+          </div>
         </div>
       </div>
 
@@ -175,13 +147,16 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
       ) : null}
 
       {visible.length === 0 ? (
-        <p className="mt-3 text-body text-muted-foreground">
-          {brandName && !query.trim() && !openOnly
-            ? `عطری از ${brandName} در این فهرست نیست.`
-            : openOnly && !query.trim()
-              ? "مورد بازی در این فهرست نیست."
-              : "با این عبارت عطری نیست."}
-        </p>
+        <EmptyState
+          className="mt-3"
+          title={
+            brandName && !query.trim() && !openOnly
+              ? `عطری از ${brandName} در این فهرست نیست`
+              : openOnly && !query.trim()
+                ? "مورد بازی در این فهرست نیست"
+                : "با این عبارت عطری نیست"
+          }
+        />
       ) : view === "simple" ? (
         <ul className="mt-3 divide-y divide-border overflow-hidden rounded-surface border border-border bg-card">
           {visible.map((row) => (
@@ -261,9 +236,9 @@ function IssueChips({ slug, issues, className }: { slug: string; issues: Perfume
         <Link
           key={`${issue.part}-${issue.label}`}
           href={issue.part === "shops" ? "/admin/shops" : `/admin/perfumes/${slug}#${issue.part}`}
-          className="inline-flex min-h-9 items-center rounded-full bg-secondary px-3 text-label text-foreground hover:underline"
+          className="inline-flex min-h-9 items-center"
         >
-          {issue.label}
+          <Badge variant="warning">{issue.label}</Badge>
         </Link>
       ))}
     </span>

@@ -3,8 +3,15 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
+import { ChevronDown } from "lucide-react";
 import { moveArticle, setArticleActive } from "@/app/admin/learn-actions";
-import { Chip } from "@/components/Chip";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
+import { SearchInput } from "@/components/ui/search-input";
+import { Select } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { KNOWLEDGE_GROUPS, type ArticleDisplay, type KnowledgeGroup } from "@/lib/knowledge";
 import { formatShamsi } from "@/lib/jalali";
 import { cn, faNum } from "@/lib/format";
@@ -78,45 +85,29 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
   return (
     <div className="mt-5">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <label className="block min-w-0 flex-1">
-          <span className="sr-only">جستجو در دانستنی‌ها</span>
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="عنوان یا اسلاگ"
-            className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
-          />
-        </label>
-        <label className="min-w-0 sm:w-36">
-          <span className="sr-only">مرتب‌سازی</span>
-          <select
+        <div className="min-w-0 flex-1">
+          <SearchInput value={query} onChange={setQuery} placeholder="عنوان یا اسلاگ" aria-label="جستجو در دانستنی‌ها" />
+        </div>
+        <div className="min-w-0 sm:w-36">
+          <Select
+            aria-label="مرتب‌سازی"
             value={sort}
             onChange={(event) => setSort(event.target.value as SortId)}
-            className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ring"
-          >
-            {SORTS.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-        </label>
+            options={SORTS.map((item) => ({ value: item.id, label: item.label }))}
+          />
+        </div>
       </div>
 
-      <ul className="mt-3 flex flex-wrap gap-2" aria-label="دسته‌ها">
-        <li>
-          <Chip selected={group === "all"} onClick={() => setGroup("all")}>
-            همه
-          </Chip>
-        </li>
-        {KNOWLEDGE_GROUPS.map((item) => (
-          <li key={item.id}>
-            <Chip selected={group === item.id} onClick={() => setGroup(item.id)}>
+      <Tabs value={group} defaultValue="all" onValueChange={(next) => setGroup(next as GroupFilter)} className="mt-3">
+        <TabsList aria-label="دسته‌ها">
+          <TabsTrigger value="all">همه</TabsTrigger>
+          {KNOWLEDGE_GROUPS.map((item) => (
+            <TabsTrigger key={item.id} value={item.id}>
               {item.label}
-            </Chip>
-          </li>
-        ))}
-      </ul>
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </Tabs>
 
       {narrowed ? (
         <p className="mt-3 text-label text-muted-foreground">
@@ -128,13 +119,13 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
       ) : null}
 
       {error ? (
-        <p role="alert" className="mt-3 text-label text-destructive">
+        <Alert variant="destructive" className="mt-3">
           {error}
-        </p>
+        </Alert>
       ) : null}
 
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted-foreground">{group !== "all" && !query.trim() ? "در این دسته مقاله‌ای نیست." : "با این عبارت مقاله‌ای نیست."}</p>
+        <EmptyState className="mt-4" title={group !== "all" && !query.trim() ? "در این دسته مقاله‌ای نیست" : "با این عبارت مقاله‌ای نیست"} />
       ) : (
         <ul className="mt-3 overflow-hidden rounded-surface border border-border bg-card">
           {visible.map((row, index) => (
@@ -155,38 +146,26 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
                   <div className="flex shrink-0 items-center gap-2">
                     {canReorder ? (
                       <span className="flex gap-1">
-                        <button
-                          type="button"
-                          aria-label="بالاتر"
-                          disabled={pending !== null || index === 0}
-                          onClick={() => move(row, "up")}
-                          className="grid size-9 place-items-center rounded-control border border-border text-muted-foreground disabled:opacity-40"
-                        >
-                          <Chevron className="rotate-180" />
-                        </button>
-                        <button
-                          type="button"
-                          aria-label="پایین‌تر"
-                          disabled={pending !== null || index === visible.length - 1}
-                          onClick={() => move(row, "down")}
-                          className="grid size-9 place-items-center rounded-control border border-border text-muted-foreground disabled:opacity-40"
-                        >
-                          <Chevron />
-                        </button>
+                        <Button type="button" size="icon" variant="outline" aria-label="بالاتر" disabled={pending !== null || index === 0} onClick={() => move(row, "up")}>
+                          <ChevronDown className="rotate-180" />
+                        </Button>
+                        <Button type="button" size="icon" variant="outline" aria-label="پایین‌تر" disabled={pending !== null || index === visible.length - 1} onClick={() => move(row, "down")}>
+                          <ChevronDown />
+                        </Button>
                       </span>
                     ) : null}
-                    <button
-                      type="button"
-                      aria-pressed={row.active}
-                      disabled={pending === row.slug}
-                      onClick={() => toggle(row)}
-                      className={cn(
-                        "min-h-9 min-w-16 rounded-full border px-3 text-label",
-                        row.active ? "border-border text-foreground" : "border-destructive text-destructive",
-                      )}
-                    >
-                      {pending === row.slug ? "…" : row.active ? "فعال" : "پنهان"}
-                    </button>
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <span>{pending === row.slug ? "…" : row.active ? "فعال" : "پنهان"}</span>
+                      <Switch
+                        checked={row.active}
+                        disabled={pending === row.slug}
+                        aria-label={row.active ? "فعال" : "پنهان"}
+                        onCheckedChange={(next) => {
+                          if (next === row.active) return;
+                          void toggle(row);
+                        }}
+                      />
+                    </div>
                   </div>
                 </div>
               </li>
@@ -194,14 +173,6 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
         </ul>
       )}
     </div>
-  );
-}
-
-function Chevron({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 16 16" className={cn("size-4", className)} aria-hidden>
-      <path d="M4 6.5 8 10.5 12 6.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
   );
 }
 

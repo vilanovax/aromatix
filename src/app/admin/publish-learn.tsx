@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { publishLearnSeed } from "@/app/admin/learn-actions";
+import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 
 export function PublishLearn() {
@@ -23,11 +24,11 @@ export function PublishLearn() {
   }
 
   return (
-    <div className="mt-4">
+    <div>
       {error ? (
-        <p role="alert" className="mb-3 text-label text-destructive">
+        <Alert variant="destructive" className="mb-3">
           {error}
-        </p>
+        </Alert>
       ) : null}
       <Button type="button" size="md" disabled={pending} onClick={publish}>
         {pending ? "در حال انتشار" : "انتشار دانستنی‌ها"}

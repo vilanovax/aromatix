@@ -5,13 +5,14 @@ import { useEffect, useState } from "react";
 import { deletePerfume, savePerfume } from "@/app/admin/actions";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Chip } from "@/components/Chip";
+import { CheckboxGroup } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Select } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { OCCASIONS, REFERENCES, SEASONS, type Brand } from "@/lib/catalog";
 import { cn } from "@/lib/format";
+import { fa } from "@/lib/utils";
 import type { Accord, BottleShape, Note, Perfume, Season } from "@/lib/types";
-
-const control =
-  "h-11 rounded-field border border-input bg-field shadow-field px-3 text-body text-foreground outline-none focus-visible:outline-2 focus-visible:outline-ring";
 
 export function PerfumeForm({
   mode,
@@ -132,9 +133,9 @@ export function PerfumeForm({
             ["use", "استفاده"],
             ["links", "ارتباط"],
           ].map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-border bg-card px-3 py-1.5 text-label">
+            <Button key={id} href={`#${id}`} variant="outline" size="sm" className="shrink-0">
               {label}
-            </a>
+            </Button>
           ))}
         </nav>
       </div>
@@ -143,72 +144,70 @@ export function PerfumeForm({
         <div className="grid gap-4 sm:grid-cols-2">
           {mode === "create" ? (
             <Field label="اسلاگ" className="sm:col-span-2">
-              <input className={control} dir="ltr" value={draft.slug} onChange={(event) => patch({ slug: event.target.value })} />
+              <Input dir="ltr" value={draft.slug} onChange={(event) => patch({ slug: event.target.value })} />
             </Field>
           ) : null}
           <Field label="نام فارسی">
-            <input className={control} value={draft.nameFa} onChange={(event) => patch({ nameFa: event.target.value })} />
+            <Input value={draft.nameFa} onChange={(event) => patch({ nameFa: event.target.value })} />
           </Field>
           <Field label="نام انگلیسی">
-            <input className={control} dir="ltr" value={draft.nameEn} onChange={(event) => patch({ nameEn: event.target.value })} />
+            <Input dir="ltr" value={draft.nameEn} onChange={(event) => patch({ nameEn: event.target.value })} />
           </Field>
           <Field label="برند">
-            <select className={control} value={draft.brand} onChange={(event) => patch({ brand: event.target.value })}>
-              {brands.map((brand) => (
-                <option key={brand.slug} value={brand.nameFa}>
-                  {brand.nameFa}
-                  {brand.active ? "" : " · غیرفعال"}
-                </option>
-              ))}
-            </select>
-          </Field>
-          <Field label="جنسیت بازار">
-            <select
-              className={control}
-              value={draft.marketGender}
-              onChange={(event) => patch({ marketGender: event.target.value as Perfume["marketGender"] })}
-            >
-              <option value="مشترک">مشترک</option>
-              <option value="مردانه">مردانه</option>
-              <option value="زنانه">زنانه</option>
-            </select>
-          </Field>
-          <Field label="غلظت">
-            <input className={control} value={draft.concentration} onChange={(event) => patch({ concentration: event.target.value })} />
-          </Field>
-          <Field label="حجم، میلی‌لیتر">
-            <input
-              className={control}
-              inputMode="numeric"
-              value={draft.volumeMl}
-              onChange={(event) => patch({ volumeMl: Number(event.target.value) })}
+            <Select
+              value={draft.brand}
+              onChange={(event) => patch({ brand: event.target.value })}
+              options={brands.map((brand) => ({
+                value: brand.nameFa,
+                label: brand.active ? brand.nameFa : `${brand.nameFa} · غیرفعال`,
+              }))}
             />
           </Field>
+          <Field label="جنسیت بازار">
+            <Select
+              value={draft.marketGender}
+              onChange={(event) => patch({ marketGender: event.target.value as Perfume["marketGender"] })}
+              options={[
+                { value: "مشترک", label: "مشترک" },
+                { value: "مردانه", label: "مردانه" },
+                { value: "زنانه", label: "زنانه" },
+              ]}
+            />
+          </Field>
+          <Field label="غلظت">
+            <Input value={draft.concentration} onChange={(event) => patch({ concentration: event.target.value })} />
+          </Field>
+          <Field label="حجم، میلی‌لیتر">
+            <Input inputMode="numeric" value={draft.volumeMl} onChange={(event) => patch({ volumeMl: Number(event.target.value) })} />
+          </Field>
           <Field label="شکل شیشه">
-            <select className={control} value={draft.bottle} onChange={(event) => patch({ bottle: event.target.value as BottleShape })}>
-              <option value="rect">چهارگوش</option>
-              <option value="slim">باریک</option>
-              <option value="round">گرد</option>
-            </select>
+            <Select
+              value={draft.bottle}
+              onChange={(event) => patch({ bottle: event.target.value as BottleShape })}
+              options={[
+                { value: "rect", label: "چهارگوش" },
+                { value: "slim", label: "باریک" },
+                { value: "round", label: "گرد" },
+              ]}
+            />
           </Field>
           <Field label="رنگ درپوش">
             <span className="flex items-center gap-2">
               <input
                 aria-label="انتخاب رنگ درپوش"
                 type="color"
-                className="size-11 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
+                className="size-10 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
                 value={safeHex(draft.cap)}
                 onChange={(event) => patch({ cap: event.target.value })}
               />
-              <input className={control} dir="ltr" value={draft.cap} onChange={(event) => patch({ cap: event.target.value })} />
+              <Input dir="ltr" value={draft.cap} onChange={(event) => patch({ cap: event.target.value })} />
             </span>
           </Field>
           <Field label="عطار، اگر تأیید شده">
-            <input className={control} value={draft.perfumer ?? ""} onChange={(event) => patch({ perfumer: event.target.value || undefined })} />
+            <Input value={draft.perfumer ?? ""} onChange={(event) => patch({ perfumer: event.target.value || undefined })} />
           </Field>
           <Field label="مسیر عکس">
-            <input
-              className={control}
+            <Input
               dir="ltr"
               value={draft.image ?? ""}
               placeholder="/perfumes/example.jpg"
@@ -222,31 +221,23 @@ export function PerfumeForm({
         <p className="text-label text-muted-foreground">آکوردها نسبت حس‌اند. شدت بین ۰٫۰۱ و ۱.</p>
         <div className="mt-3 space-y-2">
           {draft.accords.map((accord, index) => (
-            <div key={index} className="flex flex-wrap items-center gap-2">
+            <div key={index} className="grid items-center gap-2 sm:grid-cols-[auto_minmax(0,1fr)_7rem_5rem_auto]">
               <input
                 aria-label="رنگ آکورد"
                 type="color"
-                className="size-11 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
+                className="size-10 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
                 value={safeHex(accord.color)}
                 onChange={(event) => updateAccord(index, { color: event.target.value })}
               />
-              <input
+              <Input
                 aria-label="نام آکورد"
-                className={cn(control, "min-w-36 flex-1")}
                 value={accord.name}
                 placeholder="نام آکورد"
                 onChange={(event) => updateAccord(index, { name: event.target.value })}
               />
-              <input
-                aria-label="کد رنگ"
-                className={cn(control, "w-28")}
-                dir="ltr"
-                value={accord.color}
-                onChange={(event) => updateAccord(index, { color: event.target.value })}
-              />
-              <input
+              <Input aria-label="کد رنگ" dir="ltr" value={accord.color} onChange={(event) => updateAccord(index, { color: event.target.value })} />
+              <Input
                 aria-label="شدت آکورد"
-                className={cn(control, "w-20")}
                 inputMode="decimal"
                 value={accord.strength}
                 onChange={(event) => updateAccord(index, { strength: Number(event.target.value) })}
@@ -265,22 +256,17 @@ export function PerfumeForm({
         <div className="mt-2 space-y-2">
           {draft.notes.map((note, index) => (
             <div key={index} className="grid gap-2 sm:grid-cols-[8rem_1fr_auto]">
-              <select
+              <Select
                 aria-label="لایه نت"
-                className={control}
                 value={note.layer}
                 onChange={(event) => updateNote(index, { layer: event.target.value as Note["layer"] })}
-              >
-                <option value="top">شروع</option>
-                <option value="middle">میانه</option>
-                <option value="base">پایه</option>
-              </select>
-              <input
-                aria-label="نام نت"
-                className={control}
-                value={note.name}
-                onChange={(event) => updateNote(index, { name: event.target.value })}
+                options={[
+                  { value: "top", label: "شروع" },
+                  { value: "middle", label: "میانه" },
+                  { value: "base", label: "پایه" },
+                ]}
               />
+              <Input aria-label="نام نت" value={note.name} onChange={(event) => updateNote(index, { name: event.target.value })} />
               <Button type="button" variant="outline" size="md" onClick={() => removeAt("notes", index)} disabled={draft.notes.length === 1}>
                 حذف
               </Button>
@@ -293,30 +279,20 @@ export function PerfumeForm({
       </Section>
 
       <Section id="use" title="استفاده">
-        <p className="text-label text-muted-foreground">فصل</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {SEASONS.map((season) => (
-            <Chip
-              key={season.id}
-              selected={draft.seasons.includes(season.id)}
-              onClick={() => patch({ seasons: toggle(draft.seasons, season.id) as Season[] })}
-            >
-              {season.short}
-            </Chip>
-          ))}
-        </div>
-        <p className="mt-4 text-label text-muted-foreground">موقعیت</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {OCCASIONS.map((occasion) => (
-            <Chip
-              key={occasion.id}
-              selected={draft.occasions.includes(occasion.id)}
-              onClick={() => patch({ occasions: toggle(draft.occasions, occasion.id) })}
-            >
-              {occasion.label}
-            </Chip>
-          ))}
-        </div>
+        <p className="text-sm text-muted-foreground">فصل</p>
+        <CheckboxGroup
+          className="mt-2"
+          options={SEASONS.map((season) => ({ value: season.id, label: season.short }))}
+          value={draft.seasons}
+          onChange={(seasons) => patch({ seasons: seasons as Season[] })}
+        />
+        <p className="mt-4 text-sm text-muted-foreground">موقعیت</p>
+        <CheckboxGroup
+          className="mt-2"
+          options={OCCASIONS.map((occasion) => ({ value: occasion.id, label: occasion.label }))}
+          value={draft.occasions}
+          onChange={(occasions) => patch({ occasions })}
+        />
         <div className="mt-4 grid gap-4 sm:grid-cols-3">
           <Field label="ماندگاری، ۱ تا ۵">
             <Score value={draft.longevity} onChange={(longevity) => patch({ longevity })} />
@@ -325,61 +301,41 @@ export function PerfumeForm({
             <Score value={draft.sillage} onChange={(sillage) => patch({ sillage })} />
           </Field>
           <Field label="اطمینان، ۰ تا ۱">
-            <input
-              className={control}
-              inputMode="decimal"
-              value={draft.confidence}
-              onChange={(event) => patch({ confidence: Number(event.target.value) })}
-            />
+            <Input inputMode="decimal" value={draft.confidence} onChange={(event) => patch({ confidence: Number(event.target.value) })} />
           </Field>
         </div>
         <Field label="برچسب‌ها" className="mt-4">
-          <input className={control} value={tags} onChange={(event) => setTags(event.target.value)} />
-          <p className="mt-1 text-label text-muted-foreground">با ویرگول. fresh یعنی پیشنهاد تازه‌تر.</p>
+          <Input value={tags} onChange={(event) => setTags(event.target.value)} />
+          <p className="mt-1 text-sm text-muted-foreground">با ویرگول. fresh یعنی پیشنهاد تازه‌تر.</p>
         </Field>
       </Section>
 
       <Section id="links" title="ارتباط">
         <Field label="چرا این عطر">
-          <textarea
-            className={cn(control, "min-h-24 py-3")}
-            value={draft.why}
-            onChange={(event) => patch({ why: event.target.value })}
-          />
+          <Textarea className="min-h-24" value={draft.why} onChange={(event) => patch({ why: event.target.value })} />
         </Field>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           <Field label="الهام‌گرفته از">
-            <select
-              className={control}
+            <Select
               value={draft.inspiredBy ?? ""}
               onChange={(event) => patch({ inspiredBy: event.target.value || undefined })}
-            >
-              <option value="">هیچ‌کدام</option>
-              {REFERENCES.filter((item) => item.id !== "none").map((item) => (
-                <option key={item.id} value={item.id}>
-                  {item.label}
-                </option>
-              ))}
-            </select>
+              options={[
+                { value: "", label: "هیچ‌کدام" },
+                ...REFERENCES.filter((item) => item.id !== "none").map((item) => ({ value: item.id, label: item.label })),
+              ]}
+            />
           </Field>
           <Field label="نام‌های مستعار دستیار">
-            <input className={control} value={aliases} onChange={(event) => setAliases(event.target.value)} />
+            <Input value={aliases} onChange={(event) => setAliases(event.target.value)} />
           </Field>
         </div>
-        <p className="mt-4 text-label text-muted-foreground">مشابه‌ها</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {others
-            .filter((item) => item.slug !== draft.slug)
-            .map((item) => (
-              <Chip
-                key={item.slug}
-                selected={draft.similar.includes(item.slug)}
-                onClick={() => patch({ similar: toggle(draft.similar, item.slug) })}
-              >
-                {item.nameFa}
-              </Chip>
-            ))}
-        </div>
+        <p className="mt-4 text-sm text-muted-foreground">مشابه‌ها</p>
+        <CheckboxGroup
+          className="mt-2"
+          options={others.filter((item) => item.slug !== draft.slug).map((item) => ({ value: item.slug, label: item.nameFa }))}
+          value={draft.similar}
+          onChange={(similar) => patch({ similar })}
+        />
       </Section>
 
       {mode === "edit" ? (
@@ -419,30 +375,23 @@ function Field({ label, className, children }: { label: string; className?: stri
   return (
     <label className={cn("block", className)}>
       <span className="text-label text-muted-foreground">{label}</span>
-      <div className="mt-1.5 [&_input:not([type=color])]:w-full [&_select]:w-full [&_textarea]:w-full">{children}</div>
+      <div className="mt-1.5 [&>div]:w-full">{children}</div>
     </label>
   );
 }
 
 function Score({ value, onChange }: { value: number | null; onChange: (value: number | null) => void }) {
   return (
-    <select className={control} value={value ?? ""} onChange={(event) => onChange(event.target.value ? Number(event.target.value) : null)}>
-      <option value="">خالی</option>
-      {[1, 2, 3, 4, 5].map((score) => (
-        <option key={score} value={score}>
-          {score}
-        </option>
-      ))}
-    </select>
+    <Select
+      value={value == null ? "" : String(value)}
+      onChange={(event) => onChange(event.target.value ? Number(event.target.value) : null)}
+      options={[{ value: "", label: "خالی" }, ...[1, 2, 3, 4, 5].map((score) => ({ value: String(score), label: fa(score) }))]}
+    />
   );
 }
 
 function safeHex(value: string) {
   return /^#[0-9A-Fa-f]{6}$/.test(value) ? value : "#000000";
-}
-
-function toggle(items: string[], id: string) {
-  return items.includes(id) ? items.filter((item) => item !== id) : [...items, id];
 }
 
 function splitList(value: string) {

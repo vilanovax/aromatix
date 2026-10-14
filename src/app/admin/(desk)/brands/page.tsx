@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BrandIndex, type BrandRow } from "@/app/admin/brand-index";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
@@ -39,12 +39,16 @@ export default async function BrandsPage() {
       </div>
 
       {store !== "ready" ? (
-        <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted-foreground">از نمای کلی کاتالوگ اولیه را منتشر کن تا برندها اینجا باز شوند.</p>
-          <Button href="/admin" variant="outline" className="mt-4">
-            نمای کلی
-          </Button>
-        </Card>
+        <EmptyState
+          className="mt-6"
+          title="کاتالوگ هنوز باز نیست"
+          description="از نمای کلی کاتالوگ اولیه را منتشر کن تا برندها اینجا باز شوند."
+          action={
+            <Button href="/admin" variant="outline">
+              نمای کلی
+            </Button>
+          }
+        />
       ) : (
         <BrandIndex rows={rows} />
       )}

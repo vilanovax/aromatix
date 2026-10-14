@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ArticleIndex, type ArticleRow } from "@/app/admin/article-index";
 import { PublishLearn } from "@/app/admin/publish-learn";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { articleViewCounts, loadArticleDesk } from "@/lib/knowledge-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
@@ -44,16 +44,14 @@ export default async function LearnAdminPage() {
         ) : null}
       </div>
 
-      {store === "offline" ? (
-        <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted-foreground">اتصال فهرست مقاله‌ها برقرار نیست.</p>
-        </Card>
-      ) : null}
+      {store === "offline" ? <EmptyState className="mt-6" title="اتصال فهرست مقاله‌ها برقرار نیست" /> : null}
       {store === "empty" ? (
-        <Card className="mt-6 max-w-xl p-5">
-          <p className="text-pretty text-body text-muted-foreground">متن‌های فعلی دانستنی‌ها هنوز در پایگاه نیست. با انتشار، همین‌جا قابل ویرایش می‌شوند.</p>
-          <PublishLearn />
-        </Card>
+        <EmptyState
+          className="mt-6 max-w-xl"
+          title="متن‌ها هنوز در پایگاه نیست"
+          description="با انتشار، همین‌جا قابل ویرایش می‌شوند."
+          action={<PublishLearn />}
+        />
       ) : null}
       {store === "ready" ? <ArticleIndex rows={rows} /> : null}
     </div>

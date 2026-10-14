@@ -13,6 +13,8 @@ if (!phone || password.length < 8 || password.length > 72) {
   process.exit(1);
 }
 
+const adminPhone = phone as string;
+
 const db = postgres<Contract>({
   contractJson,
   url: process.env.DATABASE_URL!,
@@ -26,7 +28,7 @@ main()
 
 async function main() {
   const passwordHash = await bcrypt.hash(password, 12);
-  const existing = await db.orm.aroma.User.where((row) => row.phone.eq(phone)).first();
+  const existing = await db.orm.aroma.User.where((row) => row.phone.eq(adminPhone)).first();
 
   if (existing) {
     await db.orm.aroma.User.where((row) => row.id.eq(existing.id)).update({
@@ -36,7 +38,7 @@ async function main() {
     console.log("حساب موجود به مدیر ارتقا پیدا کرد.");
   } else {
     await db.orm.aroma.User.create({
-      phone,
+      phone: adminPhone,
       passwordHash,
       name: "مدیر",
       role: "admin",

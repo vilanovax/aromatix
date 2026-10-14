@@ -3,8 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { revokeUserSessions, setUserActive, setUserRole, updateUserName } from "@/app/admin/user-actions";
+import { Alert } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Chip } from "@/components/Chip";
+import { EmptyState } from "@/components/ui/empty-state";
+import { Input } from "@/components/ui/input";
+import { SearchInput } from "@/components/ui/search-input";
+import { Switch } from "@/components/ui/switch";
 import { cn, faNum } from "@/lib/format";
 
 export type ManagedUser = {
@@ -67,31 +72,23 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
 
   return (
     <div className="mt-5">
-      <label className="block">
-        <span className="sr-only">جستجو در کاربران</span>
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="نام، شماره یا نقش"
-          className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
-        />
-      </label>
+      <SearchInput value={query} onChange={setQuery} placeholder="نام، شماره یا نقش" aria-label="جستجو در کاربران" />
       <div className="mt-3 flex flex-wrap items-center gap-2">
-        <Chip selected={sort === "date"} onClick={() => chooseSort("date")}>
+        <Button type="button" size="sm" variant={sort === "date" ? "default" : "outline"} onClick={() => chooseSort("date")}>
           تاریخ
-        </Chip>
-        <Chip selected={sort === "name"} onClick={() => chooseSort("name")}>
+        </Button>
+        <Button type="button" size="sm" variant={sort === "name" ? "default" : "outline"} onClick={() => chooseSort("name")}>
           حروف
-        </Chip>
-        <p className="text-label text-muted-foreground">{sortHint(sort, direction)}</p>
+        </Button>
+        <p className="text-sm text-muted-foreground">{sortHint(sort, direction)}</p>
       </div>
       {error ? (
-        <p role="alert" className="mt-3 text-label text-destructive">
+        <Alert variant="destructive" className="mt-3">
           {error}
-        </p>
+        </Alert>
       ) : null}
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted-foreground">{query.trim() ? "با این عبارت حسابی نیست." : "حسابی نیست."}</p>
+        <EmptyState className="mt-4" title={query.trim() ? "با این عبارت حسابی نیست" : "حسابی نیست"} />
       ) : (
         <ul className="mt-3 divide-y divide-border overflow-hidden rounded-surface border border-border bg-card">
           {visible.map((row) => {
@@ -102,12 +99,7 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     {editing ? (
-                      <input
-                        value={draft}
-                        onChange={(event) => setDraft(event.target.value)}
-                        aria-label="نام"
-                        className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
-                      />
+                      <Input value={draft} onChange={(event) => setDraft(event.target.value)} aria-label="نام" />
                     ) : (
                       <p className={cn("truncate text-body font-medium", row.active ? "text-foreground" : "text-muted-foreground")}>{row.name}</p>
                     )}
@@ -118,31 +110,23 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                     </p>
                   </div>
                   <div className="flex shrink-0 items-center gap-2">
-                    <span
-                      className={
-                        row.role === "admin"
-                          ? "rounded-full bg-primary px-2.5 py-1 text-label text-primary-foreground"
-                          : "rounded-full border border-border px-2.5 py-1 text-label text-muted-foreground"
-                      }
-                    >
+                    <Badge variant={row.self ? "outline" : row.role === "admin" ? "brand" : "secondary"}>
                       {row.self ? "خودت" : row.role === "admin" ? "مدیر" : "عضو"}
-                    </span>
+                    </Badge>
                     {row.self ? null : (
-                      <button
-                        type="button"
-                        aria-pressed={row.active}
-                        disabled={busy}
-                        onClick={() => {
-                          if (row.active && !window.confirm(`«${row.name}» غیرفعال شود؟ دیگر وارد نمی‌شود و نشست‌هایش بسته می‌شود.`)) return;
-                          void run(row.id, () => setUserActive(row.id, !row.active));
-                        }}
-                        className={cn(
-                          "min-h-10 rounded-full px-3 text-label",
-                          row.active ? "bg-primary font-medium text-primary-foreground" : "border border-border text-destructive",
-                        )}
-                      >
-                        {busy ? "…" : row.active ? "فعال" : "غیرفعال"}
-                      </button>
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <span>{busy ? "…" : row.active ? "فعال" : "غیرفعال"}</span>
+                        <Switch
+                          checked={row.active}
+                          disabled={busy}
+                          aria-label={row.active ? "فعال" : "غیرفعال"}
+                          onCheckedChange={(next) => {
+                            if (next === row.active) return;
+                            if (!next && !window.confirm(`«${row.name}» غیرفعال شود؟ دیگر وارد نمی‌شود و نشست‌هایش بسته می‌شود.`)) return;
+                            void run(row.id, () => setUserActive(row.id, next));
+                          }}
+                        />
+                      </div>
                     )}
                   </div>
                 </div>

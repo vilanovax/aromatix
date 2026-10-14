@@ -4,7 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { setBrandActive } from "@/app/admin/actions";
-import { cn, faNum } from "@/lib/format";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
+import { SearchInput } from "@/components/ui/search-input";
+import { Switch } from "@/components/ui/switch";
+import { faNum } from "@/lib/format";
 
 export type BrandRow = {
   slug: string;
@@ -46,22 +51,14 @@ export function BrandIndex({ rows }: { rows: BrandRow[] }) {
 
   return (
     <div className="mt-5">
-      <label className="block">
-        <span className="sr-only">جستجو در برندها</span>
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="نام یا توضیح"
-          className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
-        />
-      </label>
+      <SearchInput value={query} onChange={setQuery} placeholder="نام یا توضیح" aria-label="جستجو در برندها" />
       {error ? (
-        <p role="alert" className="mt-3 text-label text-destructive">
+        <Alert variant="destructive" className="mt-3">
           {error}
-        </p>
+        </Alert>
       ) : null}
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted-foreground">با این عبارت برندی نیست.</p>
+        <EmptyState className="mt-4" title="با این عبارت برندی نیست" />
       ) : (
         <ul className="mt-3 grid gap-2">
           {visible.map((row) => (
@@ -72,29 +69,24 @@ export function BrandIndex({ rows }: { rows: BrandRow[] }) {
                   <span className="truncate text-label text-muted-foreground">{row.nameEn}</span>
                 </span>
                 <span className="mt-1 block text-label text-muted-foreground">{faNum(row.perfumeCount)} عطر</span>
-                <span className={cn("mt-1 line-clamp-2 block text-label", row.description ? "text-muted-foreground" : "text-muted-foreground")}>
-                  {row.description || "توضیحی نوشته نشده"}
-                </span>
+                <span className="mt-1 line-clamp-2 block text-label text-muted-foreground">{row.description || "توضیحی نوشته نشده"}</span>
               </Link>
               <div className="flex shrink-0 flex-col items-stretch justify-center gap-2 pe-3">
-                <Link
-                  href={`/admin/perfumes?brand=${encodeURIComponent(row.slug)}`}
-                  className="inline-flex min-h-10 items-center justify-center rounded-full border border-border px-3 text-label"
-                >
+                <Button href={`/admin/perfumes?brand=${encodeURIComponent(row.slug)}`} variant="outline" size="sm">
                   لیست عطرها
-                </Link>
-                <button
-                  type="button"
-                  aria-pressed={row.active}
-                  disabled={pending === row.slug}
-                  onClick={() => toggle(row)}
-                  className={cn(
-                    "min-h-10 rounded-full px-3 text-label",
-                    row.active ? "bg-primary font-medium text-primary-foreground" : "border border-border text-muted-foreground",
-                  )}
-                >
-                  {pending === row.slug ? "…" : row.active ? "فعال" : "غیرفعال"}
-                </button>
+                </Button>
+                <div className="flex items-center justify-end gap-2 text-xs text-muted-foreground">
+                  <span>{pending === row.slug ? "…" : row.active ? "فعال" : "غیرفعال"}</span>
+                  <Switch
+                    checked={row.active}
+                    disabled={pending === row.slug}
+                    aria-label={row.active ? "فعال" : "غیرفعال"}
+                    onCheckedChange={(next) => {
+                      if (next === row.active) return;
+                      void toggle(row);
+                    }}
+                  />
+                </div>
               </div>
             </li>
           ))}

@@ -4,7 +4,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { setShopActive } from "@/app/admin/actions";
-import { cn, faNum } from "@/lib/format";
+import { Alert } from "@/components/ui/alert";
+import { EmptyState } from "@/components/ui/empty-state";
+import { SearchInput } from "@/components/ui/search-input";
+import { Switch } from "@/components/ui/switch";
+import { faNum } from "@/lib/format";
 
 export type ShopRow = {
   slug: string;
@@ -45,22 +49,14 @@ export function ShopIndex({ rows }: { rows: ShopRow[] }) {
 
   return (
     <div className="mt-5">
-      <label className="block">
-        <span className="sr-only">جستجو در فروشگاه‌ها</span>
-        <input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="نام یا شهر"
-          className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
-        />
-      </label>
+      <SearchInput value={query} onChange={setQuery} placeholder="نام یا شهر" aria-label="جستجو در فروشگاه‌ها" />
       {error ? (
-        <p role="alert" className="mt-3 text-label text-destructive">
+        <Alert variant="destructive" className="mt-3">
           {error}
-        </p>
+        </Alert>
       ) : null}
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted-foreground">با این عبارت فروشگاهی نیست.</p>
+        <EmptyState className="mt-4" title="با این عبارت فروشگاهی نیست" />
       ) : (
         <ul className="mt-3 grid gap-2">
           {visible.map((row) => (
@@ -83,18 +79,18 @@ export function ShopIndex({ rows }: { rows: ShopRow[] }) {
                 )}
               </Link>
               <div className="flex items-center pe-3">
-                <button
-                  type="button"
-                  aria-pressed={row.active}
-                  disabled={pending === row.slug}
-                  onClick={() => toggle(row)}
-                  className={cn(
-                    "min-h-11 rounded-full px-3 text-label",
-                    row.active ? "bg-primary font-medium text-primary-foreground" : "border border-border text-muted-foreground",
-                  )}
-                >
-                  {pending === row.slug ? "…" : row.active ? "فعال" : "غیرفعال"}
-                </button>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span>{pending === row.slug ? "…" : row.active ? "فعال" : "غیرفعال"}</span>
+                  <Switch
+                    checked={row.active}
+                    disabled={pending === row.slug}
+                    aria-label={row.active ? "فعال" : "غیرفعال"}
+                    onCheckedChange={(next) => {
+                      if (next === row.active) return;
+                      void toggle(row);
+                    }}
+                  />
+                </div>
               </div>
             </li>
           ))}

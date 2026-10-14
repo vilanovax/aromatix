@@ -4,9 +4,14 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { changeAdminPassword, createAdmin, setAdminAccess } from "@/app/admin/settings-actions";
 import { applyAdminTheme, readAdminTheme, type AdminTheme } from "@/lib/admin/theme";
+import { Alert } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { cn, faNum } from "@/lib/format";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { faNum } from "@/lib/format";
 import { ADMIN_SECTIONS, type AdminSection } from "@/lib/auth/sections";
 
 export type SettingsAdmin = {
@@ -25,9 +30,6 @@ export type BackupCounts = {
   users: number;
 };
 
-const field =
-  "h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring";
-
 const PARTS = [
   ["appearance", "ظاهر"],
   ["password", "رمز"],
@@ -41,9 +43,9 @@ export function SettingsDesk({ admins, counts }: { admins: SettingsAdmin[]; coun
     <div className="mt-5 space-y-4">
       <nav className="flex gap-1.5 overflow-x-auto" aria-label="بخش‌های تنظیمات">
         {PARTS.map(([id, label]) => (
-          <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-border bg-card px-3 py-1.5 text-label">
+          <Button key={id} href={`#${id}`} variant="outline" size="sm" className="shrink-0">
             {label}
-          </a>
+          </Button>
         ))}
       </nav>
       <AppearanceCard />
@@ -71,24 +73,16 @@ function AppearanceCard() {
     <Card id="appearance" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">ظاهر</h2>
       <p className="mt-1 text-label text-muted-foreground">روشن یا تاریک، فقط برای همین مرورگر ذخیره می‌شود.</p>
-      <div className="mt-4 flex rounded-control border border-border bg-card p-1" role="group" aria-label="تم مدیریت">
-        <button
-          type="button"
-          aria-pressed={theme === "light"}
-          onClick={() => choose("light")}
-          className={cn("h-10 flex-1 rounded-control text-label", theme === "light" ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
-        >
-          روشن
-        </button>
-        <button
-          type="button"
-          aria-pressed={theme === "dark"}
-          onClick={() => choose("dark")}
-          className={cn("h-10 flex-1 rounded-control text-label", theme === "dark" ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
-        >
-          تاریک
-        </button>
-      </div>
+      <Tabs value={theme} defaultValue="dark" onValueChange={(next) => choose(next as AdminTheme)} className="mt-4">
+        <TabsList aria-label="تم مدیریت" className="w-full">
+          <TabsTrigger value="light" className="flex-1">
+            روشن
+          </TabsTrigger>
+          <TabsTrigger value="dark" className="flex-1">
+            تاریک
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
     </Card>
   );
 }
@@ -123,36 +117,16 @@ function PasswordCard() {
       <form onSubmit={submit} className="mt-4 grid gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="block">
-            <span className="text-label text-muted-foreground">رمز فعلی</span>
-            <input
-              type="password"
-              autoComplete="current-password"
-              value={current}
-              onChange={(event) => setCurrent(event.target.value)}
-              className={`${field} mt-1.5`}
-            />
+            <span className="text-sm text-muted-foreground">رمز فعلی</span>
+            <Input className="mt-1.5" type="password" autoComplete="current-password" value={current} onChange={(event) => setCurrent(event.target.value)} />
           </label>
           <label className="block">
-            <span className="text-label text-muted-foreground">رمز جدید</span>
-            <input
-              type="password"
-              autoComplete="new-password"
-              value={next}
-              onChange={(event) => setNext(event.target.value)}
-              className={`${field} mt-1.5`}
-            />
+            <span className="text-sm text-muted-foreground">رمز جدید</span>
+            <Input className="mt-1.5" type="password" autoComplete="new-password" value={next} onChange={(event) => setNext(event.target.value)} />
           </label>
         </div>
-        {error ? (
-          <p role="alert" className="text-label text-destructive">
-            {error}
-          </p>
-        ) : null}
-        {saved ? (
-          <p role="status" className="text-label text-muted-foreground">
-            رمز عوض شد.
-          </p>
-        ) : null}
+        {error ? <Alert variant="destructive">{error}</Alert> : null}
+        {saved ? <Alert variant="success">رمز عوض شد.</Alert> : null}
         <Button type="submit" disabled={pending || current.length === 0 || next.length < 8} className="w-fit">
           {pending ? "در حال ذخیره" : "عوض کردن رمز"}
         </Button>
@@ -198,37 +172,20 @@ function CreateCard() {
       <form onSubmit={submit} className="mt-4 grid gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="block">
-            <span className="text-label text-muted-foreground">نام</span>
-            <input value={name} onChange={(event) => setName(event.target.value)} className={`${field} mt-1.5`} />
+            <span className="text-sm text-muted-foreground">نام</span>
+            <Input className="mt-1.5" value={name} onChange={(event) => setName(event.target.value)} />
           </label>
           <label className="block">
-            <span className="text-label text-muted-foreground">موبایل</span>
-            <input
-              dir="ltr"
-              inputMode="tel"
-              autoComplete="off"
-              value={phone}
-              onChange={(event) => setPhone(event.target.value)}
-              className={`${field} mt-1.5 text-start`}
-            />
+            <span className="text-sm text-muted-foreground">موبایل</span>
+            <Input className="mt-1.5" dir="ltr" inputMode="tel" autoComplete="off" value={phone} onChange={(event) => setPhone(event.target.value)} />
           </label>
         </div>
         <label className="block">
-          <span className="text-label text-muted-foreground">رمز</span>
-          <input
-            type="password"
-            autoComplete="new-password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            className={`${field} mt-1.5`}
-          />
+          <span className="text-sm text-muted-foreground">رمز</span>
+          <Input className="mt-1.5" type="password" autoComplete="new-password" value={password} onChange={(event) => setPassword(event.target.value)} />
         </label>
         <SectionChecks selected={sections} onToggle={toggle} />
-        {error ? (
-          <p role="alert" className="text-label text-destructive">
-            {error}
-          </p>
-        ) : null}
+        {error ? <Alert variant="destructive">{error}</Alert> : null}
         <Button type="submit" disabled={pending || sections.length === 0} className="w-fit">
           {pending ? "در حال ساخت" : "افزودن مدیر"}
         </Button>
@@ -295,14 +252,14 @@ function AccessRow({ admin }: { admin: SettingsAdmin }) {
         <SectionChecks selected={sections} onToggle={toggle} />
       </div>
       {error ? (
-        <p role="alert" className="mt-2 text-label text-destructive">
+        <Alert variant="destructive" className="mt-2">
           {error}
-        </p>
+        </Alert>
       ) : null}
       {saved ? (
-        <p role="status" className="mt-2 text-label text-muted-foreground">
+        <Alert variant="success" className="mt-2">
           ذخیره شد.
-        </p>
+        </Alert>
       ) : null}
       <Button type="button" variant="outline" size="sm" className="mt-3" disabled={pending || !dirty || sections.length === 0} onClick={save}>
         {pending ? "در حال ذخیره" : "ذخیرهٔ دسترسی"}
@@ -321,15 +278,7 @@ function SectionChecks({ selected, onToggle }: { selected: readonly AdminSection
           <ul>
             {ADMIN_SECTIONS.filter((section) => section.group === group).map((section) => (
               <li key={section.id}>
-                <label className="flex min-h-10 cursor-pointer items-center gap-2 text-body">
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(section.id)}
-                    onChange={() => onToggle(section.id)}
-                    className="size-4 accent-ink"
-                  />
-                  {section.label}
-                </label>
+                <Checkbox checked={selected.includes(section.id)} onCheckedChange={() => onToggle(section.id)} label={section.label} className="min-h-10 items-center" />
               </li>
             ))}
           </ul>
@@ -352,22 +301,25 @@ function BackupCard({ counts }: { counts: BackupCounts }) {
     <Card id="backup" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">بک‌آپ</h2>
       <p className="mt-1 text-label text-muted-foreground">فایل JSON از کاتالوگ، دانستنی‌ها و حساب‌ها. رمز و نشست داخلش نیست.</p>
-      <ul className="mt-4 flex flex-wrap gap-2">
+      <ul className="mt-4 flex flex-wrap gap-3">
         {lines.map(([label, count]) => (
-          <li key={label} className="rounded-full border border-border px-3 py-1.5 text-label">
-            {faNum(count)} {label}
+          <li key={label}>
+            <Badge variant="secondary">
+              {faNum(count)} {label}
+            </Badge>
           </li>
         ))}
       </ul>
-      <a
-        href="/api/admin/backup"
-        className={cn(
-          "mt-4 inline-flex min-h-11 items-center rounded-control border border-border px-4 text-body font-medium",
-          "hover:bg-accent",
-        )}
+      <Button
+        type="button"
+        variant="outline"
+        className="mt-4"
+        onClick={() => {
+          window.location.assign("/api/admin/backup");
+        }}
       >
         دانلود بک‌آپ
-      </a>
+      </Button>
     </Card>
   );
 }

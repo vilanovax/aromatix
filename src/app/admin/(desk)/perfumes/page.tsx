@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PerfumeIndex, type PerfumeRow } from "@/app/admin/perfume-index";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { EmptyState } from "@/components/ui/empty-state";
 import { catalogIssues } from "@/lib/admin/health";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { leadOffer } from "@/lib/catalog";
@@ -53,12 +53,16 @@ export default async function PerfumesPage({ searchParams }: { searchParams: Pro
       </div>
 
       {store !== "ready" ? (
-        <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted-foreground">از نمای کلی کاتالوگ اولیه را منتشر کن تا ویرایش اینجا باز شود.</p>
-          <Button href="/admin" variant="outline" className="mt-4">
-            نمای کلی
-          </Button>
-        </Card>
+        <EmptyState
+          className="mt-6"
+          title="کاتالوگ هنوز باز نیست"
+          description="از نمای کلی کاتالوگ اولیه را منتشر کن تا ویرایش اینجا باز شود."
+          action={
+            <Button href="/admin" variant="outline">
+              نمای کلی
+            </Button>
+          }
+        />
       ) : (
         <>
           <PerfumeIndex
