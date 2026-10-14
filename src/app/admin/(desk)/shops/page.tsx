@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ShopIndex, type ShopRow } from "@/app/admin/shop-index";
-import { ButtonLink } from "@/components/Button";
-import { Card } from "@/components/Card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
@@ -31,25 +31,25 @@ export default async function ShopsPage() {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h1 className="text-headline font-bold text-balance">فروشگاه‌ها</h1>
-          <p className="mt-2 max-w-2xl text-pretty text-body text-muted">
+          <p className="mt-2 max-w-2xl text-pretty text-body text-muted-foreground">
             {store === "ready"
               ? `${faNum(rows.length)} فروشگاه، ${faNum(activeCount)} فعال. قیمت و موجودی مال فروشگاه است، نه فرم عطر.`
               : "هنوز چیزی منتشر نشده"}
           </p>
         </div>
         {store === "ready" ? (
-          <ButtonLink href="/admin/shops/new" size="md" className="shrink-0">
+          <Button href="/admin/shops/new" size="md" className="shrink-0">
             فروشگاه جدید
-          </ButtonLink>
+          </Button>
         ) : null}
       </div>
 
       {store !== "ready" ? (
         <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted">از نمای کلی کاتالوگ اولیه را منتشر کن تا فروشگاه‌ها اینجا باز شوند.</p>
-          <ButtonLink href="/admin" variant="edge" className="mt-4">
+          <p className="text-pretty text-body text-muted-foreground">از نمای کلی کاتالوگ اولیه را منتشر کن تا فروشگاه‌ها اینجا باز شوند.</p>
+          <Button href="/admin" variant="outline" className="mt-4">
             نمای کلی
-          </ButtonLink>
+          </Button>
         </Card>
       ) : (
         <ShopIndex rows={rows} />

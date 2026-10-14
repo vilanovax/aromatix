@@ -3,15 +3,15 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { deletePerfume, savePerfume } from "@/app/admin/actions";
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/Chip";
 import { OCCASIONS, REFERENCES, SEASONS, type Brand } from "@/lib/catalog";
 import { cn } from "@/lib/format";
 import type { Accord, BottleShape, Note, Perfume, Season } from "@/lib/types";
 
 const control =
-  "min-h-12 rounded-control border border-line bg-card px-3 text-body text-ink outline-none focus-visible:outline-2 focus-visible:outline-ink";
+  "h-11 rounded-field border border-input bg-field shadow-field px-3 text-body text-foreground outline-none focus-visible:outline-2 focus-visible:outline-ring";
 
 export function PerfumeForm({
   mode,
@@ -103,19 +103,19 @@ export function PerfumeForm({
 
   return (
     <form onSubmit={submit} className="space-y-4 pb-4">
-      <div className="sticky top-12 z-10 -mx-4 border-b border-line bg-desk/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:top-0">
+      <div className="sticky top-12 z-10 -mx-4 border-b border-border bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:top-0">
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="truncate text-title font-semibold">{draft.nameFa || "عطر جدید"}</p>
             <p className="flex min-w-0 items-baseline gap-2">
               <span
-                className={error || dirty ? "truncate text-label text-danger" : "truncate text-label text-faint"}
+                className={error || dirty ? "truncate text-label text-destructive" : "truncate text-label text-muted-foreground"}
                 role={error ? "alert" : "status"}
               >
                 {error ?? (dirty ? "تغییر ذخیره نشده" : saved ? "ذخیره شد" : mode === "create" ? "هنوز ذخیره نشده" : draft.brand)}
               </span>
               {mode === "edit" ? (
-                <span dir="ltr" className="shrink-0 text-label text-faint">
+                <span dir="ltr" className="shrink-0 text-label text-muted-foreground">
                   {draft.slug}
                 </span>
               ) : null}
@@ -132,7 +132,7 @@ export function PerfumeForm({
             ["use", "استفاده"],
             ["links", "ارتباط"],
           ].map(([id, label]) => (
-            <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-line bg-card px-3 py-1.5 text-label">
+            <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-border bg-card px-3 py-1.5 text-label">
               {label}
             </a>
           ))}
@@ -196,7 +196,7 @@ export function PerfumeForm({
               <input
                 aria-label="انتخاب رنگ درپوش"
                 type="color"
-                className="size-11 shrink-0 cursor-pointer rounded-control border border-line bg-card p-1"
+                className="size-11 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
                 value={safeHex(draft.cap)}
                 onChange={(event) => patch({ cap: event.target.value })}
               />
@@ -219,14 +219,14 @@ export function PerfumeForm({
       </Section>
 
       <Section id="scent" title="بو">
-        <p className="text-label text-muted">آکوردها نسبت حس‌اند. شدت بین ۰٫۰۱ و ۱.</p>
+        <p className="text-label text-muted-foreground">آکوردها نسبت حس‌اند. شدت بین ۰٫۰۱ و ۱.</p>
         <div className="mt-3 space-y-2">
           {draft.accords.map((accord, index) => (
             <div key={index} className="flex flex-wrap items-center gap-2">
               <input
                 aria-label="رنگ آکورد"
                 type="color"
-                className="size-11 shrink-0 cursor-pointer rounded-control border border-line bg-card p-1"
+                className="size-11 shrink-0 cursor-pointer rounded-control border border-border bg-card p-1"
                 value={safeHex(accord.color)}
                 onChange={(event) => updateAccord(index, { color: event.target.value })}
               />
@@ -251,17 +251,17 @@ export function PerfumeForm({
                 value={accord.strength}
                 onChange={(event) => updateAccord(index, { strength: Number(event.target.value) })}
               />
-              <Button type="button" variant="edge" size="md" onClick={() => removeAt("accords", index)} disabled={draft.accords.length === 1}>
+              <Button type="button" variant="outline" size="md" onClick={() => removeAt("accords", index)} disabled={draft.accords.length === 1}>
                 حذف
               </Button>
             </div>
           ))}
         </div>
-        <Button type="button" variant="quiet" size="sm" className="mt-2" onClick={() => patch({ accords: [...draft.accords, { name: "", color: "#8C4A32", strength: 0.2 }] })}>
+        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => patch({ accords: [...draft.accords, { name: "", color: "#8C4A32", strength: 0.2 }] })}>
           آکورد جدید
         </Button>
 
-        <p className="mt-5 text-label text-muted">هرم</p>
+        <p className="mt-5 text-label text-muted-foreground">هرم</p>
         <div className="mt-2 space-y-2">
           {draft.notes.map((note, index) => (
             <div key={index} className="grid gap-2 sm:grid-cols-[8rem_1fr_auto]">
@@ -281,19 +281,19 @@ export function PerfumeForm({
                 value={note.name}
                 onChange={(event) => updateNote(index, { name: event.target.value })}
               />
-              <Button type="button" variant="edge" size="md" onClick={() => removeAt("notes", index)} disabled={draft.notes.length === 1}>
+              <Button type="button" variant="outline" size="md" onClick={() => removeAt("notes", index)} disabled={draft.notes.length === 1}>
                 حذف
               </Button>
             </div>
           ))}
         </div>
-        <Button type="button" variant="quiet" size="sm" className="mt-2" onClick={() => patch({ notes: [...draft.notes, { layer: "middle", name: "" }] })}>
+        <Button type="button" variant="ghost" size="sm" className="mt-2" onClick={() => patch({ notes: [...draft.notes, { layer: "middle", name: "" }] })}>
           نت جدید
         </Button>
       </Section>
 
       <Section id="use" title="استفاده">
-        <p className="text-label text-muted">فصل</p>
+        <p className="text-label text-muted-foreground">فصل</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {SEASONS.map((season) => (
             <Chip
@@ -305,7 +305,7 @@ export function PerfumeForm({
             </Chip>
           ))}
         </div>
-        <p className="mt-4 text-label text-muted">موقعیت</p>
+        <p className="mt-4 text-label text-muted-foreground">موقعیت</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {OCCASIONS.map((occasion) => (
             <Chip
@@ -335,7 +335,7 @@ export function PerfumeForm({
         </div>
         <Field label="برچسب‌ها" className="mt-4">
           <input className={control} value={tags} onChange={(event) => setTags(event.target.value)} />
-          <p className="mt-1 text-label text-faint">با ویرگول. fresh یعنی پیشنهاد تازه‌تر.</p>
+          <p className="mt-1 text-label text-muted-foreground">با ویرگول. fresh یعنی پیشنهاد تازه‌تر.</p>
         </Field>
       </Section>
 
@@ -366,7 +366,7 @@ export function PerfumeForm({
             <input className={control} value={aliases} onChange={(event) => setAliases(event.target.value)} />
           </Field>
         </div>
-        <p className="mt-4 text-label text-muted">مشابه‌ها</p>
+        <p className="mt-4 text-label text-muted-foreground">مشابه‌ها</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {others
             .filter((item) => item.slug !== draft.slug)
@@ -383,9 +383,9 @@ export function PerfumeForm({
       </Section>
 
       {mode === "edit" ? (
-        <div className="flex items-center justify-between gap-3 rounded-panel border border-line bg-card px-4 py-3">
-          <p className="text-label text-muted">این عطر از کاتالوگ و از مشابه‌ها برداشته می‌شود.</p>
-          <Button type="button" variant="edge" size="md" className="shrink-0 text-danger" onClick={remove} disabled={pending}>
+        <div className="flex items-center justify-between gap-3 rounded-surface border border-border bg-card px-4 py-3">
+          <p className="text-label text-muted-foreground">این عطر از کاتالوگ و از مشابه‌ها برداشته می‌شود.</p>
+          <Button type="button" variant="outline" size="md" className="shrink-0 text-destructive" onClick={remove} disabled={pending}>
             حذف عطر
           </Button>
         </div>
@@ -418,7 +418,7 @@ function Section({ id, title, children }: { id: string; title: string; children:
 function Field({ label, className, children }: { label: string; className?: string; children: React.ReactNode }) {
   return (
     <label className={cn("block", className)}>
-      <span className="text-label text-muted">{label}</span>
+      <span className="text-label text-muted-foreground">{label}</span>
       <div className="mt-1.5 [&_input:not([type=color])]:w-full [&_select]:w-full [&_textarea]:w-full">{children}</div>
     </label>
   );

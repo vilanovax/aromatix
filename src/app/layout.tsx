@@ -1,13 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Vazirmatn } from "next/font/google";
 import { Providers } from "@/lib/store";
 import "./globals.css";
-
-const vazir = Vazirmatn({
-  subsets: ["arabic", "latin"],
-  display: "swap",
-  variable: "--font-vazir",
-});
+import { vazirmatn } from "./fonts";
 
 export const metadata: Metadata = {
   title: "آروما",
@@ -33,7 +27,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fa" dir="rtl" className={vazir.variable}>
+    <html lang="fa" dir="rtl" className={vazirmatn.variable}>
       <body>
         <Providers>{children}</Providers>
       </body>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BrandIndex, type BrandRow } from "@/app/admin/brand-index";
-import { ButtonLink } from "@/components/Button";
-import { Card } from "@/components/Card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
@@ -27,23 +27,23 @@ export default async function BrandsPage() {
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <h1 className="text-headline font-bold">برندها</h1>
-          <p className="mt-1 text-label text-muted">
+          <p className="mt-1 text-label text-muted-foreground">
             {store === "ready" ? `${faNum(rows.length)} برند، ${faNum(activeCount)} فعال` : "هنوز چیزی منتشر نشده"}
           </p>
         </div>
         {store === "ready" ? (
-          <ButtonLink href="/admin/brands/new" size="md" className="shrink-0">
+          <Button href="/admin/brands/new" size="md" className="shrink-0">
             برند جدید
-          </ButtonLink>
+          </Button>
         ) : null}
       </div>
 
       {store !== "ready" ? (
         <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted">از نمای کلی کاتالوگ اولیه را منتشر کن تا برندها اینجا باز شوند.</p>
-          <ButtonLink href="/admin" variant="edge" className="mt-4">
+          <p className="text-pretty text-body text-muted-foreground">از نمای کلی کاتالوگ اولیه را منتشر کن تا برندها اینجا باز شوند.</p>
+          <Button href="/admin" variant="outline" className="mt-4">
             نمای کلی
-          </ButtonLink>
+          </Button>
         </Card>
       ) : (
         <BrandIndex rows={rows} />

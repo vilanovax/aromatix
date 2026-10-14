@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { AdminLoginForm } from "@/app/admin/login/login-form";
-import { Card } from "@/components/Card";
+import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/admin";
 import { firstSectionHref } from "@/lib/auth/sections";
 
@@ -13,12 +13,12 @@ export default async function AdminLoginPage() {
   if (home) redirect(home);
 
   return (
-    <main className="grid min-h-dvh place-items-center bg-desk px-4 py-10">
+    <main className="vf grid min-h-dvh place-items-center bg-background px-4 py-10 text-foreground">
       <div className="w-full max-w-sm">
-        <p className="text-label text-muted">آروما</p>
-        <h1 className="mt-1 text-display font-bold text-ink">مدیریت</h1>
-        <p className="mt-2 text-pretty text-body text-muted">فقط حساب مدیر وارد می‌شود.</p>
-        <Card shadow="sheet" className="mt-6 px-4 py-5">
+        <p className="text-sm text-brand">آروما</p>
+        <h1 className="mt-1 text-2xl font-bold">مدیریت</h1>
+        <p className="mt-2 text-sm text-pretty text-muted-foreground">فقط حساب مدیر وارد می‌شود.</p>
+        <Card className="mt-6 p-5">
           <AdminLoginForm />
         </Card>
       </div>

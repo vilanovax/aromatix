@@ -13,7 +13,7 @@ export default async function NewShopPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link href="/admin/shops" className="text-label text-muted">
+      <Link href="/admin/shops" className="text-label text-muted-foreground">
         فروشگاه‌ها
       </Link>
       <h1 className="mt-2 text-headline font-bold">فروشگاه جدید</h1>

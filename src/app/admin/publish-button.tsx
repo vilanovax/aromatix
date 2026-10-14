@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { publishSeedCatalog } from "@/app/admin/actions";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/ui/button";
 
 export function PublishCatalogButton() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export function PublishCatalogButton() {
         {pending ? "در حال انتشار" : "انتشار کاتالوگ اولیه"}
       </Button>
       {error ? (
-        <p role="alert" className="mt-2 text-label text-danger">
+        <p role="alert" className="mt-2 text-label text-destructive">
           {error}
         </p>
       ) : null}

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { revokeUserSessions, setUserActive, setUserRole, updateUserName } from "@/app/admin/user-actions";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/ui/button";
 import { Chip } from "@/components/Chip";
 import { cn, faNum } from "@/lib/format";
 
@@ -73,7 +73,7 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="نام، شماره یا نقش"
-          className="min-h-12 w-full rounded-control border border-line bg-card px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink"
+          className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
         />
       </label>
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -83,17 +83,17 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
         <Chip selected={sort === "name"} onClick={() => chooseSort("name")}>
           حروف
         </Chip>
-        <p className="text-label text-faint">{sortHint(sort, direction)}</p>
+        <p className="text-label text-muted-foreground">{sortHint(sort, direction)}</p>
       </div>
       {error ? (
-        <p role="alert" className="mt-3 text-label text-danger">
+        <p role="alert" className="mt-3 text-label text-destructive">
           {error}
         </p>
       ) : null}
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted">{query.trim() ? "با این عبارت حسابی نیست." : "حسابی نیست."}</p>
+        <p className="mt-4 text-body text-muted-foreground">{query.trim() ? "با این عبارت حسابی نیست." : "حسابی نیست."}</p>
       ) : (
-        <ul className="mt-3 divide-y divide-line overflow-hidden rounded-panel border border-line bg-card">
+        <ul className="mt-3 divide-y divide-border overflow-hidden rounded-surface border border-border bg-card">
           {visible.map((row) => {
             const busy = pendingId === row.id;
             const editing = editingId === row.id;
@@ -106,12 +106,12 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                         value={draft}
                         onChange={(event) => setDraft(event.target.value)}
                         aria-label="نام"
-                        className="min-h-10 w-full rounded-control border border-line bg-desk px-3 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink"
+                        className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
                       />
                     ) : (
-                      <p className={cn("truncate text-body font-medium", row.active ? "text-ink" : "text-muted")}>{row.name}</p>
+                      <p className={cn("truncate text-body font-medium", row.active ? "text-foreground" : "text-muted-foreground")}>{row.name}</p>
                     )}
-                    <p className="mt-0.5 text-label text-muted">
+                    <p className="mt-0.5 text-label text-muted-foreground">
                       <bdi dir="ltr">{row.phone}</bdi>
                       <span> · {row.joined}</span>
                       <span> · {row.sessions > 0 ? `${faNum(row.sessions)} نشست باز` : "نشست باز ندارد"}</span>
@@ -121,8 +121,8 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                     <span
                       className={
                         row.role === "admin"
-                          ? "rounded-full bg-ink px-2.5 py-1 text-label text-paper"
-                          : "rounded-full border border-line px-2.5 py-1 text-label text-muted"
+                          ? "rounded-full bg-primary px-2.5 py-1 text-label text-primary-foreground"
+                          : "rounded-full border border-border px-2.5 py-1 text-label text-muted-foreground"
                       }
                     >
                       {row.self ? "خودت" : row.role === "admin" ? "مدیر" : "عضو"}
@@ -138,7 +138,7 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                         }}
                         className={cn(
                           "min-h-10 rounded-full px-3 text-label",
-                          row.active ? "bg-ink font-medium text-paper" : "border border-line text-danger",
+                          row.active ? "bg-primary font-medium text-primary-foreground" : "border border-border text-destructive",
                         )}
                       >
                         {busy ? "…" : row.active ? "فعال" : "غیرفعال"}
@@ -161,14 +161,14 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                       >
                         ذخیره
                       </Button>
-                      <Button type="button" variant="edge" size="sm" disabled={busy} onClick={() => setEditingId(null)}>
+                      <Button type="button" variant="outline" size="sm" disabled={busy} onClick={() => setEditingId(null)}>
                         انصراف
                       </Button>
                     </>
                   ) : (
                     <Button
                       type="button"
-                      variant="edge"
+                      variant="outline"
                       size="sm"
                       disabled={busy}
                       onClick={() => {
@@ -183,7 +183,7 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                   {row.self || !canGrant ? null : (
                     <Button
                       type="button"
-                      variant="edge"
+                      variant="outline"
                       size="sm"
                       disabled={busy || editing}
                       onClick={() => {
@@ -199,7 +199,7 @@ export function UserIndex({ rows, canGrant }: { rows: ManagedUser[]; canGrant: b
                   {row.self || row.sessions === 0 ? null : (
                     <Button
                       type="button"
-                      variant="edge"
+                      variant="outline"
                       size="sm"
                       disabled={busy || editing}
                       onClick={() => {

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { ArticleIndex, type ArticleRow } from "@/app/admin/article-index";
 import { PublishLearn } from "@/app/admin/publish-learn";
-import { ButtonLink } from "@/components/Button";
-import { Card } from "@/components/Card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { articleViewCounts, loadArticleDesk } from "@/lib/knowledge-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
@@ -29,7 +29,7 @@ export default async function LearnAdminPage() {
       <div className="flex items-center justify-between gap-3">
         <div className="min-w-0">
           <h1 className="text-headline font-bold">دانستنی‌ها</h1>
-          <p className="mt-1 text-label text-muted">
+          <p className="mt-1 text-label text-muted-foreground">
             {store === "ready"
               ? activeCount === rows.length
                 ? `${faNum(rows.length)} مقاله`
@@ -38,20 +38,20 @@ export default async function LearnAdminPage() {
           </p>
         </div>
         {store === "ready" ? (
-          <ButtonLink href="/admin/learn/new" size="md" className="shrink-0">
+          <Button href="/admin/learn/new" size="md" className="shrink-0">
             مقاله جدید
-          </ButtonLink>
+          </Button>
         ) : null}
       </div>
 
       {store === "offline" ? (
         <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted">اتصال فهرست مقاله‌ها برقرار نیست.</p>
+          <p className="text-pretty text-body text-muted-foreground">اتصال فهرست مقاله‌ها برقرار نیست.</p>
         </Card>
       ) : null}
       {store === "empty" ? (
         <Card className="mt-6 max-w-xl p-5">
-          <p className="text-pretty text-body text-muted">متن‌های فعلی دانستنی‌ها هنوز در پایگاه نیست. با انتشار، همین‌جا قابل ویرایش می‌شوند.</p>
+          <p className="text-pretty text-body text-muted-foreground">متن‌های فعلی دانستنی‌ها هنوز در پایگاه نیست. با انتشار، همین‌جا قابل ویرایش می‌شوند.</p>
           <PublishLearn />
         </Card>
       ) : null}

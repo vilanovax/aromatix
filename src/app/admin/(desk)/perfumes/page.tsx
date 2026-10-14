@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PerfumeIndex, type PerfumeRow } from "@/app/admin/perfume-index";
-import { ButtonLink } from "@/components/Button";
-import { Card } from "@/components/Card";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { catalogIssues } from "@/lib/admin/health";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { leadOffer } from "@/lib/catalog";
@@ -37,7 +37,7 @@ export default async function PerfumesPage({ searchParams }: { searchParams: Pro
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h1 className="text-headline font-bold text-balance">عطرها</h1>
-          <p className="mt-2 max-w-2xl text-pretty text-body text-muted">
+          <p className="mt-2 max-w-2xl text-pretty text-body text-muted-foreground">
             {store === "ready"
               ? issues.length > 0
                 ? `${faNum(snapshot.perfumes.length)} عطر منتشرشده، ${faNum(new Set(issues.map((issue) => issue.slug)).size)} تا با ${faNum(issues.length)} مورد باز. نام، فرم را باز می‌کند؛ برچسب، همان بخش را.`
@@ -46,18 +46,18 @@ export default async function PerfumesPage({ searchParams }: { searchParams: Pro
           </p>
         </div>
         {store === "ready" ? (
-          <ButtonLink href="/admin/perfumes/new" size="md" className="shrink-0">
+          <Button href="/admin/perfumes/new" size="md" className="shrink-0">
             عطر جدید
-          </ButtonLink>
+          </Button>
         ) : null}
       </div>
 
       {store !== "ready" ? (
         <Card className="mt-6 p-5">
-          <p className="text-pretty text-body text-muted">از نمای کلی کاتالوگ اولیه را منتشر کن تا ویرایش اینجا باز شود.</p>
-          <ButtonLink href="/admin" variant="edge" className="mt-4">
+          <p className="text-pretty text-body text-muted-foreground">از نمای کلی کاتالوگ اولیه را منتشر کن تا ویرایش اینجا باز شود.</p>
+          <Button href="/admin" variant="outline" className="mt-4">
             نمای کلی
-          </ButtonLink>
+          </Button>
         </Card>
       ) : (
         <>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { changeAdminPassword, createAdmin, setAdminAccess } from "@/app/admin/settings-actions";
-import { Button } from "@/components/Button";
-import { Card } from "@/components/Card";
+import { applyAdminTheme, readAdminTheme, type AdminTheme } from "@/lib/admin/theme";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { cn, faNum } from "@/lib/format";
 import { ADMIN_SECTIONS, type AdminSection } from "@/lib/auth/sections";
 
@@ -25,9 +26,10 @@ export type BackupCounts = {
 };
 
 const field =
-  "min-h-12 w-full rounded-control border border-line bg-card px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink";
+  "h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring";
 
 const PARTS = [
+  ["appearance", "ظاهر"],
   ["password", "رمز"],
   ["create", "مدیر جدید"],
   ["access", "دسترسی"],
@@ -39,16 +41,55 @@ export function SettingsDesk({ admins, counts }: { admins: SettingsAdmin[]; coun
     <div className="mt-5 space-y-4">
       <nav className="flex gap-1.5 overflow-x-auto" aria-label="بخش‌های تنظیمات">
         {PARTS.map(([id, label]) => (
-          <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-line bg-card px-3 py-1.5 text-label">
+          <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-border bg-card px-3 py-1.5 text-label">
             {label}
           </a>
         ))}
       </nav>
+      <AppearanceCard />
       <PasswordCard />
       <CreateCard />
       <AccessCard admins={admins} />
       <BackupCard counts={counts} />
     </div>
+  );
+}
+
+function AppearanceCard() {
+  const [theme, setTheme] = useState<AdminTheme>("dark");
+
+  useEffect(() => {
+    setTheme(readAdminTheme());
+  }, []);
+
+  function choose(next: AdminTheme) {
+    setTheme(next);
+    applyAdminTheme(next);
+  }
+
+  return (
+    <Card id="appearance" className="scroll-mt-20 p-4 sm:p-5">
+      <h2 className="text-title font-semibold">ظاهر</h2>
+      <p className="mt-1 text-label text-muted-foreground">روشن یا تاریک، فقط برای همین مرورگر ذخیره می‌شود.</p>
+      <div className="mt-4 flex rounded-control border border-border bg-card p-1" role="group" aria-label="تم مدیریت">
+        <button
+          type="button"
+          aria-pressed={theme === "light"}
+          onClick={() => choose("light")}
+          className={cn("h-10 flex-1 rounded-control text-label", theme === "light" ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
+        >
+          روشن
+        </button>
+        <button
+          type="button"
+          aria-pressed={theme === "dark"}
+          onClick={() => choose("dark")}
+          className={cn("h-10 flex-1 rounded-control text-label", theme === "dark" ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
+        >
+          تاریک
+        </button>
+      </div>
+    </Card>
   );
 }
 
@@ -76,13 +117,13 @@ function PasswordCard() {
   }
 
   return (
-    <Card as="section" id="password" className="scroll-mt-20 p-4 sm:p-5">
+    <Card id="password" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">رمز عبور</h2>
-      <p className="mt-1 text-label text-muted">رمز فعلی لازم است. نشست‌های دیگر این حساب بسته می‌شوند.</p>
+      <p className="mt-1 text-label text-muted-foreground">رمز فعلی لازم است. نشست‌های دیگر این حساب بسته می‌شوند.</p>
       <form onSubmit={submit} className="mt-4 grid gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="block">
-            <span className="text-label text-muted">رمز فعلی</span>
+            <span className="text-label text-muted-foreground">رمز فعلی</span>
             <input
               type="password"
               autoComplete="current-password"
@@ -92,7 +133,7 @@ function PasswordCard() {
             />
           </label>
           <label className="block">
-            <span className="text-label text-muted">رمز جدید</span>
+            <span className="text-label text-muted-foreground">رمز جدید</span>
             <input
               type="password"
               autoComplete="new-password"
@@ -103,12 +144,12 @@ function PasswordCard() {
           </label>
         </div>
         {error ? (
-          <p role="alert" className="text-label text-danger">
+          <p role="alert" className="text-label text-destructive">
             {error}
           </p>
         ) : null}
         {saved ? (
-          <p role="status" className="text-label text-muted">
+          <p role="status" className="text-label text-muted-foreground">
             رمز عوض شد.
           </p>
         ) : null}
@@ -151,17 +192,17 @@ function CreateCard() {
   }
 
   return (
-    <Card as="section" id="create" className="scroll-mt-20 p-4 sm:p-5">
+    <Card id="create" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">مدیر جدید</h2>
-      <p className="mt-1 text-label text-muted">با شمارهٔ تازه ساخته می‌شود و فقط بخش‌های باز را می‌بیند.</p>
+      <p className="mt-1 text-label text-muted-foreground">با شمارهٔ تازه ساخته می‌شود و فقط بخش‌های باز را می‌بیند.</p>
       <form onSubmit={submit} className="mt-4 grid gap-3">
         <div className="grid gap-3 sm:grid-cols-2">
           <label className="block">
-            <span className="text-label text-muted">نام</span>
+            <span className="text-label text-muted-foreground">نام</span>
             <input value={name} onChange={(event) => setName(event.target.value)} className={`${field} mt-1.5`} />
           </label>
           <label className="block">
-            <span className="text-label text-muted">موبایل</span>
+            <span className="text-label text-muted-foreground">موبایل</span>
             <input
               dir="ltr"
               inputMode="tel"
@@ -173,7 +214,7 @@ function CreateCard() {
           </label>
         </div>
         <label className="block">
-          <span className="text-label text-muted">رمز</span>
+          <span className="text-label text-muted-foreground">رمز</span>
           <input
             type="password"
             autoComplete="new-password"
@@ -184,7 +225,7 @@ function CreateCard() {
         </label>
         <SectionChecks selected={sections} onToggle={toggle} />
         {error ? (
-          <p role="alert" className="text-label text-danger">
+          <p role="alert" className="text-label text-destructive">
             {error}
           </p>
         ) : null}
@@ -198,9 +239,9 @@ function CreateCard() {
 
 function AccessCard({ admins }: { admins: SettingsAdmin[] }) {
   return (
-    <Card as="section" id="access" className="scroll-mt-20 p-4 sm:p-5">
+    <Card id="access" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">دسترسی مدیرها</h2>
-      <p className="mt-1 text-label text-muted">هر بخش یک آیتم منو است. حساب عضو از صفحهٔ کاربران عوض می‌شود.</p>
+      <p className="mt-1 text-label text-muted-foreground">هر بخش یک آیتم منو است. حساب عضو از صفحهٔ کاربران عوض می‌شود.</p>
       <ul className="mt-4 grid gap-3">
         {admins.map((admin) => (
           <li key={`${admin.id}:${admin.sections.join(",")}`}>
@@ -240,13 +281,13 @@ function AccessRow({ admin }: { admin: SettingsAdmin }) {
   }
 
   return (
-    <div className="rounded-control border border-line px-3.5 py-3">
+    <div className="rounded-control border border-border px-3.5 py-3">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <p className="text-body font-medium">
           {admin.name}
-          {admin.self ? <span className="text-label text-muted"> · خودت</span> : null}
+          {admin.self ? <span className="text-label text-muted-foreground"> · خودت</span> : null}
         </p>
-        <p className="text-label text-muted" dir="ltr">
+        <p className="text-label text-muted-foreground" dir="ltr">
           {admin.phone}
         </p>
       </div>
@@ -254,16 +295,16 @@ function AccessRow({ admin }: { admin: SettingsAdmin }) {
         <SectionChecks selected={sections} onToggle={toggle} />
       </div>
       {error ? (
-        <p role="alert" className="mt-2 text-label text-danger">
+        <p role="alert" className="mt-2 text-label text-destructive">
           {error}
         </p>
       ) : null}
       {saved ? (
-        <p role="status" className="mt-2 text-label text-muted">
+        <p role="status" className="mt-2 text-label text-muted-foreground">
           ذخیره شد.
         </p>
       ) : null}
-      <Button type="button" variant="edge" size="sm" className="mt-3" disabled={pending || !dirty || sections.length === 0} onClick={save}>
+      <Button type="button" variant="outline" size="sm" className="mt-3" disabled={pending || !dirty || sections.length === 0} onClick={save}>
         {pending ? "در حال ذخیره" : "ذخیرهٔ دسترسی"}
       </Button>
     </div>
@@ -275,8 +316,8 @@ function SectionChecks({ selected, onToggle }: { selected: readonly AdminSection
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       {groups.map((group) => (
-        <fieldset key={group} className="rounded-control border border-line px-3 py-2">
-          <legend className="px-1 text-label text-muted">{group}</legend>
+        <fieldset key={group} className="rounded-control border border-border px-3 py-2">
+          <legend className="px-1 text-label text-muted-foreground">{group}</legend>
           <ul>
             {ADMIN_SECTIONS.filter((section) => section.group === group).map((section) => (
               <li key={section.id}>
@@ -308,12 +349,12 @@ function BackupCard({ counts }: { counts: BackupCounts }) {
   ] as const;
 
   return (
-    <Card as="section" id="backup" className="scroll-mt-20 p-4 sm:p-5">
+    <Card id="backup" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">بک‌آپ</h2>
-      <p className="mt-1 text-label text-muted">فایل JSON از کاتالوگ، دانستنی‌ها و حساب‌ها. رمز و نشست داخلش نیست.</p>
+      <p className="mt-1 text-label text-muted-foreground">فایل JSON از کاتالوگ، دانستنی‌ها و حساب‌ها. رمز و نشست داخلش نیست.</p>
       <ul className="mt-4 flex flex-wrap gap-2">
         {lines.map(([label, count]) => (
-          <li key={label} className="rounded-full border border-line px-3 py-1.5 text-label">
+          <li key={label} className="rounded-full border border-border px-3 py-1.5 text-label">
             {faNum(count)} {label}
           </li>
         ))}
@@ -321,8 +362,8 @@ function BackupCard({ counts }: { counts: BackupCounts }) {
       <a
         href="/api/admin/backup"
         className={cn(
-          "mt-4 inline-flex min-h-11 items-center rounded-control border border-line px-4 text-body font-medium",
-          "hover:bg-press",
+          "mt-4 inline-flex min-h-11 items-center rounded-control border border-border px-4 text-body font-medium",
+          "hover:bg-accent",
         )}
       >
         دانلود بک‌آپ

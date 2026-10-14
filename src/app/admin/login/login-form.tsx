@@ -2,8 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "@/components/Button";
-import { TextField } from "@/components/TextField";
+import { Alert } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toAsciiDigits } from "@/lib/auth/phone";
 
 export function AdminLoginForm() {
   const router = useRouter();
@@ -37,30 +39,33 @@ export function AdminLoginForm() {
   }
 
   return (
-    <form method="post" action="/admin/login" onSubmit={submit}>
-      <TextField
-        label="شماره موبایل"
-        name="phone"
-        inputMode="tel"
-        autoComplete="username"
-        latinDigits
-        value={phone}
-        onChange={(event) => setPhone(event.target.value)}
-      />
-      <TextField
-        label="رمز"
-        name="password"
-        type="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      {error ? (
-        <p role="alert" className="mt-3 text-label text-pretty text-danger">
-          {error}
-        </p>
-      ) : null}
-      <Button type="submit" className="mt-5 w-full" disabled={pending}>
+    <form method="post" action="/admin/login" className="space-y-4" onSubmit={submit}>
+      <label className="block space-y-1.5 text-sm text-muted-foreground" htmlFor="admin-phone">
+        شماره موبایل
+        <Input
+          id="admin-phone"
+          name="phone"
+          inputMode="tel"
+          autoComplete="username"
+          dir="ltr"
+          value={phone}
+          onChange={(event) => setPhone(toAsciiDigits(event.target.value))}
+        />
+      </label>
+      <label className="block space-y-1.5 text-sm text-muted-foreground" htmlFor="admin-password">
+        رمز
+        <Input
+          id="admin-password"
+          name="password"
+          type="password"
+          autoComplete="current-password"
+          dir="ltr"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+      </label>
+      {error ? <Alert variant="destructive">{error}</Alert> : null}
+      <Button type="submit" size="lg" className="w-full" disabled={pending}>
         {pending ? "در حال ورود" : "ورود به مدیریت"}
       </Button>
     </form>

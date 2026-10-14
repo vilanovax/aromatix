@@ -3,13 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { saveArticle } from "@/app/admin/learn-actions";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/ui/button";
 import { faDigits, isoToJalali, JALALI_MONTHS, todayIso } from "@/lib/jalali";
 import { KNOWLEDGE_GROUPS, type KnowledgeEntry } from "@/lib/knowledge";
 import { cn, faNum } from "@/lib/format";
 
 const control =
-  "min-h-12 w-full rounded-control border border-line bg-card px-3 text-body text-ink outline-none focus-visible:outline-2 focus-visible:outline-ink";
+  "h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-body text-foreground outline-none focus-visible:outline-2 focus-visible:outline-ring";
 
 export function ArticleEditor({
   mode,
@@ -92,35 +92,35 @@ export function ArticleEditor({
   return (
     <form onSubmit={submit} className="mt-5 grid max-w-xl gap-4">
       <label className="block">
-        <span className="text-label text-muted">عنوان</span>
+        <span className="text-label text-muted-foreground">عنوان</span>
         <input className={`${control} mt-1.5`} value={title} onChange={(event) => setTitle(event.target.value)} />
       </label>
       {mode === "create" ? (
         <label className="block">
-          <span className="text-label text-muted">اسلاگ</span>
+          <span className="text-label text-muted-foreground">اسلاگ</span>
           <input className={`${control} mt-1.5`} dir="ltr" value={slug} onChange={(event) => setSlug(event.target.value)} />
         </label>
       ) : (
-        <p className="text-label text-faint" dir="ltr">
+        <p className="text-label text-muted-foreground" dir="ltr">
           {slug}
         </p>
       )}
       <label className="block">
-        <span className="text-label text-muted">خط زیر عنوان</span>
+        <span className="text-label text-muted-foreground">خط زیر عنوان</span>
         <input className={`${control} mt-1.5`} value={support} onChange={(event) => setSupport(event.target.value)} />
       </label>
       <label className="block">
-        <span className="text-label text-muted">خلاصه</span>
+        <span className="text-label text-muted-foreground">خلاصه</span>
         <textarea className={`${control} mt-1.5 min-h-24 py-3 leading-7`} value={summary} onChange={(event) => setSummary(event.target.value)} />
       </label>
       <label className="block">
-        <span className="text-label text-muted">متن</span>
+        <span className="text-label text-muted-foreground">متن</span>
         <textarea className={`${control} mt-1.5 min-h-48 py-3 leading-7`} value={body} onChange={(event) => setBody(event.target.value)} />
-        <span className="mt-1 block text-label text-faint">بین بندها یک خط خالی بگذار.</span>
+        <span className="mt-1 block text-label text-muted-foreground">بین بندها یک خط خالی بگذار.</span>
       </label>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="block">
-          <span className="text-label text-muted">دسته</span>
+          <span className="text-label text-muted-foreground">دسته</span>
           <select className={`${control} mt-1.5`} value={group} onChange={(event) => setGroup(event.target.value as KnowledgeEntry["group"])}>
             {KNOWLEDGE_GROUPS.map((item) => (
               <option key={item.id} value={item.id}>
@@ -130,12 +130,12 @@ export function ArticleEditor({
           </select>
         </label>
         <label className="block">
-          <span className="text-label text-muted">دقیقهٔ خواندن</span>
+          <span className="text-label text-muted-foreground">دقیقهٔ خواندن</span>
           <input className={`${control} mt-1.5`} inputMode="numeric" value={minutes} onChange={(event) => setMinutes(event.target.value)} />
         </label>
       </div>
       <fieldset className="grid gap-2">
-        <legend className="text-label text-muted">تاریخ شمسی</legend>
+        <legend className="text-label text-muted-foreground">تاریخ شمسی</legend>
         <div className="grid grid-cols-3 gap-2">
           <select className={control} aria-label="روز" value={day} onChange={(event) => setDay(event.target.value)}>
             {Array.from({ length: 31 }, (_, index) => (
@@ -162,13 +162,13 @@ export function ArticleEditor({
       </fieldset>
       <div className="grid gap-3 sm:grid-cols-2">
         <fieldset className="grid gap-2">
-          <legend className="text-label text-muted">نحوهٔ نمایش</legend>
-          <div className="flex rounded-control border border-line bg-card p-1" role="group" aria-label="نحوه نمایش">
+          <legend className="text-label text-muted-foreground">نحوهٔ نمایش</legend>
+          <div className="flex rounded-control border border-border bg-card p-1" role="group" aria-label="نحوه نمایش">
             <button
               type="button"
               aria-pressed={display === "card"}
               onClick={() => setDisplay("card")}
-              className={cn("min-h-10 flex-1 rounded-control text-label", display === "card" ? "bg-ink font-medium text-paper" : "text-muted")}
+              className={cn("min-h-10 flex-1 rounded-control text-label", display === "card" ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
             >
               کارت شاخص
             </button>
@@ -176,20 +176,20 @@ export function ArticleEditor({
               type="button"
               aria-pressed={display === "row"}
               onClick={() => setDisplay("row")}
-              className={cn("min-h-10 flex-1 rounded-control text-label", display === "row" ? "bg-ink font-medium text-paper" : "text-muted")}
+              className={cn("min-h-10 flex-1 rounded-control text-label", display === "row" ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
             >
               ردیف
             </button>
           </div>
         </fieldset>
         <fieldset className="grid gap-2">
-          <legend className="text-label text-muted">وضعیت</legend>
-          <div className="flex rounded-control border border-line bg-card p-1" role="group" aria-label="وضعیت مقاله">
+          <legend className="text-label text-muted-foreground">وضعیت</legend>
+          <div className="flex rounded-control border border-border bg-card p-1" role="group" aria-label="وضعیت مقاله">
             <button
               type="button"
               aria-pressed={active}
               onClick={() => setActive(true)}
-              className={cn("min-h-10 flex-1 rounded-control text-label", active ? "bg-ink font-medium text-paper" : "text-muted")}
+              className={cn("min-h-10 flex-1 rounded-control text-label", active ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
             >
               فعال
             </button>
@@ -197,38 +197,38 @@ export function ArticleEditor({
               type="button"
               aria-pressed={!active}
               onClick={() => setActive(false)}
-              className={cn("min-h-10 flex-1 rounded-control text-label", !active ? "bg-ink font-medium text-paper" : "text-muted")}
+              className={cn("min-h-10 flex-1 rounded-control text-label", !active ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground")}
             >
               غیرفعال
             </button>
           </div>
         </fieldset>
       </div>
-      <p className="text-pretty text-label text-faint">
+      <p className="text-pretty text-label text-muted-foreground">
         کارت شاخص بالای دانستنی‌ها می‌آید. ردیف داخل دستهٔ خودش است.
         {mode === "edit" ? ` تا امروز ${faNum(views)} بازدید.` : ""}
       </p>
       <label className="block">
-        <span className="text-label text-muted">سؤال دستیار</span>
+        <span className="text-label text-muted-foreground">سؤال دستیار</span>
         <input className={`${control} mt-1.5`} value={ask} onChange={(event) => setAsk(event.target.value)} />
       </label>
-      <details className="rounded-panel border border-line bg-card px-3.5 py-3">
+      <details className="rounded-surface border border-border bg-card px-3.5 py-3">
         <summary className="cursor-pointer text-body font-medium">نام‌های دیگر، مقایسه، پیوند</summary>
         <div className="mt-3 grid gap-3">
           <label className="block">
-            <span className="text-label text-muted">نام‌های دیگر</span>
+            <span className="text-label text-muted-foreground">نام‌های دیگر</span>
             <input className={`${control} mt-1.5`} value={aliases} onChange={(event) => setAliases(event.target.value)} />
           </label>
           <label className="block">
-            <span className="text-label text-muted">باور رایج</span>
+            <span className="text-label text-muted-foreground">باور رایج</span>
             <input className={`${control} mt-1.5`} value={mythClaim} onChange={(event) => setMythClaim(event.target.value)} />
           </label>
           <label className="block">
-            <span className="text-label text-muted">واقعیت</span>
+            <span className="text-label text-muted-foreground">واقعیت</span>
             <input className={`${control} mt-1.5`} value={mythReality} onChange={(event) => setMythReality(event.target.value)} />
           </label>
           <label className="block">
-            <span className="text-label text-muted">جدول مقایسه</span>
+            <span className="text-label text-muted-foreground">جدول مقایسه</span>
             <textarea
               className={`${control} mt-1.5 min-h-24 py-3 leading-7`}
               value={compare}
@@ -237,17 +237,17 @@ export function ArticleEditor({
             />
           </label>
           <label className="block">
-            <span className="text-label text-muted">مدخل‌های مرتبط</span>
+            <span className="text-label text-muted-foreground">مدخل‌های مرتبط</span>
             <input className={`${control} mt-1.5`} dir="ltr" value={related} onChange={(event) => setRelated(event.target.value)} />
           </label>
         </div>
       </details>
       {error ? (
-        <p role="alert" className="text-label text-danger">
+        <p role="alert" className="text-label text-destructive">
           {error}
         </p>
       ) : saved ? (
-        <p role="status" className="text-label text-muted">
+        <p role="status" className="text-label text-muted-foreground">
           ذخیره شد.
         </p>
       ) : null}

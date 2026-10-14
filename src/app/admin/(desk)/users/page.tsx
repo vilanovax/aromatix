@@ -17,7 +17,7 @@ export default async function UsersPage() {
   return (
     <div>
       <h1 className="text-headline font-bold">کاربران</h1>
-      <p className="mt-2 text-body text-muted">
+      <p className="mt-2 text-body text-muted-foreground">
         {faNum(rows.length)} حساب، {faNum(admins)} مدیر
         {inactive > 0 ? `، ${faNum(inactive)} غیرفعال` : ""}
       </p>

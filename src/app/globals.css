@@ -21,6 +21,7 @@
   --taste-try: #7fa58a;
   --well: #e2e8ea;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --shape-control: 12px;
   --shadow-card: 0 6px 20px -16px rgb(2 58 75 / 0.4);
   --shadow-sheet: 0 8px 24px -12px rgb(2 58 75 / 0.18);
   --shadow-frame: 0 0 48px rgb(2 58 75 / 0.06);
@@ -83,7 +84,7 @@ body {
   min-height: 100dvh;
   background: var(--desk);
   color: var(--ink);
-  font-family: var(--font-vazir), Tahoma, sans-serif;
+  font-family: var(--font-vazirmatn), var(--font-vazir), Tahoma, sans-serif;
   font-feature-settings: "ss01";
 }
 
@@ -275,3 +276,162 @@ textarea {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
+
+/* --- vibefarsi:theme-graphite --- */
+/* گرافیت فقط داخل ادمین. :root سایت عمومی دست نمی‌خورد. */
+.vf {
+  color-scheme: dark;
+
+  /* رنگ */
+  --background: oklch(0.115 0.002 285);
+  --foreground: oklch(0.975 0 0);
+  --card: oklch(0.14 0.002 285);
+  --card-foreground: oklch(0.975 0 0);
+  --popover: oklch(0.16 0.002 285);
+  --popover-foreground: oklch(0.975 0 0);
+  --primary: oklch(0.975 0 0);
+  --primary-foreground: oklch(0.13 0 0);
+  --secondary: oklch(0.2 0.002 285);
+  --secondary-foreground: oklch(0.975 0 0);
+  --muted: oklch(0.175 0.002 285);
+  --muted-foreground: oklch(0.63 0.004 285);
+  --accent: oklch(0.2 0.002 285);
+  --accent-foreground: oklch(0.975 0 0);
+  --destructive: oklch(0.65 0.2 25);
+  --success: oklch(0.75 0.16 160);
+  --warning: oklch(0.82 0.16 80);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 11%);
+  --ring: oklch(0.7 0 0);
+  --brand: oklch(0.8 0.165 65);
+  --brand-foreground: oklch(0.22 0.06 60);
+
+  /* زبان طراحی: فونت، فرم، خط، عمق، حرکت و تراکم */
+  --radius: 0.625rem;
+  --type-display-weight: 700;
+  --shape-control: calc(var(--radius) - 2px);
+  --shape-field: calc(var(--radius) - 2px);
+  --shape-surface: calc(var(--radius) + 12px);
+  --shape-overlay: calc(var(--radius) + 4px);
+  --line: 1px;
+  --line-field: 1px;
+  --line-style: solid;
+  --field: color-mix(in oklch, var(--background) 60%, transparent);
+  --depth-control: 0 0 #0000;
+  --depth-press: 0 0 #0000;
+  --depth-field: 0 0 #0000;
+  --depth-surface: 0 1px 0 0 oklch(1 0 0 / 6%) inset;
+  --depth-overlay: 0 20px 50px -20px oklch(0 0 0 / 80%);
+  --surface-filter: none;
+  --press: scale(0.98);
+  --motion: 200ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+  --backdrop: none;
+  --spacing: 0.25rem;
+}
+/* روشن، همان میز و مرکب آروما. فقط وقتی از تنظیمات انتخاب شود. */
+html[data-admin-theme="light"] .vf {
+  color-scheme: light;
+  --background: #e9edee;
+  --foreground: #023a4b;
+  --card: #fbfcfc;
+  --card-foreground: #023a4b;
+  --popover: #fbfcfc;
+  --popover-foreground: #023a4b;
+  --primary: #023a4b;
+  --primary-foreground: #fbfcfc;
+  --secondary: #dfe6e8;
+  --secondary-foreground: #023a4b;
+  --muted: #dce3e5;
+  --muted-foreground: #4a5b62;
+  --accent: #dfe6e8;
+  --accent-foreground: #023a4b;
+  --destructive: #8e3d32;
+  --success: #4f8a62;
+  --warning: #b8a27a;
+  --border: #d2dbde;
+  --input: #d2dbde;
+  --ring: #023a4b;
+  --brand: #c7a769;
+  --brand-foreground: #023a4b;
+  --field: #fbfcfc;
+  --depth-surface: 0 6px 20px -16px rgb(2 58 75 / 0.4);
+  --depth-overlay: 0 8px 24px -12px rgb(2 58 75 / 0.18);
+}
+/* --- vibefarsi:theme-graphite-end --- */
+
+/* --- vibefarsi:tailwind-map --- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  /* شعاع‌های sm/md/lg سایت عمومی دست نمی‌خورند. عرض border-line هم مال رنگ خط خود آروماست. */
+  --radius-control: var(--shape-control);
+  --radius-field: var(--shape-field);
+  --radius-surface: var(--shape-surface);
+  --radius-overlay: var(--shape-overlay);
+  --color-field: var(--field);
+  --shadow-control: var(--depth-control);
+  --shadow-press: var(--depth-press);
+  --shadow-field: var(--depth-field);
+  --shadow-surface: var(--depth-surface);
+  --shadow-overlay: var(--depth-overlay);
+  --ease-motion: var(--motion-ease);
+  --font-display: var(--type-display);
+}
+
+@layer base {
+  .vf {
+    font-size: 16.5px;
+    line-height: 1.8;
+    letter-spacing: 0;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans);
+    background-color: var(--background);
+    color: var(--foreground);
+    background-image: var(--backdrop, none);
+  }
+
+  .vf h1, .vf h2, .vf h3, .vf h4 {
+    font-family: var(--type-display, inherit);
+    font-weight: var(--type-display-weight, 700);
+    font-synthesis-weight: none;
+    line-height: 1.25;
+  }
+
+  /* iOS Safari zooms into any focused field smaller than 16px; only iOS matches this query. */
+  @supports (-webkit-touch-callout: none) {
+    input, textarea, select {
+      --text-xs: 1rem;
+      --text-sm: 1rem;
+      font-size: max(1rem, 1em);
+    }
+  }
+}
+/* --- vibefarsi:tailwind-map-end --- */
+
+/* --- vibefarsi:font --- */
+@theme inline {
+  --font-sans: var(--font-vazirmatn), "IRANSans", "IRANSansX", "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+}
+/* --- vibefarsi:font-end --- */

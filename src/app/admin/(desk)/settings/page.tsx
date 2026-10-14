@@ -14,7 +14,7 @@ export default async function SettingsPage() {
   return (
     <div className="mx-auto max-w-3xl">
       <h1 className="text-headline font-bold">تنظیمات</h1>
-      <p className="mt-2 text-body text-muted">حساب خودت، مدیرها، و نسخهٔ داده‌ها.</p>
+      <p className="mt-2 text-body text-muted-foreground">حساب خودت، مدیرها، و نسخهٔ داده‌ها.</p>
       <SettingsDesk admins={admins} counts={counts} />
     </div>
   );

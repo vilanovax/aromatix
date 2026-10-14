@@ -13,7 +13,7 @@ export default async function NewBrandPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link href="/admin/brands" className="text-label text-muted">
+      <Link href="/admin/brands" className="text-label text-muted-foreground">
         برندها
       </Link>
       <h1 className="mt-2 text-headline font-bold">برند جدید</h1>

@@ -102,11 +102,11 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="نام، برند یا اسلاگ"
-            className="min-h-12 w-full rounded-control border border-line bg-card px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink"
+            className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
           />
         </label>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex rounded-control border border-line bg-card p-1" role="group" aria-label="مدل نمایش">
+          <div className="flex rounded-control border border-border bg-card p-1" role="group" aria-label="مدل نمایش">
             {VIEWS.map((item) => (
               <button
                 key={item.id}
@@ -114,8 +114,8 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
                 aria-pressed={view === item.id}
                 onClick={() => setView(item.id)}
                 className={cn(
-                  "min-h-11 rounded-control px-3 text-label focus-visible:outline-2 focus-visible:outline-ink",
-                  view === item.id ? "bg-ink font-medium text-paper" : "text-muted",
+                  "min-h-11 rounded-control px-3 text-label focus-visible:outline-2 focus-visible:outline-ring",
+                  view === item.id ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground",
                 )}
               >
                 {item.label}
@@ -128,8 +128,8 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
               aria-pressed={openOnly}
               onClick={() => setOpenOnly((value) => !value)}
               className={cn(
-                "min-h-11 rounded-control px-3 text-label focus-visible:outline-2 focus-visible:outline-ink",
-                openOnly ? "bg-ink font-medium text-paper" : "border border-line bg-card text-ink",
+                "min-h-11 rounded-control px-3 text-label focus-visible:outline-2 focus-visible:outline-ring",
+                openOnly ? "bg-primary font-medium text-primary-foreground" : "border border-border bg-card text-foreground",
               )}
             >
               موارد باز
@@ -140,7 +140,7 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
             <select
               value={brandName ? picked : ""}
               onChange={(event) => chooseBrand(event.target.value)}
-              className="min-h-12 w-full rounded-control border border-line bg-card px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ink sm:w-40"
+              className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ring sm:w-40"
             >
               <option value="">همهٔ برندها</option>
               {brands.map((item) => (
@@ -155,7 +155,7 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
             <select
               value={sort}
               onChange={(event) => setSort(event.target.value as Sort)}
-              className="min-h-12 w-full rounded-control border border-line bg-card px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ink sm:w-36"
+              className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ring sm:w-36"
             >
               {SORTS.map((item) => (
                 <option key={item.id} value={item.id}>
@@ -168,14 +168,14 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
       </div>
 
       {query.trim() || openOnly || brandName ? (
-        <p className="mt-3 text-label text-muted">
+        <p className="mt-3 text-label text-muted-foreground">
           {faNum(visible.length)} از {faNum(rows.length)}
           {brandName ? ` · ${brandName}` : ""}
         </p>
       ) : null}
 
       {visible.length === 0 ? (
-        <p className="mt-3 text-body text-muted">
+        <p className="mt-3 text-body text-muted-foreground">
           {brandName && !query.trim() && !openOnly
             ? `عطری از ${brandName} در این فهرست نیست.`
             : openOnly && !query.trim()
@@ -183,7 +183,7 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
               : "با این عبارت عطری نیست."}
         </p>
       ) : view === "simple" ? (
-        <ul className="mt-3 divide-y divide-line overflow-hidden rounded-panel border border-line bg-card">
+        <ul className="mt-3 divide-y divide-border overflow-hidden rounded-surface border border-border bg-card">
           {visible.map((row) => (
             <li key={row.slug}>
               <SimpleRow row={row} />
@@ -205,12 +205,12 @@ export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[];
 
 function GridCard({ row }: { row: PerfumeRow }) {
   return (
-    <article className="flex h-full flex-col rounded-panel border border-line bg-card p-3">
+    <article className="flex h-full flex-col rounded-surface border border-border bg-card p-3">
       <Link href={`/admin/perfumes/${row.slug}`} className="group flex min-w-0 flex-1 flex-col">
         <AccordMark accords={row.accords} />
         <span className="mt-2 block truncate text-body font-medium group-hover:underline">{row.nameFa}</span>
-        <span className="mt-0.5 block truncate text-label text-muted">{row.brand}</span>
-        <span className="mt-2 block truncate text-label text-faint">{row.priceLabel ?? "بدون قیمت"}</span>
+        <span className="mt-0.5 block truncate text-label text-muted-foreground">{row.brand}</span>
+        <span className="mt-2 block truncate text-label text-muted-foreground">{row.priceLabel ?? "بدون قیمت"}</span>
       </Link>
       <IssueChips slug={row.slug} issues={row.issues} className="mt-2" />
     </article>
@@ -219,11 +219,11 @@ function GridCard({ row }: { row: PerfumeRow }) {
 
 function ExpandedCard({ row }: { row: PerfumeRow }) {
   return (
-    <article className="flex h-full flex-col rounded-panel border border-line bg-card px-3.5 py-3">
+    <article className="flex h-full flex-col rounded-surface border border-border bg-card px-3.5 py-3">
       <Link href={`/admin/perfumes/${row.slug}`} className="group min-w-0">
         <span className="block text-body font-medium group-hover:underline">{row.nameFa}</span>
-        <span className="mt-0.5 block truncate text-label text-faint">{row.nameEn}</span>
-        <span className="mt-0.5 block text-label text-muted">
+        <span className="mt-0.5 block truncate text-label text-muted-foreground">{row.nameEn}</span>
+        <span className="mt-0.5 block text-label text-muted-foreground">
           {row.brand}
           {row.priceLabel ? ` · ${row.priceLabel}` : " · بدون قیمت"}
         </span>
@@ -244,9 +244,9 @@ function SimpleRow({ row }: { row: PerfumeRow }) {
         className="group grid w-full grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-3 gap-y-0.5 sm:w-auto sm:grid-cols-[minmax(11rem,18rem)_8.5rem_10rem] sm:gap-x-6"
       >
         <span className="truncate text-body font-medium group-hover:underline">{row.nameFa}</span>
-        <span className="text-label text-muted sm:hidden">{row.priceLabel ?? "بدون قیمت"}</span>
-        <span className="col-span-2 truncate text-label text-muted sm:col-span-1">{row.brand}</span>
-        <span className="hidden text-label text-muted sm:block">{row.priceLabel ?? "بدون قیمت"}</span>
+        <span className="text-label text-muted-foreground sm:hidden">{row.priceLabel ?? "بدون قیمت"}</span>
+        <span className="col-span-2 truncate text-label text-muted-foreground sm:col-span-1">{row.brand}</span>
+        <span className="hidden text-label text-muted-foreground sm:block">{row.priceLabel ?? "بدون قیمت"}</span>
       </Link>
       <IssueChips slug={row.slug} issues={row.issues} />
     </div>
@@ -261,7 +261,7 @@ function IssueChips({ slug, issues, className }: { slug: string; issues: Perfume
         <Link
           key={`${issue.part}-${issue.label}`}
           href={issue.part === "shops" ? "/admin/shops" : `/admin/perfumes/${slug}#${issue.part}`}
-          className="inline-flex min-h-9 items-center rounded-full bg-clay px-3 text-label text-ink hover:underline"
+          className="inline-flex min-h-9 items-center rounded-full bg-secondary px-3 text-label text-foreground hover:underline"
         >
           {issue.label}
         </Link>

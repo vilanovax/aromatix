@@ -84,7 +84,7 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="عنوان یا اسلاگ"
-            className="min-h-12 w-full rounded-control border border-line bg-card px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink"
+            className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
           />
         </label>
         <label className="min-w-0 sm:w-36">
@@ -92,7 +92,7 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
           <select
             value={sort}
             onChange={(event) => setSort(event.target.value as SortId)}
-            className="min-h-12 w-full rounded-control border border-line bg-card px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ink"
+            className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ring"
           >
             {SORTS.map((item) => (
               <option key={item.id} value={item.id}>
@@ -119,37 +119,37 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
       </ul>
 
       {narrowed ? (
-        <p className="mt-3 text-label text-muted">
+        <p className="mt-3 text-label text-muted-foreground">
           {faNum(visible.length)} از {faNum(rows.length)}
           {sort === "order" ? ". جابه‌جایی در فهرست کامل است." : ""}
         </p>
       ) : canReorder ? (
-        <p className="mt-3 text-label text-faint">بالا و پایین، ترتیب صفحهٔ عمومی را عوض می‌کند.</p>
+        <p className="mt-3 text-label text-muted-foreground">بالا و پایین، ترتیب صفحهٔ عمومی را عوض می‌کند.</p>
       ) : null}
 
       {error ? (
-        <p role="alert" className="mt-3 text-label text-danger">
+        <p role="alert" className="mt-3 text-label text-destructive">
           {error}
         </p>
       ) : null}
 
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted">{group !== "all" && !query.trim() ? "در این دسته مقاله‌ای نیست." : "با این عبارت مقاله‌ای نیست."}</p>
+        <p className="mt-4 text-body text-muted-foreground">{group !== "all" && !query.trim() ? "در این دسته مقاله‌ای نیست." : "با این عبارت مقاله‌ای نیست."}</p>
       ) : (
-        <ul className="mt-3 overflow-hidden rounded-panel border border-line bg-card">
+        <ul className="mt-3 overflow-hidden rounded-surface border border-border bg-card">
           {visible.map((row, index) => (
-              <li key={row.slug} className={index === 0 ? undefined : "border-t border-line"}>
+              <li key={row.slug} className={index === 0 ? undefined : "border-t border-border"}>
                 <div className="flex flex-col gap-2 px-3 py-2.5 sm:flex-row sm:items-center sm:gap-3 sm:px-3.5">
                   <Link href={`/admin/learn/${row.slug}`} className="min-w-0 flex-1 rounded-control hover:underline">
-                    <span className={cn("block text-pretty text-body font-medium", row.active ? "text-ink" : "text-muted")}>{row.title}</span>
-                    <span className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-label text-faint">
+                    <span className={cn("block text-pretty text-body font-medium", row.active ? "text-foreground" : "text-muted-foreground")}>{row.title}</span>
+                    <span className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-label text-muted-foreground">
                       <span>{groupLabel(row.group)}</span>
                       <span aria-hidden>·</span>
                       <span>{row.display === "card" ? "کارت شاخص" : "ردیف"}</span>
                       <span aria-hidden>·</span>
                       <span>{formatShamsi(row.publishedOn)}</span>
                       <span aria-hidden>·</span>
-                      <span className={row.views > 0 ? "text-ink" : undefined}>{faNum(row.views)} بازدید</span>
+                      <span className={row.views > 0 ? "text-foreground" : undefined}>{faNum(row.views)} بازدید</span>
                     </span>
                   </Link>
                   <div className="flex shrink-0 items-center gap-2">
@@ -160,7 +160,7 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
                           aria-label="بالاتر"
                           disabled={pending !== null || index === 0}
                           onClick={() => move(row, "up")}
-                          className="grid size-9 place-items-center rounded-control border border-line text-muted disabled:opacity-40"
+                          className="grid size-9 place-items-center rounded-control border border-border text-muted-foreground disabled:opacity-40"
                         >
                           <Chevron className="rotate-180" />
                         </button>
@@ -169,7 +169,7 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
                           aria-label="پایین‌تر"
                           disabled={pending !== null || index === visible.length - 1}
                           onClick={() => move(row, "down")}
-                          className="grid size-9 place-items-center rounded-control border border-line text-muted disabled:opacity-40"
+                          className="grid size-9 place-items-center rounded-control border border-border text-muted-foreground disabled:opacity-40"
                         >
                           <Chevron />
                         </button>
@@ -182,7 +182,7 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
                       onClick={() => toggle(row)}
                       className={cn(
                         "min-h-9 min-w-16 rounded-full border px-3 text-label",
-                        row.active ? "border-line text-ink" : "border-danger text-danger",
+                        row.active ? "border-border text-foreground" : "border-destructive text-destructive",
                       )}
                     >
                       {pending === row.slug ? "…" : row.active ? "فعال" : "پنهان"}

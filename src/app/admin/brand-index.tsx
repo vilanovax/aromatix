@@ -52,34 +52,34 @@ export function BrandIndex({ rows }: { rows: BrandRow[] }) {
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder="نام یا توضیح"
-          className="min-h-12 w-full rounded-control border border-line bg-card px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink"
+          className="h-11 w-full rounded-field border border-input bg-field shadow-field px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ring"
         />
       </label>
       {error ? (
-        <p role="alert" className="mt-3 text-label text-danger">
+        <p role="alert" className="mt-3 text-label text-destructive">
           {error}
         </p>
       ) : null}
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted">با این عبارت برندی نیست.</p>
+        <p className="mt-4 text-body text-muted-foreground">با این عبارت برندی نیست.</p>
       ) : (
         <ul className="mt-3 grid gap-2">
           {visible.map((row) => (
-            <li key={row.slug} className="flex items-stretch gap-2 rounded-panel border border-line bg-card">
-              <Link href={`/admin/brands/${row.slug}`} className="min-w-0 flex-1 px-3.5 py-3 hover:bg-press">
+            <li key={row.slug} className="flex items-stretch gap-2 rounded-surface border border-border bg-card">
+              <Link href={`/admin/brands/${row.slug}`} className="min-w-0 flex-1 px-3.5 py-3 hover:bg-accent">
                 <span className="flex min-w-0 items-baseline gap-2">
                   <span className="truncate text-body font-medium">{row.nameFa}</span>
-                  <span className="truncate text-label text-faint">{row.nameEn}</span>
+                  <span className="truncate text-label text-muted-foreground">{row.nameEn}</span>
                 </span>
-                <span className="mt-1 block text-label text-muted">{faNum(row.perfumeCount)} عطر</span>
-                <span className={cn("mt-1 line-clamp-2 block text-label", row.description ? "text-muted" : "text-faint")}>
+                <span className="mt-1 block text-label text-muted-foreground">{faNum(row.perfumeCount)} عطر</span>
+                <span className={cn("mt-1 line-clamp-2 block text-label", row.description ? "text-muted-foreground" : "text-muted-foreground")}>
                   {row.description || "توضیحی نوشته نشده"}
                 </span>
               </Link>
               <div className="flex shrink-0 flex-col items-stretch justify-center gap-2 pe-3">
                 <Link
                   href={`/admin/perfumes?brand=${encodeURIComponent(row.slug)}`}
-                  className="inline-flex min-h-10 items-center justify-center rounded-full border border-line px-3 text-label"
+                  className="inline-flex min-h-10 items-center justify-center rounded-full border border-border px-3 text-label"
                 >
                   لیست عطرها
                 </Link>
@@ -90,7 +90,7 @@ export function BrandIndex({ rows }: { rows: BrandRow[] }) {
                   onClick={() => toggle(row)}
                   className={cn(
                     "min-h-10 rounded-full px-3 text-label",
-                    row.active ? "bg-ink font-medium text-paper" : "border border-line text-muted",
+                    row.active ? "bg-primary font-medium text-primary-foreground" : "border border-border text-muted-foreground",
                   )}
                 >
                   {pending === row.slug ? "…" : row.active ? "فعال" : "غیرفعال"}

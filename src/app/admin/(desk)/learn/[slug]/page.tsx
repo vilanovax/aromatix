@@ -17,7 +17,7 @@ export default async function EditArticlePage({ params }: { params: Promise<{ sl
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link href="/admin/learn" className="text-label text-muted">
+      <Link href="/admin/learn" className="text-label text-muted-foreground">
         دانستنی‌ها
       </Link>
       <h1 className="mt-2 text-headline font-bold">{entry.title}</h1>

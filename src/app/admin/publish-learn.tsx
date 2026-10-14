@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { publishLearnSeed } from "@/app/admin/learn-actions";
-import { Button } from "@/components/Button";
+import { Button } from "@/components/ui/button";
 
 export function PublishLearn() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export function PublishLearn() {
   return (
     <div className="mt-4">
       {error ? (
-        <p role="alert" className="mb-3 text-label text-danger">
+        <p role="alert" className="mb-3 text-label text-destructive">
           {error}
         </p>
       ) : null}

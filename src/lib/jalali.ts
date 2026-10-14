@@ -130,3 +130,25 @@ export function todayIso() {
   const day = String(now.getDate()).padStart(2, "0");
   return `${now.getFullYear()}-${month}-${day}`;
 }
+
+/** Gregorian calendar date → Jalali parts. Charts use this shape. */
+export function toJalali(date: Date): JalaliDate {
+  return toJalaali(date.getFullYear(), date.getMonth() + 1, date.getDate()) ?? { jy: 0, jm: 1, jd: 1 };
+}
+
+/** Jalali year/month/day → local midnight. */
+export function gregorianDate(jy: number, jm: number, jd: number) {
+  const g = toGregorian(jy, jm, jd);
+  if (!g) return new Date(NaN);
+  return new Date(g.gy, g.gm - 1, g.gd);
+}
+
+/** 31 for Farvardin–Shahrivar, 30 for Mehr–Bahman, 29 or 30 for Esfand. */
+export function jalaliMonthLength(jy: number, jm: number) {
+  if (jm >= 1 && jm <= 6) return 31;
+  if (jm >= 7 && jm <= 11) return 30;
+  const probe = toGregorian(jy, 12, 30);
+  if (!probe) return 29;
+  const back = toJalaali(probe.gy, probe.gm, probe.gd);
+  return back?.jy === jy && back.jm === 12 && back.jd === 30 ? 30 : 29;
+}
