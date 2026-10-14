@@ -49,9 +49,10 @@ export const currentUser = cache(async function currentUser() {
   }
 
   const user = await db.orm.aroma.User.where((row) => row.id.eq(session.userId))
-    .select("id", "name", "avatarId", "phone")
+    .select("id", "name", "avatarId", "phone", "active")
     .first();
-  if (!user) {
+  if (!user || !user.active) {
+    await db.orm.aroma.Session.where((row) => row.id.eq(session.id)).delete();
     await clearSessionCookie();
     return null;
   }

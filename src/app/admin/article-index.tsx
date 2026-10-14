@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { moveArticle, setArticleActive } from "@/app/admin/learn-actions";
+import { Chip } from "@/components/Chip";
 import { KNOWLEDGE_GROUPS, type ArticleDisplay, type KnowledgeGroup } from "@/lib/knowledge";
 import { formatShamsi } from "@/lib/jalali";
 import { cn, faNum } from "@/lib/format";
@@ -27,18 +28,26 @@ const SORTS = [
 ] as const;
 
 type SortId = (typeof SORTS)[number]["id"];
+type GroupFilter = KnowledgeGroup | "all";
 
 export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<SortId>("order");
+  const [group, setGroup] = useState<GroupFilter>("all");
   const [pending, setPending] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    const filtered = needle ? rows.filter((row) => `${row.title} ${row.slug}`.toLowerCase().includes(needle)) : rows;
+    const filtered = rows.filter((row) => {
+      if (group !== "all" && row.group !== group) return false;
+      if (!needle) return true;
+      return `${row.title} ${row.slug} ${groupLabel(row.group)}`.toLowerCase().includes(needle);
+    });
     return [...filtered].sort((a, b) => compareRows(a, b, sort));
-  }, [query, rows, sort]);
+  }, [group, query, rows, sort]);
+  const canReorder = sort === "order" && group === "all" && !query.trim();
+  const narrowed = Boolean(query.trim()) || group !== "all";
 
   async function toggle(row: ArticleRow) {
     const next = !row.active;
@@ -93,69 +102,106 @@ export function ArticleIndex({ rows }: { rows: ArticleRow[] }) {
           </select>
         </label>
       </div>
+
+      <ul className="mt-3 flex flex-wrap gap-2" aria-label="دسته‌ها">
+        <li>
+          <Chip selected={group === "all"} onClick={() => setGroup("all")}>
+            همه
+          </Chip>
+        </li>
+        {KNOWLEDGE_GROUPS.map((item) => (
+          <li key={item.id}>
+            <Chip selected={group === item.id} onClick={() => setGroup(item.id)}>
+              {item.label}
+            </Chip>
+          </li>
+        ))}
+      </ul>
+
+      {narrowed ? (
+        <p className="mt-3 text-label text-muted">
+          {faNum(visible.length)} از {faNum(rows.length)}
+          {sort === "order" ? ". جابه‌جایی در فهرست کامل است." : ""}
+        </p>
+      ) : canReorder ? (
+        <p className="mt-3 text-label text-faint">بالا و پایین، ترتیب صفحهٔ عمومی را عوض می‌کند.</p>
+      ) : null}
+
       {error ? (
         <p role="alert" className="mt-3 text-label text-danger">
           {error}
         </p>
       ) : null}
+
       {visible.length === 0 ? (
-        <p className="mt-4 text-body text-muted">با این عبارت مقاله‌ای نیست.</p>
+        <p className="mt-4 text-body text-muted">{group !== "all" && !query.trim() ? "در این دسته مقاله‌ای نیست." : "با این عبارت مقاله‌ای نیست."}</p>
       ) : (
-        <ul className="mt-3 grid gap-2">
+        <ul className="mt-3 overflow-hidden rounded-panel border border-line bg-card">
           {visible.map((row, index) => (
-            <li key={row.slug} className="flex items-stretch gap-2 rounded-panel border border-line bg-card">
-              <Link href={`/admin/learn/${row.slug}`} className="min-w-0 flex-1 px-3.5 py-3 hover:bg-press">
-                <span className="block text-pretty text-body font-medium">{row.title}</span>
-                <span className="mt-1 block text-label text-muted">
-                  {groupLabel(row.group)}
-                  <span className="mx-1.5 text-faint">·</span>
-                  {row.display === "card" ? "کارت شاخص" : "ردیف"}
-                  <span className="mx-1.5 text-faint">·</span>
-                  {formatShamsi(row.publishedOn)}
-                </span>
-                <span className="mt-1 block text-label text-faint">{faNum(row.views)} بازدید</span>
-              </Link>
-              <div className="flex shrink-0 flex-col items-end justify-center gap-2 py-3 pe-3">
-                {sort === "order" && !query.trim() ? (
-                  <span className="flex gap-1">
+              <li key={row.slug} className={index === 0 ? undefined : "border-t border-line"}>
+                <div className="flex flex-col gap-2 px-3 py-2.5 sm:flex-row sm:items-center sm:gap-3 sm:px-3.5">
+                  <Link href={`/admin/learn/${row.slug}`} className="min-w-0 flex-1 rounded-control hover:underline">
+                    <span className={cn("block text-pretty text-body font-medium", row.active ? "text-ink" : "text-muted")}>{row.title}</span>
+                    <span className="mt-0.5 flex flex-wrap items-center gap-x-1.5 text-label text-faint">
+                      <span>{groupLabel(row.group)}</span>
+                      <span aria-hidden>·</span>
+                      <span>{row.display === "card" ? "کارت شاخص" : "ردیف"}</span>
+                      <span aria-hidden>·</span>
+                      <span>{formatShamsi(row.publishedOn)}</span>
+                      <span aria-hidden>·</span>
+                      <span className={row.views > 0 ? "text-ink" : undefined}>{faNum(row.views)} بازدید</span>
+                    </span>
+                  </Link>
+                  <div className="flex shrink-0 items-center gap-2">
+                    {canReorder ? (
+                      <span className="flex gap-1">
+                        <button
+                          type="button"
+                          aria-label="بالاتر"
+                          disabled={pending !== null || index === 0}
+                          onClick={() => move(row, "up")}
+                          className="grid size-9 place-items-center rounded-control border border-line text-muted disabled:opacity-40"
+                        >
+                          <Chevron className="rotate-180" />
+                        </button>
+                        <button
+                          type="button"
+                          aria-label="پایین‌تر"
+                          disabled={pending !== null || index === visible.length - 1}
+                          onClick={() => move(row, "down")}
+                          className="grid size-9 place-items-center rounded-control border border-line text-muted disabled:opacity-40"
+                        >
+                          <Chevron />
+                        </button>
+                      </span>
+                    ) : null}
                     <button
                       type="button"
-                      aria-label="بالاتر"
-                      disabled={pending === row.slug || index === 0}
-                      onClick={() => move(row, "up")}
-                      className="min-h-8 rounded-control border border-line px-2 text-label text-muted disabled:opacity-40"
+                      aria-pressed={row.active}
+                      disabled={pending === row.slug}
+                      onClick={() => toggle(row)}
+                      className={cn(
+                        "min-h-9 min-w-16 rounded-full border px-3 text-label",
+                        row.active ? "border-line text-ink" : "border-danger text-danger",
+                      )}
                     >
-                      بالا
+                      {pending === row.slug ? "…" : row.active ? "فعال" : "پنهان"}
                     </button>
-                    <button
-                      type="button"
-                      aria-label="پایین‌تر"
-                      disabled={pending === row.slug || index === visible.length - 1}
-                      onClick={() => move(row, "down")}
-                      className="min-h-8 rounded-control border border-line px-2 text-label text-muted disabled:opacity-40"
-                    >
-                      پایین
-                    </button>
-                  </span>
-                ) : null}
-                <button
-                  type="button"
-                  aria-pressed={row.active}
-                  disabled={pending === row.slug}
-                  onClick={() => toggle(row)}
-                  className={cn(
-                    "min-h-10 rounded-full px-3 text-label",
-                    row.active ? "bg-ink font-medium text-paper" : "border border-line text-muted",
-                  )}
-                >
-                  {pending === row.slug ? "…" : row.active ? "فعال" : "غیرفعال"}
-                </button>
-              </div>
-            </li>
+                  </div>
+                </div>
+              </li>
           ))}
         </ul>
       )}
     </div>
+  );
+}
+
+function Chevron({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 16 16" className={cn("size-4", className)} aria-hidden>
+      <path d="M4 6.5 8 10.5 12 6.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 

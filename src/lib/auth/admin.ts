@@ -14,8 +14,8 @@ export type AdminIdentity = {
 export const requireAdmin = cache(async function requireAdmin(): Promise<AdminIdentity | null> {
   const user = await currentUser();
   if (!user) return null;
-  const row = await db.orm.aroma.User.where((item) => item.id.eq(user.id)).select("id", "name", "role", "access").first();
-  if (!row || row.role !== "admin") return null;
+  const row = await db.orm.aroma.User.where((item) => item.id.eq(user.id)).select("id", "name", "role", "access", "active").first();
+  if (!row || !row.active || row.role !== "admin") return null;
   return { id: row.id, name: row.name, sections: parseAccess(row.access) };
 });
 

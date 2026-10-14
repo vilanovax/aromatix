@@ -88,7 +88,7 @@ export default async function AdminHomePage() {
                   {group.items.map((item) => (
                     <Link
                       key={`${item.part}-${item.label}`}
-                      href={`/admin/perfumes/${group.slug}#${item.part}`}
+                      href={item.part === "shops" ? "/admin/shops" : `/admin/perfumes/${group.slug}#${item.part}`}
                       className="inline-flex min-h-9 items-center rounded-full bg-clay px-3 text-label text-ink"
                     >
                       {item.label}

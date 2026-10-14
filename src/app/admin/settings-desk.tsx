@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { changeAdminPassword, createAdmin, setAdminAccess } from "@/app/admin/settings-actions";
 import { Button } from "@/components/Button";
-import { faNum } from "@/lib/format";
+import { Card } from "@/components/Card";
+import { cn, faNum } from "@/lib/format";
 import { ADMIN_SECTIONS, type AdminSection } from "@/lib/auth/sections";
 
 export type SettingsAdmin = {
@@ -26,9 +27,23 @@ export type BackupCounts = {
 const field =
   "min-h-12 w-full rounded-control border border-line bg-card px-3.5 text-body outline-none focus-visible:outline-2 focus-visible:outline-ink";
 
+const PARTS = [
+  ["password", "رمز"],
+  ["create", "مدیر جدید"],
+  ["access", "دسترسی"],
+  ["backup", "بک‌آپ"],
+] as const;
+
 export function SettingsDesk({ admins, counts }: { admins: SettingsAdmin[]; counts: BackupCounts }) {
   return (
-    <div className="mt-6 grid gap-8">
+    <div className="mt-5 space-y-4">
+      <nav className="flex gap-1.5 overflow-x-auto" aria-label="بخش‌های تنظیمات">
+        {PARTS.map(([id, label]) => (
+          <a key={id} href={`#${id}`} className="shrink-0 rounded-full border border-line bg-card px-3 py-1.5 text-label">
+            {label}
+          </a>
+        ))}
+      </nav>
       <PasswordCard />
       <CreateCard />
       <AccessCard admins={admins} />
@@ -61,30 +76,32 @@ function PasswordCard() {
   }
 
   return (
-    <section>
+    <Card as="section" id="password" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">رمز عبور</h2>
-      <p className="mt-1 max-w-xl text-pretty text-body text-muted">رمز فعلی را می‌خواهد. نشست‌های دیگر این حساب بسته می‌شوند.</p>
-      <form onSubmit={submit} className="mt-3 grid max-w-md gap-3">
-        <label className="block">
-          <span className="text-label text-muted">رمز فعلی</span>
-          <input
-            type="password"
-            autoComplete="current-password"
-            value={current}
-            onChange={(event) => setCurrent(event.target.value)}
-            className={`${field} mt-1`}
-          />
-        </label>
-        <label className="block">
-          <span className="text-label text-muted">رمز جدید</span>
-          <input
-            type="password"
-            autoComplete="new-password"
-            value={next}
-            onChange={(event) => setNext(event.target.value)}
-            className={`${field} mt-1`}
-          />
-        </label>
+      <p className="mt-1 text-label text-muted">رمز فعلی لازم است. نشست‌های دیگر این حساب بسته می‌شوند.</p>
+      <form onSubmit={submit} className="mt-4 grid gap-3">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block">
+            <span className="text-label text-muted">رمز فعلی</span>
+            <input
+              type="password"
+              autoComplete="current-password"
+              value={current}
+              onChange={(event) => setCurrent(event.target.value)}
+              className={`${field} mt-1.5`}
+            />
+          </label>
+          <label className="block">
+            <span className="text-label text-muted">رمز جدید</span>
+            <input
+              type="password"
+              autoComplete="new-password"
+              value={next}
+              onChange={(event) => setNext(event.target.value)}
+              className={`${field} mt-1.5`}
+            />
+          </label>
+        </div>
         {error ? (
           <p role="alert" className="text-label text-danger">
             {error}
@@ -99,7 +116,7 @@ function PasswordCard() {
           {pending ? "در حال ذخیره" : "عوض کردن رمز"}
         </Button>
       </form>
-    </section>
+    </Card>
   );
 }
 
@@ -134,27 +151,27 @@ function CreateCard() {
   }
 
   return (
-    <section>
+    <Card as="section" id="create" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">مدیر جدید</h2>
-      <p className="mt-1 max-w-xl text-pretty text-body text-muted">
-        با شمارهٔ تازه ساخته می‌شود و فقط بخش‌هایی را می‌بیند که اینجا باز باشد.
-      </p>
-      <form onSubmit={submit} className="mt-3 grid max-w-xl gap-3">
-        <label className="block">
-          <span className="text-label text-muted">نام</span>
-          <input value={name} onChange={(event) => setName(event.target.value)} className={`${field} mt-1`} />
-        </label>
-        <label className="block">
-          <span className="text-label text-muted">موبایل</span>
-          <input
-            dir="ltr"
-            inputMode="tel"
-            autoComplete="off"
-            value={phone}
-            onChange={(event) => setPhone(event.target.value)}
-            className={`${field} mt-1 text-start`}
-          />
-        </label>
+      <p className="mt-1 text-label text-muted">با شمارهٔ تازه ساخته می‌شود و فقط بخش‌های باز را می‌بیند.</p>
+      <form onSubmit={submit} className="mt-4 grid gap-3">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="block">
+            <span className="text-label text-muted">نام</span>
+            <input value={name} onChange={(event) => setName(event.target.value)} className={`${field} mt-1.5`} />
+          </label>
+          <label className="block">
+            <span className="text-label text-muted">موبایل</span>
+            <input
+              dir="ltr"
+              inputMode="tel"
+              autoComplete="off"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+              className={`${field} mt-1.5 text-start`}
+            />
+          </label>
+        </div>
         <label className="block">
           <span className="text-label text-muted">رمز</span>
           <input
@@ -162,7 +179,7 @@ function CreateCard() {
             autoComplete="new-password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            className={`${field} mt-1`}
+            className={`${field} mt-1.5`}
           />
         </label>
         <SectionChecks selected={sections} onToggle={toggle} />
@@ -175,23 +192,23 @@ function CreateCard() {
           {pending ? "در حال ساخت" : "افزودن مدیر"}
         </Button>
       </form>
-    </section>
+    </Card>
   );
 }
 
 function AccessCard({ admins }: { admins: SettingsAdmin[] }) {
   return (
-    <section>
+    <Card as="section" id="access" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">دسترسی مدیرها</h2>
-      <p className="mt-1 max-w-xl text-pretty text-body text-muted">هر بخش یک آیتم منو است. حساب عضو از صفحهٔ کاربران عوض می‌شود.</p>
-      <ul className="mt-3 grid gap-3">
+      <p className="mt-1 text-label text-muted">هر بخش یک آیتم منو است. حساب عضو از صفحهٔ کاربران عوض می‌شود.</p>
+      <ul className="mt-4 grid gap-3">
         {admins.map((admin) => (
           <li key={`${admin.id}:${admin.sections.join(",")}`}>
             <AccessRow admin={admin} />
           </li>
         ))}
       </ul>
-    </section>
+    </Card>
   );
 }
 
@@ -223,7 +240,7 @@ function AccessRow({ admin }: { admin: SettingsAdmin }) {
   }
 
   return (
-    <div className="rounded-panel border border-line bg-card px-4 py-3">
+    <div className="rounded-control border border-line px-3.5 py-3">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <p className="text-body font-medium">
           {admin.name}
@@ -254,23 +271,30 @@ function AccessRow({ admin }: { admin: SettingsAdmin }) {
 }
 
 function SectionChecks({ selected, onToggle }: { selected: readonly AdminSection[]; onToggle: (id: AdminSection) => void }) {
+  const groups = [...new Set(ADMIN_SECTIONS.map((section) => section.group))];
   return (
-    <ul className="grid gap-1 sm:grid-cols-2">
-      {ADMIN_SECTIONS.map((section) => {
-        const on = selected.includes(section.id);
-        return (
-          <li key={section.id}>
-            <label className="flex min-h-11 items-center gap-2 rounded-control px-1 text-body">
-              <input type="checkbox" checked={on} onChange={() => onToggle(section.id)} className="size-4 accent-ink" />
-              <span>
-                {section.label}
-                <span className="text-label text-faint"> · {section.group}</span>
-              </span>
-            </label>
-          </li>
-        );
-      })}
-    </ul>
+    <div className="grid gap-3 sm:grid-cols-3">
+      {groups.map((group) => (
+        <fieldset key={group} className="rounded-control border border-line px-3 py-2">
+          <legend className="px-1 text-label text-muted">{group}</legend>
+          <ul>
+            {ADMIN_SECTIONS.filter((section) => section.group === group).map((section) => (
+              <li key={section.id}>
+                <label className="flex min-h-10 cursor-pointer items-center gap-2 text-body">
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(section.id)}
+                    onChange={() => onToggle(section.id)}
+                    className="size-4 accent-ink"
+                  />
+                  {section.label}
+                </label>
+              </li>
+            ))}
+          </ul>
+        </fieldset>
+      ))}
+    </div>
   );
 }
 
@@ -284,24 +308,25 @@ function BackupCard({ counts }: { counts: BackupCounts }) {
   ] as const;
 
   return (
-    <section>
+    <Card as="section" id="backup" className="scroll-mt-20 p-4 sm:p-5">
       <h2 className="text-title font-semibold">بک‌آپ</h2>
-      <p className="mt-1 max-w-xl text-pretty text-body text-muted">
-        یک فایل JSON از برندها، فروشگاه‌ها، عطرها، دانستنی‌ها و حساب‌ها. رمز و نشست داخل فایل نیست.
-      </p>
-      <ul className="mt-3 flex flex-wrap gap-2">
+      <p className="mt-1 text-label text-muted">فایل JSON از کاتالوگ، دانستنی‌ها و حساب‌ها. رمز و نشست داخلش نیست.</p>
+      <ul className="mt-4 flex flex-wrap gap-2">
         {lines.map(([label, count]) => (
-          <li key={label} className="rounded-full border border-line bg-card px-3 py-1.5 text-label">
+          <li key={label} className="rounded-full border border-line px-3 py-1.5 text-label">
             {faNum(count)} {label}
           </li>
         ))}
       </ul>
       <a
         href="/api/admin/backup"
-        className="mt-4 inline-flex min-h-11 items-center rounded-panel border border-line bg-card px-4 text-body font-medium hover:bg-press"
+        className={cn(
+          "mt-4 inline-flex min-h-11 items-center rounded-control border border-line px-4 text-body font-medium",
+          "hover:bg-press",
+        )}
       >
         دانلود بک‌آپ
       </a>
-    </section>
+    </Card>
   );
 }

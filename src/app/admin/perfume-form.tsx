@@ -3,54 +3,25 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { deletePerfume, savePerfume } from "@/app/admin/actions";
-import { formatCheckedOn } from "@/lib/admin/health";
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { Chip } from "@/components/Chip";
-import { OCCASIONS, REFERENCES, SEASONS, type Brand, type Shop } from "@/lib/catalog";
-import { cn, millionToman } from "@/lib/format";
-import type { Accord, BottleShape, Note, Perfume, Season, ShopOffer } from "@/lib/types";
+import { OCCASIONS, REFERENCES, SEASONS, type Brand } from "@/lib/catalog";
+import { cn } from "@/lib/format";
+import type { Accord, BottleShape, Note, Perfume, Season } from "@/lib/types";
 
 const control =
-  "min-h-12 w-full rounded-control border border-line bg-card px-3 text-body text-ink outline-none focus-visible:outline-2 focus-visible:outline-ink";
-
-export function blankPerfume(brand: string): Perfume {
-  return {
-    slug: "",
-    nameFa: "",
-    nameEn: "",
-    brand,
-    marketGender: "مشترک",
-    concentration: "ادوپرفیوم",
-    volumeMl: 100,
-    bottle: "rect",
-    cap: "#3E342C",
-    accords: [{ name: "", color: "#C4A574", strength: 0.5 }],
-    notes: [{ layer: "top", name: "" }],
-    seasons: ["all"],
-    occasions: ["daily"],
-    tags: [],
-    longevity: null,
-    sillage: null,
-    why: "",
-    similar: [],
-    shops: [{ shop: "", price: 1_000_000, checkedOn: "", stockConfirmed: true, href: "https://" }],
-    confidence: 0.8,
-    aliases: [],
-  };
-}
+  "min-h-12 rounded-control border border-line bg-card px-3 text-body text-ink outline-none focus-visible:outline-2 focus-visible:outline-ink";
 
 export function PerfumeForm({
   mode,
   perfume,
   brands,
-  shops,
   others,
 }: {
   mode: "create" | "edit";
   perfume: Perfume;
   brands: Brand[];
-  shops: Shop[];
   others: { slug: string; nameFa: string }[];
 }) {
   const router = useRouter();
@@ -136,11 +107,18 @@ export function PerfumeForm({
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="truncate text-title font-semibold">{draft.nameFa || "عطر جدید"}</p>
-            <p
-              className={error || dirty ? "truncate text-label text-danger" : "truncate text-label text-faint"}
-              role={error ? "alert" : "status"}
-            >
-              {error ?? (dirty ? "تغییر ذخیره نشده" : saved ? "ذخیره شد" : mode === "create" ? "هنوز ذخیره نشده" : draft.brand)}
+            <p className="flex min-w-0 items-baseline gap-2">
+              <span
+                className={error || dirty ? "truncate text-label text-danger" : "truncate text-label text-faint"}
+                role={error ? "alert" : "status"}
+              >
+                {error ?? (dirty ? "تغییر ذخیره نشده" : saved ? "ذخیره شد" : mode === "create" ? "هنوز ذخیره نشده" : draft.brand)}
+              </span>
+              {mode === "edit" ? (
+                <span dir="ltr" className="shrink-0 text-label text-faint">
+                  {draft.slug}
+                </span>
+              ) : null}
             </p>
           </div>
           <Button type="submit" size="md" disabled={pending}>
@@ -149,7 +127,6 @@ export function PerfumeForm({
         </div>
         <nav className="mt-2 flex gap-1.5 overflow-x-auto" aria-label="بخش‌های فرم">
           {[
-            ["shops", "قیمت"],
             ["identity", "هویت"],
             ["scent", "بو"],
             ["use", "استفاده"],
@@ -162,117 +139,18 @@ export function PerfumeForm({
         </nav>
       </div>
 
-      <Section id="shops" title="فروشگاه و قیمت">
-        <div className="space-y-3">
-          {draft.shops.map((shop, index) => (
-            <div key={index} className="grid gap-2 rounded-control border border-line p-3 sm:grid-cols-2">
-              <Field label="فروشگاه">
-                {shops.length > 0 ? (
-                  <select
-                    className={control}
-                    value={shop.shop}
-                    onChange={(event) => {
-                      const name = event.target.value;
-                      const next = shops.find((item) => item.nameFa === name);
-                      const prior = shops.find((item) => item.nameFa === shop.shop);
-                      const href =
-                        !shop.href || shop.href === "https://" || (prior?.website && shop.href === prior.website)
-                          ? next?.website || "https://"
-                          : shop.href;
-                      updateShop(index, { shop: name, href });
-                    }}
-                  >
-                    {shop.shop && !shops.some((item) => item.nameFa === shop.shop) ? (
-                      <option value={shop.shop}>{shop.shop}</option>
-                    ) : null}
-                    {shops.map((item) => (
-                      <option key={item.slug} value={item.nameFa}>
-                        {item.nameFa}
-                        {item.active ? "" : " · غیرفعال"}
-                      </option>
-                    ))}
-                  </select>
-                ) : (
-                  <input className={control} value={shop.shop} onChange={(event) => updateShop(index, { shop: event.target.value })} />
-                )}
-              </Field>
-              <Field label="قیمت، تومان">
-                <input
-                  className={control}
-                  inputMode="numeric"
-                  value={shop.price}
-                  onChange={(event) => updateShop(index, { price: Number(event.target.value) })}
-                />
-                <p className="mt-1 text-label text-faint">{Number.isFinite(shop.price) ? millionToman(shop.price) : ""}</p>
-              </Field>
-              <Field label="لینک" className="sm:col-span-2">
-                <input
-                  className={control}
-                  dir="ltr"
-                  value={shop.href}
-                  onChange={(event) => updateShop(index, { href: event.target.value })}
-                />
-              </Field>
-              <label className="flex items-center gap-2 text-label">
-                <input
-                  type="checkbox"
-                  checked={shop.stockConfirmed}
-                  onChange={(event) => updateShop(index, { stockConfirmed: event.target.checked })}
-                />
-                موجودی تأیید شده
-              </label>
-              <div className="flex flex-wrap items-center justify-between gap-2 sm:col-span-2">
-                <p className="text-label text-faint">{shop.checkedOn || "هنوز تاریخ بررسی ندارد"}</p>
-                <div className="flex gap-2">
-                  <Button type="button" variant="edge" size="sm" onClick={() => markChecked(index)}>
-                    دوباره بررسی کردم
-                  </Button>
-                  <Button type="button" variant="edge" size="sm" onClick={() => removeShop(index)} disabled={draft.shops.length === 1}>
-                    حذف
-                  </Button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        <Button
-          type="button"
-          variant="quiet"
-          size="sm"
-          className="mt-3"
-          onClick={() => {
-            const next = shops.find((item) => item.active) ?? shops[0];
-            patch({
-              shops: [
-                ...draft.shops,
-                {
-                  shop: next?.nameFa ?? "",
-                  price: 1_000_000,
-                  checkedOn: "",
-                  stockConfirmed: false,
-                  href: next?.website || "https://",
-                },
-              ],
-            });
-          }}
-        >
-          فروشگاه جدید
-        </Button>
-        <p className="mt-2 text-label text-faint">
-          اگر قیمت، موجودی یا لینک عوض شود، یا «دوباره بررسی کردم» را بزنی، تاریخ بررسی با ذخیره امروز می‌شود. خودِ قیمت عوض نمی‌شود.
-        </p>
-      </Section>
-
       <Section id="identity" title="هویت">
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="اسلاگ">
-            <input
-              className={control}
-              dir="ltr"
-              value={draft.slug}
-              disabled={mode === "edit"}
-              onChange={(event) => patch({ slug: event.target.value })}
-            />
+          {mode === "create" ? (
+            <Field label="اسلاگ" className="sm:col-span-2">
+              <input className={control} dir="ltr" value={draft.slug} onChange={(event) => patch({ slug: event.target.value })} />
+            </Field>
+          ) : null}
+          <Field label="نام فارسی">
+            <input className={control} value={draft.nameFa} onChange={(event) => patch({ nameFa: event.target.value })} />
+          </Field>
+          <Field label="نام انگلیسی">
+            <input className={control} dir="ltr" value={draft.nameEn} onChange={(event) => patch({ nameEn: event.target.value })} />
           </Field>
           <Field label="برند">
             <select className={control} value={draft.brand} onChange={(event) => patch({ brand: event.target.value })}>
@@ -283,24 +161,6 @@ export function PerfumeForm({
                 </option>
               ))}
             </select>
-          </Field>
-          <Field label="نام فارسی">
-            <input className={control} value={draft.nameFa} onChange={(event) => patch({ nameFa: event.target.value })} />
-          </Field>
-          <Field label="نام انگلیسی">
-            <input
-              className={control}
-              dir="ltr"
-              value={draft.nameEn}
-              onChange={(event) => patch({ nameEn: event.target.value })}
-            />
-          </Field>
-          <Field label="عطار، اگر تأیید شده">
-            <input
-              className={control}
-              value={draft.perfumer ?? ""}
-              onChange={(event) => patch({ perfumer: event.target.value || undefined })}
-            />
           </Field>
           <Field label="جنسیت بازار">
             <select
@@ -314,11 +174,7 @@ export function PerfumeForm({
             </select>
           </Field>
           <Field label="غلظت">
-            <input
-              className={control}
-              value={draft.concentration}
-              onChange={(event) => patch({ concentration: event.target.value })}
-            />
+            <input className={control} value={draft.concentration} onChange={(event) => patch({ concentration: event.target.value })} />
           </Field>
           <Field label="حجم، میلی‌لیتر">
             <input
@@ -329,25 +185,28 @@ export function PerfumeForm({
             />
           </Field>
           <Field label="شکل شیشه">
-            <select
-              className={control}
-              value={draft.bottle}
-              onChange={(event) => patch({ bottle: event.target.value as BottleShape })}
-            >
+            <select className={control} value={draft.bottle} onChange={(event) => patch({ bottle: event.target.value as BottleShape })}>
               <option value="rect">چهارگوش</option>
               <option value="slim">باریک</option>
               <option value="round">گرد</option>
             </select>
           </Field>
           <Field label="رنگ درپوش">
-            <input
-              className={control}
-              dir="ltr"
-              value={draft.cap}
-              onChange={(event) => patch({ cap: event.target.value })}
-            />
+            <span className="flex items-center gap-2">
+              <input
+                aria-label="انتخاب رنگ درپوش"
+                type="color"
+                className="size-11 shrink-0 cursor-pointer rounded-control border border-line bg-card p-1"
+                value={safeHex(draft.cap)}
+                onChange={(event) => patch({ cap: event.target.value })}
+              />
+              <input className={control} dir="ltr" value={draft.cap} onChange={(event) => patch({ cap: event.target.value })} />
+            </span>
           </Field>
-          <Field label="مسیر عکس" className="sm:col-span-2">
+          <Field label="عطار، اگر تأیید شده">
+            <input className={control} value={draft.perfumer ?? ""} onChange={(event) => patch({ perfumer: event.target.value || undefined })} />
+          </Field>
+          <Field label="مسیر عکس">
             <input
               className={control}
               dir="ltr"
@@ -360,43 +219,41 @@ export function PerfumeForm({
       </Section>
 
       <Section id="scent" title="بو">
-        <p className="text-label text-muted">آکوردها نسبت حس‌اند. شدت‌ها لازم نیست دقیقاً به ۱ برسند.</p>
+        <p className="text-label text-muted">آکوردها نسبت حس‌اند. شدت بین ۰٫۰۱ و ۱.</p>
         <div className="mt-3 space-y-2">
           {draft.accords.map((accord, index) => (
-            <div key={index} className="rounded-control border border-line p-3">
+            <div key={index} className="flex flex-wrap items-center gap-2">
+              <input
+                aria-label="رنگ آکورد"
+                type="color"
+                className="size-11 shrink-0 cursor-pointer rounded-control border border-line bg-card p-1"
+                value={safeHex(accord.color)}
+                onChange={(event) => updateAccord(index, { color: event.target.value })}
+              />
               <input
                 aria-label="نام آکورد"
-                className={control}
+                className={cn(control, "min-w-36 flex-1")}
                 value={accord.name}
                 placeholder="نام آکورد"
                 onChange={(event) => updateAccord(index, { name: event.target.value })}
               />
-              <div className="mt-2 flex items-center gap-2">
-                <input
-                  aria-label="رنگ آکورد"
-                  type="color"
-                  className="size-11 shrink-0 cursor-pointer rounded-control border border-line bg-card p-1"
-                  value={safeHex(accord.color)}
-                  onChange={(event) => updateAccord(index, { color: event.target.value })}
-                />
-                <input
-                  aria-label="کد رنگ"
-                  className={control}
-                  dir="ltr"
-                  value={accord.color}
-                  onChange={(event) => updateAccord(index, { color: event.target.value })}
-                />
-                <input
-                  aria-label="شدت آکورد"
-                  className={cn(control, "max-w-24")}
-                  inputMode="decimal"
-                  value={accord.strength}
-                  onChange={(event) => updateAccord(index, { strength: Number(event.target.value) })}
-                />
-                <Button type="button" variant="edge" size="md" onClick={() => removeAt("accords", index)} disabled={draft.accords.length === 1}>
-                  حذف
-                </Button>
-              </div>
+              <input
+                aria-label="کد رنگ"
+                className={cn(control, "w-28")}
+                dir="ltr"
+                value={accord.color}
+                onChange={(event) => updateAccord(index, { color: event.target.value })}
+              />
+              <input
+                aria-label="شدت آکورد"
+                className={cn(control, "w-20")}
+                inputMode="decimal"
+                value={accord.strength}
+                onChange={(event) => updateAccord(index, { strength: Number(event.target.value) })}
+              />
+              <Button type="button" variant="edge" size="md" onClick={() => removeAt("accords", index)} disabled={draft.accords.length === 1}>
+                حذف
+              </Button>
             </div>
           ))}
         </div>
@@ -404,7 +261,8 @@ export function PerfumeForm({
           آکورد جدید
         </Button>
 
-        <div className="mt-5 space-y-2">
+        <p className="mt-5 text-label text-muted">هرم</p>
+        <div className="mt-2 space-y-2">
           {draft.notes.map((note, index) => (
             <div key={index} className="grid gap-2 sm:grid-cols-[8rem_1fr_auto]">
               <select
@@ -477,7 +335,7 @@ export function PerfumeForm({
         </div>
         <Field label="برچسب‌ها" className="mt-4">
           <input className={control} value={tags} onChange={(event) => setTags(event.target.value)} />
-          <p className="mt-1 text-label text-faint">با ویرگول جدا کن. fresh برای پیشنهاد «تازه‌تر» خوانده می‌شود.</p>
+          <p className="mt-1 text-label text-faint">با ویرگول. fresh یعنی پیشنهاد تازه‌تر.</p>
         </Field>
       </Section>
 
@@ -489,23 +347,25 @@ export function PerfumeForm({
             onChange={(event) => patch({ why: event.target.value })}
           />
         </Field>
-        <Field label="الهام‌گرفته از" className="mt-4">
-          <select
-            className={control}
-            value={draft.inspiredBy ?? ""}
-            onChange={(event) => patch({ inspiredBy: event.target.value || undefined })}
-          >
-            <option value="">هیچ‌کدام</option>
-            {REFERENCES.filter((item) => item.id !== "none").map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.label}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="نام‌های مستعار دستیار" className="mt-4">
-          <input className={control} value={aliases} onChange={(event) => setAliases(event.target.value)} />
-        </Field>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <Field label="الهام‌گرفته از">
+            <select
+              className={control}
+              value={draft.inspiredBy ?? ""}
+              onChange={(event) => patch({ inspiredBy: event.target.value || undefined })}
+            >
+              <option value="">هیچ‌کدام</option>
+              {REFERENCES.filter((item) => item.id !== "none").map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.label}
+                </option>
+              ))}
+            </select>
+          </Field>
+          <Field label="نام‌های مستعار دستیار">
+            <input className={control} value={aliases} onChange={(event) => setAliases(event.target.value)} />
+          </Field>
+        </div>
         <p className="mt-4 text-label text-muted">مشابه‌ها</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {others
@@ -541,19 +401,6 @@ export function PerfumeForm({
     patch({ notes: draft.notes.map((item, i) => (i === index ? { ...item, ...next } : item)) });
   }
 
-  function updateShop(index: number, next: Partial<ShopOffer>) {
-    patch({ shops: draft.shops.map((item, i) => (i === index ? { ...item, ...next } : item)) });
-  }
-
-  function markChecked(index: number) {
-    const now = new Date();
-    updateShop(index, { checkedOn: formatCheckedOn(now), checkedAt: now.toISOString() });
-  }
-
-  function removeShop(index: number) {
-    patch({ shops: draft.shops.filter((_, i) => i !== index) });
-  }
-
   function removeAt(key: "accords" | "notes", index: number) {
     patch({ [key]: draft[key].filter((_, i) => i !== index) });
   }
@@ -572,7 +419,7 @@ function Field({ label, className, children }: { label: string; className?: stri
   return (
     <label className={cn("block", className)}>
       <span className="text-label text-muted">{label}</span>
-      <div className="mt-1.5">{children}</div>
+      <div className="mt-1.5 [&_input:not([type=color])]:w-full [&_select]:w-full [&_textarea]:w-full">{children}</div>
     </label>
   );
 }

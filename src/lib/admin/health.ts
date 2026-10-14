@@ -26,7 +26,6 @@ export function catalogIssues(perfumes: Perfume[]): CatalogIssue[] {
     for (const similar of perfume.similar) {
       if (!slugs.has(similar)) push(`مشابه ناموجود: ${similar}`, "links");
     }
-    if (perfume.shops.length === 0) push("بدون فروشگاه", "shops");
     for (const shop of perfume.shops) {
       if (!shop.stockConfirmed) push(`${shop.shop}: موجودی تأیید نشده`, "shops");
       if (!shop.checkedAt) continue;

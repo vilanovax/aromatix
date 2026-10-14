@@ -25,7 +25,7 @@ export async function GET() {
     ).all(),
     db.orm.aroma.CatalogPerfume.select("slug", "nameFa", "nameEn", "brandSlug", "document", "updatedAt").all(),
     db.orm.aroma.LearnArticle.select("slug", "title", "active", "sort", "display", "publishedOn", "document", "updatedAt").all(),
-    db.orm.aroma.User.select("id", "name", "phone", "role", "access", "createdAt").all(),
+    db.orm.aroma.User.select("id", "name", "phone", "role", "access", "active", "createdAt").all(),
   ]);
 
   const body = {
@@ -40,6 +40,7 @@ export async function GET() {
       phone: displayPhone(row.phone),
       role: row.role,
       access: row.access,
+      active: row.active,
       createdAt: row.createdAt,
     })),
   };

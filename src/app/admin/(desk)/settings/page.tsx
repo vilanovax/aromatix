@@ -12,11 +12,9 @@ export default async function SettingsPage() {
   const [admins, counts] = await Promise.all([loadAdmins(admin.id), loadCounts()]);
 
   return (
-    <div>
+    <div className="mx-auto max-w-3xl">
       <h1 className="text-headline font-bold">تنظیمات</h1>
-      <p className="mt-2 max-w-2xl text-pretty text-body text-muted">
-        رمز خودت، مدیر جدید، سطح دسترسی هر بخش منو، و بک‌آپ داده‌ها.
-      </p>
+      <p className="mt-2 text-body text-muted">حساب خودت، مدیرها، و نسخهٔ داده‌ها.</p>
       <SettingsDesk admins={admins} counts={counts} />
     </div>
   );

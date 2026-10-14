@@ -15,6 +15,7 @@ namespace aroma {
     avatarId     String            @default("ink")
     role         UserRole          @default(member)
     access       String            @default("*")
+    active       Boolean           @default(true)
     createdAt    TimestamptzString @default(now())
     sessions     Session[]
     perfumes     UserPerfume[]

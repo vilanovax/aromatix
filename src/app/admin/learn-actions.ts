@@ -68,10 +68,6 @@ export async function saveArticle(input: {
   mythReality?: unknown;
   compare?: unknown;
   related?: unknown;
-  noteNames?: unknown;
-  accordNames?: unknown;
-  concentrationLabels?: unknown;
-  mark?: unknown;
   active?: unknown;
   sort?: unknown;
   display?: unknown;
@@ -118,12 +114,10 @@ export async function saveArticle(input: {
       return { label, range };
     });
   if (compare.some((row) => !row.label || !row.range)) return { ok: false, error: "هر سطر مقایسه باید «برچسب | بازه» باشد." };
-  const mark = typeof input.mark === "string" ? input.mark.trim() : "";
-  if (mark && !/^#[0-9a-fA-F]{6}$/.test(mark)) return { ok: false, error: "رنگ نشانه باید مثل #1A1420 باشد." };
-
   const articles = await loadArticles();
-  if (mode === "create" && articles.some((entry) => entry.slug === slug)) return { ok: false, error: "این اسلاگ قبلاً هست." };
-  if (mode === "edit" && !articles.some((entry) => entry.slug === original)) return { ok: false, error: "این مدخل در فهرست نیست." };
+  const previous = articles.find((item) => item.slug === original);
+  if (mode === "create" && previous) return { ok: false, error: "این اسلاگ قبلاً هست." };
+  if (mode === "edit" && !previous) return { ok: false, error: "این مدخل در فهرست نیست." };
   if (slug !== original) return { ok: false, error: "اسلاگ بعد از انتشار عوض نمی‌شود." };
 
   const entry: KnowledgeEntry = {
@@ -143,16 +137,10 @@ export async function saveArticle(input: {
     publishedOn,
     ...(mythClaim ? { myth: { claim: mythClaim, reality: mythReality } } : {}),
     ...(compare.length > 0 ? { compare } : {}),
-    ...(list(typeof input.noteNames === "string" ? input.noteNames : "").length
-      ? { noteNames: list(String(input.noteNames)) }
-      : {}),
-    ...(list(typeof input.accordNames === "string" ? input.accordNames : "").length
-      ? { accordNames: list(String(input.accordNames)) }
-      : {}),
-    ...(list(typeof input.concentrationLabels === "string" ? input.concentrationLabels : "").length
-      ? { concentrationLabels: list(String(input.concentrationLabels)) }
-      : {}),
-    ...(mark ? { mark } : {}),
+    ...(previous?.noteNames?.length ? { noteNames: previous.noteNames } : {}),
+    ...(previous?.accordNames?.length ? { accordNames: previous.accordNames } : {}),
+    ...(previous?.concentrationLabels?.length ? { concentrationLabels: previous.concentrationLabels } : {}),
+    ...(previous?.mark ? { mark: previous.mark } : {}),
   };
 
   try {

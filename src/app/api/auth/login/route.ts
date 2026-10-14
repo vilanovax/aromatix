@@ -33,6 +33,9 @@ export async function POST(request: Request) {
       await db.orm.aroma.LoginAttempt.create({ phone: parsed.value.phone });
       return Response.json({ error: "شماره یا رمز درست نیست." }, { status: 401 });
     }
+    if (!user.active) {
+      return Response.json({ error: "این حساب غیرفعال است." }, { status: 403 });
+    }
 
     await openSession(user.id);
     return Response.json({ user: toPublic(user) });

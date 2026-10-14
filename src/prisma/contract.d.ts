@@ -18,7 +18,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'6429a7381af8d8ede2a62dc3e1592b5b8fb74b473c8934a20f71f78854172fdf'>;
+  StorageHashBase<'fe4223143f00f76193c1f086a2d10cd848663727c90fd18645be5c154412028b'>;
 export type ExecutionHash = ExecutionHashBase<string>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
@@ -291,6 +291,7 @@ export type FieldOutputTypes = {
     };
     readonly User: {
       readonly access: CodecTypes['pg/text@1']['output'];
+      readonly active: CodecTypes['pg/bool@1']['output'];
       readonly avatarId: CodecTypes['pg/text@1']['output'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
@@ -374,6 +375,7 @@ export type FieldInputTypes = {
     };
     readonly User: {
       readonly access: CodecTypes['pg/text@1']['input'];
+      readonly active: CodecTypes['pg/bool@1']['input'];
       readonly avatarId: CodecTypes['pg/text@1']['input'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
@@ -457,6 +459,7 @@ export type StorageColumnTypes = {
     };
     readonly User: {
       readonly access: CodecTypes['pg/text@1']['output'];
+      readonly active: CodecTypes['pg/bool@1']['output'];
       readonly avatarId: CodecTypes['pg/text@1']['output'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
@@ -540,6 +543,7 @@ export type StorageColumnInputTypes = {
     };
     readonly User: {
       readonly access: CodecTypes['pg/text@1']['input'];
+      readonly active: CodecTypes['pg/bool@1']['input'];
       readonly avatarId: CodecTypes['pg/text@1']['input'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
@@ -633,6 +637,7 @@ export namespace Models {
   };
   export type aroma_User = {
     access: CodecTypes['pg/text@1']['output'];
+    active: CodecTypes['pg/bool@1']['output'];
     avatarId: CodecTypes['pg/text@1']['output'];
     createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
     id: CodecTypes['pg/int4@1']['output'];
@@ -1129,6 +1134,16 @@ type ContractBase = Omit<
                   readonly default: {
                     readonly kind: 'literal';
                     readonly value: DefaultLiteralValue<'pg/text@1', '*'>;
+                  };
+                  readonly many: false;
+                };
+                readonly active: {
+                  readonly dataType: 'pg/bool';
+                  readonly codecId: 'pg/bool@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/bool@1', true>;
                   };
                   readonly many: false;
                 };
@@ -1710,6 +1725,10 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
+              readonly active: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
+              };
               readonly avatarId: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
@@ -1771,6 +1790,7 @@ type ContractBase = Omit<
               readonly namespaceId: 'aroma';
               readonly fields: {
                 readonly access: { readonly column: 'access' };
+                readonly active: { readonly column: 'active' };
                 readonly avatarId: { readonly column: 'avatarId' };
                 readonly createdAt: { readonly column: 'createdAt' };
                 readonly id: { readonly column: 'id' };

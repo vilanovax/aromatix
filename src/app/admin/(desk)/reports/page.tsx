@@ -175,7 +175,7 @@ function usageBlocks(usage: UsageReport) {
         <ul className="space-y-2">
           {usage.demand.map((row) => (
             <li key={row.slug} className="flex items-baseline justify-between gap-3">
-              <Link href={`/admin/perfumes/${row.slug}#shops`} className="text-body font-medium hover:underline">
+              <Link href="/admin/shops" className="text-body font-medium hover:underline">
                 {row.nameFa}
               </Link>
               <span className="text-label text-danger">{row.gap}</span>

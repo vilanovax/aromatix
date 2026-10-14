@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { BrandEditor } from "@/app/admin/brand-editor";
+import { ButtonLink } from "@/components/Button";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
@@ -21,7 +22,12 @@ export default async function EditBrandPage({ params }: { params: Promise<{ slug
       <Link href="/admin/brands" className="text-label text-muted">
         برندها
       </Link>
-      <h1 className="mt-2 text-headline font-bold">{brand.nameFa}</h1>
+      <div className="mt-2 flex items-start justify-between gap-3">
+        <h1 className="text-headline font-bold">{brand.nameFa}</h1>
+        <ButtonLink href={`/admin/perfumes?brand=${encodeURIComponent(brand.slug)}`} variant="edge" size="md" className="shrink-0">
+          لیست عطرها
+        </ButtonLink>
+      </div>
       <BrandEditor mode="edit" brand={brand} perfumeCount={perfumeCount} />
     </div>
   );

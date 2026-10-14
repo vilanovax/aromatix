@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { AccordMark } from "@/components/AccordMark";
 import { cn, faNum } from "@/lib/format";
@@ -42,13 +43,21 @@ export type PerfumeRow = {
   accords: Accord[];
 };
 
-export function PerfumeIndex({ rows }: { rows: PerfumeRow[] }) {
+export type PerfumeBrand = {
+  slug: string;
+  nameFa: string;
+};
+
+export function PerfumeIndex({ rows, brands, brand = "" }: { rows: PerfumeRow[]; brands: PerfumeBrand[]; brand?: string }) {
+  const router = useRouter();
   const [query, setQuery] = useState("");
   const [view, setView] = useState<View>("grid");
   const [sort, setSort] = useState<Sort>("name");
   const [openOnly, setOpenOnly] = useState(false);
   const [stored, setStored] = useState(false);
+  const [picked, setPicked] = useState(brand);
   const openCount = rows.filter((row) => row.issues.length > 0).length;
+  const brandName = brands.find((item) => item.slug === picked)?.nameFa ?? "";
 
   useEffect(() => {
     const storedView = localStorage.getItem(VIEW_KEY);
@@ -64,15 +73,25 @@ export function PerfumeIndex({ rows }: { rows: PerfumeRow[] }) {
     localStorage.setItem(SORT_KEY, sort);
   }, [stored, view, sort]);
 
+  useEffect(() => {
+    setPicked(brands.some((item) => item.slug === brand) ? brand : "");
+  }, [brand, brands]);
+
+  function chooseBrand(next: string) {
+    setPicked(next);
+    router.replace(next ? `/admin/perfumes?brand=${encodeURIComponent(next)}` : "/admin/perfumes", { scroll: false });
+  }
+
   const visible = useMemo(() => {
     const needle = query.trim().toLowerCase();
     const filtered = rows.filter((row) => {
+      if (brandName && row.brand !== brandName) return false;
       if (openOnly && row.issues.length === 0) return false;
       if (!needle) return true;
       return [row.nameFa, row.nameEn, row.brand, row.slug].some((value) => value.toLowerCase().includes(needle));
     });
     return [...filtered].sort((a, b) => compareRows(a, b, sort));
-  }, [openOnly, query, rows, sort]);
+  }, [brandName, openOnly, query, rows, sort]);
 
   return (
     <div className="mt-5">
@@ -117,6 +136,21 @@ export function PerfumeIndex({ rows }: { rows: PerfumeRow[] }) {
             </button>
           ) : null}
           <label className="min-w-0 flex-1 sm:flex-none">
+            <span className="sr-only">برند</span>
+            <select
+              value={brandName ? picked : ""}
+              onChange={(event) => chooseBrand(event.target.value)}
+              className="min-h-12 w-full rounded-control border border-line bg-card px-3 text-label outline-none focus-visible:outline-2 focus-visible:outline-ink sm:w-40"
+            >
+              <option value="">همهٔ برندها</option>
+              {brands.map((item) => (
+                <option key={item.slug} value={item.slug}>
+                  {item.nameFa}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="min-w-0 flex-1 sm:flex-none">
             <span className="sr-only">مرتب‌سازی</span>
             <select
               value={sort}
@@ -133,14 +167,21 @@ export function PerfumeIndex({ rows }: { rows: PerfumeRow[] }) {
         </div>
       </div>
 
-      {query.trim() || openOnly ? (
+      {query.trim() || openOnly || brandName ? (
         <p className="mt-3 text-label text-muted">
           {faNum(visible.length)} از {faNum(rows.length)}
+          {brandName ? ` · ${brandName}` : ""}
         </p>
       ) : null}
 
       {visible.length === 0 ? (
-        <p className="mt-3 text-body text-muted">{openOnly && !query.trim() ? "مورد بازی در این فهرست نیست." : "با این عبارت عطری نیست."}</p>
+        <p className="mt-3 text-body text-muted">
+          {brandName && !query.trim() && !openOnly
+            ? `عطری از ${brandName} در این فهرست نیست.`
+            : openOnly && !query.trim()
+              ? "مورد بازی در این فهرست نیست."
+              : "با این عبارت عطری نیست."}
+        </p>
       ) : view === "simple" ? (
         <ul className="mt-3 divide-y divide-line overflow-hidden rounded-panel border border-line bg-card">
           {visible.map((row) => (
@@ -219,7 +260,7 @@ function IssueChips({ slug, issues, className }: { slug: string; issues: Perfume
       {issues.map((issue) => (
         <Link
           key={`${issue.part}-${issue.label}`}
-          href={`/admin/perfumes/${slug}#${issue.part}`}
+          href={issue.part === "shops" ? "/admin/shops" : `/admin/perfumes/${slug}#${issue.part}`}
           className="inline-flex min-h-9 items-center rounded-full bg-clay px-3 text-label text-ink hover:underline"
         >
           {issue.label}

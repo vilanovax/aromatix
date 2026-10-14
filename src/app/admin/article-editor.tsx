@@ -15,10 +15,12 @@ export function ArticleEditor({
   mode,
   entry,
   views = 0,
+  nextSort = 0,
 }: {
   mode: "create" | "edit";
   entry?: KnowledgeEntry;
   views?: number;
+  nextSort?: number;
 }) {
   const router = useRouter();
   const initialDate = isoToJalali(entry?.publishedOn ?? todayIso()) ?? { jy: 1405, jm: 1, jd: 1 };
@@ -35,12 +37,8 @@ export function ArticleEditor({
   const [mythReality, setMythReality] = useState(entry?.myth?.reality ?? "");
   const [compare, setCompare] = useState(entry?.compare?.map((row) => `${row.label} | ${row.range}`).join("\n") ?? "");
   const [related, setRelated] = useState(entry?.related.join("، ") ?? "");
-  const [noteNames, setNoteNames] = useState(entry?.noteNames?.join("، ") ?? "");
-  const [accordNames, setAccordNames] = useState(entry?.accordNames?.join("، ") ?? "");
-  const [concentrationLabels, setConcentrationLabels] = useState(entry?.concentrationLabels?.join("، ") ?? "");
-  const [mark, setMark] = useState(entry?.mark ?? "");
   const [active, setActive] = useState(entry?.active ?? true);
-  const [sort, setSort] = useState(String(entry?.sort ?? 0));
+  const [sort] = useState(String(entry?.sort ?? nextSort));
   const [display, setDisplay] = useState(entry?.display ?? "row");
   const [year, setYear] = useState(String(initialDate.jy));
   const [month, setMonth] = useState(String(initialDate.jm));
@@ -70,10 +68,6 @@ export function ArticleEditor({
       mythReality,
       compare,
       related,
-      noteNames,
-      accordNames,
-      concentrationLabels,
-      mark,
       active,
       sort,
       display,
@@ -101,19 +95,28 @@ export function ArticleEditor({
         <span className="text-label text-muted">عنوان</span>
         <input className={`${control} mt-1.5`} value={title} onChange={(event) => setTitle(event.target.value)} />
       </label>
-      <label className="block">
-        <span className="text-label text-muted">اسلاگ</span>
-        <input
-          className={`${control} mt-1.5`}
-          dir="ltr"
-          value={slug}
-          disabled={mode === "edit"}
-          onChange={(event) => setSlug(event.target.value)}
-        />
-      </label>
+      {mode === "create" ? (
+        <label className="block">
+          <span className="text-label text-muted">اسلاگ</span>
+          <input className={`${control} mt-1.5`} dir="ltr" value={slug} onChange={(event) => setSlug(event.target.value)} />
+        </label>
+      ) : (
+        <p className="text-label text-faint" dir="ltr">
+          {slug}
+        </p>
+      )}
       <label className="block">
         <span className="text-label text-muted">خط زیر عنوان</span>
         <input className={`${control} mt-1.5`} value={support} onChange={(event) => setSupport(event.target.value)} />
+      </label>
+      <label className="block">
+        <span className="text-label text-muted">خلاصه</span>
+        <textarea className={`${control} mt-1.5 min-h-24 py-3 leading-7`} value={summary} onChange={(event) => setSummary(event.target.value)} />
+      </label>
+      <label className="block">
+        <span className="text-label text-muted">متن</span>
+        <textarea className={`${control} mt-1.5 min-h-48 py-3 leading-7`} value={body} onChange={(event) => setBody(event.target.value)} />
+        <span className="mt-1 block text-label text-faint">بین بندها یک خط خالی بگذار.</span>
       </label>
       <div className="grid gap-3 sm:grid-cols-2">
         <label className="block">
@@ -157,34 +160,29 @@ export function ArticleEditor({
           </select>
         </div>
       </fieldset>
-      <fieldset className="grid gap-2">
-        <legend className="text-label text-muted">نحوهٔ نمایش</legend>
-        <div className="flex rounded-control border border-line bg-card p-1" role="group" aria-label="نحوه نمایش">
-          <button
-            type="button"
-            aria-pressed={display === "card"}
-            onClick={() => setDisplay("card")}
-            className={cn("min-h-10 flex-1 rounded-control text-label", display === "card" ? "bg-ink font-medium text-paper" : "text-muted")}
-          >
-            کارت شاخص
-          </button>
-          <button
-            type="button"
-            aria-pressed={display === "row"}
-            onClick={() => setDisplay("row")}
-            className={cn("min-h-10 flex-1 rounded-control text-label", display === "row" ? "bg-ink font-medium text-paper" : "text-muted")}
-          >
-            ردیف
-          </button>
-        </div>
-        <p className="text-pretty text-label text-faint">کارت شاخص بالای دانستنی‌ها می‌آید. ردیف داخل دستهٔ خودش است.</p>
-      </fieldset>
       <div className="grid gap-3 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-label text-muted">ترتیب</span>
-          <input className={`${control} mt-1.5`} inputMode="numeric" value={sort} onChange={(event) => setSort(event.target.value)} />
-        </label>
-        <fieldset className="grid content-end gap-2">
+        <fieldset className="grid gap-2">
+          <legend className="text-label text-muted">نحوهٔ نمایش</legend>
+          <div className="flex rounded-control border border-line bg-card p-1" role="group" aria-label="نحوه نمایش">
+            <button
+              type="button"
+              aria-pressed={display === "card"}
+              onClick={() => setDisplay("card")}
+              className={cn("min-h-10 flex-1 rounded-control text-label", display === "card" ? "bg-ink font-medium text-paper" : "text-muted")}
+            >
+              کارت شاخص
+            </button>
+            <button
+              type="button"
+              aria-pressed={display === "row"}
+              onClick={() => setDisplay("row")}
+              className={cn("min-h-10 flex-1 rounded-control text-label", display === "row" ? "bg-ink font-medium text-paper" : "text-muted")}
+            >
+              ردیف
+            </button>
+          </div>
+        </fieldset>
+        <fieldset className="grid gap-2">
           <legend className="text-label text-muted">وضعیت</legend>
           <div className="flex rounded-control border border-line bg-card p-1" role="group" aria-label="وضعیت مقاله">
             <button
@@ -206,63 +204,44 @@ export function ArticleEditor({
           </div>
         </fieldset>
       </div>
-      {mode === "edit" ? <p className="text-label text-faint">تا امروز {faNum(views)} بازدید ثبت شده.</p> : null}
-      <label className="block">
-        <span className="text-label text-muted">خلاصه</span>
-        <textarea className={`${control} mt-1.5 min-h-24 py-3 leading-7`} value={summary} onChange={(event) => setSummary(event.target.value)} />
-      </label>
-      <label className="block">
-        <span className="text-label text-muted">متن</span>
-        <textarea className={`${control} mt-1.5 min-h-48 py-3 leading-7`} value={body} onChange={(event) => setBody(event.target.value)} />
-        <span className="mt-1 block text-label text-faint">بین بندها یک خط خالی بگذار.</span>
-      </label>
+      <p className="text-pretty text-label text-faint">
+        کارت شاخص بالای دانستنی‌ها می‌آید. ردیف داخل دستهٔ خودش است.
+        {mode === "edit" ? ` تا امروز ${faNum(views)} بازدید.` : ""}
+      </p>
       <label className="block">
         <span className="text-label text-muted">سؤال دستیار</span>
         <input className={`${control} mt-1.5`} value={ask} onChange={(event) => setAsk(event.target.value)} />
       </label>
-      <label className="block">
-        <span className="text-label text-muted">نام‌های دیگر</span>
-        <input className={`${control} mt-1.5`} value={aliases} onChange={(event) => setAliases(event.target.value)} />
-      </label>
-      <div className="grid gap-3">
-        <label className="block">
-          <span className="text-label text-muted">باور رایج</span>
-          <input className={`${control} mt-1.5`} value={mythClaim} onChange={(event) => setMythClaim(event.target.value)} />
-        </label>
-        <label className="block">
-          <span className="text-label text-muted">واقعیت</span>
-          <input className={`${control} mt-1.5`} value={mythReality} onChange={(event) => setMythReality(event.target.value)} />
-        </label>
-      </div>
-      <label className="block">
-        <span className="text-label text-muted">جدول مقایسه</span>
-        <textarea
-          className={`${control} mt-1.5 min-h-24 py-3 leading-7`}
-          dir="rtl"
-          value={compare}
-          onChange={(event) => setCompare(event.target.value)}
-          placeholder={"ادوتویلت | حدود ۵ تا ۱۵٪"}
-        />
-      </label>
-      <label className="block">
-        <span className="text-label text-muted">مدخل‌های مرتبط</span>
-        <input className={`${control} mt-1.5`} dir="ltr" value={related} onChange={(event) => setRelated(event.target.value)} />
-      </label>
-      <label className="block">
-        <span className="text-label text-muted">نت‌ها، آکوردها، غلظت‌ها</span>
-        <input className={`${control} mt-1.5`} value={noteNames} placeholder="نت‌ها" onChange={(event) => setNoteNames(event.target.value)} />
-        <input className={`${control} mt-2`} value={accordNames} placeholder="آکوردها" onChange={(event) => setAccordNames(event.target.value)} />
-        <input
-          className={`${control} mt-2`}
-          value={concentrationLabels}
-          placeholder="غلظت‌ها"
-          onChange={(event) => setConcentrationLabels(event.target.value)}
-        />
-      </label>
-      <label className="block">
-        <span className="text-label text-muted">رنگ نشانه</span>
-        <input className={`${control} mt-1.5`} dir="ltr" value={mark} placeholder="#1A1420" onChange={(event) => setMark(event.target.value)} />
-      </label>
+      <details className="rounded-panel border border-line bg-card px-3.5 py-3">
+        <summary className="cursor-pointer text-body font-medium">نام‌های دیگر، مقایسه، پیوند</summary>
+        <div className="mt-3 grid gap-3">
+          <label className="block">
+            <span className="text-label text-muted">نام‌های دیگر</span>
+            <input className={`${control} mt-1.5`} value={aliases} onChange={(event) => setAliases(event.target.value)} />
+          </label>
+          <label className="block">
+            <span className="text-label text-muted">باور رایج</span>
+            <input className={`${control} mt-1.5`} value={mythClaim} onChange={(event) => setMythClaim(event.target.value)} />
+          </label>
+          <label className="block">
+            <span className="text-label text-muted">واقعیت</span>
+            <input className={`${control} mt-1.5`} value={mythReality} onChange={(event) => setMythReality(event.target.value)} />
+          </label>
+          <label className="block">
+            <span className="text-label text-muted">جدول مقایسه</span>
+            <textarea
+              className={`${control} mt-1.5 min-h-24 py-3 leading-7`}
+              value={compare}
+              onChange={(event) => setCompare(event.target.value)}
+              placeholder={"ادوتویلت | حدود ۵ تا ۱۵٪"}
+            />
+          </label>
+          <label className="block">
+            <span className="text-label text-muted">مدخل‌های مرتبط</span>
+            <input className={`${control} mt-1.5`} dir="ltr" value={related} onChange={(event) => setRelated(event.target.value)} />
+          </label>
+        </div>
+      </details>
       {error ? (
         <p role="alert" className="text-label text-danger">
           {error}

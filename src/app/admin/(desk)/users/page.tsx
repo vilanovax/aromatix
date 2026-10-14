@@ -12,12 +12,14 @@ export default async function UsersPage() {
   const admin = await guardSection("users");
   const rows = await loadUsers(admin.id);
   const admins = rows.filter((row) => row.role === "admin").length;
+  const inactive = rows.filter((row) => !row.active).length;
 
   return (
     <div>
       <h1 className="text-headline font-bold">کاربران</h1>
       <p className="mt-2 text-body text-muted">
         {faNum(rows.length)} حساب، {faNum(admins)} مدیر
+        {inactive > 0 ? `، ${faNum(inactive)} غیرفعال` : ""}
       </p>
       <UserIndex rows={rows} canGrant={admin.sections.includes("settings")} />
     </div>
@@ -27,7 +29,7 @@ export default async function UsersPage() {
 async function loadUsers(selfId: number): Promise<ManagedUser[]> {
   const now = new Date().toISOString();
   const [users, sessions] = await Promise.all([
-    db.orm.aroma.User.select("id", "name", "phone", "role", "createdAt").all(),
+    db.orm.aroma.User.select("id", "name", "phone", "role", "active", "createdAt").all(),
     db.orm.aroma.Session.where((row) => row.expiresAt.gt(now)).select("userId").all(),
   ]);
   const open = new Map<number, number>();
@@ -39,7 +41,9 @@ async function loadUsers(selfId: number): Promise<ManagedUser[]> {
       name: user.name,
       phone: displayPhone(user.phone),
       role: user.role,
+      active: user.active,
       joined: formatJoined(user.createdAt),
+      joinedAt: joinedTime(user.createdAt),
       sessions: open.get(user.id) ?? 0,
       self: user.id === selfId,
     }))
@@ -47,7 +51,12 @@ async function loadUsers(selfId: number): Promise<ManagedUser[]> {
 }
 
 function formatJoined(value: string) {
-  const time = Date.parse(value);
-  if (Number.isNaN(time)) return "تاریخ نامشخص";
+  const time = joinedTime(value);
+  if (time === 0) return "تاریخ نامشخص";
   return formatCheckedOn(new Date(time));
+}
+
+function joinedTime(value: string) {
+  const time = Date.parse(value);
+  return Number.isNaN(time) ? 0 : time;
 }

@@ -30,7 +30,11 @@ export default async function LearnAdminPage() {
         <div className="min-w-0">
           <h1 className="text-headline font-bold">دانستنی‌ها</h1>
           <p className="mt-1 text-label text-muted">
-            {store === "ready" ? `${faNum(rows.length)} مقاله، ${faNum(activeCount)} فعال` : "هنوز چیزی منتشر نشده"}
+            {store === "ready"
+              ? activeCount === rows.length
+                ? `${faNum(rows.length)} مقاله`
+                : `${faNum(rows.length)} مقاله، ${faNum(rows.length - activeCount)} پنهان`
+              : "هنوز چیزی منتشر نشده"}
           </p>
         </div>
         {store === "ready" ? (

@@ -33,7 +33,7 @@ export default async function ShopsPage() {
           <h1 className="text-headline font-bold text-balance">فروشگاه‌ها</h1>
           <p className="mt-2 max-w-2xl text-pretty text-body text-muted">
             {store === "ready"
-              ? `${faNum(rows.length)} فروشگاه، ${faNum(activeCount)} فعال. قیمت هر عطر به یکی از این‌ها وصل می‌شود.`
+              ? `${faNum(rows.length)} فروشگاه، ${faNum(activeCount)} فعال. قیمت و موجودی مال فروشگاه است، نه فرم عطر.`
               : "هنوز چیزی منتشر نشده"}
           </p>
         </div>

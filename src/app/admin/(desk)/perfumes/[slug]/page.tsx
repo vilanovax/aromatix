@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { PerfumeForm } from "@/app/admin/perfume-form";
-import { allBrands, allPerfumes, allShops, getPerfume } from "@/lib/catalog";
+import { allBrands, allPerfumes, getPerfume } from "@/lib/catalog";
 import { loadCatalog } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
@@ -27,7 +27,6 @@ export default async function EditPerfumePage({ params }: { params: Promise<Para
         mode="edit"
         perfume={perfume}
         brands={allBrands()}
-        shops={allShops()}
         others={allPerfumes().map((item) => ({ slug: item.slug, nameFa: item.nameFa }))}
       />
     </div>

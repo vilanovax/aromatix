@@ -10,8 +10,9 @@ import { guardSection } from "@/lib/auth/admin";
 
 export const metadata: Metadata = { title: "عطرها · مدیریت آروما" };
 
-export default async function PerfumesPage() {
+export default async function PerfumesPage({ searchParams }: { searchParams: Promise<{ brand?: string }> }) {
   await guardSection("perfumes");
+  const { brand } = await searchParams;
   const store = await catalogStoreStatus();
   const snapshot = await loadCatalog();
   const issues = store === "ready" ? catalogIssues(snapshot.perfumes) : [];
@@ -60,7 +61,11 @@ export default async function PerfumesPage() {
         </Card>
       ) : (
         <>
-          <PerfumeIndex rows={rows} />
+          <PerfumeIndex
+            rows={rows}
+            brands={snapshot.brands.map((item) => ({ slug: item.slug, nameFa: item.nameFa }))}
+            brand={typeof brand === "string" ? brand : ""}
+          />
         </>
       )}
     </div>

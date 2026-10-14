@@ -76,7 +76,13 @@ export function BrandIndex({ rows }: { rows: BrandRow[] }) {
                   {row.description || "توضیحی نوشته نشده"}
                 </span>
               </Link>
-              <div className="flex items-center pe-3">
+              <div className="flex shrink-0 flex-col items-stretch justify-center gap-2 pe-3">
+                <Link
+                  href={`/admin/perfumes?brand=${encodeURIComponent(row.slug)}`}
+                  className="inline-flex min-h-10 items-center justify-center rounded-full border border-line px-3 text-label"
+                >
+                  لیست عطرها
+                </Link>
                 <button
                   type="button"
                   aria-pressed={row.active}

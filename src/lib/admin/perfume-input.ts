@@ -1,5 +1,5 @@
 import { OCCASIONS, SEASONS, brandByName } from "@/lib/catalog";
-import type { BottleShape, Perfume, Season, ShopOffer } from "@/lib/types";
+import type { BottleShape, Perfume, Season } from "@/lib/types";
 
 const GENDERS = ["مشترک", "مردانه", "زنانه"] as const;
 const BOTTLES = ["rect", "slim", "round"] as const;
@@ -159,29 +159,6 @@ export function parsePerfumeInput(
   const aliases = stringList(input.aliases);
   if (!aliases) return { error: "نام‌های مستعار درست نیستند." };
 
-  if (!Array.isArray(input.shops) || input.shops.length === 0) return { error: "حداقل یک فروشگاه لازم است." };
-  const shops: ShopOffer[] = [];
-  for (const item of input.shops) {
-    if (!item || typeof item !== "object") return { error: "فروشگاه ناقص است." };
-    const row = item as { shop?: unknown; price?: unknown; href?: unknown; stockConfirmed?: unknown; checkedOn?: unknown; checkedAt?: unknown };
-    const shop = text(row.shop, 40);
-    const price = numberIn(row.price, 1, 500_000_000);
-    const href = text(row.href, 300);
-    if (!shop || price == null || !href || !/^https:\/\//.test(href)) {
-      return { error: "هر فروشگاه نام، قیمت به تومان و لینک https می‌خواهد." };
-    }
-    const checkedOn = typeof row.checkedOn === "string" ? row.checkedOn : "";
-    const checkedAt = typeof row.checkedAt === "string" && row.checkedAt ? row.checkedAt : undefined;
-    shops.push({
-      shop,
-      price: Math.round(price),
-      href,
-      stockConfirmed: row.stockConfirmed === true,
-      checkedOn,
-      checkedAt,
-    });
-  }
-
   const confidence = numberIn(input.confidence, 0, 1);
   if (confidence == null) return { error: "اطمینان را بین ۰ و ۱ بنویس." };
 
@@ -205,7 +182,7 @@ export function parsePerfumeInput(
     sillage: optionalScore(input.sillage),
     why,
     similar,
-    shops,
+    shops: [],
     confidence: Math.round(confidence * 100) / 100,
     aliases,
   };

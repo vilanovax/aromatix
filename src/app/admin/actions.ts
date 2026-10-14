@@ -1,12 +1,11 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { formatCheckedOn } from "@/lib/admin/health";
 import { parsePerfumeInput, type PerfumeInput } from "@/lib/admin/perfume-input";
 import { requireSection } from "@/lib/auth/admin";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { allBrands, allPerfumes, allShops, brandByName, seedSnapshot } from "@/lib/catalog";
-import type { Perfume, ShopOffer } from "@/lib/types";
+import type { Perfume } from "@/lib/types";
 import { db } from "@/prisma/db";
 
 export type ActionResult = { ok: true; slug?: string } | { ok: false; error: string };
@@ -17,21 +16,6 @@ function denied(): ActionResult {
 
 function publish() {
   revalidatePath("/", "layout");
-}
-
-function stampShops(next: ShopOffer[], previous: ShopOffer[] | undefined, now: Date): ShopOffer[] {
-  return next.map((shop) => {
-    const prior = previous?.find((item) => item.shop === shop.shop && item.href === shop.href);
-    const unchanged =
-      prior &&
-      prior.price === shop.price &&
-      prior.stockConfirmed === shop.stockConfirmed &&
-      prior.checkedOn === shop.checkedOn &&
-      (prior.checkedAt ?? "") === (shop.checkedAt ?? "");
-    if (unchanged && prior.checkedAt) return { ...shop, checkedOn: prior.checkedOn, checkedAt: prior.checkedAt };
-    if (unchanged && prior) return { ...shop, checkedOn: prior.checkedOn, checkedAt: prior.checkedAt };
-    return { ...shop, checkedOn: formatCheckedOn(now), checkedAt: now.toISOString() };
-  });
 }
 
 async function writePerfume(perfume: Perfume) {
@@ -68,7 +52,7 @@ export async function savePerfume(input: PerfumeInput, slugLocked?: string): Pro
   const previous = slugLocked ? allPerfumes().find((perfume) => perfume.slug === slugLocked) : undefined;
   const perfume = {
     ...parsed.value,
-    shops: stampShops(parsed.value.shops, previous?.shops, new Date()),
+    shops: previous?.shops ?? [],
   };
   try {
     return await writePerfume(perfume);
