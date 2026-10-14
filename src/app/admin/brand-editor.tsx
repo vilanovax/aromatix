@@ -66,7 +66,7 @@ export function BrandEditor({
   return (
     <form onSubmit={submit} className="space-y-4">
       <div className="sticky top-12 z-10 -mx-4 border-b border-border bg-background/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:top-0">
-        <Link href="/admin/brands" className="text-label text-muted-foreground">
+        <Link href="/admin/brands" className="inline-flex min-h-11 items-center text-label text-muted-foreground">
           برندها
         </Link>
         <div className="mt-1 flex flex-wrap items-center justify-between gap-3">
