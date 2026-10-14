@@ -27,7 +27,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="fa" dir="rtl" className={vazirmatn.variable}>
+    // The admin theme script writes data-admin-theme before hydration.
+    <html lang="fa" dir="rtl" className={vazirmatn.variable} suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
       </body>
