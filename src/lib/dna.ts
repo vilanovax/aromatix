@@ -126,7 +126,9 @@ function stageFor(validCount: number, familyCount: number): DnaStage {
 function sentenceFor(stage: DnaStage, top: FamilyReading[]) {
   if (stage === "empty" || stage === "learning") return LEARNING;
   if (top.length === 0) return UNCLEAR;
-  return `تا اینجا ${joinFa(top.map((family) => family.label))} را بیشتر می‌پسندی.`;
+  const names = joinFa(top.map((family) => family.label));
+  if (stage === "early") return `بر اساس انتخاب‌های اولیه‌ات، ${names} را بیشتر می‌پسندی.`;
+  return `از عطرهایی که امتیاز دادی، ${names} را بیشتر می‌پسندی.`;
 }
 
 function signalWeight(state: UserPerfume) {

@@ -11,6 +11,7 @@ import {
 } from "@/lib/catalog";
 import { faNum, joinFa } from "@/lib/format";
 import { findKnowledge } from "@/lib/knowledge";
+import { findReference, normalizeAsk } from "@/lib/references";
 import type { Leaning, Perfume, Profile, Season } from "@/lib/types";
 
 export type AskContext = {
@@ -91,7 +92,8 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
 
   if (/ارزان/.test(text)) {
     if (!profile) return needList();
-    const cheaper = STEPS.find((step) => step < profile.budget);
+    const ceiling = profile.budget;
+    const cheaper = ceiling == null ? 8 : STEPS.find((step) => step < ceiling);
     if (!cheaper) {
       return { profile, reply: { kind: "miss", body: "کف بودجه همین تا ۲ میلیون است." } as Reply };
     }
@@ -116,6 +118,20 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
     const label = referenceLabel(referenced);
     const next: Profile = { ...profile, reference: referenced, note: label ? `نزدیک به ${label} چیده شد.` : null };
     return { profile: next, reply: { kind: "refine", body: next.note ?? "پیشنهادها را دوباره چیدم." } as Reply };
+  }
+
+  const namedReference = findReference(text);
+  if (namedReference && !hasScene(text) && !findPerfume(text)) {
+    return {
+      profile,
+      reply: {
+        kind: "learn",
+        title: namedReference.nameFa,
+        body: namedReference.why,
+        href: `/reference/${namedReference.id}`,
+        hrefLabel: `شناخت ${namedReference.nameFa}`,
+      } as Reply,
+    };
   }
 
   const named = findPerfume(text);
@@ -155,6 +171,42 @@ export function isPerfumeLookup(input: string) {
   return findPerfumeByName(text) !== null && !hasScene(text);
 }
 
+export type AskIntent =
+  | { type: "perfume"; slug: string; similar: boolean; occasion: string | null; season: Season | null }
+  | { type: "reference"; id: string; occasion: string | null; season: Season | null; budget: number | null }
+  | { type: "learn"; slug: string }
+  | { type: "results"; profile: Profile }
+  | { type: "miss" };
+
+export function interpretQuery(raw: string): AskIntent {
+  const text = normalize(raw).trim();
+  if (!text) return { type: "miss" };
+
+  const perfume = findPerfume(text);
+  const reference = findReference(text);
+  const scene = hasScene(text);
+  const similar = /شبیه|مثل/.test(text);
+  const parsed = scene || reference ? parseLine(text) : null;
+  const occasion = parsed?.occasions[0] ?? null;
+  const season = parsed && parsed.season !== "all" ? parsed.season : null;
+
+  if (reference && !perfume) {
+    return { type: "reference", id: reference.id, occasion, season, budget: parsed?.budget ?? null };
+  }
+  if (perfume && (similar || !scene)) {
+    return { type: "perfume", slug: perfume.slug, similar, occasion: scene ? occasion : null, season: scene ? season : null };
+  }
+  if (perfume && scene) {
+    return { type: "perfume", slug: perfume.slug, similar: false, occasion, season };
+  }
+  if (!scene) {
+    const lesson = findKnowledge(text);
+    if (lesson) return { type: "learn", slug: lesson.slug };
+  }
+  if (parsed && scene) return { type: "results", profile: parsed };
+  return { type: "miss" };
+}
+
 export function parseLine(input: string): Profile | null {
   const text = normalize(input);
   if (!hasScene(text) && !referenceIn(text)) return null;
@@ -172,7 +224,7 @@ export function parseLine(input: string): Profile | null {
   if (/روزمره|هر روز/.test(text)) occasions.push("daily");
   if (/هدیه/.test(text) && occasions.length === 0) occasions.push("date");
 
-  let budget = 8;
+  let budget: number | null = null;
   const amount = text.match(/(?:تا|زیر|کمتر از)\s*(\d+)/);
   if (amount) {
     const value = Number(amount[1]);
@@ -203,10 +255,7 @@ export function parseLine(input: string): Profile | null {
 }
 
 function referenceIn(text: string) {
-  if (/ساواج|sauvage/.test(text)) return "sauvage";
-  if (/اونتوس|aventus/.test(text)) return "aventus";
-  if (/آنجل|angels/.test(text)) return "angels";
-  return null;
+  return findReference(text)?.id ?? null;
 }
 
 function leaningIn(text: string): Leaning | null {
@@ -333,7 +382,7 @@ function fitScore(perfume: Perfume, profile: Profile) {
   score += profile.occasions.filter((occasion) => perfume.occasions.includes(occasion)).length * 2;
   if (profile.leaning && profile.leaning !== "any") score += leaningShare(perfume, profile.leaning) * 4;
   const price = publicLead(perfume)?.price;
-  if (price != null && price <= profile.budget * 1_000_000) score += 1;
+  if (profile.budget != null && price != null && price <= profile.budget * 1_000_000) score += 1;
   return score;
 }
 
@@ -408,10 +457,5 @@ function hasScene(text: string) {
 }
 
 function normalize(input: string) {
-  return input
-    .replace(/[۰-۹]/g, (digit) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(digit)))
-    .replace(/ي/g, "ی")
-    .replace(/ك/g, "ک")
-    .replace(/\s+/g, " ")
-    .toLowerCase();
+  return normalizeAsk(input);
 }

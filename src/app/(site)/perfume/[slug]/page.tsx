@@ -1,11 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { Check, ChevronLeft, SearchX } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
+import { AlternativeGroups } from "@/components/AlternativeGroups";
 import { PerfumePhoto } from "@/components/Bottle";
+import { ForYou } from "@/components/ForYou";
+import { NoteStack } from "@/components/NoteStack";
 import { TermChip } from "@/components/TermSheet";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
@@ -15,19 +17,15 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { cheaperUnconfirmed, getPerfume, isPublicPerfume, performanceLabel, publicLead, sharedAccordNames } from "@/lib/catalog";
-import { entryForConcentration, entryForNote } from "@/lib/knowledge";
-import { cn, faNum, joinFa, millionToman } from "@/lib/format";
-import { perfumeHref, resolvePerfumeBack } from "@/lib/nav";
+import { cheaperUnconfirmed, getPerfume, isPublicPerfume, performanceLabel, publicLead, seasonShort } from "@/lib/catalog";
+import { entryForConcentration } from "@/lib/knowledge";
+import { cn, faNum, millionToman } from "@/lib/format";
+import { resolvePerfumeBack } from "@/lib/nav";
+import { contextFit, faceFromPerfume } from "@/lib/personal-fit";
+import { rememberVisit } from "@/lib/recent";
+import { getReference } from "@/lib/references";
 import { useAroma } from "@/lib/store";
-import type { Perfume } from "@/lib/types";
-
-const LAYERS = [
-  { id: "top", label: "شروع" },
-  { id: "middle", label: "میانه" },
-  { id: "base", label: "پایه" },
-] as const;
+import type { Season } from "@/lib/types";
 
 export default function PerfumePage() {
   return (
@@ -65,19 +63,23 @@ function PerfumeScreen() {
 
   const offer = publicLead(perfume);
   const cheaper = cheaperUnconfirmed(perfume);
-  const similars = perfume.similar
-    .map((slug) => getPerfume(slug))
-    .filter((item) => isPublicPerfume(item))
-    .slice(0, 3);
-  const season = perfume.seasons.includes("all") ? null : perfume.seasons.map(seasonName).join("، ");
+  const season = perfume.seasons.includes("all") ? null : perfume.seasons.map((id) => seasonShort(id)).join("، ");
   const showFacts = Boolean(season || perfume.longevity || perfume.sillage || perfume.inspiredBy);
   const picked = compare.includes(perfume.slug);
   const concentrationEntry = entryForConcentration(perfume.concentration);
-  const similarFrom = `/perfume/${perfume.slug}`;
-  const layers = LAYERS.map((layer) => ({
-    ...layer,
-    notes: perfume.notes.filter((note) => note.layer === layer.id),
-  })).filter((layer) => layer.notes.length > 0);
+  const askedSeason = askedSeasonOf(search.get("season"));
+  const face = faceFromPerfume(perfume);
+  const context = contextFit(face, { occasion: search.get("occasion"), season: askedSeason });
+  const reference = perfume.inspiredBy ? getReference(perfume.inspiredBy) : undefined;
+
+  useEffect(() => {
+    rememberVisit({ href: `/perfume/${perfume.slug}`, label: perfume.nameFa });
+  }, [perfume.slug, perfume.nameFa]);
+
+  useEffect(() => {
+    if (search.get("focus") !== "similar") return;
+    document.getElementById("similar")?.scrollIntoView({ block: "start" });
+  }, [search]);
 
   return (
     <Shell composer back={back}>
@@ -178,17 +180,7 @@ function PerfumeScreen() {
           </Alert>
         ) : null}
 
-        <section className="mt-8" aria-labelledby="taste-title">
-          <h2 id="taste-title" className="text-title font-semibold">
-            این عطر چطوره؟
-          </h2>
-          <p className="mt-1 text-pretty text-label text-muted-foreground">
-            برای آرومای من و پیشنهاد بعدی نگه می‌داریم.
-          </p>
-          <Card className="mt-3 p-2">
-            <TasteRow slug={perfume.slug} name={perfume.nameFa} />
-          </Card>
-        </section>
+        <ForYou face={face} context={context} />
 
         {showFacts ? (
           <Card className="mt-8 px-4">
@@ -208,9 +200,14 @@ function PerfumeScreen() {
                   value={performanceLabel("sillage", perfume.sillage)}
                 />
               ) : null}
-              {perfume.inspiredBy ? <Fact label="نزدیک به" value={inspiredName(perfume.inspiredBy)} /> : null}
+              {reference ? <Fact label="نزدیک به" value={reference.nameFa} /> : null}
             </dl>
           </Card>
+        ) : null}
+        {reference ? (
+          <Button href={`/reference/${reference.id}`} variant="ghost" className="mt-2 min-h-11 px-0">
+            شناخت {reference.nameFa}
+          </Button>
         ) : null}
         {perfume.inspiredBy ? (
           <p className="mt-2 text-pretty text-label text-muted-foreground">
@@ -218,87 +215,28 @@ function PerfumeScreen() {
           </p>
         ) : null}
 
-        {layers.length > 0 ? (
+        {perfume.notes.length > 0 ? (
           <section className="mt-8" aria-labelledby="pyramid-title">
             <h2 id="pyramid-title" className="text-title font-semibold">
               هرم بو
             </h2>
-            <Tabs defaultValue={layers[0].id} variant="underline" className="mt-3">
-              <TabsList aria-label="لایه‌های بو">
-                {layers.map((layer) => (
-                  <TabsTrigger key={layer.id} value={layer.id}>
-                    {layer.label}
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              {layers.map((layer) => (
-                <TabsContent key={layer.id} value={layer.id}>
-                  <ul className="flex flex-wrap gap-2">
-                    {layer.notes.map((note) => {
-                      const lesson = entryForNote(note.name);
-                      return (
-                        <li key={note.name}>
-                          {lesson ? (
-                            <TermChip slug={lesson.slug}>{note.name}</TermChip>
-                          ) : (
-                            <span className="inline-flex min-h-11 items-center text-body">{note.name}</span>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </TabsContent>
-              ))}
-            </Tabs>
+            <NoteStack notes={perfume.notes} />
           </section>
         ) : null}
 
-        {similars.length > 0 ? (
-          <section className="mt-8" aria-labelledby="similar-title">
-            <h2 id="similar-title" className="text-title font-semibold">
-              مشابه‌ها
-            </h2>
-            <ul className="mt-3 flex flex-col gap-3">
-              {similars.map((item) => (
-                <li key={item.slug}>
-                  <Card className="flex min-h-16 items-center gap-3 p-3">
-                    <Link
-                      href={perfumeHref(item.slug, similarFrom)}
-                      className="shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-                    >
-                      <PerfumePhoto perfume={item} sizes="thumb" alt="" className="h-14 w-12 rounded-control" />
-                    </Link>
-                    <span className="min-w-0 flex-1 text-start">
-                      <Link
-                        href={perfumeHref(item.slug, similarFrom)}
-                        className="block text-body font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-                      >
-                        {item.nameFa}
-                      </Link>
-                      <span className="mt-1 block text-pretty text-label text-muted-foreground">
-                        <BrandLink name={item.brand} from={item.slug} />
-                        <span className="mx-1">،</span>
-                        {likeness(perfume, item)}
-                      </span>
-                      <span className="mt-2 block max-w-52">
-                        <AccordMark accords={item.accords} />
-                      </span>
-                    </span>
-                    <Button
-                      href={perfumeHref(item.slug, similarFrom)}
-                      variant="ghost"
-                      size="icon"
-                      aria-label={`باز کردن ${item.nameFa}`}
-                      className="min-h-11 min-w-11 shrink-0"
-                    >
-                      <ChevronLeft strokeWidth={1.5} />
-                    </Button>
-                  </Card>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
+        <AlternativeGroups perfume={perfume} from={`/perfume/${perfume.slug}`} />
+
+        <section className="mt-8" aria-labelledby="taste-title">
+          <h2 id="taste-title" className="text-title font-semibold">
+            این عطر چطوره؟
+          </h2>
+          <p className="mt-1 text-pretty text-label text-muted-foreground">
+            برای آرومای من و پیشنهاد بعدی نگه می‌داریم.
+          </p>
+          <Card className="mt-3 p-2">
+            <TasteRow slug={perfume.slug} name={perfume.nameFa} />
+          </Card>
+        </section>
       </article>
     </Shell>
   );
@@ -319,25 +257,7 @@ function Fact({ label, value, term }: { label: string; value: string; term?: str
   );
 }
 
-function seasonName(id: string) {
-  if (id === "summer") return "تابستان";
-  if (id === "winter") return "زمستان";
-  if (id === "mild") return "معتدل";
-  return "همهٔ فصل‌ها";
-}
-
-function likeness(current: Perfume, other: Perfume) {
-  const accords = sharedAccordNames(current, other);
-  if (accords.length > 0) return `هر دو ${joinFa(accords)} دارند`;
-  const notes = new Set(other.notes.map((note) => note.name));
-  const shared = [...new Set(current.notes.map((note) => note.name).filter((name) => notes.has(name)))];
-  if (shared.length > 0) return `نوت مشترک: ${joinFa(shared)}`;
-  return "در همین خانواده آمده";
-}
-
-function inspiredName(id: string) {
-  if (id === "sauvage") return "ساواج الکسیر";
-  if (id === "aventus") return "اونتوس";
-  if (id === "angels") return "آنجلز شیر";
-  return id;
+function askedSeasonOf(value: string | null): Season | null {
+  if (value === "summer" || value === "winter" || value === "mild") return value;
+  return null;
 }

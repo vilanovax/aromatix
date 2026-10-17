@@ -108,7 +108,7 @@ function relevanceGate(profile: Profile) {
 function scorePerfume(perfume: Perfume, profile: Profile, dna: DnaProfile) {
   if (profile.shift === "fresh" && !perfume.tags.includes("fresh")) return 0;
   if (profile.shift === "lasting" && (perfume.longevity ?? 0) < 4) return 0;
-  if (shownPrice(perfume) > profile.budget * 1_000_000) return 0;
+  if (profile.budget != null && shownPrice(perfume) > profile.budget * 1_000_000) return 0;
 
   let score = 0;
   const seasonHit = perfume.seasons.includes(profile.season);

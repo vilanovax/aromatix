@@ -1,5 +1,6 @@
 import { getBrand, getPerfume } from "@/lib/catalog";
 import { getEntry } from "@/lib/knowledge";
+import { getReference } from "@/lib/references";
 
 /** Build `?from=` for perfume detail so Back returns to the real origin. */
 export function perfumeFrom(path: string) {
@@ -42,6 +43,12 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
   if (learnMatch) {
     const entry = getEntry(decodeURIComponent(learnMatch[1]));
     return { href: path.split("?")[0], label: entry?.title ?? "دانستنی‌ها" };
+  }
+
+  const referenceMatch = path.match(/^\/reference\/([^/?#]+)/);
+  if (referenceMatch) {
+    const reference = getReference(decodeURIComponent(referenceMatch[1]));
+    return { href: path.split("?")[0], label: reference?.nameFa ?? "خانه" };
   }
 
   const perfumeMatch = path.match(/^\/perfume\/([^/?#]+)/);

@@ -52,7 +52,7 @@ export default function ResultsPage() {
           <header>
             <h1 className="text-balance text-headline font-bold">{resultHeading(profile, results.length)}</h1>
             <p className="mt-2 text-pretty text-body text-muted-foreground">
-              تا {faNum(profile.budget)} میلیون تومان
+              {profile.budget != null ? `تا ${faNum(profile.budget)} میلیون تومان` : "بدون سقف بودجه"}
               {profile.leaning && profile.leaning !== "any" ? ` · ${LEANINGS[profile.leaning].label}` : ""}
               {results.length > 0 && results.length < 5
                 ? ` · فقط ${countWord(results.length)} پیشنهاد مطمئن`
@@ -67,9 +67,11 @@ export default function ResultsPage() {
           {results.length === 0 ? (
             <Card className="mt-8 p-4">
               <p className="text-pretty text-body">
-                با بودجهٔ تا {faNum(profile.budget)} میلیون، برای این موقعیت عطر مطمئنی در این نمونه نیست.
+                {profile.budget != null
+                  ? `با بودجهٔ تا ${faNum(profile.budget)} میلیون، برای این موقعیت عطر مطمئنی در این نمونه نیست.`
+                  : "برای این موقعیت عطر مطمئنی در این نمونه نیست."}
               </p>
-              {profile.budget < 8 ? (
+              {profile.budget != null && profile.budget < 8 ? (
                 <Button
                   className="mt-4 min-h-12 w-full"
                   onClick={() =>

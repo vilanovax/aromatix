@@ -33,7 +33,7 @@ export function Shell({
   const { library, ready, compare } = useAroma();
   useEffect(() => {
     const sections = new Set(["/", "/results", "/shelf", "/brands", "/learn", "/guide", "/compare"]);
-    if (sections.has(pathname)) recordUsage("section_view", pathname);
+    if (sections.has(pathname) || pathname.startsWith("/reference/")) recordUsage("section_view", pathname);
     const perfume = pathname.match(/^\/perfume\/([^/?#]+)/);
     if (perfume) recordUsage("perfume_view", decodeURIComponent(perfume[1]));
     const brand = pathname.match(/^\/brands\/([^/?#]+)/);
@@ -100,19 +100,13 @@ export function Shell({
               <Button
                 href="/shelf"
                 variant={pathname === "/shelf" ? "secondary" : "ghost"}
-                size="icon"
+                size="md"
                 aria-current={pathname === "/shelf" ? "page" : undefined}
-                aria-label={ready && saved > 0 ? `آرومای من، ${faNum(saved)} عطر` : "آرومای من"}
-                className="min-h-11 min-w-11"
+                aria-label={ready && saved > 0 ? `قفسهٔ من، ${faNum(saved)} عطر` : "قفسهٔ من"}
+                className="min-h-11 gap-1 px-2"
               >
-                <span className="relative">
-                  <UserRound strokeWidth={1.5} />
-                  {ready && saved > 0 ? (
-                    <span className="absolute -top-2 -start-2 grid h-4 min-w-4 place-items-center rounded-full bg-brand px-1 text-badge font-semibold text-primary ring-2 ring-background">
-                      {faNum(saved)}
-                    </span>
-                  ) : null}
-                </span>
+                <UserRound strokeWidth={1.5} />
+                <span className="text-label">قفسهٔ من</span>
               </Button>
             </div>
           ) : (

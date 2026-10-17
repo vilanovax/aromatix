@@ -58,7 +58,8 @@ export type Perfume = {
 export type Profile = {
   occasions: string[];
   season: Season;
-  budget: number;
+  /** null یعنی کاربر سقفی نگفته و نباید بودجه فرض شود. */
+  budget: number | null;
   reference: string | null;
   shift: Shift;
   leaning?: Leaning | "any" | null;
