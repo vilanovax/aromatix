@@ -14,6 +14,10 @@ import { AVATARS, avatarLabel } from "@/lib/auth/avatars";
 import type { PublicUser } from "@/lib/auth/public-user";
 import { cn } from "@/lib/format";
 
+function persianDigits(value: string) {
+  return value.replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[Number(digit)] ?? digit);
+}
+
 export function AccountScreen() {
   const router = useRouter();
   const params = useSearchParams();
@@ -104,7 +108,7 @@ export function AccountScreen() {
           <div className="min-w-0 flex-1">
             <h1 className="truncate text-headline font-bold">{name.trim() || user.name}</h1>
             <p className="mt-1 text-body text-muted-foreground">
-              <bdi dir="ltr">{user.phone}</bdi>
+              <bdi dir="ltr">{persianDigits(user.phone)}</bdi>
             </p>
             <p className="mt-1 text-label text-muted-foreground">{avatarLabel(avatarId)}</p>
           </div>
@@ -112,10 +116,7 @@ export function AccountScreen() {
 
         <form className="mt-5" method="post" onSubmit={save}>
           <Card className="px-4 py-4">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-label text-muted-foreground">آواتار</p>
-              <p className="text-label text-muted-foreground">یکی را انتخاب کن</p>
-            </div>
+            <p className="text-label text-muted-foreground">یکی را انتخاب کن</p>
             <div className="mt-3 grid grid-cols-4 gap-3">
               {AVATARS.map((avatar) => {
                 const selected = avatar.id === avatarId;

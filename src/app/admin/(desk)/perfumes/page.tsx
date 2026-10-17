@@ -37,7 +37,7 @@ export default async function PerfumesPage({ searchParams }: { searchParams: Pro
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h1 className="text-headline font-bold text-balance">عطرها</h1>
-          <p className="mt-2 max-w-2xl text-pretty text-body text-muted-foreground">
+          <p className="mt-2 text-pretty text-body text-muted-foreground">
             {store === "ready"
               ? issues.length > 0
                 ? `${faNum(snapshot.perfumes.length)} عطر منتشرشده، ${faNum(new Set(issues.map((issue) => issue.slug)).size)} تا با ${faNum(issues.length)} مورد باز. نام، فرم را باز می‌کند؛ برچسب، همان بخش را.`

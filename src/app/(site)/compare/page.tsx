@@ -5,7 +5,6 @@ import { Suspense, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { Scale } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
-import { BrandLink } from "@/components/BrandLink";
 import { Shell } from "@/components/Shell";
 import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -93,21 +92,16 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
           const href = perfumeHref(perfume.slug, fromPath);
           const offer = publicLead(perfume);
           return (
-            <Card key={perfume.slug} className={cn("p-4", lean && "ring-2 ring-primary")}>
+            <Card key={perfume.slug} className={cn("p-0", lean && "ring-2 ring-primary")}>
               <Link
                 href={href}
-                className="block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+                className="block p-4 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
               >
                 <span className="block text-title font-semibold">{perfume.nameFa}</span>
-              </Link>
-              <span className="mt-1 block text-label text-muted-foreground">
-                <BrandLink name={perfume.brand} from={perfume.slug} />
-              </span>
-              <Link
-                href={href}
-                className="mt-3 block rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-              >
-                <AccordMark accords={perfume.accords} />
+                <span className="mt-1 block text-label text-muted-foreground">{perfume.brand}</span>
+                <span className="mt-3 block">
+                  <AccordMark accords={perfume.accords} />
+                </span>
                 <span className="mt-3 block text-body font-semibold">{offer ? millionToman(offer.price) : "—"}</span>
               </Link>
             </Card>
@@ -120,7 +114,7 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
           <h2 id="diff-title" className="px-1 text-title font-semibold">
             تفاوت‌ها
           </h2>
-          <div className="mt-2 grid grid-cols-2 gap-3 px-1 text-label text-muted-foreground" aria-hidden="true">
+          <div className="mt-2 grid grid-cols-2 gap-3 px-1 text-start text-label text-muted-foreground" aria-hidden="true">
             <span>{left.nameFa}</span>
             <span>{right.nameFa}</span>
           </div>

@@ -45,6 +45,17 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
     return { href: path.split("?")[0], label: entry?.title ?? "دانستنی‌ها" };
   }
 
+  const noteMatch = path.match(/^\/notes\/([^/?#]+)/);
+  if (noteMatch) {
+    let name = noteMatch[1];
+    try {
+      name = decodeURIComponent(noteMatch[1]);
+    } catch {
+      name = noteMatch[1];
+    }
+    return { href: path, label: name };
+  }
+
   const referenceMatch = path.match(/^\/reference\/([^/?#]+)/);
   if (referenceMatch) {
     const reference = getReference(decodeURIComponent(referenceMatch[1]));

@@ -157,24 +157,22 @@ export function TasteRow({
   if (compact) {
     return (
       <>
-        <div className="flex items-center gap-2">
-          <Badge
-            variant={state?.disliked ? "destructive" : "secondary"}
-            className="inline-flex min-h-11 items-center rounded-control bg-secondary px-3"
+        <div className="flex flex-wrap items-center gap-2 py-2">
+          <span
+            className={
+              state?.disliked
+                ? "inline-flex min-h-11 items-center text-body font-semibold text-destructive"
+                : "inline-flex min-h-11 items-center text-body font-semibold tabular-nums"
+            }
           >
             {compactLabel(state, experienced)}
-          </Badge>
+          </span>
           {!experienced && !state?.disliked ? (
-            <Button variant="outline" size="md" onClick={openExperience} className="min-h-11 flex-1 px-3">
+            <Button variant="outline" size="md" onClick={openExperience} className="min-h-11 px-3">
               تجربه کردم
             </Button>
           ) : experienced ? (
-            <Button
-              variant="ghost"
-              size="md"
-              onClick={openExperience}
-              className="min-h-11 flex-1 px-3 font-normal text-muted-foreground"
-            >
+            <Button variant="ghost" size="md" onClick={openExperience} className="min-h-11 px-3 font-normal text-muted-foreground">
               تغییر امتیاز
             </Button>
           ) : null}

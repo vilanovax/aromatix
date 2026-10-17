@@ -22,7 +22,7 @@ export function AuthFrame({
             <p className="mt-3 text-title font-bold text-foreground">آروما</p>
             <span className="mt-2 h-1 w-10 rounded-full bg-brand" aria-hidden />
             <h1 className="mt-3 text-balance text-display font-bold">{title}</h1>
-            <p className="mt-2 max-w-[19rem] text-pretty text-body text-muted-foreground">{lede}</p>
+            <p className="mt-2 text-pretty text-body text-muted-foreground">{lede}</p>
           </div>
 
           <Card className="px-4 py-5">{children}</Card>

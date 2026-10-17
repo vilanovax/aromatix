@@ -112,7 +112,7 @@ function LeaningQuestion({ profile, onPick }: { profile: Profile; onPick: (profi
   const pair: [Leaning, Leaning] = fresh ? ["citrus", "aquatic"] : ["sweet", "woody"];
 
   return (
-    <div role="group" aria-label="گرایش بو، اختیاری" className="mt-4 flex flex-wrap items-center gap-2">
+    <div role="group" aria-label="گرایش بو، اختیاری" className="mt-4 flex flex-wrap justify-start gap-2">
       {pair.map((id) => (
         <Button
           key={id}

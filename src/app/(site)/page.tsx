@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ChevronLeft } from "lucide-react";
 import { AskComposer } from "@/components/AskComposer";
 import { Shell } from "@/components/Shell";
 import { Alert } from "@/components/ui/alert";
@@ -72,7 +73,7 @@ export default function HomePage() {
       <div className="vf app flex min-h-full flex-col px-5 pt-6 pb-[max(2rem,env(safe-area-inset-bottom))]">
         <header>
           <h1 className="text-balance text-display font-bold">چه عطری بهت میاد؟</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted-foreground">
+          <p className="mt-2 text-pretty text-body text-muted-foreground">
             اسم یک عطر را بنویس، با سلیقه‌ات مقایسه کن، یا بگو دنبال چه رایحه‌ای هستی.
           </p>
         </header>
@@ -92,43 +93,53 @@ export default function HomePage() {
           </Alert>
         ) : null}
 
-        <div className="mt-4">
-          <p className="text-label text-muted-foreground">شروع سریع</p>
-          <ul className="scroll-quiet mt-2 flex gap-2 overflow-x-auto pb-1" aria-label="شروع سریع">
-            {CHIPS.map((item) => (
-              <li key={item.label} className="shrink-0">
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="md"
-                  onClick={() => {
-                    setDraft((current) => appendChip(current, item.insert));
-                    setError(false);
-                  }}
-                  className="min-h-11 !rounded-full !bg-card px-4 font-medium"
-                >
-                  {item.label}
-                </Button>
-              </li>
-            ))}
-          </ul>
+        <ul className="scroll-quiet mt-3 flex justify-start gap-2 overflow-x-auto pb-1" aria-label="نمونه‌های پرسش">
+          {CHIPS.map((item) => (
+            <li key={item.label} className="shrink-0">
+              <Button
+                type="button"
+                variant="outline"
+                size="md"
+                onClick={() => {
+                  setDraft((current) => appendChip(current, item.insert));
+                  setError(false);
+                }}
+                className="min-h-11 !rounded-full !bg-card px-4 font-medium"
+              >
+                {item.label}
+              </Button>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-8 flex flex-col gap-2">
+          {recent ? (
+            <Button
+              href={recent.href}
+              variant="outline"
+              aria-label={`ادامهٔ ${recent.label}`}
+              className="min-h-11 w-full !justify-between !bg-card px-4"
+            >
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="shrink-0 text-label font-normal text-muted-foreground">ادامه</span>
+                <span className="truncate">{recent.label}</span>
+              </span>
+              <ChevronLeft strokeWidth={1.5} aria-hidden="true" />
+            </Button>
+          ) : null}
+          <Button
+            href="/guide"
+            variant="ghost"
+            className="min-h-11 w-full !justify-start !whitespace-normal !px-0 text-start font-medium"
+          >
+            نمی‌دونی از کجا شروع کنی؟ با ۴ سؤال شروع کن
+          </Button>
         </div>
 
-        <Button href="/guide" variant="ghost" className="mt-3 min-h-11 !justify-start px-0 text-start font-medium">
-          نمی‌دونی از کجا شروع کنی؟ با ۴ سؤال شروع کن
-        </Button>
-
-        {recent ? (
-          <Button href={recent.href} variant="outline" className="mt-4 min-h-11 w-full !bg-card">
-            ادامه: {recent.label}
-          </Button>
-        ) : null}
-
         {showTaste ? (
-          <Card className="mt-4 p-4">
-            <h2 className="text-label font-medium text-muted-foreground">سلیقهٔ تو</h2>
-            <p className="mt-2 text-pretty text-body">{dna.sentence}</p>
-            <Button href="/shelf#for-me" variant="outline" className="mt-3 min-h-11 !bg-card">
+          <Card className="mt-8 p-4">
+            <p className="text-pretty text-body">{dna.sentence}</p>
+            <Button href="/shelf#for-me" variant="outline" className="mt-3 min-h-11 w-full !bg-card">
               ۳ عطر برای سلیقه‌ات
             </Button>
           </Card>

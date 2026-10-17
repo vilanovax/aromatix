@@ -14,9 +14,17 @@ export type ScentFace = {
 
 export type TasteLevel = "close" | "partial" | "far";
 
+export type FitLink = {
+  tone: "like" | "dislike";
+  name: string;
+  mark: string;
+  shared: string[];
+};
+
 export type PersonalFit = {
   level: TasteLevel | null;
   lines: string[];
+  links: FitLink[];
   /** شواهد هنوز کم است؛ جمله را قطعی نگو. */
   early: boolean;
 };
@@ -42,14 +50,23 @@ export function personalFit(face: ScentFace, library: Record<string, UserPerfume
   const bestLike = bestOverlap(face, liked);
   const bestDislike = bestOverlap(face, disliked);
   const lines: string[] = [];
+  const links: FitLink[] = [];
 
   if (bestLike && bestLike.shared.length > 0 && bestLike.state.rating != null) {
-    lines.push(
-      `با ${bestLike.perfume.nameFa} که ${faNum(bestLike.state.rating)} از ۱۰ دادی، ${joinFa(bestLike.shared)} مشترک است.`,
-    );
+    links.push({
+      tone: "like",
+      name: bestLike.perfume.nameFa,
+      mark: `${faNum(bestLike.state.rating)} از ۱۰`,
+      shared: bestLike.shared,
+    });
   }
   if (bestDislike && bestDislike.shared.length > 0) {
-    lines.push(`با ${bestDislike.perfume.nameFa} که نپسندیدی، ${joinFa(bestDislike.shared)} مشترک است.`);
+    links.push({
+      tone: "dislike",
+      name: bestDislike.perfume.nameFa,
+      mark: "نپسندیدی",
+      shared: bestDislike.shared,
+    });
   }
 
   const likeCount = bestLike?.shared.length ?? 0;
@@ -60,12 +77,13 @@ export function personalFit(face: ScentFace, library: Record<string, UserPerfume
     return {
       level: null,
       early: false,
+      links: [],
       lines: ["یک عطر که دوست داری و یکی که دوست نداری را در قفسه علامت بزن تا بگویم این به سلیقه‌ات می‌خورد یا نه."],
     };
   }
 
   if (likeCount >= 2 && likeCount > dislikeCount) level = "close";
-  else if (dislikeCount >= 2 && dislikeCount >= likeCount) level = "far";
+  else if (dislikeCount >= 2 && dislikeCount > likeCount) level = "far";
   else if (likeCount > 0 || dislikeCount > 0) level = "partial";
 
   if (level == null && (dna.stage === "early" || dna.stage === "dna")) {
@@ -79,12 +97,12 @@ export function personalFit(face: ScentFace, library: Record<string, UserPerfume
     }
   }
 
-  if (lines.length === 0) {
+  if (links.length === 0 && lines.length === 0) {
     lines.push("هنوز وجه مشترک روشنی با عطرهایی که امتیاز دادی پیدا نکردم.");
     level = level ?? "partial";
   }
 
-  return { level, lines, early: dna.stage !== "dna" };
+  return { level, lines, links, early: dna.stage !== "dna" };
 }
 
 export function contextFit(

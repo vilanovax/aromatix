@@ -43,7 +43,7 @@ export default function LearnIndexPage() {
     <Shell back={{ href: "/", label: "شروع" }}>
       <div className="vf app step-in px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <h1 className="text-headline font-bold">دانستنی‌ها</h1>
-        <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted-foreground">
+        <p className="mt-2 text-pretty text-body text-muted-foreground">
           غلظت، ماندگاری، بچ‌کد — کوتاه، وقتی وسط انتخاب گیر می‌کنی.
         </p>
 
@@ -65,7 +65,7 @@ export default function LearnIndexPage() {
           />
         </div>
 
-        <ul className="mt-4 flex flex-wrap gap-2" aria-label="دسته‌ها">
+        <ul className="mt-4 flex flex-wrap justify-start gap-2" aria-label="دسته‌ها">
           <li>
             <GroupChip
               selected={!searching && group === "all"}
@@ -93,18 +93,14 @@ export default function LearnIndexPage() {
         </ul>
 
         {searching ? (
-          <section className="mt-8" aria-labelledby="result-title" aria-live="polite">
-            <h2 id="result-title" className="text-title font-semibold">
-              {filtered.length > 0 ? `${faNum(filtered.length)} نتیجه` : "چیزی پیدا نشد"}
-            </h2>
+          <section className="mt-8" aria-label="نتیجهٔ جستجو" aria-live="polite">
             {filtered.length === 0 ? (
-              <EmptyState
-                className="mt-4"
-                title="چیزی پیدا نشد"
-                description="اسم را ساده‌تر بنویس، یا از دسته‌ها یکی را باز کن."
-              />
+              <EmptyState title="چیزی پیدا نشد" description="اسم را ساده‌تر بنویس، یا از دسته‌ها یکی را باز کن." />
             ) : (
-              <EntryList entries={filtered} className="mt-4" showGroup />
+              <>
+                <h2 className="text-title font-semibold">{faNum(filtered.length)} نتیجه</h2>
+                <EntryList entries={filtered} className="mt-3" showGroup />
+              </>
             )}
           </section>
         ) : null}
@@ -115,30 +111,7 @@ export default function LearnIndexPage() {
               <h2 id="start-title" className="text-title font-semibold">
                 از اینجا شروع کن
               </h2>
-              <ul className="mt-4 flex flex-col gap-3">
-                {featured.map((entry) => (
-                  <li key={entry.slug}>
-                    <Card className="!bg-secondary p-0">
-                      <Link
-                        href={`/learn/${entry.slug}`}
-                        className="flex min-h-16 items-center gap-3 rounded-surface px-4 py-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-                      >
-                        <span className="min-w-0 flex-1 text-start">
-                          <span className="block text-pretty text-body font-semibold">{entry.title}</span>
-                          <span className="mt-1 block text-label text-muted-foreground">
-                            {faNum(entry.minutes)} دقیقه
-                            <span className="mx-2">·</span>
-                            {formatShamsi(entry.publishedOn)}
-                            <span className="mx-2">·</span>
-                            {groupLabel(entry.group)}
-                          </span>
-                        </span>
-                        <ChevronLeft className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
-                      </Link>
-                    </Card>
-                  </li>
-                ))}
-              </ul>
+              <EntryList entries={featured} className="mt-3" showGroup />
             </section>
 
             {KNOWLEDGE_GROUPS.map((item) => {
@@ -150,7 +123,7 @@ export default function LearnIndexPage() {
                     {item.label}
                   </h2>
                   <p className="mt-1 text-label text-muted-foreground">{item.support}</p>
-                  <EntryList entries={rest} className="mt-4" />
+                  <EntryList entries={rest} className="mt-3" />
                 </section>
               );
             })}
@@ -163,7 +136,7 @@ export default function LearnIndexPage() {
               {activeGroup.label}
             </h2>
             <p className="mt-1 text-label text-muted-foreground">{activeGroup.support}</p>
-            <EntryList entries={entriesInGroup(activeGroup.id)} className="mt-4" />
+            <EntryList entries={entriesInGroup(activeGroup.id)} className="mt-3" />
           </section>
         ) : null}
       </div>
@@ -211,23 +184,14 @@ function EntryList({
             {index > 0 ? <Separator /> : null}
             <Link
               href={`/learn/${entry.slug}`}
-              className="flex min-h-14 items-center gap-3 py-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+              className="flex min-h-14 items-start gap-3 py-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
             >
               <span className="min-w-0 flex-1 text-start">
                 <span className="block text-pretty text-body font-semibold">{entry.title}</span>
-                <span className="mt-1 block text-label text-muted-foreground">
-                  {showGroup ? (
-                    <>
-                      {groupLabel(entry.group)}
-                      <span className="mx-2">·</span>
-                    </>
-                  ) : null}
-                  {formatShamsi(entry.publishedOn)}
-                  <span className="mx-2">·</span>
-                  {entry.support}
-                </span>
+                {entry.support ? <span className="mt-1 block text-pretty text-label">{entry.support}</span> : null}
+                <span className="mt-1 block text-label text-muted-foreground">{metaLine(entry, showGroup)}</span>
               </span>
-              <ChevronLeft className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+              <ChevronLeft className="mt-1 size-4 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
             </Link>
           </li>
         ))}
@@ -238,6 +202,12 @@ function EntryList({
 
 function groupLabel(id: KnowledgeGroup) {
   return KNOWLEDGE_GROUPS.find((item) => item.id === id)?.label ?? id;
+}
+
+function metaLine(entry: KnowledgeEntry, showGroup: boolean) {
+  const bits = [`${faNum(entry.minutes)} دقیقه`, formatShamsi(entry.publishedOn)];
+  if (showGroup) bits.unshift(groupLabel(entry.group));
+  return bits.join(" · ");
 }
 
 function hay(entry: { title: string; support: string; aliases: string[] }, q: string) {

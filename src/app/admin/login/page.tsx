@@ -15,9 +15,8 @@ export default async function AdminLoginPage() {
   return (
     <main className="vf grid min-h-dvh place-items-center bg-background px-4 py-10 text-foreground">
       <div className="w-full max-w-sm">
-        <p className="text-sm text-brand">آروما</p>
-        <h1 className="mt-1 text-2xl font-bold">مدیریت</h1>
-        <p className="mt-2 text-sm text-pretty text-muted-foreground">فقط حساب مدیر وارد می‌شود.</p>
+        <h1 className="text-headline font-bold">مدیریت آروما</h1>
+        <p className="mt-2 text-pretty text-body text-muted-foreground">فقط حساب مدیر وارد می‌شود.</p>
         <Card className="mt-6 p-5">
           <AdminLoginForm />
         </Card>

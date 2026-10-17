@@ -88,7 +88,7 @@ export function LoginForm() {
           {pending ? "در حال ورود…" : "ورود"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-body text-muted-foreground">
+      <p className="mt-4 text-start text-body text-muted-foreground">
         حساب نداری؟{" "}
         <Link
           href={`/register?next=${encodeURIComponent(next)}`}

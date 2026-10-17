@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { PerfumePhoto } from "@/components/Bottle";
-import { BrandLink } from "@/components/BrandLink";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { alternativeGroups, perfumePool } from "@/lib/alternatives";
 import { faNum } from "@/lib/format";
@@ -87,23 +85,19 @@ export function AlternativeGroups({
 function AltCard({ perfume, reason, from }: { perfume: Perfume; reason: string; from: string }) {
   const href = perfumeHref(perfume.slug, from);
   return (
-    <Card className="flex min-h-16 items-center gap-3 p-3">
-      <Link href={href} className="shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring">
-        <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-14 w-12 rounded-control" />
-      </Link>
-      <span className="min-w-0 flex-1 text-start">
-        <Link href={href} className="block text-body font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring">
-          {perfume.nameFa}
-        </Link>
-        <span className="mt-1 block text-pretty text-label text-muted-foreground">
-          <BrandLink name={perfume.brand} from={perfume.slug} />
-          <span className="mx-1">،</span>
-          {reason}
+    <Card className="p-0">
+      <Link
+        href={href}
+        className="flex min-h-16 items-center gap-3 p-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+      >
+        <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-14 w-12 shrink-0 rounded-control" />
+        <span className="min-w-0 flex-1 text-start">
+          <span className="block text-body font-semibold">{perfume.nameFa}</span>
+          <span className="mt-1 block text-pretty text-label">{reason}</span>
+          <span className="mt-1 block text-label text-muted-foreground">{perfume.brand}</span>
         </span>
-      </span>
-      <Button href={href} variant="ghost" size="icon" aria-label={`باز کردن ${perfume.nameFa}`} className="min-h-11 min-w-11 shrink-0">
-        <ChevronLeft strokeWidth={1.5} />
-      </Button>
+        <ChevronLeft strokeWidth={1.5} className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+      </Link>
     </Card>
   );
 }

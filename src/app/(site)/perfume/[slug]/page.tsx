@@ -2,6 +2,7 @@
 
 import { Suspense, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { Check, ChevronLeft, SearchX } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
 import { AlternativeGroups } from "@/components/AlternativeGroups";
@@ -95,15 +96,14 @@ function PerfumeScreen() {
         </figure>
 
         <header className="mt-5">
-          <div className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
+          <div className="flex items-start gap-3">
+            <div className="min-w-0 flex-1">
               <h1 className="text-balance text-display font-bold">{perfume.nameFa}</h1>
-              <p className="mt-1 text-pretty text-body text-muted-foreground">
+              <p className="mt-1 text-body text-muted-foreground">
                 <BrandLink name={perfume.brand} from={perfume.slug} />
-                <span className="mx-2">،</span>
-                <span dir="ltr" className="inline-block">
-                  {perfume.nameEn}
-                </span>
+              </p>
+              <p className="mt-1 text-label text-muted-foreground">
+                <bdi dir="ltr">{perfume.nameEn}</bdi>
               </p>
             </div>
             <Button
@@ -119,7 +119,7 @@ function PerfumeScreen() {
             </Button>
           </div>
 
-          <ul className="mt-3 flex flex-wrap items-center gap-2" aria-label="مشخصات شیشه">
+          <ul className="mt-3 flex flex-wrap justify-start gap-2" aria-label="مشخصات شیشه">
             <li>
               {concentrationEntry ? (
                 <TermChip slug={concentrationEntry.slug}>{perfume.concentration}</TermChip>
@@ -142,7 +142,7 @@ function PerfumeScreen() {
           <AccordMark accords={perfume.accords} names />
         </div>
 
-        <Alert className="mt-5">{perfume.why}</Alert>
+        <p className="mt-5 text-pretty text-body">{perfume.why}</p>
 
         <Button
           size="lg"
@@ -183,31 +183,18 @@ function PerfumeScreen() {
         <ForYou face={face} context={context} />
 
         {showFacts ? (
-          <Card className="mt-8 px-4">
-            <dl className="divide-y divide-border">
+          <Card className="mt-8 p-0">
+            <div>
               {season ? <Fact label="فصل" value={season} /> : null}
               {perfume.longevity ? (
-                <Fact
-                  label="ماندگاری"
-                  term="longevity-sillage"
-                  value={performanceLabel("longevity", perfume.longevity)}
-                />
+                <Fact label="ماندگاری" term="longevity-sillage" value={performanceLabel("longevity", perfume.longevity)} />
               ) : null}
               {perfume.sillage ? (
-                <Fact
-                  label="پخش بو"
-                  term="longevity-sillage"
-                  value={performanceLabel("sillage", perfume.sillage)}
-                />
+                <Fact label="پخش بو" term="longevity-sillage" value={performanceLabel("sillage", perfume.sillage)} />
               ) : null}
-              {reference ? <Fact label="نزدیک به" value={reference.nameFa} /> : null}
-            </dl>
+              {reference ? <Fact label="نزدیک به" value={reference.nameFa} href={`/reference/${reference.id}`} /> : null}
+            </div>
           </Card>
-        ) : null}
-        {reference ? (
-          <Button href={`/reference/${reference.id}`} variant="ghost" className="mt-2 min-h-11 px-0">
-            شناخت {reference.nameFa}
-          </Button>
         ) : null}
         {perfume.inspiredBy ? (
           <p className="mt-2 text-pretty text-label text-muted-foreground">
@@ -220,7 +207,9 @@ function PerfumeScreen() {
             <h2 id="pyramid-title" className="text-title font-semibold">
               هرم بو
             </h2>
-            <NoteStack notes={perfume.notes} />
+            <Card className="mt-3 px-4">
+              <NoteStack notes={perfume.notes} />
+            </Card>
           </section>
         ) : null}
 
@@ -242,19 +231,34 @@ function PerfumeScreen() {
   );
 }
 
-function Fact({ label, value, term }: { label: string; value: string; term?: string }) {
-  return (
-    <div className="flex items-center justify-between gap-3 py-3 text-body">
-      <dt className="shrink-0">
-        {term ? (
-          <TermChip slug={term}>{label}</TermChip>
-        ) : (
-          <span className="text-label text-muted-foreground">{label}</span>
-        )}
-      </dt>
-      <dd className="min-w-0 text-pretty text-end">{value}</dd>
-    </div>
+function Fact({ label, value, term, href }: { label: string; value: string; term?: string; href?: string }) {
+  const { openTerm } = useAroma();
+  const body = (
+    <>
+      <span className="block text-label text-muted-foreground">{label}</span>
+      <span className="mt-1 block text-pretty text-body font-semibold">{value}</span>
+    </>
   );
+  const className = "flex min-h-16 w-full flex-col justify-center border-b border-border px-4 py-3 text-start last:border-b-0";
+  if (term) {
+    return (
+      <button
+        type="button"
+        onClick={() => openTerm(term)}
+        className={cn(className, "outline-offset-2 hover:bg-press focus-visible:outline-2 focus-visible:outline-ring")}
+      >
+        {body}
+      </button>
+    );
+  }
+  if (href) {
+    return (
+      <Link href={href} className={cn(className, "outline-offset-2 hover:bg-press focus-visible:outline-2 focus-visible:outline-ring")}>
+        {body}
+      </Link>
+    );
+  }
+  return <div className={className}>{body}</div>;
 }
 
 function askedSeasonOf(value: string | null): Season | null {

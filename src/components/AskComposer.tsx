@@ -82,7 +82,7 @@ export function AskComposer({
               onAsk(value);
             }
           }}
-          className="max-h-24 min-h-12 w-full flex-1 resize-none bg-transparent py-3 text-body text-foreground outline-none placeholder:text-muted-foreground/70"
+          className="max-h-24 min-h-12 w-full flex-1 resize-none bg-transparent py-3 text-body text-foreground outline-none placeholder:text-muted-foreground"
         />
         <Button type="submit" size="sm" className="mb-1 min-h-11 shrink-0">
           بپرس

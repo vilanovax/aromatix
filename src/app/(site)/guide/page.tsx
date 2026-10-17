@@ -200,7 +200,7 @@ export default function GuidePage() {
 
         <div key={current} className="step-in flex min-h-0 flex-1 flex-col px-5 pt-6 pb-4">
           <h1 className="text-balance text-headline font-bold">{COPY[current].title}</h1>
-          <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted-foreground">{COPY[current].support}</p>
+          <p className="mt-2 text-pretty text-body text-muted-foreground">{COPY[current].support}</p>
 
           {step > 0 ? (
             <ul className="mt-4 flex flex-wrap gap-2" aria-label="انتخاب‌های تا اینجا">
@@ -301,9 +301,9 @@ export default function GuidePage() {
 
         <div className="sticky bottom-0 border-t border-border bg-background/95 px-5 pt-3 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
           {!ready && !optional ? (
-            <p className="mb-3 text-center text-label text-muted-foreground">{COPY[current].helper}</p>
+            <p className="mb-3 text-start text-label text-muted-foreground">{COPY[current].helper}</p>
           ) : footerSummary && current === "occasion" ? (
-            <p className="mb-3 text-center text-label text-muted-foreground">{footerSummary}</p>
+            <p className="mb-3 text-start text-label text-muted-foreground">{footerSummary}</p>
           ) : null}
           <div className="flex gap-2">
             {step > 0 ? (
@@ -365,7 +365,7 @@ function Choice({
       onClick={onClick}
       className={cn(
         "relative w-full !h-auto !whitespace-normal gap-3 font-medium",
-        compact ? "min-h-20 !flex-col !justify-center px-3 py-4 text-center" : "min-h-14 !justify-start px-4 py-3 text-start",
+        compact ? "min-h-20 !flex-col !items-start !justify-center px-4 py-4 text-start" : "min-h-14 !justify-start px-4 py-3 text-start",
         pressed ? "ring-2 ring-primary" : "!bg-card",
       )}
     >

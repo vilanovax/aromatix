@@ -119,7 +119,7 @@ export function RegisterForm() {
           {pending ? "در حال ساخت حساب…" : "ساخت حساب"}
         </Button>
       </form>
-      <p className="mt-4 text-center text-body text-muted-foreground">
+      <p className="mt-4 text-start text-body text-muted-foreground">
         حساب داری؟{" "}
         <Link
           href={`/login?next=${encodeURIComponent(next)}`}

@@ -1,5 +1,9 @@
-import { TermChip } from "@/components/TermSheet";
-import { entryForNote } from "@/lib/knowledge";
+"use client";
+
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
+import { cn } from "@/lib/format";
+import { noteHref } from "@/lib/notes";
 import type { Note } from "@/lib/types";
 
 const LAYERS = [
@@ -8,7 +12,11 @@ const LAYERS = [
   { id: "base", label: "پایه" },
 ] as const;
 
-export function NoteStack({ notes }: { notes: Note[] }) {
+export function NoteStack({ notes, className }: { notes: Note[]; className?: string }) {
+  const pathname = usePathname();
+  const search = useSearchParams();
+  const query = search.toString();
+  const from = query ? `${pathname}?${query}` : pathname;
   const layers = LAYERS.map((layer) => ({
     ...layer,
     notes: notes.filter((note) => note.layer === layer.id),
@@ -17,26 +25,24 @@ export function NoteStack({ notes }: { notes: Note[] }) {
   if (layers.length === 0) return null;
 
   return (
-    <div className="mt-3 flex flex-col gap-4">
+    <ul className={cn("flex flex-col", className)}>
       {layers.map((layer) => (
-        <div key={layer.id}>
-          <h3 className="text-label text-muted-foreground">{layer.label}</h3>
-          <ul className="mt-2 flex flex-wrap gap-2">
-            {layer.notes.map((note) => {
-              const lesson = entryForNote(note.name);
-              return (
-                <li key={`${layer.id}-${note.name}`}>
-                  {lesson ? (
-                    <TermChip slug={lesson.slug}>{note.name}</TermChip>
-                  ) : (
-                    <span className="inline-flex min-h-11 items-center text-body">{note.name}</span>
-                  )}
-                </li>
-              );
-            })}
+        <li key={layer.id} className="flex items-center gap-3 border-b border-border py-2 last:border-b-0">
+          <h3 className="w-14 shrink-0 text-label text-muted-foreground">{layer.label}</h3>
+          <ul className="flex min-w-0 flex-1 flex-wrap gap-2">
+            {layer.notes.map((note) => (
+              <li key={`${layer.id}-${note.name}`}>
+                <Link
+                  href={noteHref(note.name, from)}
+                  className="inline-flex min-h-11 items-center rounded-full border border-input bg-card px-3 text-body font-medium outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+                >
+                  {note.name}
+                </Link>
+              </li>
+            ))}
           </ul>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

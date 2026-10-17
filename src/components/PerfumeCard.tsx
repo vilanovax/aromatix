@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
-import { BrandLink } from "@/components/BrandLink";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { cheaperUnconfirmed, publicLead } from "@/lib/catalog";
@@ -42,9 +41,7 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
         >
           <h2 className="text-title font-semibold">{perfume.nameFa}</h2>
         </Link>
-        <p className="mt-1 text-label text-muted-foreground">
-          <BrandLink name={perfume.brand} from={perfume.slug} />
-        </p>
+        <p className="mt-1 text-label text-muted-foreground">{perfume.brand}</p>
       </div>
 
       <div className="mt-3">

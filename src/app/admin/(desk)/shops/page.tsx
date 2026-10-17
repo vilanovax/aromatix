@@ -31,7 +31,7 @@ export default async function ShopsPage() {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h1 className="text-headline font-bold text-balance">فروشگاه‌ها</h1>
-          <p className="mt-2 max-w-2xl text-pretty text-body text-muted-foreground">
+          <p className="mt-2 text-pretty text-body text-muted-foreground">
             {store === "ready"
               ? `${faNum(rows.length)} فروشگاه، ${faNum(activeCount)} فعال. قیمت و موجودی مال فروشگاه است، نه فرم عطر.`
               : "هنوز چیزی منتشر نشده"}

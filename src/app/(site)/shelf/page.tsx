@@ -4,14 +4,12 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { AccountStrip } from "@/components/AccountStrip";
 import { AccordMark } from "@/components/AccordMark";
-import { BrandLink } from "@/components/BrandLink";
 import { ScentMark } from "@/components/Bottle";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
-import { Stat } from "@/components/ui/stat";
 import { cheaperUnconfirmed, getPerfume, isPublicPerfume, publicLead, publishedPerfumes } from "@/lib/catalog";
 import { computeDna, shelfBucket } from "@/lib/dna";
 import { cn, faNum, millionToman } from "@/lib/format";
@@ -50,9 +48,7 @@ export default function ShelfPage() {
     <Shell back={{ href: "/", label: "شروع" }}>
       <div className="vf app step-in px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <h1 className="text-headline font-bold">آرومای من</h1>
-        <p className="mt-2 max-w-[22rem] text-pretty text-body text-muted-foreground">
-          سلیقه و مجموعه‌ات روی همین دستگاه.
-        </p>
+        <p className="mt-2 text-pretty text-body text-muted-foreground">سلیقه و مجموعه‌ات روی همین دستگاه.</p>
         <AccountStrip />
 
         {!ready ? null : entries.length === 0 ? (
@@ -119,21 +115,21 @@ export default function ShelfPage() {
               )}
             </Card>
 
-            {stats.length === 1 ? (
-              <p className="mt-4 text-body text-muted-foreground">
-                <a
-                  href={`#${stats[0].id}`}
-                  className="font-semibold text-foreground underline-offset-4 outline-offset-2 hover:underline focus-visible:outline-2 focus-visible:outline-ring"
-                >
-                  {faNum(stats[0].value)} عطر در {stats[0].label}
-                </a>
-              </p>
-            ) : stats.length > 1 ? (
-              <div className="mt-4 grid grid-cols-2 gap-3">
+            {stats.length > 0 ? (
+              <ul className="mt-4 flex flex-wrap justify-start gap-2" aria-label="بخش‌های قفسه">
                 {stats.map((stat) => (
-                  <StatLink key={stat.id} href={`#${stat.id}`} value={stat.value} label={stat.label} />
+                  <li key={stat.id}>
+                    <a
+                      href={`#${stat.id}`}
+                      className="inline-flex min-h-11 items-center gap-2 rounded-full border border-input bg-card px-4 text-body font-medium outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+                    >
+                      <span className={cn("size-2 shrink-0 rounded-full", stat.dot)} aria-hidden="true" />
+                      {stat.label}
+                      <span className="tabular-nums text-muted-foreground">{faNum(stat.value)}</span>
+                    </a>
+                  </li>
                 ))}
-              </div>
+              </ul>
             ) : null}
 
             {hasExperience ? (
@@ -168,14 +164,6 @@ export default function ShelfPage() {
   );
 }
 
-function StatLink({ href, value, label }: { href: string; value: number; label: string }) {
-  return (
-    <a href={href} className="block rounded-surface outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring">
-      <Stat size="sm" label={label} value={faNum(value)} />
-    </a>
-  );
-}
-
 function Suggest({ id, title, note, items }: { id: string; title: string; note: string; items: Perfume[] }) {
   if (items.length === 0) return null;
   return (
@@ -190,31 +178,21 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
           const href = perfumeHref(perfume.slug, "/shelf");
           return (
             <li key={perfume.slug}>
-              <Card className="flex min-h-16 items-center gap-3 p-3">
-                <Link href={href} className="shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring">
-                  <ScentMark perfume={perfume} className="h-14 w-12 rounded-control" />
-                </Link>
-                <span className="min-w-0 flex-1 text-start">
-                  <Link
-                    href={href}
-                    className="block text-title font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-                  >
-                    {perfume.nameFa}
-                  </Link>
-                  <span className="mt-1 block text-label text-muted-foreground">
-                    <BrandLink name={perfume.brand} from={perfume.slug} />
-                    {offer ? `، ${millionToman(offer.price)}` : ""}
-                  </span>
-                </span>
-                <Button
+              <Card className="p-0">
+                <Link
                   href={href}
-                  variant="ghost"
-                  size="icon"
-                  aria-label={`باز کردن ${perfume.nameFa}`}
-                  className="min-h-11 min-w-11 shrink-0"
+                  className="flex min-h-16 items-center gap-3 p-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
                 >
-                  <ChevronLeft strokeWidth={1.5} />
-                </Button>
+                  <ScentMark perfume={perfume} className="h-14 w-12 shrink-0 rounded-control" />
+                  <span className="min-w-0 flex-1 text-start">
+                    <span className="block text-title font-semibold">{perfume.nameFa}</span>
+                    <span className="mt-1 block text-label text-muted-foreground">
+                      {perfume.brand}
+                      {offer ? `، ${millionToman(offer.price)}` : ""}
+                    </span>
+                  </span>
+                  <ChevronLeft className="size-4 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+                </Link>
               </Card>
             </li>
           );
@@ -230,35 +208,29 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
   const href = perfumeHref(perfume.slug, "/shelf");
   return (
     <li>
-      <Card className="p-4">
-        <div className="flex items-start gap-3">
-          <Link href={href} className="shrink-0 rounded-control outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring">
-            <ScentMark perfume={perfume} className={cn("h-20 w-16 rounded-control", muted && "opacity-55 grayscale")} />
-          </Link>
-          <span className="min-w-0 flex-1">
-            <Link
-              href={href}
-              className="block text-title font-semibold outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-            >
-              {perfume.nameFa}
-            </Link>
+      <Card className="p-0">
+        <Link
+          href={href}
+          className="flex items-start gap-3 p-4 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+        >
+          <ScentMark perfume={perfume} className={cn("h-16 w-14 shrink-0 rounded-control", muted && "opacity-55 grayscale")} />
+          <span className="min-w-0 flex-1 text-start">
+            <span className="block text-title font-semibold">{perfume.nameFa}</span>
             <span className="mt-1 block text-label text-muted-foreground">
-              <BrandLink name={perfume.brand} from={perfume.slug} />
+              {perfume.brand}
               {offer ? `، ${millionToman(offer.price)}` : ""}
             </span>
-            {note ? <span className="mt-1 block text-label text-muted-foreground">{note}</span> : null}
+            {note ? <span className="mt-1 block text-pretty text-label text-muted-foreground">{note}</span> : null}
             {cheaperUnconfirmed(perfume) ? (
-              <span className="mt-1 block text-label text-muted-foreground">ارزان‌تر هم هست، موجودی تأیید نشده</span>
+              <span className="mt-1 block text-pretty text-label text-muted-foreground">ارزان‌تر هم هست، موجودی تأیید نشده</span>
             ) : null}
             <span className="mt-2 block max-w-48">
               <AccordMark accords={perfume.accords} />
             </span>
           </span>
-          <Button href={href} variant="ghost" size="icon" aria-label={`باز کردن ${perfume.nameFa}`} className="min-h-11 min-w-11 shrink-0">
-            <ChevronLeft strokeWidth={1.5} />
-          </Button>
-        </div>
-        <div className="mt-4">
+          <ChevronLeft className="mt-1 size-4 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+        </Link>
+        <div className="border-t border-border px-4">
           <TasteRow slug={perfume.slug} name={perfume.nameFa} compact />
         </div>
       </Card>

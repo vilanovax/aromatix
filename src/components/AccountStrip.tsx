@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useAccount } from "@/lib/account";
 
+function persianDigits(value: string) {
+  return value.replace(/[0-9]/g, (digit) => "۰۱۲۳۴۵۶۷۸۹"[Number(digit)] ?? digit);
+}
+
 export function AccountStrip() {
   const { ready, user } = useAccount();
   if (!ready) return null;
@@ -35,10 +39,10 @@ export function AccountStrip() {
         <span className="min-w-0 flex-1">
           <span className="block truncate text-title font-semibold">{user.name}</span>
           <span className="block text-label text-muted-foreground">
-            <bdi dir="ltr">{user.phone}</bdi>
+            <bdi dir="ltr">{persianDigits(user.phone)}</bdi>
           </span>
         </span>
-        <ChevronLeft className="size-5 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+        <ChevronLeft className="size-4 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
       </Link>
     </Card>
   );
