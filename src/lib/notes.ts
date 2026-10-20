@@ -36,7 +36,11 @@ export function perfumesWithNote(name: string): NoteHit[] {
       );
       return layers.length > 0 ? [{ perfume, layers }] : [];
     })
-    .sort((a, b) => a.perfume.nameFa.localeCompare(b.perfume.nameFa, "fa"));
+    .sort((a, b) => {
+      const opening = Number(b.layers.includes("top")) - Number(a.layers.includes("top"));
+      if (opening !== 0) return opening;
+      return a.perfume.nameFa.localeCompare(b.perfume.nameFa, "fa");
+    });
 }
 
 export function referencesWithNote(name: string): ReferenceProfile[] {

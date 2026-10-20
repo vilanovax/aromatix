@@ -1,5 +1,7 @@
-import { BUDGETS, OCCASIONS, SEASONS, leadOffer } from "@/lib/catalog";
+import { budgetChoices } from "@/lib/budgets";
+import { OCCASIONS, SEASONS, listedPrice } from "@/lib/catalog";
 import { LOW_CONFIDENCE, PRICE_STALE_MS } from "@/lib/admin/health";
+import { offerAvailability } from "@/lib/offer-stock";
 import type { Perfume } from "@/lib/types";
 
 export type CountRow = { label: string; count: number };
@@ -32,24 +34,27 @@ export type CatalogReport = {
 
 export function buildCatalogReport(perfumes: Perfume[]): CatalogReport {
   const total = perfumes.length;
-  const prices = perfumes.flatMap((perfume) => (perfume.shops.length > 0 ? [leadOffer(perfume).price] : []));
+  const prices = perfumes.flatMap((perfume) => {
+    const price = listedPrice(perfume);
+    return price != null ? [price] : [];
+  });
   return {
     total,
     brands: countBy(perfumes, (perfume) => perfume.brand),
     seasons: labeled(perfumes, SEASONS, (perfume) => perfume.seasons),
     occasions: labeled(perfumes, OCCASIONS, (perfume) => perfume.occasions),
     genders: countBy(perfumes, (perfume) => perfume.marketGender),
-    concentrations: countBy(perfumes, (perfume) => perfume.concentration),
+    concentrations: countBy(perfumes, (perfume) => perfume.concentration ?? "نامشخص"),
     accords: topAccords(perfumes, 8),
     rareAccords: rareAccords(perfumes),
     price: prices.length === 0 ? null : { min: Math.min(...prices), median: median(prices), max: Math.max(...prices), priced: prices.length },
-    budgets: BUDGETS.map((budget) => ({
+    budgets: budgetChoices().map((budget) => ({
       label: budget.label,
       count: prices.filter((price) => price <= budget.id * 1_000_000).length,
     })),
     coverage: {
       image: share(perfumes, (perfume) => Boolean(perfume.image)),
-      stock: share(perfumes, (perfume) => perfume.shops.length > 0 && perfume.shops.every((shop) => shop.stockConfirmed)),
+      stock: share(perfumes, (perfume) => perfume.shops.length > 0 && perfume.shops.every((shop) => offerAvailability(shop) === "in_stock")),
       fresh: share(perfumes, freshPrice),
       confidence: share(perfumes, (perfume) => perfume.confidence >= LOW_CONFIDENCE),
     },
@@ -57,7 +62,7 @@ export function buildCatalogReport(perfumes: Perfume[]): CatalogReport {
       image: gaps(perfumes, (perfume) => !perfume.image, "identity"),
       stock: gaps(
         perfumes,
-        (perfume) => perfume.shops.length === 0 || perfume.shops.some((shop) => !shop.stockConfirmed),
+        (perfume) => perfume.shops.length === 0 || perfume.shops.some((shop) => offerAvailability(shop) === "unknown"),
         "shops",
       ),
       fresh: gaps(perfumes, (perfume) => !freshPrice(perfume), "shops"),

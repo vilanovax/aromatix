@@ -9,7 +9,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { interpretQuery } from "@/lib/assistant";
-import { suggestQueries } from "@/lib/suggest";
+import { perfumesMatchingName } from "@/lib/suggest";
 import { computeDna } from "@/lib/dna";
 import { getPerfume } from "@/lib/catalog";
 import { readVisit, type RecentVisit } from "@/lib/recent";
@@ -37,9 +37,17 @@ export default function HomePage() {
 
   function ask(text: string) {
     const intent = interpretQuery(text);
+    const named = perfumesMatchingName(text);
+    if (named.length > 1 && intent.type !== "results" && intent.type !== "reference" && intent.type !== "learn" && intent.type !== "brand") {
+      router.push(`/search?q=${encodeURIComponent(text.trim())}`);
+      return;
+    }
     if (intent.type === "miss") {
-      const hinted = suggestQueries(text).length > 0;
-      if (text.trim() && !hinted) setError(true);
+      if (named.length === 1) {
+        router.push(`/perfume/${named[0].slug}?from=${encodeURIComponent("/")}`);
+        return;
+      }
+      if (text.trim()) setError(true);
       return;
     }
     if (intent.type === "perfume") {
@@ -53,15 +61,19 @@ export default function HomePage() {
     }
     if (intent.type === "reference") {
       const query = new URLSearchParams();
+      query.set("from", "/");
       if (intent.occasion) query.set("occasion", intent.occasion);
       if (intent.season) query.set("season", intent.season);
       if (intent.budget != null) query.set("budget", String(intent.budget));
-      const suffix = query.toString();
-      router.push(suffix ? `/reference/${intent.id}?${suffix}` : `/reference/${intent.id}`);
+      router.push(`/reference/${intent.id}?${query}`);
       return;
     }
     if (intent.type === "learn") {
       router.push(`/learn/${intent.slug}`);
+      return;
+    }
+    if (intent.type === "brand") {
+      router.push(`/brands/${intent.slug}`);
       return;
     }
     setProfile(intent.profile);
@@ -104,7 +116,7 @@ export default function HomePage() {
                   setDraft((current) => appendChip(current, item.insert));
                   setError(false);
                 }}
-                className="min-h-11 !rounded-full !bg-card px-4 font-medium"
+                className="min-h-11 rounded-full! bg-card! px-4 font-medium"
               >
                 {item.label}
               </Button>
@@ -118,7 +130,7 @@ export default function HomePage() {
               href={recent.href}
               variant="outline"
               aria-label={`ادامهٔ ${recent.label}`}
-              className="min-h-11 w-full !justify-between !bg-card px-4"
+              className="min-h-11 w-full justify-between! bg-card! px-4"
             >
               <span className="flex min-w-0 items-center gap-2">
                 <span className="shrink-0 text-label font-normal text-muted-foreground">ادامه</span>
@@ -130,7 +142,7 @@ export default function HomePage() {
           <Button
             href="/guide"
             variant="ghost"
-            className="min-h-11 w-full !justify-start !whitespace-normal !px-0 text-start font-medium"
+            className="min-h-11 w-full justify-start! whitespace-normal! px-0! text-start font-medium"
           >
             نمی‌دونی از کجا شروع کنی؟ با ۴ سؤال شروع کن
           </Button>
@@ -139,7 +151,7 @@ export default function HomePage() {
         {showTaste ? (
           <Card className="mt-8 p-4">
             <p className="text-pretty text-body">{dna.sentence}</p>
-            <Button href="/shelf#for-me" variant="outline" className="mt-3 min-h-11 w-full !bg-card">
+            <Button href="/shelf#for-me" variant="outline" className="mt-3 min-h-11 w-full bg-card!">
               ۳ عطر برای سلیقه‌ات
             </Button>
           </Card>

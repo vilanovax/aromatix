@@ -1,0 +1,257 @@
+{
+  "_meta": {
+    "source": "PM 2026-10-17 18:56",
+    "lock": "all-app-v19.LOCKED-20261017-1900.json",
+    "lock_sha256": "4f2ab5bb4aaa82fb858c2332f0d43cf292fb2c7411d26a3597f10f8c7fae5307",
+    "created": "2026-10-17 Asia/Tehran",
+    "count": 14,
+    "status": "PM_DECIDED",
+    "fields": "fill pm_decision / pm_text / pm_note",
+    "decided_at": "2026-10-17T15:38:21.640829+00:00",
+    "applies_to": "v20",
+    "pm_summary_fa": "۳ قیمت‌بالا keep_out. floral-ambrosia و creamy-biscuit fix_data (آکورد دوم). eclair/tiramisu/oud-amg why جدید. ۶ معوق قبلی defer. monarque در v19 تأیید ضمنی.",
+    "instruction_fa": "اعمال روی پایهٔ v19 برای قفل v20. قفل v19 را بازنویسی نکنید. بعد از اعمال sha256 قفل جدید را گزارش دهید.",
+    "monarque_note_fa": "حداکثر ۲ نت در هر لایه برای monarque قبول است؛ why و بادام شکری در v19 درست‌اند."
+  },
+  "pending": [
+    {
+      "slug": "domino-essence-05",
+      "category": "deferred by PM (18:56)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:نت‌های سبز",
+        "top:میوه‌ها",
+        "middle:نت‌های چوبی",
+        "middle:نت‌های گلی",
+        "base:کهربا",
+        "base:وانیل"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "qaaed",
+      "category": "deferred by PM (18:56)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:دارچین",
+        "top:هل",
+        "middle:زعفران",
+        "middle:چوب صندل",
+        "base:عود",
+        "base:چرم"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "raed-silver",
+      "category": "deferred by PM (18:56)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:مرکبات",
+        "top:ادویه‌ها",
+        "middle:دارچین",
+        "middle:کهربا",
+        "base:وانیل",
+        "base:مشک"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "safwaan-l-autre-oud",
+      "category": "deferred by PM (18:56)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:رز",
+        "middle:نت‌های ادویه‌ای",
+        "middle:کهربا",
+        "base:عود",
+        "base:نت‌های چوبی"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "rain-drops",
+      "category": "deferred by PM (18:56)",
+      "reason": "Fragrantica lists only generic notes (Floral/Woodsy/Fruity Notes, Ambergris)",
+      "pm_note_prev": "فقط نت عمومی؛ why ساخته نشود تا نت مشخص بیاید.",
+      "notes": [
+        "top:نت‌های گلی",
+        "top:نت‌های چوبی",
+        "middle:نت‌های میوه‌ای",
+        "middle:عنبر"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "فقط نت عمومی؛ تا نت مشخص نیاید why ساخته نشود."
+    },
+    {
+      "slug": "andaleeb-by-asdaaf",
+      "category": "deferred by PM (18:56)",
+      "reason": "two Asdaaf pages, neither exact (Al Andaleeb / Andaleeb Flora)",
+      "pm_note_prev": "دو صفحهٔ مبهم؛ کنار بماند.",
+      "notes": null,
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "دو صفحهٔ مبهم؛ کنار بماند."
+    },
+    {
+      "slug": "stronger-with-you-intensely",
+      "category": "approved why, record not ready (seed gate)",
+      "reason": "price_band_out_of_v1",
+      "approved_why": "دارچین و کهربا گرم است و برای زمستان مناسب است.",
+      "accords": [
+        "وانیل",
+        "عنبر",
+        "دارچین",
+        "ادویه"
+      ],
+      "price": [
+        20000000,
+        30000000
+      ],
+      "pm_options": "approve gate exception / fix data / keep out",
+      "pm_decision": "keep_out",
+      "pm_text": "",
+      "pm_note": "قیمت ۲۰–۳۰M خارج سقف v1؛ استثنای گیت نمی‌دهیم."
+    },
+    {
+      "slug": "eros-parfum",
+      "category": "approved why, record not ready (seed gate)",
+      "reason": "price_band_out_of_v1",
+      "approved_why": "نعناع و سیب سبز برای تمام فصل‌ها مناسب است.",
+      "accords": [
+        "وانیل",
+        "آروماتیک",
+        "ادویه",
+        "عنبر"
+      ],
+      "price": [
+        20000000,
+        30000000
+      ],
+      "pm_options": "approve gate exception / fix data / keep out",
+      "pm_decision": "keep_out",
+      "pm_text": "",
+      "pm_note": "قیمت ۲۰–۳۰M خارج سقف v1؛ استثنای گیت نمی‌دهیم."
+    },
+    {
+      "slug": "floral-ambrosia",
+      "category": "approved why, record not ready (seed gate)",
+      "reason": "single_accord",
+      "approved_why": "یاس و پیچ امین‌الدوله برای روزهای گرم مناسب است.",
+      "accords": [
+        "گل"
+      ],
+      "price": [
+        null,
+        5000000
+      ],
+      "pm_options": "approve gate exception / fix data / keep out",
+      "pm_decision": "fix_data",
+      "pm_text": "یاس و پیچ امین‌الدوله برای روزهای گرم مناسب است.",
+      "pm_note": "آکورد دوم از نت‌ها بساز (مثلاً گل / میوه‌ای)؛ بعد با why تأییدشده وارد v20 شود. استثنای single_accord نه."
+    },
+    {
+      "slug": "creamy-biscuit",
+      "category": "approved why, record not ready (seed gate)",
+      "reason": "single_accord",
+      "approved_why": "بیسکویت و نارگیل برای زمستان مناسب است.",
+      "accords": [
+        "وانیل"
+      ],
+      "price": [
+        5000000,
+        8000000
+      ],
+      "pm_options": "approve gate exception / fix data / keep out",
+      "pm_decision": "fix_data",
+      "pm_text": "بیسکویت و نارگیل برای زمستان مناسب است.",
+      "pm_note": "آکورد دوم از نت‌ها بساز (مثلاً گورمند / نارگیل)؛ بعد وارد v20 شود. استثنای single_accord نه."
+    },
+    {
+      "slug": "club-de-nuit-intense-parfum-limited-edition",
+      "category": "approved why, record not ready (seed gate)",
+      "reason": "price_band_out_of_v1",
+      "approved_why": "ترنج و یاس برای تمام فصل‌ها مناسب است.",
+      "accords": [
+        "مرکبات",
+        "مشک",
+        "عنبر",
+        "ادویه"
+      ],
+      "price": [
+        20000000,
+        30000000
+      ],
+      "pm_options": "approve gate exception / fix data / keep out",
+      "pm_decision": "keep_out",
+      "pm_text": "",
+      "pm_note": "قیمت ۲۰–۳۰M خارج سقف v1؛ استثنای گیت نمی‌دهیم."
+    },
+    {
+      "slug": "eclair-affair",
+      "category": "found in check: why pair collapses to one note (same issue as encre)",
+      "reason": "why_pair_key has a single note after short≡full; locked record unchanged in v19",
+      "current_why": "غلاف وانیل و وانیل گرم است و برای زمستان مناسب است.",
+      "notes": [
+        "یاس",
+        "غلاف وانیل",
+        "کارامل",
+        "عنبر",
+        "وانیل",
+        "مشک"
+      ],
+      "pm_options": "provide a new why / ratify",
+      "pm_decision": "edit",
+      "pm_text": "کارامل و عنبر گرم است و برای زمستان مناسب است.",
+      "pm_note": "غلاف وانیل ≡ وانیل؛ why قبلی نامعتبر."
+    },
+    {
+      "slug": "tiramisu-coco",
+      "category": "found in check: why pair collapses to one note (same issue as encre)",
+      "reason": "why_pair_key has a single note after short≡full; locked record unchanged in v19",
+      "current_why": "قهوه و شکر قهوه‌ای گرم است و برای زمستان مناسب است.",
+      "notes": [
+        "آمارتو",
+        "قهوه",
+        "بستنی",
+        "وانیل",
+        "شکر قهوه‌ای",
+        "کهربا"
+      ],
+      "pm_options": "provide a new why / ratify",
+      "pm_decision": "edit",
+      "pm_text": "قهوه و کهربا گرم است و برای زمستان مناسب است.",
+      "pm_note": "جفت قهوه/شکر قهوه‌ای در short≡full فرومی‌ریزد."
+    },
+    {
+      "slug": "oud-amg",
+      "category": "found in check: why pair collapses to one note (same issue as encre)",
+      "reason": "why_pair_key has a single note after short≡full; locked record unchanged in v19",
+      "current_why": "عود هندی و عود کامبوجی گرم است و برای زمستان مناسب است.",
+      "notes": [
+        "عود هندی",
+        "عود کامبوجی",
+        "لادن",
+        "کهربا",
+        "چوب سدر"
+      ],
+      "pm_options": "provide a new why / ratify",
+      "pm_decision": "edit",
+      "pm_text": "عود هندی و کهربا گرم است و برای زمستان مناسب است.",
+      "pm_note": "عود هندی ≡ عود کامبوجی ≡ عود؛ why قبلی نامعتبر."
+    }
+  ]
+}

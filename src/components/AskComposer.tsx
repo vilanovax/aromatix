@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
-import { BookOpen, Search } from "lucide-react";
+import { BookOpen, Search, Store } from "lucide-react";
 import { PerfumePhoto } from "@/components/Bottle";
 import { Button } from "@/components/ui/button";
 import { suggestQueries, type Suggestion } from "@/lib/suggest";
@@ -9,6 +9,7 @@ import { suggestQueries, type Suggestion } from "@/lib/suggest";
 const PLACEHOLDERS = ["مثلاً ساواج", "مثلاً قرار پاییزی، تا ۵ میلیون", "مثلاً چیزی شبیه خمره"];
 
 const GROUP_LABEL: Record<Suggestion["kind"], string> = {
+  brand: "برند",
   perfume: "عطرها",
   reference: "خانوادهٔ بو",
   learn: "واژه‌ها",
@@ -90,7 +91,10 @@ export function AskComposer({
       </div>
 
       {groups.length > 0 ? (
-        <div className="mt-2 overflow-hidden rounded-surface border border-border bg-card" aria-label="پیشنهادها">
+        <div
+          className="scroll-quiet mt-2 max-h-[min(28rem,60dvh)] overflow-y-auto rounded-surface border border-border bg-card"
+          aria-label="پیشنهادها"
+        >
           {groups.map((group) => (
             <div key={group.kind} className="border-b border-border px-2 py-2 last:border-b-0">
               <p className="px-2 text-label text-muted-foreground">{GROUP_LABEL[group.kind]}</p>
@@ -125,6 +129,9 @@ function SuggestionMark({ item }: { item: Suggestion }) {
   if (item.kind === "perfume" && item.perfume) {
     return <PerfumePhoto perfume={item.perfume} sizes="thumb" alt="" className="h-12 w-10 shrink-0 rounded-control" />;
   }
+  if (item.kind === "brand") {
+    return <Store strokeWidth={1.5} className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />;
+  }
   if (item.kind === "learn") {
     return <BookOpen strokeWidth={1.5} className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />;
   }
@@ -132,7 +139,7 @@ function SuggestionMark({ item }: { item: Suggestion }) {
 }
 
 function groupSuggestions(items: Suggestion[]) {
-  const order: Suggestion["kind"][] = ["reference", "perfume", "learn", "search"];
+  const order: Suggestion["kind"][] = ["brand", "perfume", "reference", "learn", "search"];
   return order
     .map((kind) => ({ kind, items: items.filter((item) => item.kind === kind) }))
     .filter((group) => group.items.length > 0);

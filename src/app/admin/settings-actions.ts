@@ -8,6 +8,7 @@ import { hashPassword, verifyPassword } from "@/lib/auth/password";
 import { normalizePhone } from "@/lib/auth/phone";
 import { hashSessionToken, readSessionToken } from "@/lib/auth/session";
 import { encodeAccess, isAdminSection, parseAccess } from "@/lib/auth/sections";
+import { BUDGET_SETTING_KEY, cleanBudgetMillions } from "@/lib/budgets";
 import { db } from "@/prisma/db";
 
 type Result = { ok: true } | { ok: false; error: string };
@@ -20,6 +21,31 @@ function refresh() {
   revalidatePath("/admin/settings");
   revalidatePath("/admin/users");
   revalidatePath("/admin", "layout");
+}
+
+export async function setGuideBudgets(input: unknown): Promise<Result> {
+  const admin = await requireSection("settings");
+  if (!admin) return denied();
+  const clean = Array.isArray(input) ? cleanBudgetMillions(input) : null;
+  if (!clean) return { ok: false, error: "چهار سقف متفاوت بین ۱ تا ۵۰ میلیون بنویس." };
+
+  try {
+    const value = clean.join(",");
+    const existing = await db.orm.aroma.AppSetting.where((row) => row.key.eq(BUDGET_SETTING_KEY)).select("key").first();
+    if (existing) {
+      await db.orm.aroma.AppSetting.where((row) => row.key.eq(BUDGET_SETTING_KEY)).update({ value });
+    } else {
+      await db.orm.aroma.AppSetting.create({ key: BUDGET_SETTING_KEY, value });
+    }
+    refresh();
+    revalidatePath("/", "layout");
+    revalidatePath("/guide");
+    revalidatePath("/admin/reports");
+    return { ok: true };
+  } catch (error) {
+    console.error(error);
+    return { ok: false, error: "سقف‌ها ذخیره نشد. کمی بعد دوباره امتحان کن." };
+  }
 }
 
 export async function changeAdminPassword(input: { current?: unknown; next?: unknown }): Promise<Result> {

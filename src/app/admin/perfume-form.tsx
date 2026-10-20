@@ -9,7 +9,9 @@ import { CheckboxGroup } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Select } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { OCCASIONS, REFERENCES, SEASONS, type Brand } from "@/lib/catalog";
+import { OCCASIONS, SEASONS, type Brand } from "@/lib/catalog";
+import { inspirationIds, inspirationValue } from "@/lib/inspiration";
+import { referenceList } from "@/lib/references";
 import { cn } from "@/lib/format";
 import { fa } from "@/lib/utils";
 import type { Accord, BottleShape, Note, Perfume, Season } from "@/lib/types";
@@ -175,10 +177,25 @@ export function PerfumeForm({
             />
           </Field>
           <Field label="غلظت">
-            <Input value={draft.concentration} onChange={(event) => patch({ concentration: event.target.value })} />
+            <Input
+              value={draft.concentration ?? ""}
+              onChange={(event) => patch({ concentration: event.target.value || null })}
+            />
           </Field>
           <Field label="حجم، میلی‌لیتر">
-            <Input inputMode="numeric" value={draft.volumeMl} onChange={(event) => patch({ volumeMl: Number(event.target.value) })} />
+            <Input
+              inputMode="numeric"
+              value={draft.volumeMl ?? ""}
+              onChange={(event) => {
+                const raw = event.target.value.trim();
+                if (!raw) {
+                  patch({ volumeMl: null });
+                  return;
+                }
+                const next = Number(raw);
+                patch({ volumeMl: Number.isFinite(next) ? next : null });
+              }}
+            />
           </Field>
           <Field label="شکل شیشه">
             <Select
@@ -314,21 +331,16 @@ export function PerfumeForm({
         <Field label="چرا این عطر">
           <Textarea className="min-h-24" value={draft.why} onChange={(event) => patch({ why: event.target.value })} />
         </Field>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <Field label="الهام‌گرفته از">
-            <Select
-              value={draft.inspiredBy ?? ""}
-              onChange={(event) => patch({ inspiredBy: event.target.value || undefined })}
-              options={[
-                { value: "", label: "هیچ‌کدام" },
-                ...REFERENCES.filter((item) => item.id !== "none").map((item) => ({ value: item.id, label: item.label })),
-              ]}
-            />
-          </Field>
-          <Field label="نام‌های مستعار دستیار">
-            <Input value={aliases} onChange={(event) => setAliases(event.target.value)} />
-          </Field>
-        </div>
+        <Field label="نام‌های مستعار دستیار" className="mt-4">
+          <Input value={aliases} onChange={(event) => setAliases(event.target.value)} />
+        </Field>
+        <p className="mt-4 text-sm text-muted-foreground">یاد این عطر می‌افتد</p>
+        <CheckboxGroup
+          className="mt-2"
+          options={referenceList().map((item) => ({ value: item.id, label: item.nameFa }))}
+          value={inspirationIds(draft.inspiredBy)}
+          onChange={(ids) => patch({ inspiredBy: inspirationValue(ids) })}
+        />
         <p className="mt-4 text-sm text-muted-foreground">مشابه‌ها</p>
         <CheckboxGroup
           className="mt-2"

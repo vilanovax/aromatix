@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3000",
+    "preview": "next build && next start -p 3000",
     "contract:emit": "prisma contract emit",
     "db:init": "prisma db init",
-    "admin:seed": "tsx scripts/seed-admin.ts"
+    "admin:seed": "tsx scripts/seed-admin.ts",
+    "catalog:import-v16": "python3 scripts/import-catalog-v16.py",
+    "catalog:import-v16:orm": "tsx scripts/import-catalog-v16.ts",
+    "catalog:update-images": "python3 scripts/update-perfume-images.py"
   },
   "dependencies": {
     "@prisma/orm-postgres": "^8.0.0-rc.17",
@@ -18,7 +22,8 @@
     "next": "^16.4.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@prisma/cli-engine": "^0.7.0",

@@ -1,0 +1,120 @@
+{
+  "_meta": {
+    "source": "PM 2026-10-17 19:32",
+    "lock": "all-app-v21.LOCKED-20261017-1934.json",
+    "lock_sha256": "77d20c989277a6ee6bc3db6c38478903d48ea7c9a28c8f6795fa54290ec3c4c8",
+    "created": "2026-10-17 Asia/Tehran",
+    "count": 7,
+    "status": "PM_DECIDED",
+    "fields": "fill pm_decision / pm_text / pm_note",
+    "decided_at": "2026-10-17T16:10:17.704217+00:00",
+    "applies_to": "policy + backlog (no required v22 content unless deferred cleared)",
+    "pm_summary_fa": "نگاشت animalic/coconut سراسری نشود؛ فقط موردی. شش معوق همچنان defer.",
+    "instruction_fa": "قفل v21 را بازنویسی نکنید. نگاشت سراسری را در pipeline پیش‌فرض روشن نکنید. ورودهای بعدی فقط در صورت نیاز همان نگاشت موردی را بگیرند."
+  },
+  "pending": [
+    {
+      "slug": "domino-essence-05",
+      "category": "deferred by PM (19:32)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ وارد نشود.",
+      "notes": [
+        "top:نت‌های سبز",
+        "top:میوه‌ها",
+        "middle:نت‌های چوبی",
+        "middle:نت‌های گلی",
+        "base:کهربا",
+        "base:وانیل"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "qaaed",
+      "category": "deferred by PM (19:32)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ وارد نشود.",
+      "notes": [
+        "top:دارچین",
+        "top:هل",
+        "middle:زعفران",
+        "middle:چوب صندل",
+        "base:عود",
+        "base:چرم"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "raed-silver",
+      "category": "deferred by PM (19:32)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ وارد نشود.",
+      "notes": [
+        "top:مرکبات",
+        "top:ادویه‌ها",
+        "middle:دارچین",
+        "middle:کهربا",
+        "base:وانیل",
+        "base:مشک"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "safwaan-l-autre-oud",
+      "category": "deferred by PM (19:32)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ وارد نشود.",
+      "notes": [
+        "top:رز",
+        "middle:نت‌های ادویه‌ای",
+        "middle:کهربا",
+        "base:عود",
+        "base:نت‌های چوبی"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "rain-drops",
+      "category": "deferred by PM (19:32)",
+      "reason": "Fragrantica lists only generic notes (Floral/Woodsy/Fruity Notes, Ambergris)",
+      "pm_note_prev": "نت عمومی؛ کنار.",
+      "notes": [
+        "top:نت‌های گلی",
+        "top:نت‌های چوبی",
+        "middle:نت‌های میوه‌ای",
+        "middle:عنبر"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "نت عمومی؛ کنار."
+    },
+    {
+      "slug": "andaleeb-by-asdaaf",
+      "category": "deferred by PM (19:32)",
+      "reason": "two Asdaaf pages, neither exact (Al Andaleeb / Andaleeb Flora)",
+      "pm_note_prev": "دو صفحهٔ مبهم؛ کنار.",
+      "notes": null,
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "دو صفحهٔ مبهم؛ کنار."
+    },
+    {
+      "slug": "_rule:accord-mapping-scope",
+      "category": "rule scope decision",
+      "reason": "animalic→مشک and coconut→میوه were applied record-specifically (floral-ambrosia, creamy-biscuit). Applying them globally in the build would change the accord bar of 111 locked records.",
+      "impact_file": "v21-20261017-1932/work/global-mapping-impact.v1.json",
+      "impact_count": 111,
+      "pm_options": "keep record-specific / apply globally in a future version (re-verify all affected records)",
+      "pm_decision": "keep_record_specific",
+      "pm_text": "",
+      "pm_note": "animalic→مشک و coconut→میوه فقط برای رکوردهایی که با این نگاشت وارد شده‌اند (floral-ambrosia، creamy-biscuit) و موارد مشابه بعدی که بدون نگاشت گیر می‌کنند. اعمال سراسری روی ۱۱۱ قفل‌شده را در این دور نکنید — تغییر نوار آکورد گسترده‌تر از تصمیم ورود است. اگر بعداً سراسری شد، نسخهٔ جدا با بازبینی همان ۱۱۱ رکورد لازم است."
+    }
+  ]
+}

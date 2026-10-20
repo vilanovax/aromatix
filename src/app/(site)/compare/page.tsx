@@ -21,7 +21,9 @@ import {
   sweetness,
 } from "@/lib/catalog";
 import { cn, faNum, millionToman } from "@/lib/format";
+import { inspirationIds } from "@/lib/inspiration";
 import { perfumeHref } from "@/lib/nav";
+import { getReference } from "@/lib/references";
 import { useAroma } from "@/lib/store";
 import type { Perfume } from "@/lib/types";
 
@@ -237,17 +239,21 @@ function diffRows(left: Perfume, right: Perfume) {
     rows.push({ label: "فصل", values: seasons });
   }
 
-  const concentration: [string, string] = [left.concentration, right.concentration];
-  if (concentration[0] !== concentration[1]) {
-    rows.push({ label: "غلظت", values: concentration });
+  const concentration: [string, string] = [left.concentration ?? "—", right.concentration ?? "—"];
+  if (left.concentration || right.concentration) {
+    if (concentration[0] !== concentration[1]) {
+      rows.push({ label: "غلظت", values: concentration });
+    }
   }
 
-  const volume: [string, string] = [
-    `${faNum(left.volumeMl)} میلی‌لیتر`,
-    `${faNum(right.volumeMl)} میلی‌لیتر`,
-  ];
-  if (volume[0] !== volume[1]) {
-    rows.push({ label: "حجم", values: volume });
+  if (left.volumeMl != null || right.volumeMl != null) {
+    const volume: [string, string] = [
+      left.volumeMl != null ? `${faNum(left.volumeMl)} میلی‌لیتر` : "—",
+      right.volumeMl != null ? `${faNum(right.volumeMl)} میلی‌لیتر` : "—",
+    ];
+    if (volume[0] !== volume[1]) {
+      rows.push({ label: "حجم", values: volume });
+    }
   }
 
   return rows;
@@ -255,8 +261,10 @@ function diffRows(left: Perfume, right: Perfume) {
 
 function alikeLine(left: Perfume, right: Perfume) {
   const parts: string[] = [];
-  if (left.concentration === right.concentration) parts.push(left.concentration);
-  if (left.volumeMl === right.volumeMl) parts.push(`${faNum(left.volumeMl)} میلی‌لیتر`);
+  if (left.concentration && left.concentration === right.concentration) parts.push(left.concentration);
+  if (left.volumeMl != null && left.volumeMl === right.volumeMl) {
+    parts.push(`${faNum(left.volumeMl)} میلی‌لیتر`);
+  }
   if (seasonText(left) === seasonText(right)) parts.push(seasonText(left));
   return parts.join(" · ");
 }
@@ -284,11 +292,11 @@ function seasonText(perfume: Perfume) {
     .join("، ");
 }
 
-function inspiredName(id?: string) {
-  if (id === "sauvage") return "ساواج الکسیر";
-  if (id === "aventus") return "اونتوس";
-  if (id === "angels") return "آنجلز شیر";
-  return "";
+function inspiredName(value?: string | string[] | null) {
+  return inspirationIds(value)
+    .map((id) => getReference(id)?.nameFa ?? "")
+    .filter(Boolean)
+    .join("، ");
 }
 
 function sharedNotes(left: Perfume, right: Perfume) {

@@ -1,3 +1,4 @@
+import { offerAvailability } from "@/lib/offer-stock";
 import type { Perfume } from "@/lib/types";
 
 export const LOW_CONFIDENCE = 0.75;
@@ -27,7 +28,9 @@ export function catalogIssues(perfumes: Perfume[]): CatalogIssue[] {
       if (!slugs.has(similar)) push(`مشابه ناموجود: ${similar}`, "links");
     }
     for (const shop of perfume.shops) {
-      if (!shop.stockConfirmed) push(`${shop.shop}: موجودی تأیید نشده`, "shops");
+      const stock = offerAvailability(shop);
+      if (stock === "unknown") push(`${shop.shop}: موجودی تأیید نشده`, "shops");
+      if (stock === "out_of_stock") push(`${shop.shop}: ناموجود`, "shops");
       if (!shop.checkedAt) continue;
       const time = Date.parse(shop.checkedAt);
       if (!Number.isNaN(time) && Date.now() - time > PRICE_STALE_MS) push(`${shop.shop}: قیمت کهنه`, "shops");
@@ -42,5 +45,6 @@ export function formatCheckedOn(date: Date) {
     day: "numeric",
     month: "long",
     year: "numeric",
+    timeZone: "Asia/Tehran",
   }).format(date);
 }

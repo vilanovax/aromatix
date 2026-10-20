@@ -1,4 +1,4 @@
-import { getBrand, getPerfume } from "@/lib/catalog";
+import { getBrand, getPerfume, occasionLabel, seasonShort } from "@/lib/catalog";
 import { getEntry } from "@/lib/knowledge";
 import { getReference } from "@/lib/references";
 
@@ -9,6 +9,11 @@ export function perfumeFrom(path: string) {
 
 export function perfumeHref(slug: string, from: string) {
   return `/perfume/${slug}?${perfumeFrom(from)}`;
+}
+
+export function referenceHref(id: string, from?: string) {
+  const path = `/reference/${id}`;
+  return from ? `${path}?${perfumeFrom(from)}` : path;
 }
 
 export function resolvePerfumeBack(from: string | null): { href: string; label: string } {
@@ -28,6 +33,7 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
   if (path === "/brands" || path === "brands") return { href: "/brands", label: "برندها" };
   if (path === "/learn" || path === "learn") return { href: "/learn", label: "دانستنی‌ها" };
   if (path === "/guide") return { href: "/guide", label: "راهنما" };
+  if (path.startsWith("/search")) return { href: path, label: "جستجو" };
 
   if (path.startsWith("/compare")) {
     return { href: path, label: "مقایسه" };
@@ -43,6 +49,11 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
   if (learnMatch) {
     const entry = getEntry(decodeURIComponent(learnMatch[1]));
     return { href: path.split("?")[0], label: entry?.title ?? "دانستنی‌ها" };
+  }
+
+  const wearMatch = path.match(/^\/wear(\?|$)/);
+  if (wearMatch) {
+    return { href: path, label: wearLabel(path) };
   }
 
   const noteMatch = path.match(/^\/notes\/([^/?#]+)/);
@@ -72,4 +83,16 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
 
   if (path.startsWith("/")) return { href: path, label: "برگشت" };
   return fallback;
+}
+
+function wearLabel(path: string) {
+  const query = path.split("?")[1] ?? "";
+  const params = new URLSearchParams(query);
+  const seasons = params.getAll("season");
+  const occasions = params.getAll("occasion");
+  if (seasons.length > 0) {
+    return seasons.map((id) => (id === "mild" ? "معتدل" : seasonShort(id))).join("، ");
+  }
+  if (occasions.length > 0) return occasions.map((id) => occasionLabel(id)).join("، ");
+  return "فهرست";
 }

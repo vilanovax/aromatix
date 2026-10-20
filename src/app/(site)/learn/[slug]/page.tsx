@@ -11,8 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Separator } from "@/components/ui/separator";
-import { faNum } from "@/lib/format";
-import { formatShamsi } from "@/lib/jalali";
 import { recordUsage } from "@/lib/usage";
 import { perfumeHref } from "@/lib/nav";
 import { getEntry, relatedEntries, relatedPerfumes } from "@/lib/knowledge";
@@ -53,13 +51,11 @@ export default function LearnEntryPage() {
     <Shell composer back={{ href: "/learn", label: "دانستنی‌ها" }}>
       <article className="vf app step-in px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <h1 className="text-balance text-headline font-bold">{entry.title}</h1>
-        <p className="mt-2 text-pretty text-body text-muted-foreground">
-          {latinLine(entry.support) ? <bdi dir="ltr">{entry.support}</bdi> : entry.support}
-          <span className="mx-2">·</span>
-          {faNum(entry.minutes)} دقیقه
-          <span className="mx-2">·</span>
-          {formatShamsi(entry.publishedOn)}
-        </p>
+        {entry.support ? (
+          <p className="mt-2 text-pretty text-body text-muted-foreground">
+            {latinLine(entry.support) ? <bdi dir="ltr">{entry.support}</bdi> : entry.support}
+          </p>
+        ) : null}
         {entry.mark ? (
           <div className="mt-4 h-2 w-24 rounded-full" style={{ background: entry.mark }} aria-hidden="true" />
         ) : null}

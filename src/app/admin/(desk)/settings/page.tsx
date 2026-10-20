@@ -3,19 +3,20 @@ import { SettingsDesk, type SettingsAdmin } from "@/app/admin/settings-desk";
 import { guardSection } from "@/lib/auth/admin";
 import { displayPhone } from "@/lib/auth/phone";
 import { parseAccess } from "@/lib/auth/sections";
+import { readBudgetMillions } from "@/lib/catalog-server";
 import { db } from "@/prisma/db";
 
 export const metadata: Metadata = { title: "تنظیمات · مدیریت آروما" };
 
 export default async function SettingsPage() {
   const admin = await guardSection("settings");
-  const [admins, counts] = await Promise.all([loadAdmins(admin.id), loadCounts()]);
+  const [admins, counts, budgets] = await Promise.all([loadAdmins(admin.id), loadCounts(), readBudgetMillions()]);
 
   return (
     <div className="mx-auto max-w-3xl">
       <h1 className="text-headline font-bold">تنظیمات</h1>
-      <p className="mt-2 text-body text-muted-foreground">حساب خودت، مدیرها، و نسخهٔ داده‌ها.</p>
-      <SettingsDesk admins={admins} counts={counts} />
+      <p className="mt-2 text-body text-muted-foreground">حساب خودت، سقف بودجهٔ راهنما، مدیرها، و نسخهٔ داده‌ها.</p>
+      <SettingsDesk admins={admins} counts={counts} budgets={budgets} />
     </div>
   );
 }

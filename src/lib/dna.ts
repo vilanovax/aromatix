@@ -21,6 +21,15 @@ export type FamilyReading = {
   color: string;
   affinity: number;
   percent: number;
+  /** حداکثر دو عطری که این خانواده را بالا کشیده‌اند. */
+  from: string[];
+};
+
+export type NoteReading = {
+  name: string;
+  color: string;
+  percent: number;
+  from: string[];
 };
 
 export type DnaProfile = {
@@ -29,10 +38,12 @@ export type DnaProfile = {
   validCount: number;
   familyCount: number;
   sentence: string;
-  /** خانواده‌های مثبت برای نمایش. نوار درصد فقط در پلهٔ dna. */
+  /** خانواده‌های مثبت برای نمایش. نوار از پلهٔ early. */
   top: FamilyReading[];
   /** همهٔ خانواده‌های دارای تجربه، شامل منفی، برای امتیاز پیشنهاد. */
   all: FamilyReading[];
+  /** نت‌های با وزن مثبت. در پیشنهاد استفاده نمی‌شود. */
+  notes: NoteReading[];
 };
 
 const LEARNING = "هنوز در حال شناخت رایحه‌های موردعلاقه‌ات هستیم.";
@@ -59,12 +70,15 @@ export function computeDna(
     let raw = 0;
     let mass = 0;
     let seen = false;
+    const pulls: Pull[] = [];
     for (const { perfume, state } of samples) {
       const share = leaningShare(perfume, id);
       if (share <= 0) continue;
       if (share >= PRESENCE) seen = true;
-      raw += share * signalWeight(state);
+      const weight = signalWeight(state);
+      raw += share * weight;
       mass += share;
+      if (weight > 0) pulls.push({ name: perfume.nameFa, pull: share * weight });
     }
     if (mass <= 0) continue;
     const affinity = clamp(raw / mass, -1, 1);
@@ -74,6 +88,7 @@ export function computeDna(
       color: COLOR[id],
       affinity,
       percent: Math.round(Math.max(0, affinity) * 100),
+      from: witnesses(pulls),
       mass,
       present: seen,
     });
@@ -95,6 +110,7 @@ export function computeDna(
     sentence: sentenceFor(stage, ranked.slice(0, 2).map(strip)),
     top,
     all: readings.filter((family) => family.present).map(strip),
+    notes: noteReadings(samples, top[0]?.color ?? ""),
   };
 }
 
@@ -105,7 +121,60 @@ function strip(family: FamilyReading & { mass: number; present: boolean }): Fami
     color: family.color,
     affinity: family.affinity,
     percent: family.percent,
+    from: family.from,
   };
+}
+
+type Pull = { name: string; pull: number };
+
+function witnesses(pulls: Pull[]) {
+  return pulls
+    .filter((item) => item.pull > 0)
+    .sort((a, b) => b.pull - a.pull || a.name.localeCompare(b.name, "fa"))
+    .slice(0, 2)
+    .map((item) => item.name);
+}
+
+function noteReadings(samples: Array<{ perfume: Perfume; state: UserPerfume }>, fallback: string): NoteReading[] {
+  const bucket = new Map<string, { weight: number; color: string; pulls: Pull[] }>();
+
+  for (const { perfume, state } of samples) {
+    const weight = signalWeight(state);
+    if (weight <= 0) continue;
+    const seen = new Set<string>();
+    for (const note of perfume.notes ?? []) {
+      const name = note.name.trim();
+      if (!name || seen.has(name)) continue;
+      seen.add(name);
+      const row = bucket.get(name) ?? { weight: 0, color: "", pulls: [] };
+      row.weight += weight;
+      if (!row.color) row.color = noteColor(perfume, name);
+      row.pulls.push({ name: perfume.nameFa, pull: weight });
+      bucket.set(name, row);
+    }
+  }
+
+  const ranked = [...bucket.entries()]
+    .filter((entry) => entry[1].weight > 0)
+    .sort((a, b) => b[1].weight - a[1].weight || a[0].localeCompare(b[0], "fa"));
+  const peak = ranked[0]?.[1].weight ?? 0;
+  if (peak <= 0) return [];
+
+  return ranked.slice(0, 5).map(([name, row]) => ({
+    name,
+    color: row.color || fallback || COLOR.woody,
+    percent: Math.round((row.weight / peak) * 100),
+    from: witnesses(row.pulls),
+  }));
+}
+
+function noteColor(perfume: Perfume, name: string) {
+  const accord = perfume.accords.find((item) => item.name === name);
+  if (accord?.color) return accord.color;
+  for (const id of Object.keys(LEANINGS) as Leaning[]) {
+    if (LEANINGS[id].accords.includes(name)) return COLOR[id];
+  }
+  return "";
 }
 
 export function shelfBucket(state: UserPerfume): "owned" | "experienced" | "wanted" | "disliked" | null {

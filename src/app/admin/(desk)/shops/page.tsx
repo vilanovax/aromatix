@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { faNum } from "@/lib/format";
+import { offerMatchesShop } from "@/lib/offers";
 import { guardSection } from "@/lib/auth/admin";
 
 export const metadata: Metadata = { title: "فروشگاه‌ها · مدیریت آروما" };
@@ -20,7 +21,7 @@ export default async function ShopsPage() {
     website: shop.website,
     active: shop.active,
     offerCount: snapshot.perfumes.reduce(
-      (count, perfume) => count + perfume.shops.filter((offer) => offer.shop === shop.nameFa).length,
+      (count, perfume) => count + perfume.shops.filter((offer) => offerMatchesShop(offer, shop)).length,
       0,
     ),
   }));
@@ -38,9 +39,14 @@ export default async function ShopsPage() {
           </p>
         </div>
         {store === "ready" ? (
-          <Button href="/admin/shops/new" size="md" className="shrink-0">
-            فروشگاه جدید
-          </Button>
+          <div className="flex shrink-0 flex-wrap items-center gap-2">
+            <Button href="/admin/shops/prices" variant="outline" size="md">
+              به‌روزرسانی قیمت
+            </Button>
+            <Button href="/admin/shops/new" size="md">
+              فروشگاه جدید
+            </Button>
+          </div>
         ) : null}
       </div>
 

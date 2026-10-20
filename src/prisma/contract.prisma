@@ -6,6 +6,22 @@ enum UserRole {
   admin  = "admin"
 }
 
+enum ReportTopic {
+  @@type("pg/text@1")
+  price    = "price"
+  identity = "identity"
+  scent    = "scent"
+  shop     = "shop"
+  other    = "other"
+}
+
+enum ReportStatus {
+  @@type("pg/text@1")
+  open      = "open"
+  fixed     = "fixed"
+  dismissed = "dismissed"
+}
+
 namespace aroma {
   model User {
     id           Int               @id @default(autoincrement())
@@ -19,6 +35,7 @@ namespace aroma {
     createdAt    TimestamptzString @default(now())
     sessions     Session[]
     perfumes     UserPerfume[]
+    reports      CatalogReport[]
   }
 
   model Session {
@@ -62,6 +79,9 @@ namespace aroma {
     nameFa      String
     nameEn      String
     description String           @default("")
+    logo        String           @default("")
+    website     String           @default("")
+    instagram   String           @default("")
     active      Boolean          @default(true)
     perfumes    CatalogPerfume[]
   }
@@ -110,5 +130,26 @@ namespace aroma {
     createdAt TimestamptzString @default(now())
 
     @@index([createdAt])
+  }
+
+  model AppSetting {
+    key   String @id
+    value String
+  }
+
+  model CatalogReport {
+    id          Int               @id @default(autoincrement())
+    perfumeSlug String
+    topic       ReportTopic
+    body        String
+    status      ReportStatus      @default(open)
+    userId      Int?
+    user        User?             @relation(fields: [userId], references: [id], onDelete: SetNull)
+    adminNote   String            @default("")
+    createdAt   TimestamptzString @default(now())
+    resolvedAt  TimestamptzString?
+
+    @@index([status, createdAt])
+    @@index([perfumeSlug])
   }
 }

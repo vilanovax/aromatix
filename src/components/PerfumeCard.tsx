@@ -5,7 +5,8 @@ import { Check } from "lucide-react";
 import { AccordMark } from "@/components/AccordMark";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { cheaperUnconfirmed, publicLead } from "@/lib/catalog";
+import { cheaperUnconfirmed, guidePrice, publicLead } from "@/lib/catalog";
+import { offerAvailability, offerStockLine } from "@/lib/offer-stock";
 import { cn, faNum, millionToman, ordinalWord } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
@@ -14,6 +15,7 @@ import type { Perfume } from "@/lib/types";
 export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number }) {
   const { compare, toggleCompare, openShops } = useAroma();
   const offer = publicLead(perfume);
+  const guide = guidePrice(perfume);
   const cheaper = cheaperUnconfirmed(perfume);
   const picked = compare.includes(perfume.slug);
 
@@ -61,18 +63,28 @@ export function PerfumeCard({ perfume, rank }: { perfume: Perfume; rank: number 
               {millionToman(offer.price)}
               <span className="font-normal text-muted-foreground">، {offer.shop}</span>
             </>
+          ) : guide ? (
+            <>
+              حدود {millionToman(guide)}
+              <span className="font-normal text-muted-foreground">، برآورد کاتالوگ</span>
+            </>
           ) : (
-            "فروشگاه فعالی نیست"
+            "قیمت فروشگاه به‌زودی"
           )}
         </span>
         {offer ? (
           <span className="mt-1 flex items-center gap-2 text-label font-normal text-muted-foreground">
             <span
               aria-hidden="true"
-              className={cn("size-2 shrink-0 rounded-full", offer.stockConfirmed ? "bg-stock-ok" : "bg-stock-pending")}
+              className={cn(
+                "size-2 shrink-0 rounded-full",
+                offerAvailability(offer) === "in_stock" && "bg-stock-ok",
+                offerAvailability(offer) === "unknown" && "bg-stock-pending",
+                offerAvailability(offer) === "out_of_stock" && "bg-destructive",
+              )}
             />
             <span className="min-w-0 text-pretty">
-              {offer.stockConfirmed ? `موجود، بررسی ${offer.checkedOn}` : `آخرین قیمت ${offer.checkedOn}`}
+              {offerStockLine(offer)}
               {cheaper ? ` · ${cheaper.shop} ${millionToman(cheaper.price)}` : ""}
             </span>
           </span>

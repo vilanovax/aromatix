@@ -19,7 +19,6 @@ import {
   type KnowledgeEntry,
   type KnowledgeGroup,
 } from "@/lib/knowledge";
-import { formatShamsi } from "@/lib/jalali";
 
 export default function LearnIndexPage() {
   const [query, setQuery] = useState("");
@@ -61,7 +60,7 @@ export default function LearnIndexPage() {
             placeholder="بچ‌کد، وتیور، ماندگاری"
             autoComplete="off"
             enterKeyHint="search"
-            className="!h-12"
+            className="h-12!"
           />
         </div>
 
@@ -160,7 +159,7 @@ function GroupChip({
       size="md"
       aria-pressed={selected}
       onClick={onClick}
-      className={cn("min-h-11 !rounded-full px-4 font-medium", !selected && "!bg-card")}
+      className={cn("min-h-11 rounded-full! px-4 font-medium", !selected && "bg-card!")}
     >
       {children}
     </Button>
@@ -189,7 +188,9 @@ function EntryList({
               <span className="min-w-0 flex-1 text-start">
                 <span className="block text-pretty text-body font-semibold">{entry.title}</span>
                 {entry.support ? <span className="mt-1 block text-pretty text-label">{entry.support}</span> : null}
-                <span className="mt-1 block text-label text-muted-foreground">{metaLine(entry, showGroup)}</span>
+                {showGroup ? (
+                  <span className="mt-1 block text-label text-muted-foreground">{groupLabel(entry.group)}</span>
+                ) : null}
               </span>
               <ChevronLeft className="mt-1 size-4 shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
             </Link>
@@ -202,12 +203,6 @@ function EntryList({
 
 function groupLabel(id: KnowledgeGroup) {
   return KNOWLEDGE_GROUPS.find((item) => item.id === id)?.label ?? id;
-}
-
-function metaLine(entry: KnowledgeEntry, showGroup: boolean) {
-  const bits = [`${faNum(entry.minutes)} دقیقه`, formatShamsi(entry.publishedOn)];
-  if (showGroup) bits.unshift(groupLabel(entry.group));
-  return bits.join(" · ");
 }
 
 function hay(entry: { title: string; support: string; aliases: string[] }, q: string) {

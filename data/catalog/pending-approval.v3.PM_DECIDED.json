@@ -1,0 +1,252 @@
+{
+  "_meta": {
+    "source": "PM 2026-10-17 19:08",
+    "lock": "all-app-v20.LOCKED-20261017-1911.json",
+    "lock_sha256": "21a34a5ce419263b20b7da33961df83efc501d0bdd242f97ca497a19455907b9",
+    "created": "2026-10-17 Asia/Tehran",
+    "count": 9,
+    "status": "PM_DECIDED",
+    "fields": "fill pm_decision / pm_text / pm_note",
+    "decided_at": "2026-10-17T16:02:17.566807+00:00",
+    "applies_to": "v21",
+    "pm_summary_fa": "oud-amg: لادن و کهربا گرم… floral-ambrosia: گل+مشک. creamy-biscuit: وانیل+میوه. شش معوق defer.",
+    "instruction_fa": "اعمال روی پایهٔ v20 برای قفل v21. قفل v20 را بازنویسی نکنید. sha256 قفل جدید را گزارش دهید."
+  },
+  "pending": [
+    {
+      "slug": "oud-amg",
+      "category": "PM why failed check (v19 why kept)",
+      "reason": "«عود هندی و کهربا…» reduces to عود+کهربا|زمستان (عود هندی ≡ عود), already used by velvet-oud. Current v19 why is a single-note pair and is flagged by the new check.",
+      "current_why": "عود هندی و عود کامبوجی گرم است و برای زمستان مناسب است.",
+      "pm_text_v20": "عود هندی و کهربا گرم است و برای زمستان مناسب است.",
+      "notes": [
+        "عود هندی",
+        "عود کامبوجی",
+        "لادن",
+        "کهربا",
+        "چوب سدر"
+      ],
+      "proposed_why": "لادن و کهربا گرم است و برای زمستان مناسب است.",
+      "proposed_checks": {
+        "pair_time": "لادن+کهربا | زمستان",
+        "two_distinct_notes": true,
+        "notes_in_record": true,
+        "temps": {
+          "کهربا": "warm",
+          "لادن": "warm"
+        },
+        "unique_vs_v20": true
+      },
+      "alternative": "لادن و چوب سدر گرم است و برای زمستان مناسب است.",
+      "alternative_checks": {
+        "pair_time": "سدر+لادن | زمستان",
+        "two_distinct_notes": true,
+        "notes_in_record": true,
+        "temps": {
+          "لادن": "warm",
+          "سدر": "warm"
+        },
+        "unique_vs_v20": true
+      },
+      "pm_options": "approve proposed / approve alternative / other",
+      "pm_decision": "edit",
+      "pm_text": "لادن و کهربا گرم است و برای زمستان مناسب است.",
+      "pm_note": "عود هندی ≡ عود؛ جفت عود+کهربا گرفتهٔ velvet-oud. پیشنهاد لادن+کهربا تأیید."
+    },
+    {
+      "slug": "floral-ambrosia",
+      "category": "fix_data not possible within fixed vocabulary",
+      "reason": "Fragrantica (cached 95519) accords map only to گل; 'animalic' 41% has no catalog mapping; notes are all floral. A second accord would have to be invented.",
+      "approved_why": "یاس و پیچ امین‌الدوله برای روزهای گرم مناسب است.",
+      "fragrantica_accords": [
+        [
+          "white floral",
+          100
+        ],
+        [
+          "tuberose",
+          55
+        ],
+        [
+          "iris",
+          44
+        ],
+        [
+          "animalic",
+          41
+        ],
+        [
+          "rose",
+          41
+        ]
+      ],
+      "notes": [
+        "یاس",
+        "پیچ امین‌الدوله",
+        "گل مریم",
+        "ریشه زنبق",
+        "گل محمدی"
+      ],
+      "proposal": "map Fragrantica 'animalic' → مشک (#B7A99A): accords گل 0.71 + مشک 0.29 (100:41 normalised); source = cached Fragrantica page",
+      "pm_options": "approve proposal / keep out",
+      "pm_decision": "approve_proposal",
+      "pm_text": "یاس و پیچ امین‌الدوله برای روزهای گرم مناسب است.",
+      "pm_note": "animalic → مشک؛ accords: گل 0.71 (#C47B86 یا رنگ استاندارد گل کاتالوگ) + مشک 0.29 (#B7A99A). بعد وارد کاتالوگ شود.",
+      "pm_accords": [
+        {
+          "name": "گل",
+          "color": "#C47B86",
+          "strength": 0.71
+        },
+        {
+          "name": "مشک",
+          "color": "#B7A99A",
+          "strength": 0.29
+        }
+      ]
+    },
+    {
+      "slug": "creamy-biscuit",
+      "category": "fix_data not possible within fixed vocabulary",
+      "reason": "Fragrantica (cached 102458) accords: only vanilla maps; coconut/powdery/lactonic unmapped; گورمند/نارگیل are not vocabulary names.",
+      "approved_why": "بیسکویت و نارگیل برای زمستان مناسب است.",
+      "fragrantica_accords": [
+        [
+          "vanilla",
+          100
+        ],
+        [
+          "sweet",
+          96
+        ],
+        [
+          "coconut",
+          67
+        ],
+        [
+          "powdery",
+          44
+        ],
+        [
+          "lactonic",
+          43
+        ]
+      ],
+      "notes": [
+        "بیسکویت",
+        "نارگیل",
+        "وانیل",
+        "تونکا"
+      ],
+      "proposal": "map Fragrantica 'coconut' → میوه (#D2B15C): accords وانیل 0.6 + میوه 0.4 (100:67 normalised); or add a vocabulary name (e.g. نارگیل) with a catalog colour",
+      "pm_options": "approve proposal / add vocabulary name / keep out",
+      "pm_decision": "approve_proposal",
+      "pm_text": "بیسکویت و نارگیل برای زمستان مناسب است.",
+      "pm_note": "coconut → میوه (واژه‌نامهٔ موجود)؛ وانیل 0.6 + میوه 0.4 (#D2B15C). افزودن «نارگیل» به glossary بعداً، این دور نه.",
+      "pm_accords": [
+        {
+          "name": "وانیل",
+          "color": "#C4A574",
+          "strength": 0.6
+        },
+        {
+          "name": "میوه",
+          "color": "#D2B15C",
+          "strength": 0.4
+        }
+      ]
+    },
+    {
+      "slug": "domino-essence-05",
+      "category": "deferred by PM (19:08)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:نت‌های سبز",
+        "top:میوه‌ها",
+        "middle:نت‌های چوبی",
+        "middle:نت‌های گلی",
+        "base:کهربا",
+        "base:وانیل"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "qaaed",
+      "category": "deferred by PM (19:08)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:دارچین",
+        "top:هل",
+        "middle:زعفران",
+        "middle:چوب صندل",
+        "base:عود",
+        "base:چرم"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "raed-silver",
+      "category": "deferred by PM (19:08)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:مرکبات",
+        "top:ادویه‌ها",
+        "middle:دارچین",
+        "middle:کهربا",
+        "base:وانیل",
+        "base:مشک"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "safwaan-l-autre-oud",
+      "category": "deferred by PM (19:08)",
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_note_prev": "جفت آزاد نیست؛ این دور وارد نشود.",
+      "notes": [
+        "top:رز",
+        "middle:نت‌های ادویه‌ای",
+        "middle:کهربا",
+        "base:عود",
+        "base:نت‌های چوبی"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "جفت آزاد نیست؛ وارد نشود."
+    },
+    {
+      "slug": "rain-drops",
+      "category": "deferred by PM (19:08)",
+      "reason": "Fragrantica lists only generic notes (Floral/Woodsy/Fruity Notes, Ambergris)",
+      "pm_note_prev": "فقط نت عمومی؛ تا نت مشخص نیاید why ساخته نشود.",
+      "notes": [
+        "top:نت‌های گلی",
+        "top:نت‌های چوبی",
+        "middle:نت‌های میوه‌ای",
+        "middle:عنبر"
+      ],
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "نت عمومی؛ کنار."
+    },
+    {
+      "slug": "andaleeb-by-asdaaf",
+      "category": "deferred by PM (19:08)",
+      "reason": "two Asdaaf pages, neither exact (Al Andaleeb / Andaleeb Flora)",
+      "pm_note_prev": "دو صفحهٔ مبهم؛ کنار بماند.",
+      "notes": null,
+      "pm_decision": "defer",
+      "pm_text": "",
+      "pm_note": "دو صفحهٔ مبهم؛ کنار."
+    }
+  ]
+}

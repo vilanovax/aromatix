@@ -1,0 +1,5888 @@
+{
+  "_meta": {
+    "shop": "pending-approval.reminds-of.high.v1.PM_DECIDED.json",
+    "pilot": "reminds-of.pilot.v2.xlsx",
+    "fragrantica": "reminds-of.fragrantica-browser.approved.v1.csv",
+    "perfumeCount": 470,
+    "linkCount": 475,
+    "thinReferenceCount": 268,
+    "note": "Shop/pilot approved reminds-of. Thin references get full copy later."
+  },
+  "references": [
+    {
+      "id": "amouage-beloved-man",
+      "nameFa": "آمواج بیلاود من",
+      "nameEn": "Amouage Beloved Man",
+      "thin": true
+    },
+    {
+      "id": "amouage-blossom-love",
+      "nameFa": "آمواج بلاسم لاو",
+      "nameEn": "Amouage Blossom Love",
+      "thin": true
+    },
+    {
+      "id": "amouage-guidance",
+      "nameFa": "آمواج گایدنس",
+      "nameEn": "Amouage Guidance",
+      "thin": true
+    },
+    {
+      "id": "amouage-guidance-46",
+      "nameFa": "آمواج گایدنس ۴۶",
+      "nameEn": "Amouage Guidance 46",
+      "thin": true
+    },
+    {
+      "id": "amouage-interlude",
+      "nameFa": "آمواج اینترلود",
+      "nameEn": "Amouage Interlude",
+      "thin": true
+    },
+    {
+      "id": "amouage-love-delight",
+      "nameFa": "آمواج لاو دیلایت",
+      "nameEn": "Amouage Love Delight",
+      "thin": true
+    },
+    {
+      "id": "amouage-memoir",
+      "nameFa": "آمواج ممیور",
+      "nameEn": "Amouage Memoir",
+      "thin": true
+    },
+    {
+      "id": "amouage-opus-v",
+      "nameFa": "آمواج اوپوس پنج",
+      "nameEn": "Amouage Opus V",
+      "thin": true
+    },
+    {
+      "id": "amouage-outlands",
+      "nameFa": "آمواج آوتلندز",
+      "nameEn": "Amouage Outlands",
+      "thin": true
+    },
+    {
+      "id": "amouage-purpose-50",
+      "nameFa": "آمواج پرپس 50",
+      "nameEn": "Amouage Purpose 50",
+      "thin": true
+    },
+    {
+      "id": "amouage-reasons",
+      "nameFa": "آمواج ریزنز",
+      "nameEn": "Amouage Reasons",
+      "thin": true
+    },
+    {
+      "id": "amouage-sindbad",
+      "nameFa": "آمواج سندباد",
+      "nameEn": "Amouage Sindbad",
+      "thin": true
+    },
+    {
+      "id": "armand-basi-in-red",
+      "nameFa": "آرماند باسی این رد",
+      "nameEn": "Armand Basi In Red",
+      "thin": true
+    },
+    {
+      "id": "azzaro-forever-wanted-elixir",
+      "nameFa": "آزارو فور اور وانتد الکسیر",
+      "nameEn": "Azzaro Forever Wanted Elixir",
+      "thin": true
+    },
+    {
+      "id": "azzaro-the-most-wanted",
+      "nameFa": "آزارو د موست وانتد",
+      "nameEn": "Azzaro The Most Wanted",
+      "thin": true
+    },
+    {
+      "id": "azzaro-the-most-wanted-parfum",
+      "nameFa": "آزارو موست وانتد پارفوم",
+      "nameEn": "Azzaro The Most Wanted Parfum",
+      "thin": true
+    },
+    {
+      "id": "bdk-parfums-gris-charnel",
+      "nameFa": "بی دی کی گریس شارنل",
+      "nameEn": "BDK Parfums Gris Charnel",
+      "thin": true
+    },
+    {
+      "id": "bdk-parfums-gris-charnel-extrait",
+      "nameFa": "بی‌دی‌کی گریس شارنل اکستریت",
+      "nameEn": "BDK Parfums Gris Charnel Extrait",
+      "thin": true
+    },
+    {
+      "id": "britney-spears-fantasy",
+      "nameFa": "بریتنی اسپیرز فانتزی",
+      "nameEn": "Britney Spears Fantasy",
+      "thin": true
+    },
+    {
+      "id": "bvlgari-aqva-pour-homme",
+      "nameFa": "بولگاری آکوا پور هوم",
+      "nameEn": "Bvlgari Aqva Pour Homme",
+      "thin": true
+    },
+    {
+      "id": "bvlgari-falkar",
+      "nameFa": "بولگاری فالکار",
+      "nameEn": "Bvlgari Falkar",
+      "thin": true
+    },
+    {
+      "id": "bvlgari-le-gemme-orom",
+      "nameFa": "بولگاری له جم اوروم",
+      "nameEn": "Bvlgari Le Gemme Orom",
+      "thin": true
+    },
+    {
+      "id": "bvlgari-man-wood-essence",
+      "nameFa": "بولگاری من وود اسنس",
+      "nameEn": "Bvlgari MAN wood essence",
+      "thin": true
+    },
+    {
+      "id": "bvlgari-tygar",
+      "nameFa": "بولگاری تایگار",
+      "nameEn": "Bvlgari Tygar",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-angels-share-paradis",
+      "nameFa": "بای کیلیان آنجلز شیر پارادایس",
+      "nameEn": "By Kilian Angels' Share Paradis",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-black-phantom",
+      "nameFa": "بای کیلیان بلک فانتوم",
+      "nameEn": "By Kilian Black Phantom",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-blue-moon-ginger-dash",
+      "nameFa": "بای کیلیان بلو مون جینجر دش",
+      "nameEn": "By Kilian Blue Moon Ginger Dash",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-good-girl-gone-bad-extreme",
+      "nameFa": "بای کیلیان گود گرل گان بد اکسترم",
+      "nameEn": "By Kilian Good Girl Gone Bad Extreme",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-love-don-t-be-shy",
+      "nameFa": "بای کیلیان لاو دونت بی شای",
+      "nameEn": "By Kilian Love Don't Be Shy",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-old-fashioned",
+      "nameFa": "بای کیلیان اولد فشن",
+      "nameEn": "By Kilian Old Fashioned",
+      "thin": true
+    },
+    {
+      "id": "by-kilian-vodka-on-the-rocks",
+      "nameFa": "بای کیلیان ودکا ان د راکز",
+      "nameEn": "By Kilian Vodka on the Rocks",
+      "thin": true
+    },
+    {
+      "id": "byredo-bibliotheque",
+      "nameFa": "بایردو بیبلیوتک",
+      "nameEn": "Byredo Bibliotheque",
+      "thin": true
+    },
+    {
+      "id": "byredo-space-rage-travx",
+      "nameFa": "بایردو اسپیس ریج تراوکس",
+      "nameEn": "Byredo Space Rage Travx",
+      "thin": true
+    },
+    {
+      "id": "caline-pure-vision-homme",
+      "nameFa": "کالین پیور ویژن هوم",
+      "nameEn": "Câline Pure Vision Homme",
+      "thin": true
+    },
+    {
+      "id": "calvin-klein-euphoria",
+      "nameFa": "کلوین کلاین ایفوریا",
+      "nameEn": "Calvin Klein Euphoria",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-bad-boy",
+      "nameFa": "کارولینا هررا بد بوی",
+      "nameEn": "Carolina Herrera Bad Boy",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-burning-rose",
+      "nameFa": "کارولینا هررا برنینگ رز",
+      "nameEn": "Carolina Herrera Burning Rose",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-cedar-chic",
+      "nameFa": "کارولینا هررا سدار شیک",
+      "nameEn": "Carolina Herrera Cedar Chic",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-good-girl",
+      "nameFa": "کارولینا هررا گود گرل",
+      "nameEn": "Carolina Herrera Good Girl",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-la-bomba",
+      "nameFa": "کارولینا هررا لا بومبا",
+      "nameEn": "Carolina Herrera La Bomba",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-mystery-tobacco",
+      "nameFa": "کارولینا هررا میستری توباکو",
+      "nameEn": "Carolina Herrera Mystery Tobacco",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-oud-couture",
+      "nameFa": "کارولینا هررا عود کوتور",
+      "nameEn": "Carolina Herrera Oud Couture",
+      "thin": true
+    },
+    {
+      "id": "carolina-herrera-saffron-lazuli",
+      "nameFa": "کارولینا هررا سافرون لازولی",
+      "nameEn": "Carolina Herrera Saffron Lazuli",
+      "thin": true
+    },
+    {
+      "id": "chanel-allure-homme-sport",
+      "nameFa": "شنل الور هوم اسپرت",
+      "nameEn": "Chanel Allure Homme Sport",
+      "thin": true
+    },
+    {
+      "id": "chanel-coco-mademoiselle",
+      "nameFa": "شنل کوکومادمازل",
+      "nameEn": "Chanel Coco Mademoiselle",
+      "thin": true
+    },
+    {
+      "id": "christian-louboutin-fetiche-la-rose",
+      "nameFa": "کریستین لوبوتین فتیش لا رز",
+      "nameEn": "Christian Louboutin Fetiche La Rose",
+      "thin": true
+    },
+    {
+      "id": "clive-christian-blonde-amber",
+      "nameFa": "کلایو کریستین بلوند امبر",
+      "nameEn": "Clive Christian Blonde Amber",
+      "thin": true
+    },
+    {
+      "id": "clive-christian-town-country",
+      "nameFa": "کلایو کریستین تاون اند کانتری",
+      "nameEn": "Clive Christian Town & Country",
+      "thin": true
+    },
+    {
+      "id": "creed-absolu-aventus",
+      "nameFa": "کرید اونتوس ابسولو",
+      "nameEn": "Creed Absolu Aventus",
+      "thin": true
+    },
+    {
+      "id": "creed-aventus-for-her",
+      "nameFa": "کرید اونتوس فور هر",
+      "nameEn": "Creed Aventus for Her",
+      "thin": true
+    },
+    {
+      "id": "creed-centaurus",
+      "nameFa": "کرید سنتورس",
+      "nameEn": "Creed Centaurus",
+      "thin": true
+    },
+    {
+      "id": "creed-queen-of-silk",
+      "nameFa": "کرید کوئین آف سیلک",
+      "nameEn": "Creed Queen of Silk",
+      "thin": true
+    },
+    {
+      "id": "creed-royal-oud",
+      "nameFa": "کرید رویال عود",
+      "nameEn": "Creed Royal Oud",
+      "thin": true
+    },
+    {
+      "id": "creed-wind-flowers",
+      "nameFa": "کرید ویند فلاورز",
+      "nameEn": "Creed Wind Flowers",
+      "thin": true
+    },
+    {
+      "id": "dior-dior-homme-intense",
+      "nameFa": "دیور هوم اینتنس",
+      "nameEn": "Dior Dior Homme Intense",
+      "thin": true
+    },
+    {
+      "id": "dior-dior-homme-sport",
+      "nameFa": "دیور هوم اسپرت",
+      "nameEn": "Dior Dior Homme Sport",
+      "thin": true
+    },
+    {
+      "id": "dior-gris",
+      "nameFa": "دیور گریس دیور",
+      "nameEn": "Dior Gris",
+      "thin": true
+    },
+    {
+      "id": "dior-oud-ispahan",
+      "nameFa": "دیور عود اسپهان",
+      "nameEn": "Dior Oud Ispahan",
+      "thin": true
+    },
+    {
+      "id": "dior-oud-rosewood",
+      "nameFa": "دیور عود رز وود",
+      "nameEn": "Dior Oud Rosewood",
+      "thin": true
+    },
+    {
+      "id": "dior-purple-oud",
+      "nameFa": "دیور پرپل عود",
+      "nameEn": "Dior Purple Oud",
+      "thin": true
+    },
+    {
+      "id": "dior-sauvage-elixir",
+      "nameFa": "دیور ساواج الکسیر",
+      "nameEn": "Dior Sauvage Elixir",
+      "thin": true
+    },
+    {
+      "id": "dior-sauvage-parfum",
+      "nameFa": "دیور ساواج پارفوم",
+      "nameEn": "Dior Sauvage Parfum",
+      "thin": true
+    },
+    {
+      "id": "dior-tobacolor",
+      "nameFa": "دیور توباکالر",
+      "nameEn": "Dior Tobacolor",
+      "thin": true
+    },
+    {
+      "id": "dolce-gabbana-devotion",
+      "nameFa": "دولچه گابانا دوشن",
+      "nameEn": "Dolce&Gabbana Devotion",
+      "thin": true
+    },
+    {
+      "id": "dolce-gabbana-k",
+      "nameFa": "دولچه گابانا کی",
+      "nameEn": "Dolce&Gabbana K",
+      "thin": true
+    },
+    {
+      "id": "dolce-gabbana-light-blue-forever",
+      "nameFa": "دولچه گابانا لایت بلو فور اور",
+      "nameEn": "Dolce&Gabbana Light Blue Forever",
+      "thin": true
+    },
+    {
+      "id": "elie-saab-le-parfum-royal",
+      "nameFa": "الی ساب له پارفوم رویال",
+      "nameEn": "Elie Saab Le Parfum Royal",
+      "thin": true
+    },
+    {
+      "id": "essential-parfums-bois-imperial",
+      "nameFa": "اسنشال پارفومز بویس ایمپریال",
+      "nameEn": "Essential Parfums Bois Impérial",
+      "thin": true
+    },
+    {
+      "id": "ex-nihilo-blue-talisman",
+      "nameFa": "اکس نیهیلو بلو تالیسمان",
+      "nameEn": "Ex Nihilo Blue Talisman",
+      "thin": true
+    },
+    {
+      "id": "ex-nihilo-brompton-immortals",
+      "nameFa": "اکس نیهیلو برومپتون ایمورتالز",
+      "nameEn": "Ex Nihilo Brompton Immortals",
+      "thin": true
+    },
+    {
+      "id": "frederic-malle-portrait-of-a-lady",
+      "nameFa": "فردریک مال پورتریت آف لیدی",
+      "nameEn": "Frederic Malle Portrait Of A Lady",
+      "thin": true
+    },
+    {
+      "id": "frederic-malle-promise",
+      "nameFa": "فردریک مال الوعد",
+      "nameEn": "Frederic Malle Promise",
+      "thin": true
+    },
+    {
+      "id": "giardini-di-toscana-bianco-latte",
+      "nameFa": "جیاردینی دی توسکانا بیانکو لاته",
+      "nameEn": "Giardini di Toscana Bianco Latte",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-acqua-di-gio",
+      "nameFa": "جورجیو آرمانی آکوا دی جیو",
+      "nameEn": "Giorgio Armani Acqua di Giò",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-acqua-di-gio-elixir",
+      "nameFa": "جورجیو آرمانی آکوا دی جیو الکسیر",
+      "nameEn": "Giorgio Armani Acqua di Giò Elixir",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-acqua-di-gio-profondo",
+      "nameFa": "جورجیو آرمانی آکوا دی جیو پروفوندو",
+      "nameEn": "Giorgio Armani Acqua di Giò Profondo",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-acqua-di-gio-profumo",
+      "nameFa": "جورجیو آرمانی آکوا دی جیو پروفومو",
+      "nameEn": "Giorgio Armani Acqua di Giò Profumo",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-code-profumo",
+      "nameFa": "جورجیو آرمانی کد پروفومو",
+      "nameEn": "Giorgio Armani Code Profumo",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-my-way",
+      "nameFa": "جورجیو آرمانی مای وی",
+      "nameEn": "Giorgio Armani My Way",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو",
+      "nameEn": "Giorgio Armani Stronger With You",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-absolutely",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو ابسلوتلی",
+      "nameEn": "Giorgio Armani Stronger With You Absolutely",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-amber",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو امبر",
+      "nameEn": "Giorgio Armani Stronger With You Amber",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-intensely",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو اینتنسلی",
+      "nameEn": "Giorgio Armani Stronger With You Intensely",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-oud",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو عود",
+      "nameEn": "Giorgio Armani Stronger With You Oud",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-parfum",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو پارفوم",
+      "nameEn": "Giorgio Armani Stronger With You Parfum",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-sandalwood",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو صندل وود",
+      "nameEn": "Giorgio Armani Stronger With You Sandalwood",
+      "thin": true
+    },
+    {
+      "id": "giorgio-armani-stronger-with-you-tobacco",
+      "nameFa": "جورجیو آرمانی استرانگر ویت یو توباکو",
+      "nameEn": "Giorgio Armani Stronger With You Tobacco",
+      "thin": true
+    },
+    {
+      "id": "gisada-ambassador-men",
+      "nameFa": "گیسادا امبسادر من",
+      "nameEn": "Gisada Ambassador Men",
+      "thin": true
+    },
+    {
+      "id": "gissah-imperial-valley",
+      "nameFa": "قصه ایمپریال والی",
+      "nameEn": "Gissah Imperial Valley",
+      "thin": true
+    },
+    {
+      "id": "gissah-one-only",
+      "nameFa": "قصه وان اند اونلی",
+      "nameEn": "Gissah One & Only",
+      "thin": true
+    },
+    {
+      "id": "givenchy-ange-ou-demon-le-secret",
+      "nameFa": "جیونچی آنجئو د مون له سکرت",
+      "nameEn": "Givenchy Ange ou Démon Le Secret",
+      "thin": true
+    },
+    {
+      "id": "givenchy-gentleman-reserve-privee",
+      "nameFa": "جیونچی جنتلمن ریزرو پرایو",
+      "nameEn": "Givenchy Gentleman Reserve Privee",
+      "thin": true
+    },
+    {
+      "id": "givenchy-gentleman-society",
+      "nameFa": "جیونچی جنتلمن سوسایتی",
+      "nameEn": "Givenchy Gentleman Society",
+      "thin": true
+    },
+    {
+      "id": "givenchy-l-interdit-rouge",
+      "nameFa": "جیونچی لانتردی روژ",
+      "nameEn": "Givenchy L'Interdit Rouge",
+      "thin": true
+    },
+    {
+      "id": "givenchy-linterdit-tubereuse-noire",
+      "nameFa": "جیونچی له اینتردیت توبرز نویر",
+      "nameEn": "Givenchy L’Interdit Tubereuse Noire",
+      "thin": true
+    },
+    {
+      "id": "goldfield-banks-australia-ingenious-ginger",
+      "nameFa": "گلدفیلد اند بنکس اینجنیوس جینجر",
+      "nameEn": "Goldfield & Banks Australia Ingenious Ginger",
+      "thin": true
+    },
+    {
+      "id": "goldfield-banks-australia-pacific-rock-moss",
+      "nameFa": "گلدفیلد اند بنکس پسیفیک راک مس",
+      "nameEn": "Goldfield & Banks Australia Pacific Rock Moss",
+      "thin": true
+    },
+    {
+      "id": "gritti-duchessa",
+      "nameFa": "گریتی دوچسا",
+      "nameEn": "Gritti Duchessa",
+      "thin": true
+    },
+    {
+      "id": "gucci-bloom",
+      "nameFa": "گوچی بلوم",
+      "nameEn": "Gucci Bloom",
+      "thin": true
+    },
+    {
+      "id": "gucci-bloom-ambrosia-di-fiori",
+      "nameFa": "گوچی بلوم امبروزیا دی فیوری",
+      "nameEn": "Gucci Bloom Ambrosia di Fiori",
+      "thin": true
+    },
+    {
+      "id": "gucci-bloom-profumo-di-fiori",
+      "nameFa": "گوچی بلوم پرفومو دی فیوری",
+      "nameEn": "Gucci Bloom profumo di fiori",
+      "thin": true
+    },
+    {
+      "id": "gucci-flora",
+      "nameFa": "گوچی فلورا",
+      "nameEn": "Gucci Flora",
+      "thin": true
+    },
+    {
+      "id": "gucci-flora-gorgeous-gardenia",
+      "nameFa": "گوچی فلورا گورجس گاردنیا",
+      "nameEn": "Gucci Flora Gorgeous Gardenia",
+      "thin": true
+    },
+    {
+      "id": "gucci-flora-gorgeous-orchid",
+      "nameFa": "گوچی فلورا گورجس ارکید",
+      "nameEn": "Gucci Flora Gorgeous Orchid",
+      "thin": true
+    },
+    {
+      "id": "gucci-guilty-absolute",
+      "nameFa": "گوچی گیلتی ابسولوت",
+      "nameEn": "Gucci Guilty Absolute",
+      "thin": true
+    },
+    {
+      "id": "guerlain-lhomme-ideal-cologne",
+      "nameFa": "گرلن لهوم ایدئال کلن",
+      "nameEn": "Guerlain L’Homme Idéal Cologne",
+      "thin": true
+    },
+    {
+      "id": "guerlain-rose-amira",
+      "nameFa": "گرلن رز امیرا",
+      "nameEn": "Guerlain Rose Amira",
+      "thin": true
+    },
+    {
+      "id": "hermes-terre-d-hermes",
+      "nameFa": "هرمس تق دی هرمس",
+      "nameEn": "Hermès Terre d'Hermès",
+      "thin": true
+    },
+    {
+      "id": "hermes-terre-d-hermes-eau-givree",
+      "nameFa": "هرمس تق د هرمس او گیوری",
+      "nameEn": "Hermès Terre d'Hermès Eau Givrée",
+      "thin": true
+    },
+    {
+      "id": "hermes-terre-d-hermes-intense",
+      "nameFa": "هرمس تق د هرمس اینتنس",
+      "nameEn": "Hermès Terre d'Hermès Intense",
+      "thin": true
+    },
+    {
+      "id": "hermes-twilly-d-hermes",
+      "nameFa": "هرمس تویلی د هرمس",
+      "nameEn": "Hermès Twilly d'Hermès",
+      "thin": true
+    },
+    {
+      "id": "hugo-boss-boss-bottled-absolu",
+      "nameFa": "هوگو باس باتلد ابسولو",
+      "nameEn": "Hugo Boss Boss Bottled Absolu",
+      "thin": true
+    },
+    {
+      "id": "hugo-boss-boss-bottled-unlimited",
+      "nameFa": "هوگو باس باتلد آنلیمیتد",
+      "nameEn": "Hugo Boss Boss Bottled Unlimited",
+      "thin": true
+    },
+    {
+      "id": "hugo-boss-boss-orange",
+      "nameFa": "هوگو باس اورنج",
+      "nameEn": "Hugo Boss Boss Orange",
+      "thin": true
+    },
+    {
+      "id": "initio-parfums-prives-atomic-rose",
+      "nameFa": "اینیشیو اتمیک رز",
+      "nameEn": "Initio Parfums Prives Atomic Rose",
+      "thin": true
+    },
+    {
+      "id": "initio-parfums-prives-oud-for-greatness",
+      "nameFa": "اینیشیو عود فور گریتنس",
+      "nameEn": "Initio Parfums Prives Oud for Greatness",
+      "thin": true
+    },
+    {
+      "id": "initio-parfums-prives-side-effect",
+      "nameFa": "اینیشیو ساید افکت",
+      "nameEn": "Initio Parfums Prives Side Effect",
+      "thin": true
+    },
+    {
+      "id": "issey-miyake-le-sel-d-issey",
+      "nameFa": "ایسی میاکه له سل د ایسی",
+      "nameEn": "Issey Miyake Le Sel d'Issey",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-divine",
+      "nameFa": "ژان پل گوتیه دیواین",
+      "nameEn": "Jean Paul Gaultier Divine",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-le-beau-paradise-garden",
+      "nameFa": "ژان پل گوتیه له بو پارادایس گاردن",
+      "nameEn": "Jean Paul Gaultier Le Beau Paradise Garden",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-le-male",
+      "nameFa": "ژان پل گوتیه له میل",
+      "nameEn": "Jean Paul Gaultier Le Male",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-le-male-elixir",
+      "nameFa": "ژان پل گوتیه له میل الکسیر",
+      "nameEn": "Jean Paul Gaultier Le Male Elixir",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-le-male-elixir-absolu",
+      "nameFa": "ژان پل گوتیه له میل الکسیر ابسولو",
+      "nameEn": "Jean Paul Gaultier Le Male Elixir Absolu",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-le-male-le-parfum",
+      "nameFa": "ژان پل گوتیه له میل له پرفیوم",
+      "nameEn": "Jean Paul Gaultier Le Male Le Parfum",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-scandal-pour-homme",
+      "nameFa": "ژان پل گوتیه اسکندال پور هوم",
+      "nameEn": "Jean Paul Gaultier Scandal Pour Homme",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-so-scandal",
+      "nameFa": "ژان پل گوتیه سو اسکندال",
+      "nameEn": "Jean Paul Gaultier So Scandal!",
+      "thin": true
+    },
+    {
+      "id": "jean-paul-gaultier-ultra-male",
+      "nameFa": "ژان پل گوتیه اولترا میل",
+      "nameEn": "Jean Paul Gaultier Ultra Male",
+      "thin": true
+    },
+    {
+      "id": "kayali-fragrances-eden-juicy-apple-01",
+      "nameFa": "کایالی ایدن جویسی اپل",
+      "nameEn": "Kayali Fragrances Eden Juicy Apple | 01",
+      "thin": true
+    },
+    {
+      "id": "kayali-fragrances-vanilla-28",
+      "nameFa": "کایالی وانیلا ۲۸",
+      "nameEn": "Kayali Fragrances Vanilla | 28",
+      "thin": true
+    },
+    {
+      "id": "kayali-fragrances-yum-boujee-marshmallow-81",
+      "nameFa": "کایالی یام بوجی مارشمالو 81",
+      "nameEn": "Kayali Fragrances Yum Boujee Marshmallow | 81",
+      "thin": true
+    },
+    {
+      "id": "kayali-fragrances-yum-pistachio-gelato-33",
+      "nameFa": "کایالی یام پستچیو ژلاتو",
+      "nameEn": "Kayali Fragrances Yum Pistachio Gelato | 33",
+      "thin": true
+    },
+    {
+      "id": "lalique-encre-noire",
+      "nameFa": "لالیک انکر نویر",
+      "nameEn": "Lalique Encre Noire",
+      "thin": true
+    },
+    {
+      "id": "lancome-la-vie-est-belle",
+      "nameFa": "لانکوم لا ویه است بله",
+      "nameEn": "Lancôme La Vie Est Belle",
+      "thin": true
+    },
+    {
+      "id": "lancome-oud-bouquet",
+      "nameFa": "لانکوم عود باکت",
+      "nameEn": "Lancôme Oud Bouquet",
+      "thin": true
+    },
+    {
+      "id": "lanvin-eclat-d-arpege",
+      "nameFa": "لانوین اکلت دی آرپج",
+      "nameEn": "Lanvin Éclat d'Arpège",
+      "thin": true
+    },
+    {
+      "id": "lanvin-marry-me",
+      "nameFa": "لانوین مری می",
+      "nameEn": "Lanvin Marry Me",
+      "thin": true
+    },
+    {
+      "id": "les-liquides-imaginaires-blanche-bete",
+      "nameFa": "له لیکوئید ایمجینر بلانچ بته",
+      "nameEn": "Les Liquides Imaginaires Blanche Bête",
+      "thin": true
+    },
+    {
+      "id": "lorenzo-pazzaglia-un-gria",
+      "nameFa": "لورنزو پاتزالیا آن گرایا",
+      "nameEn": "Lorenzo Pazzaglia Un Gria",
+      "thin": true
+    },
+    {
+      "id": "lorenzo-pazzaglia-van-py-rhum",
+      "nameFa": "لورنزو پاتزالیا ون پای روم",
+      "nameEn": "Lorenzo Pazzaglia Van Py Rhum",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-afternoon-swim",
+      "nameFa": "لویی ویتون افترنون سوییم",
+      "nameEn": "Louis Vuitton Afternoon Swim",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-imagination",
+      "nameFa": "لویی ویتون ایمجینیشن",
+      "nameEn": "Louis Vuitton Imagination",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-matiere-noire",
+      "nameFa": "لویی ویتون متیر نویر",
+      "nameEn": "Louis Vuitton Matière Noire",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-nouveau-monde",
+      "nameFa": "لویی ویتون نوویو موند",
+      "nameEn": "Louis Vuitton Nouveau Monde",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-ombre-nomade",
+      "nameFa": "لویی ویتون امبر نومد",
+      "nameEn": "Louis Vuitton Ombre Nomade",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-pacific-chill",
+      "nameFa": "لویی ویتون پسفیک چیل",
+      "nameEn": "Louis Vuitton Pacific Chill",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-pur-oud",
+      "nameFa": "لویی ویتون پیور عود",
+      "nameEn": "Louis Vuitton Pur Oud",
+      "thin": true
+    },
+    {
+      "id": "louis-vuitton-stellar-times",
+      "nameFa": "لویی ویتون استیلار تایمز",
+      "nameEn": "Louis Vuitton Stellar Times",
+      "thin": true
+    },
+    {
+      "id": "maison-crivelli-cuir-infrarouge",
+      "nameFa": "میسون کریولی کویر اینفراروژ",
+      "nameEn": "Maison Crivelli Cuir InfraRouge",
+      "thin": true
+    },
+    {
+      "id": "maison-crivelli-oud-maracuja",
+      "nameFa": "میسون کریولی عود ماراکوجا",
+      "nameEn": "Maison Crivelli Oud Maracujá",
+      "thin": true
+    },
+    {
+      "id": "maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum",
+      "nameFa": "میزون فرانسیس کرکجان باکارات رژ 540 اکستریت",
+      "nameEn": "Maison Francis Kurkdjian Baccarat Rouge 540 Extrait de Parfum",
+      "thin": true
+    },
+    {
+      "id": "maison-martin-margiela-never-ending-summer",
+      "nameFa": "میزون مارتین مارژیلا نِوِر اندینگ سامر",
+      "nameEn": "Maison Martin Margiela Never ending Summer",
+      "thin": true
+    },
+    {
+      "id": "mancera-amore-caffe",
+      "nameFa": "مانسرا آمور کافه",
+      "nameEn": "Mancera Amore Caffè",
+      "thin": true
+    },
+    {
+      "id": "mancera-black-prestigium",
+      "nameFa": "مانسرا بلک پرستیجیوم",
+      "nameEn": "Mancera Black Prestigium",
+      "thin": true
+    },
+    {
+      "id": "mancera-coco-vanille",
+      "nameFa": "مانسرا کوکو وانیل",
+      "nameEn": "Mancera Coco Vanille",
+      "thin": true
+    },
+    {
+      "id": "mancera-instant-crush",
+      "nameFa": "مانسرا اینستنت کراش",
+      "nameEn": "Mancera Instant Crush",
+      "thin": true
+    },
+    {
+      "id": "mancera-vanille-exclusive",
+      "nameFa": "مانسرا وانیل اکسکلوسیو",
+      "nameEn": "Mancera Vanille Exclusive",
+      "thin": true
+    },
+    {
+      "id": "marc-antoine-barrois-ganymede",
+      "nameFa": "مارک آنتوان بارووا گانیمید",
+      "nameEn": "Marc-Antoine Barrois Ganymede",
+      "thin": true
+    },
+    {
+      "id": "marc-antoine-barrois-tilia",
+      "nameFa": "مارک آنتوان بارووا تیلیا",
+      "nameEn": "Marc-Antoine Barrois Tilia",
+      "thin": true
+    },
+    {
+      "id": "marc-jacobs-perfect",
+      "nameFa": "مارک جاکوبز پرفکت",
+      "nameEn": "Marc Jacobs Perfect",
+      "thin": true
+    },
+    {
+      "id": "marc-jacobs-perfect-intense",
+      "nameFa": "مارک جاکوبز پرفکت اینتنس",
+      "nameEn": "Marc Jacobs Perfect Intense",
+      "thin": true
+    },
+    {
+      "id": "matiere-premiere-falcon-leather",
+      "nameFa": "متیر پریمیر فالکن لدر",
+      "nameEn": "Matiere Premiere Falcon Leather",
+      "thin": true
+    },
+    {
+      "id": "memo-paris-iberian-leather",
+      "nameFa": "ممو پاریس ایبرین لدر",
+      "nameEn": "Memo Paris Iberian Leather",
+      "thin": true
+    },
+    {
+      "id": "memo-paris-italian-leather",
+      "nameFa": "ممو پاریس ایتالین لدر",
+      "nameEn": "Memo Paris Italian Leather",
+      "thin": true
+    },
+    {
+      "id": "memo-paris-marfa",
+      "nameFa": "ممو پاریس مارفا",
+      "nameEn": "Memo Paris Marfa",
+      "thin": true
+    },
+    {
+      "id": "memo-paris-russian-leather",
+      "nameFa": "ممو پاریس روسین لدر",
+      "nameEn": "Memo Paris Russian Leather",
+      "thin": true
+    },
+    {
+      "id": "montale-arabians-tonka",
+      "nameFa": "مونتال عربینز تونکا",
+      "nameEn": "Montale Arabians Tonka",
+      "thin": true
+    },
+    {
+      "id": "montblanc-explorer-ultra-blue",
+      "nameFa": "مون بلان اکسپلورر اولترا بلو",
+      "nameEn": "Montblanc Explorer Ultra Blue",
+      "thin": true
+    },
+    {
+      "id": "mugler-a-men-pure-havane",
+      "nameFa": "موگلر ای من پیور هاوانا",
+      "nameEn": "Mugler A*Men Pure Havane",
+      "thin": true
+    },
+    {
+      "id": "mugler-angel-nova",
+      "nameFa": "موگلر آنجل نوا",
+      "nameEn": "Mugler Angel Nova",
+      "thin": true
+    },
+    {
+      "id": "narciso-rodriguez-musc-noir-rose-for-her",
+      "nameFa": "نارسیسو رودریگز ماسک نویر فور هر",
+      "nameEn": "Narciso Rodriguez Musc Noir Rose For Her",
+      "thin": true
+    },
+    {
+      "id": "narciso-rodriguez-narciso-ambree",
+      "nameFa": "نارسیسو رودریگز نارسیسو امبر",
+      "nameEn": "Narciso Rodriguez Narciso Ambree",
+      "thin": true
+    },
+    {
+      "id": "nasomatto-black-afgano",
+      "nameFa": "ناسوماتو بلک افغان",
+      "nameEn": "Nasomatto Black Afgano",
+      "thin": true
+    },
+    {
+      "id": "nina-ricci-rose-extase",
+      "nameFa": "نینا ریچی رز اکستاز",
+      "nameEn": "Nina Ricci Rose Extase",
+      "thin": true
+    },
+    {
+      "id": "nishane-hacivat",
+      "nameFa": "نیشانه حاجیوات",
+      "nameEn": "Nishane Hacivat",
+      "thin": true
+    },
+    {
+      "id": "none-khamrah",
+      "nameFa": "لطافه خمره",
+      "nameEn": "None Khamrah",
+      "thin": true
+    },
+    {
+      "id": "none-khamrah-qahwa",
+      "nameFa": "لطافه خمره قهوه",
+      "nameEn": "None Khamrah Qahwa",
+      "thin": true
+    },
+    {
+      "id": "ormonde-jayne-montabaco",
+      "nameFa": "اورموند جین مونتاباکو",
+      "nameEn": "Ormonde Jayne Montabaco",
+      "thin": true
+    },
+    {
+      "id": "orto-parisi-megamare",
+      "nameFa": "اورتو پاریسی مگاماره",
+      "nameEn": "Orto Parisi Megamare",
+      "thin": true
+    },
+    {
+      "id": "orto-parisi-terroni",
+      "nameFa": "اورتو پاریسی ترونی",
+      "nameEn": "Orto Parisi Terroni",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-carlisle",
+      "nameFa": "پارفومز د مارلی کارلایل",
+      "nameEn": "Parfums de Marly Carlisle",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-delina",
+      "nameFa": "پارفومز د مارلی دلینا",
+      "nameEn": "Parfums de Marly Delina",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-greenley",
+      "nameFa": "پارفومز د مارلی گرینلی",
+      "nameEn": "Parfums de Marly Greenley",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-haltane",
+      "nameFa": "پارفومز د مارلی هالتان",
+      "nameEn": "Parfums de Marly Haltane",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-herod",
+      "nameFa": "پارفومز د مارلی هرود",
+      "nameEn": "Parfums de Marly Herod",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-kalan",
+      "nameFa": "پارفومز د مارلی کالان",
+      "nameEn": "Parfums de Marly Kalan",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-oriana",
+      "nameFa": "پارفومز د مارلی اوریانا",
+      "nameEn": "Parfums de Marly Oriana",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-pegasus",
+      "nameFa": "پارفومز د مارلی پگاسوس",
+      "nameEn": "Parfums de Marly Pegasus",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-pegasus-exclusif",
+      "nameFa": "پارفومز د مارلی پگاسوس اکسکلوسیف",
+      "nameEn": "Parfums de Marly Pegasus Exclusif",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-percival",
+      "nameFa": "پارفومز د مارلی پرسیوال",
+      "nameEn": "Parfums de Marly Percival",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-sedley",
+      "nameFa": "پارفومز د مارلی سدلی",
+      "nameEn": "Parfums de Marly Sedley",
+      "thin": true
+    },
+    {
+      "id": "parfums-de-marly-valaya",
+      "nameFa": "پارفومز د مارلی والایا",
+      "nameEn": "Parfums de Marly Valaya",
+      "thin": true
+    },
+    {
+      "id": "paris-corner-date-caramel",
+      "nameFa": "پاریس کرنر دیت کارامل",
+      "nameEn": "Paris Corner Date Caramel",
+      "thin": true
+    },
+    {
+      "id": "penhaligon-s-a-kiss-of-bliss",
+      "nameFa": "پنهالیگونز ا کیس آف بلیس",
+      "nameEn": "Penhaligon's A Kiss Of Bliss",
+      "thin": true
+    },
+    {
+      "id": "prada-paradoxe",
+      "nameFa": "پرادا پارادوکس",
+      "nameEn": "Prada Paradoxe",
+      "thin": true
+    },
+    {
+      "id": "rabanne-1-million-elixir",
+      "nameFa": "پاکو رابان وان میلیون الکسیر",
+      "nameEn": "Rabanne 1 Million Elixir",
+      "thin": true
+    },
+    {
+      "id": "rabanne-1-million-parfum",
+      "nameFa": "پاکو رابان وان میلیون پارفوم",
+      "nameEn": "Rabanne 1 Million Parfum",
+      "thin": true
+    },
+    {
+      "id": "rabanne-invictus-aqua",
+      "nameFa": "پاکو رابان اینوکتوس آکوا",
+      "nameEn": "Rabanne Invictus Aqua",
+      "thin": true
+    },
+    {
+      "id": "rabanne-invictus-legend",
+      "nameFa": "پاکو رابان اینوکتوس لجند",
+      "nameEn": "Rabanne Invictus Legend",
+      "thin": true
+    },
+    {
+      "id": "rabanne-million-gold-for-her",
+      "nameFa": "پاکو رابان میلیون گلد زنانه",
+      "nameEn": "Rabanne Million Gold For Her",
+      "thin": true
+    },
+    {
+      "id": "rabanne-olympea",
+      "nameFa": "پاکو رابان المپیا",
+      "nameEn": "Rabanne Olympéa",
+      "thin": true
+    },
+    {
+      "id": "rabanne-olympea-absolu",
+      "nameFa": "پاکو رابان المپیا ابسولو",
+      "nameEn": "Rabanne Olympéa Absolu",
+      "thin": true
+    },
+    {
+      "id": "rabanne-phantom",
+      "nameFa": "پاکو رابان فانتوم",
+      "nameEn": "Rabanne Phantom",
+      "thin": true
+    },
+    {
+      "id": "rayhaan-pacific-aura",
+      "nameFa": "ریحان پاسیفیک آورا",
+      "nameEn": "Rayhaan Pacific Aura",
+      "thin": true
+    },
+    {
+      "id": "roja-parfums-elysium",
+      "nameFa": "روژا الیزیوم",
+      "nameEn": "Roja Parfums Elysium",
+      "thin": true
+    },
+    {
+      "id": "room-1015-wavechild",
+      "nameFa": "روم ۱۰۱۵ ویو چایلد",
+      "nameEn": "Room 1015 Wavechild",
+      "thin": true
+    },
+    {
+      "id": "shiseido-zen",
+      "nameFa": "شیسیدو زن",
+      "nameEn": "Shiseido Zen",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-god-of-fire",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ گاد آف فایر",
+      "nameEn": "Stéphane Humbert Lucas 777 God of Fire",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-harrods-ruby-naga",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ هارودز رابی ناگا",
+      "nameEn": "Stéphane Humbert Lucas 777 Harrods Ruby Naga",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-pink-boa",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ پینک بوا",
+      "nameEn": "Stéphane Humbert Lucas 777 Pink Boa",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-sand-dance",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ سند دنس",
+      "nameEn": "Stéphane Humbert Lucas 777 Sand Dance",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-sea-my-love",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ سی مای لاو",
+      "nameEn": "Stéphane Humbert Lucas 777 Sea My Love",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-soleil-de-jeddah-mango-kiss",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ سولیل د جده مانگو کیس",
+      "nameEn": "Stéphane Humbert Lucas 777 Soleil de Jeddah Mango Kiss",
+      "thin": true
+    },
+    {
+      "id": "stephane-humbert-lucas-777-venom-incarnat",
+      "nameFa": "استفان هامبرت لوکاس ۷۷۷ ونوم اینکارنت",
+      "nameEn": "Stéphane Humbert Lucas 777 Venom Incarnat",
+      "thin": true
+    },
+    {
+      "id": "thameen-carved-oud",
+      "nameFa": "تامین کارود عود",
+      "nameEn": "Thameen Carved Oud",
+      "thin": true
+    },
+    {
+      "id": "thameen-riviere",
+      "nameFa": "تامین ریویر",
+      "nameEn": "Thameen Riviere",
+      "thin": true
+    },
+    {
+      "id": "tiziana-terenzi-andromeda",
+      "nameFa": "تیزیانا ترنزی اندرومدا",
+      "nameEn": "Tiziana Terenzi Andromeda",
+      "thin": true
+    },
+    {
+      "id": "tiziana-terenzi-gumin",
+      "nameFa": "تیزیانا ترنزی گامین",
+      "nameEn": "Tiziana Terenzi Gumin",
+      "thin": true
+    },
+    {
+      "id": "tiziana-terenzi-kirke",
+      "nameFa": "تیزیانا ترنزی کیرکه",
+      "nameEn": "Tiziana Terenzi Kirke",
+      "thin": true
+    },
+    {
+      "id": "tiziana-terenzi-orza",
+      "nameFa": "تیزیانا ترنزی اورزا",
+      "nameEn": "Tiziana Terenzi Orza",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-amber-absolute",
+      "nameFa": "تام فورد امبر ابسولوت",
+      "nameEn": "Tom Ford Amber Absolute",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-bitter-peach",
+      "nameFa": "تام فورد بیتر پیچ",
+      "nameEn": "Tom Ford Bitter Peach",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-black-orchid",
+      "nameFa": "تام فورد بلک ارکید",
+      "nameEn": "Tom Ford Black Orchid",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-cafe-rose",
+      "nameFa": "تام فورد کافه رز",
+      "nameEn": "Tom Ford Cafe Rose",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-ebene-fume",
+      "nameFa": "تام فورد ابنه فیوم",
+      "nameEn": "Tom Ford Ebene Fume",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-electric-cherry",
+      "nameFa": "تام فورد الکتریک چری",
+      "nameEn": "Tom Ford Electric Cherry",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-fucking-fabulous",
+      "nameFa": "تام فورد فاکینگ فبیلوس",
+      "nameEn": "Tom Ford Fucking Fabulous",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-noir-de-noir",
+      "nameFa": "تام فورد نویر د نویر",
+      "nameEn": "Tom Ford Noir de Noir",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-noir-extreme",
+      "nameFa": "تام فورد نویر اکستریم",
+      "nameEn": "Tom Ford Noir Extreme",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-oud-wood",
+      "nameFa": "تام فورد عود وود",
+      "nameEn": "Tom Ford Oud Wood",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-tobacco-vanille",
+      "nameFa": "تام فورد توباکو وانیل",
+      "nameEn": "Tom Ford Tobacco Vanille",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-tuscan-leather",
+      "nameFa": "تام فورد توسکان لدر",
+      "nameEn": "Tom Ford Tuscan Leather",
+      "thin": true
+    },
+    {
+      "id": "tom-ford-vanilla-sex",
+      "nameFa": "تام فورد وانیلا سکس",
+      "nameEn": "Tom Ford Vanilla Sex",
+      "thin": true
+    },
+    {
+      "id": "valentino-born-in-roma-green-stravaganza",
+      "nameFa": "والنتینو بورن این روما گرین استراوگانزا",
+      "nameEn": "Valentino Born in Roma Green Stravaganza",
+      "thin": true
+    },
+    {
+      "id": "valentino-born-in-roma-intense",
+      "nameFa": "والنتینو بورن این روما اینتنس",
+      "nameEn": "Valentino Born In Roma Intense",
+      "thin": true
+    },
+    {
+      "id": "valentino-born-in-roma-the-gold-donna",
+      "nameFa": "والنتینو بورن این روما د گولد دونا",
+      "nameEn": "Valentino Born in Roma the Gold Donna",
+      "thin": true
+    },
+    {
+      "id": "versace-crystal-noir",
+      "nameFa": "ورساچه کریستال نویر",
+      "nameEn": "Versace Crystal Noir",
+      "thin": true
+    },
+    {
+      "id": "versace-dylan-blue",
+      "nameFa": "ورساچه دایلان بلو",
+      "nameEn": "Versace Dylan Blue",
+      "thin": true
+    },
+    {
+      "id": "versace-eros-najim",
+      "nameFa": "ورساچه اروس نجیم",
+      "nameEn": "Versace Eros Najim",
+      "thin": true
+    },
+    {
+      "id": "versace-man-eau-fraiche",
+      "nameFa": "ورساچه من او فرش",
+      "nameEn": "Versace Man Eau Fraiche",
+      "thin": true
+    },
+    {
+      "id": "victoria-s-secret-bombshell",
+      "nameFa": "ویکتوریا سکرت بامبشل",
+      "nameEn": "Victoria's Secret Bombshell",
+      "thin": true
+    },
+    {
+      "id": "victoria-s-secret-first-love",
+      "nameFa": "ویکتوریا سکرت فرست لاو",
+      "nameEn": "Victoria's Secret First Love",
+      "thin": true
+    },
+    {
+      "id": "victoria-s-secret-love",
+      "nameFa": "ویکتوریا سکرت لاو",
+      "nameEn": "Victoria's Secret Love",
+      "thin": true
+    },
+    {
+      "id": "victoria-s-secret-very-sexy",
+      "nameFa": "ویکتوریا سکرت وری سکسی",
+      "nameEn": "Victoria's Secret Very Sexy",
+      "thin": true
+    },
+    {
+      "id": "victoria-s-secret-very-sexy-sea",
+      "nameFa": "ویکتوریا سکرت وری سکسی سی",
+      "nameEn": "Victoria's Secret Very Sexy Sea",
+      "thin": true
+    },
+    {
+      "id": "viktor-rolf-flowerbomb",
+      "nameFa": "ویکتور اند رولف فلاور بمب",
+      "nameEn": "Viktor&Rolf Flowerbomb",
+      "thin": true
+    },
+    {
+      "id": "viktor-rolf-flowerbomb-ruby-orchid",
+      "nameFa": "ویکتور اند رولف فلاور بمب رابی ارکید",
+      "nameEn": "Viktor&Rolf Flowerbomb Ruby Orchid",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-40-knots",
+      "nameFa": "زرجوف فورتی ناتس",
+      "nameEn": "Xerjoff 40 Knots",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-accento",
+      "nameFa": "زرجوف اکسنتو",
+      "nameEn": "Xerjoff Accento",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-alexandria-ii",
+      "nameFa": "زرجوف الکساندریا 2",
+      "nameEn": "Xerjoff Alexandria II",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-bouquet-ideale",
+      "nameFa": "زرجوف بوکت آیدیل",
+      "nameEn": "Xerjoff Bouquet Ideale",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-elle-anniversary",
+      "nameFa": "زرجوف ال انیورسری",
+      "nameEn": "Xerjoff Elle Anniversary",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-opera",
+      "nameFa": "زرجوف اوپرا",
+      "nameEn": "Xerjoff Opera",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-torino21",
+      "nameFa": "زرجوف تورینو ۲۱",
+      "nameEn": "Xerjoff Torino21",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-torino24",
+      "nameFa": "زرجوف تورینو ۲۴",
+      "nameEn": "Xerjoff Torino24",
+      "thin": true
+    },
+    {
+      "id": "xerjoff-xj-1861-naxos",
+      "nameFa": "زرجوف ناکسوس",
+      "nameEn": "Xerjoff XJ 1861 Naxos",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-babycat",
+      "nameFa": "ایو سن لورن بیبی کت",
+      "nameEn": "Yves Saint Laurent Babycat",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-black-opium-le-parfum",
+      "nameFa": "ایو سن لورن بلک اپیوم له پارفوم",
+      "nameEn": "Yves Saint Laurent Black Opium Le Parfum",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-black-opium-over-red",
+      "nameFa": "ایو سن لورن بلک اپیوم اور رد",
+      "nameEn": "Yves Saint Laurent Black Opium Over Red",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-l-homme-ultime",
+      "nameFa": "ایو سن لورن لهوم اولتایم",
+      "nameEn": "Yves Saint Laurent L'Homme Ultime",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-libre",
+      "nameFa": "ایو سن لورن لیبر",
+      "nameEn": "Yves Saint Laurent Libre",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-myslf",
+      "nameFa": "ایو سن لورن مای سلف",
+      "nameEn": "Yves Saint Laurent MYSLF",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-myslf-labsolu",
+      "nameFa": "ایو سن لورن مایسلف ابسولو",
+      "nameEn": "Yves Saint Laurent MYSLF L’Absolu",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-myslf-le-parfum",
+      "nameFa": "ایو سن لورن مایسلف له پارفوم",
+      "nameEn": "Yves Saint Laurent MYSLF Le Parfum",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-tuxedo",
+      "nameFa": "ایو سن لورن تاکسیدو",
+      "nameEn": "Yves Saint Laurent Tuxedo",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-y-elixir",
+      "nameFa": "ایو سن لورن وای الکسیر",
+      "nameEn": "Yves Saint Laurent Y Elixir",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-y-iced-cologne",
+      "nameFa": "ایو سن لورن وای آیسد کلن",
+      "nameEn": "Yves Saint Laurent Y Iced Cologne",
+      "thin": true
+    },
+    {
+      "id": "yves-saint-laurent-y-le-parfum",
+      "nameFa": "ایو سن لورن وای له پارفوم",
+      "nameEn": "Yves Saint Laurent Y Le Parfum",
+      "thin": true
+    },
+    {
+      "id": "zielinski-rozen-black-pepper-amber-neroli",
+      "nameFa": "زیلینسکی اند روزن بلک پپر و امبر، نرولی",
+      "nameEn": "Zielinski & Rozen Black Pepper & Amber, Neroli",
+      "thin": true
+    }
+  ],
+  "bySlug": {
+    "25experience": [
+      {
+        "id": "jean-paul-gaultier-le-male-le-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل له پارفوم",
+        "nameEn": "Jean Paul Gaultier Le Male Le Parfum"
+      }
+    ],
+    "9-pm-elixir": [
+      {
+        "id": "jean-paul-gaultier-le-male-elixir-absolu",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل الکسیر ابسولو",
+        "nameEn": "Jean Paul Gaultier Le Male Elixir Absolu"
+      }
+    ],
+    "9-pm-rebel": [
+      {
+        "id": "creed-absolu-aventus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید اونتوس ابسولو",
+        "nameEn": "Creed Absolu Aventus"
+      },
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میزون فرانسیس کرکجان باکارات رژ ۵۴۰",
+        "nameEn": "Maison Francis Kurkdjian Baccarat Rouge 540"
+      }
+    ],
+    "9am-dive": [
+      {
+        "id": "ysl-y",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      },
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "شنل بلو د شنل",
+        "nameEn": "Chanel Bleu de Chanel"
+      }
+    ],
+    "9am-pour-femme": [
+      {
+        "id": "giorgio-armani-my-way",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "جورجیو آرمانی مای وی",
+        "nameEn": "Giorgio Armani My Way"
+      }
+    ],
+    "9pm": [
+      {
+        "id": "jean-paul-gaultier-ultra-male",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه اولترا میل",
+        "nameEn": "Jean Paul Gaultier Ultra Male"
+      }
+    ],
+    "9pm-night-out": [
+      {
+        "id": "le-beau",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "له بو",
+        "nameEn": "Le Beau"
+      }
+    ],
+    "aether": [
+      {
+        "id": "parfums-de-marly-greenley",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی گرینلی",
+        "nameEn": "Parfums de Marly Greenley"
+      }
+    ],
+    "ajayeb-dubai-portrait": [
+      {
+        "id": "stephane-humbert-lucas-777-soleil-de-jeddah-mango-kiss",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ سولیل د جده مانگو کیس",
+        "nameEn": "Stéphane Humbert Lucas 777 Soleil de Jeddah Mango Kiss"
+      }
+    ],
+    "al-nashama": [
+      {
+        "id": "paragon",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "پاراگون",
+        "nameEn": "Paragon"
+      }
+    ],
+    "al-noor": [
+      {
+        "id": "bdk-parfums-gris-charnel-extrait",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بی‌دی‌کی گریس شارنل اکستریت",
+        "nameEn": "BDK Parfums Gris Charnel Extrait"
+      }
+    ],
+    "al-wisam-day": [
+      {
+        "id": "silver-mountain",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "کرید سیلور مانتین واتر",
+        "nameEn": "Creed Silver Mountain Water"
+      }
+    ],
+    "alive-now": [
+      {
+        "id": "mugler-angel-nova",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "موگلر آنجل نوا",
+        "nameEn": "Mugler Angel Nova"
+      }
+    ],
+    "alpine-homme-sport": [
+      {
+        "id": "chanel-allure-homme-sport",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "شنل الور هوم اسپرت",
+        "nameEn": "Chanel Allure Homme Sport"
+      }
+    ],
+    "amber-arabia-oud-pour-homme": [
+      {
+        "id": "oud-greatness",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "عود فور گریتنس",
+        "nameEn": "Oud for Greatness"
+      }
+    ],
+    "amber-empire": [
+      {
+        "id": "clive-christian-blonde-amber",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "کلایو کریستین بلوند امبر",
+        "nameEn": "Clive Christian Blonde Amber"
+      }
+    ],
+    "amber-neroli": [
+      {
+        "id": "zielinski-rozen-black-pepper-amber-neroli",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زیلینسکی اند روزن بلک پپر و امبر، نرولی",
+        "nameEn": "Zielinski & Rozen Black Pepper & Amber, Neroli"
+      }
+    ],
+    "amber-oud-aqua-dubai": [
+      {
+        "id": "louis-vuitton-imagination",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون ایمجینیشن",
+        "nameEn": "Louis Vuitton Imagination"
+      }
+    ],
+    "amber-oud-dubai-night": [
+      {
+        "id": "montale-arabians-tonka",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مونتال عربینز تونکا",
+        "nameEn": "Montale Arabians Tonka"
+      }
+    ],
+    "amber-oud-future-dubai": [
+      {
+        "id": "xerjoff-torino24",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف تورینو ۲۴",
+        "nameEn": "Xerjoff Torino24"
+      }
+    ],
+    "amber-oud-imagine-dubai": [
+      {
+        "id": "by-kilian-love-don-t-be-shy",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان لاو دونت بی شای",
+        "nameEn": "By Kilian Love Don't Be Shy"
+      }
+    ],
+    "amber-oud-smell-dubai": [
+      {
+        "id": "irish-tweed",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "گرین آیریش توید",
+        "nameEn": "Green Irish Tweed"
+      }
+    ],
+    "amber-oud-tobacco-edition": [
+      {
+        "id": "tom-ford-tobacco-vanille",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد توباکو وانیل",
+        "nameEn": "Tom Ford Tobacco Vanille"
+      }
+    ],
+    "amber-oud-ultra-violet": [
+      {
+        "id": "givenchy-l-interdit-rouge",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جیونچی لانتردی روژ",
+        "nameEn": "Givenchy L'Interdit Rouge"
+      }
+    ],
+    "amberley-pur-oud": [
+      {
+        "id": "louis-vuitton-pur-oud",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون پیور عود",
+        "nameEn": "Louis Vuitton Pur Oud"
+      }
+    ],
+    "ameer-al-oudh-intense-oud": [
+      {
+        "id": "fireplace",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بای د فایرپلیس",
+        "nameEn": "By the Fireplace"
+      }
+    ],
+    "an-equestrian-series-haydan": [
+      {
+        "id": "parfums-de-marly-haltane",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی هالتان",
+        "nameEn": "Parfums de Marly Haltane"
+      }
+    ],
+    "ana-abiyedh": [
+      {
+        "id": "erba-pura",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "زرجوف اربا پورا",
+        "nameEn": "Xerjoff Erba Pura"
+      }
+    ],
+    "ana-abiyedh-rouge": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "باکارات رژ",
+        "nameEn": "Baccarat Rouge 540"
+      }
+    ],
+    "ana-abiyedh-scarlet": [
+      {
+        "id": "christian-louboutin-fetiche-la-rose",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کریستین لوبوتین فتیش لا رز",
+        "nameEn": "Christian Louboutin Fetiche La Rose"
+      }
+    ],
+    "anarch": [
+      {
+        "id": "tiziana-terenzi-andromeda",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تیزیانا ترنزی اندرومدا",
+        "nameEn": "Tiziana Terenzi Andromeda"
+      }
+    ],
+    "anchor-black": [
+      {
+        "id": "lalique-encre-noire",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لالیک انکر نویر",
+        "nameEn": "Lalique Encre Noire"
+      }
+    ],
+    "angham": [
+      {
+        "id": "goddess",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "باربری گادس",
+        "nameEn": "Burberry Goddess"
+      }
+    ],
+    "aoud-prestigium": [
+      {
+        "id": "mancera-black-prestigium",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مانسرا بلک پرستیجیوم",
+        "nameEn": "Mancera Black Prestigium"
+      }
+    ],
+    "apex-power": [
+      {
+        "id": "essential-parfums-bois-imperial",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "اسنشال پارفومز بویس ایمپریال",
+        "nameEn": "Essential Parfums Bois Impérial"
+      }
+    ],
+    "aquilo-pour-homme": [
+      {
+        "id": "bvlgari-aqva-pour-homme",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بولگاری آکوا پور هوم",
+        "nameEn": "Bvlgari Aqva Pour Homme"
+      }
+    ],
+    "aristo": [
+      {
+        "id": "goldfield-banks-australia-ingenious-ginger",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گلدفیلد اند بنکس اینجنیوس جینجر",
+        "nameEn": "Goldfield & Banks Australia Ingenious Ginger"
+      }
+    ],
+    "aromatic-rouge": [
+      {
+        "id": "armand-basi-in-red",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آرماند باسی این رد",
+        "nameEn": "Armand Basi In Red"
+      }
+    ],
+    "art-of-arabia-i-pride": [
+      {
+        "id": "louis-vuitton-imagination",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون ایمجینیشن",
+        "nameEn": "Louis Vuitton Imagination"
+      }
+    ],
+    "art-of-arabia-ii-pride": [
+      {
+        "id": "parfums-de-marly-pegasus-exclusif",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی پگاسوس اکسکلوسیف",
+        "nameEn": "Parfums de Marly Pegasus Exclusif"
+      }
+    ],
+    "art-of-arabia-iii-pride": [
+      {
+        "id": "clive-christian-blonde-amber",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کلایو کریستین بلوند امبر",
+        "nameEn": "Clive Christian Blonde Amber"
+      }
+    ],
+    "art-of-nature-i-pride": [
+      {
+        "id": "maison-crivelli-oud-maracuja",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میسون کریولی عود ماراکوجا",
+        "nameEn": "Maison Crivelli Oud Maracujá"
+      }
+    ],
+    "art-of-nature-ii-pride": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی التیر",
+        "nameEn": "Parfums de Marly Althaïr"
+      }
+    ],
+    "artistic-perfumery-cl-01": [
+      {
+        "id": "chanel-coco-mademoiselle",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "شنل کوکومادمازل",
+        "nameEn": "Chanel Coco Mademoiselle"
+      }
+    ],
+    "artistic-perfumery-fk": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میزون فرانسیس کرکجان باکارات رژ",
+        "nameEn": "Maison Francis Kurkdjian Baccarat Rouge 540"
+      }
+    ],
+    "artistic-perfumery-gis-01": [
+      {
+        "id": "gissah-imperial-valley",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "قصه ایمپریال والی",
+        "nameEn": "Gissah Imperial Valley"
+      }
+    ],
+    "artistic-perfumery-gis-02": [
+      {
+        "id": "gissah-one-only",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "قصه وان اند اونلی",
+        "nameEn": "Gissah One & Only"
+      }
+    ],
+    "artistic-perfumery-gj-01": [
+      {
+        "id": "jean-paul-gaultier-ultra-male",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه اولترا میل",
+        "nameEn": "Jean Paul Gaultier Ultra Male"
+      }
+    ],
+    "artistic-perfumery-or": [
+      {
+        "id": "dior-sauvage-elixir",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور ساواج الکسیر",
+        "nameEn": "Dior Sauvage Elixir"
+      }
+    ],
+    "artistic-perfumery-pm-01": [
+      {
+        "id": "parfums-de-marly-delina",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی دلینا",
+        "nameEn": "Parfums de Marly Delina"
+      }
+    ],
+    "artistic-perfumery-pm-02": [
+      {
+        "id": "parfums-de-marly-valaya",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی والایا",
+        "nameEn": "Parfums de Marly Valaya"
+      }
+    ],
+    "artistic-perfumery-sl-01": [
+      {
+        "id": "ysl-y",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای ادوتویلت",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "artistic-perfumery-sl-02": [
+      {
+        "id": "yves-saint-laurent-libre",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن لیبر",
+        "nameEn": "Yves Saint Laurent Libre"
+      }
+    ],
+    "artistic-perfumery-vt": [
+      {
+        "id": "valentino-born-in-roma-intense",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "والنتینو بورن این روما اینتنس",
+        "nameEn": "Valentino Born In Roma Intense"
+      }
+    ],
+    "asad": [
+      {
+        "id": "dior-sauvage-elixir",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "دیور ساواج الکسیر",
+        "nameEn": "Dior Sauvage Elixir"
+      }
+    ],
+    "asad-bourbon": [
+      {
+        "id": "azzaro-the-most-wanted",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "آزارو د موست وانتد",
+        "nameEn": "Azzaro The Most Wanted"
+      }
+    ],
+    "asad-elixir": [
+      {
+        "id": "hugo-boss-boss-bottled-absolu",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "هوگو باس باتلد ابسولو",
+        "nameEn": "Hugo Boss Boss Bottled Absolu"
+      }
+    ],
+    "asad-zanzibar": [
+      {
+        "id": "jean-paul-gaultier-le-male",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل",
+        "nameEn": "Jean Paul Gaultier Le Male"
+      }
+    ],
+    "atheeri": [
+      {
+        "id": "gucci-flora-gorgeous-orchid",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "گوچی فلورا گورجس ارکید",
+        "nameEn": "Gucci Flora Gorgeous Orchid"
+      }
+    ],
+    "athena": [
+      {
+        "id": "goddess",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "گادس",
+        "nameEn": "Goddess"
+      }
+    ],
+    "atlantis": [
+      {
+        "id": "room-1015-wavechild",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "روم ۱۰۱۵ ویو چایلد",
+        "nameEn": "Room 1015 Wavechild"
+      }
+    ],
+    "atlas": [
+      {
+        "id": "orto-parisi-megamare",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اورتو پاریسی مگامار",
+        "nameEn": "Orto Parisi Megamare"
+      }
+    ],
+    "aura-d-eclat": [
+      {
+        "id": "lanvin-eclat-d-arpege",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لانوین اکلت دی آرپج",
+        "nameEn": "Lanvin Éclat d'Arpège"
+      }
+    ],
+    "aura-fresh": [
+      {
+        "id": "versace-man-eau-fraiche",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ورساچه من او فرش",
+        "nameEn": "Versace Man Eau Fraiche"
+      }
+    ],
+    "aura-lattafa": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "باکارات رژ",
+        "nameEn": "Baccarat Rouge 540"
+      }
+    ],
+    "avant": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      }
+    ],
+    "avant-silk": [
+      {
+        "id": "creed-queen-of-silk",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید کویین آف سیلک",
+        "nameEn": "Creed Queen of Silk"
+      }
+    ],
+    "azure-royal": [
+      {
+        "id": "ex-nihilo-blue-talisman",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اکس نیهیلو بلو تالیسمان",
+        "nameEn": "Ex Nihilo Blue Talisman"
+      }
+    ],
+    "b-a-d-femme": [
+      {
+        "id": "carolina-herrera-good-girl",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کارولینا هررا گود گرل",
+        "nameEn": "Carolina Herrera Good Girl"
+      }
+    ],
+    "b-a-d-homme": [
+      {
+        "id": "carolina-herrera-bad-boy",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کارولینا هررا بد بوی",
+        "nameEn": "Carolina Herrera Bad Boy"
+      }
+    ],
+    "bade-e-al-oud-amethyst": [
+      {
+        "id": "initio-parfums-prives-atomic-rose",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اینیشیو اتمیک رز",
+        "nameEn": "Initio Parfums Prives Atomic Rose"
+      }
+    ],
+    "bade-e-al-oud-oud-for-glory": [
+      {
+        "id": "initio-parfums-prives-oud-for-greatness",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اینیشیو عود فور گریتنس",
+        "nameEn": "Initio Parfums Prives Oud for Greatness"
+      }
+    ],
+    "bade-e-al-oud-sublime": [
+      {
+        "id": "kayali-fragrances-eden-juicy-apple-01",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کایالی ایدن جویسی اپل",
+        "nameEn": "Kayali Fragrances Eden Juicy Apple | 01"
+      }
+    ],
+    "baroque-rouge-540": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میزون فرانسیس کرکجان باکارات رژ",
+        "nameEn": "Maison Francis Kurkdjian Baccarat Rouge 540"
+      }
+    ],
+    "baroque-rouge-extrait": [
+      {
+        "id": "maison-francis-kurkdjian-baccarat-rouge-540-extrait-de-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میزون فرانسیس کرکجان باکارات رژ 540 اکستریت",
+        "nameEn": "Maison Francis Kurkdjian Baccarat Rouge 540 Extrait de Parfum"
+      }
+    ],
+    "bayaan": [
+      {
+        "id": "louis-vuitton-ombre-nomade",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون امبر نومد",
+        "nameEn": "Louis Vuitton Ombre Nomade"
+      }
+    ],
+    "berlinetta": [
+      {
+        "id": "byredo-bibliotheque",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بایردو بیبلیوتک",
+        "nameEn": "Byredo Bibliotheque"
+      }
+    ],
+    "bin-shaikh": [
+      {
+        "id": "oud-greatness",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "عود فور گریتنس",
+        "nameEn": "Oud for Greatness"
+      }
+    ],
+    "birds-of-paradise": [
+      {
+        "id": "amouage-guidance-46",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج گایدنس ۴۶",
+        "nameEn": "Amouage Guidance 46"
+      }
+    ],
+    "black-fume": [
+      {
+        "id": "nasomatto-black-afgano",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ناسوماتو بلک افغان",
+        "nameEn": "Nasomatto Black Afgano"
+      },
+      {
+        "id": "tom-ford-fucking-fabulous",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد فاکینگ فبیلوس",
+        "nameEn": "Tom Ford Fucking Fabulous"
+      }
+    ],
+    "black-origami": [
+      {
+        "id": "tom-ford-black-orchid",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد بلک ارکید",
+        "nameEn": "Tom Ford Black Orchid"
+      }
+    ],
+    "blue": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بلو د شنل",
+        "nameEn": "Bleu de Chanel"
+      }
+    ],
+    "blue-by-ahmed": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بلو د شنل",
+        "nameEn": "Bleu de Chanel"
+      }
+    ],
+    "blush-noir": [
+      {
+        "id": "parfums-de-marly-delina",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی دلینا",
+        "nameEn": "Parfums de Marly Delina"
+      }
+    ],
+    "bois-blanc": [
+      {
+        "id": "essential-parfums-bois-imperial",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اسنشال پارفومز بویس ایمپریال",
+        "nameEn": "Essential Parfums Bois Impérial"
+      }
+    ],
+    "bright-peach": [
+      {
+        "id": "tom-ford-bitter-peach",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد بیتر پیچ",
+        "nameEn": "Tom Ford Bitter Peach"
+      }
+    ],
+    "bronze-for-man": [
+      {
+        "id": "hugo-boss-boss-orange",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "هوگو باس اورنج",
+        "nameEn": "Hugo Boss Boss Orange"
+      }
+    ],
+    "brulant-oud": [
+      {
+        "id": "amouage-beloved-man",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "آمواج بیلاود من",
+        "nameEn": "Amouage Beloved Man"
+      }
+    ],
+    "brulee": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "الثیر",
+        "nameEn": "Althair"
+      }
+    ],
+    "bucephalus-x": [
+      {
+        "id": "invictus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اینویکتوس",
+        "nameEn": "Invictus"
+      }
+    ],
+    "bucephalus-xi": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اونتوس",
+        "nameEn": "Aventus"
+      }
+    ],
+    "caballo-pour-homme": [
+      {
+        "id": "bvlgari-tygar",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "بولگاری تایگار",
+        "nameEn": "Bvlgari Tygar"
+      }
+    ],
+    "camille-for-women": [
+      {
+        "id": "guerlain-rose-amira",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "گرلن رز امیرا",
+        "nameEn": "Guerlain Rose Amira"
+      }
+    ],
+    "candid-pour-homme": [
+      {
+        "id": "jean-paul-gaultier-scandal-pour-homme",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه اسکندال پور هوم",
+        "nameEn": "Jean Paul Gaultier Scandal Pour Homme"
+      }
+    ],
+    "carnal-desire-aromatix-x": [
+      {
+        "id": "maison-crivelli-cuir-infrarouge",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میسون کریولی کویر اینفراروژ",
+        "nameEn": "Maison Crivelli Cuir InfraRouge"
+      }
+    ],
+    "cassius": [
+      {
+        "id": "parfums-de-marly-carlisle",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی کارلایل",
+        "nameEn": "Parfums de Marly Carlisle"
+      }
+    ],
+    "chaos-samam": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی التیر",
+        "nameEn": "Parfums de Marly Althaïr"
+      }
+    ],
+    "cherry-bouquet": [
+      {
+        "id": "lost-cherry",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد لاست چری",
+        "nameEn": "Tom Ford Lost Cherry"
+      }
+    ],
+    "chic-velvet-pink-secret": [
+      {
+        "id": "victoria-s-secret-love",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ویکتوریا سکرت لاو",
+        "nameEn": "Victoria's Secret Love"
+      }
+    ],
+    "chic-velvet-vert-secret": [
+      {
+        "id": "victoria-s-secret-first-love",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ویکتوریا سکرت فرست لاو",
+        "nameEn": "Victoria's Secret First Love"
+      }
+    ],
+    "classic-stone": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "الثیر",
+        "nameEn": "Althair"
+      }
+    ],
+    "club-de-nuit-blue-iconic": [
+      {
+        "id": "bleu",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "شنل بلو د شنل",
+        "nameEn": "Chanel Bleu de Chanel"
+      }
+    ],
+    "club-de-nuit-intense": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      }
+    ],
+    "club-de-nuit-intense-man-limited-edition": [
+      {
+        "id": "aventus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      }
+    ],
+    "club-de-nuit-intense-women": [
+      {
+        "id": "tom-ford-noir-de-noir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد نویر د نویر",
+        "nameEn": "Tom Ford Noir de Noir"
+      }
+    ],
+    "club-de-nuit-lionheart-man": [
+      {
+        "id": "jean-paul-gaultier-le-male-elixir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل الکسیر",
+        "nameEn": "Jean Paul Gaultier Le Male Elixir"
+      }
+    ],
+    "club-de-nuit-lionheart-woman": [
+      {
+        "id": "goddess",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "باربری گادس",
+        "nameEn": "Burberry Goddess"
+      }
+    ],
+    "club-de-nuit-milestone": [
+      {
+        "id": "millesime",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "میلسیم امپریال",
+        "nameEn": "Millésime Impérial"
+      }
+    ],
+    "club-de-nuit-oud": [
+      {
+        "id": "erba-pura",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اربا پورا",
+        "nameEn": "Erba Pura"
+      }
+    ],
+    "club-de-nuit-precieux-i": [
+      {
+        "id": "creed-absolu-aventus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید اونتوس ابسولو",
+        "nameEn": "Creed Absolu Aventus"
+      }
+    ],
+    "club-de-nuit-precieux-iv": [
+      {
+        "id": "jean-paul-gaultier-divine",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه دیواین",
+        "nameEn": "Jean Paul Gaultier Divine"
+      }
+    ],
+    "club-de-nuit-sillage": [
+      {
+        "id": "silver-mountain",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "کرید سیلور مانتین واتر",
+        "nameEn": "Creed Silver Mountain Water"
+      }
+    ],
+    "club-de-nuit-untold": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "میسون فرانسیس کرکجان باکارات رژ ۵۴۰",
+        "nameEn": "Maison Francis Kurkdjian Baccarat Rouge 540"
+      }
+    ],
+    "club-de-nuit-urban-elixir": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "ساواج",
+        "nameEn": "Sauvage"
+      }
+    ],
+    "cnidaria-x-absolu": [
+      {
+        "id": "creed-absolu-aventus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید اونتوس ابسولو",
+        "nameEn": "Creed Absolu Aventus"
+      }
+    ],
+    "cnidaria-x-jungle": [
+      {
+        "id": "jean-paul-gaultier-le-beau-paradise-garden",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له بو پارادایس گاردن",
+        "nameEn": "Jean Paul Gaultier Le Beau Paradise Garden"
+      }
+    ],
+    "cnidaria-x-limited-edition": [
+      {
+        "id": "nishane-hacivat",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "نیشانه حاجیوات",
+        "nameEn": "Nishane Hacivat"
+      }
+    ],
+    "connoisseur-man": [
+      {
+        "id": "yves-saint-laurent-y-le-parfum",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای له پارفوم",
+        "nameEn": "Yves Saint Laurent Y Le Parfum"
+      }
+    ],
+    "connoisseur-women": [
+      {
+        "id": "prada-paradoxe",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پرادا پارادوکس",
+        "nameEn": "Prada Paradoxe"
+      }
+    ],
+    "cool-mist": [
+      {
+        "id": "guerlain-lhomme-ideal-cologne",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گرلن لهوم ایدئال کلن",
+        "nameEn": "Guerlain L’Homme Idéal Cologne"
+      }
+    ],
+    "cool-water-for-men": [
+      {
+        "id": "irish-tweed",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "گرین آیریش توید",
+        "nameEn": "Green Irish Tweed"
+      }
+    ],
+    "cool-water-intense": [
+      {
+        "id": "le-beau",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "له بو",
+        "nameEn": "Le Beau"
+      }
+    ],
+    "coral-blush": [
+      {
+        "id": "tom-ford-bitter-peach",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد بیتر پیچ",
+        "nameEn": "Tom Ford Bitter Peach"
+      }
+    ],
+    "couture-noir": [
+      {
+        "id": "aventus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      }
+    ],
+    "cream-velvet": [
+      {
+        "id": "bianco-latte",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بیانکو لاته",
+        "nameEn": "Bianco Latte"
+      }
+    ],
+    "dalal": [
+      {
+        "id": "rabanne-million-gold-for-her",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پاکو رابان میلیون گلد زنانه",
+        "nameEn": "Rabanne Million Gold For Her"
+      }
+    ],
+    "daring-blue-for-life": [
+      {
+        "id": "dolce-gabbana-light-blue-forever",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دولچه گابانا لایت بلو فور اور",
+        "nameEn": "Dolce&Gabbana Light Blue Forever"
+      }
+    ],
+    "dark-aoud": [
+      {
+        "id": "tom-ford-oud-wood",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد عود وود",
+        "nameEn": "Tom Ford Oud Wood"
+      }
+    ],
+    "dark-door-intense": [
+      {
+        "id": "dior-dior-homme-intense",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور هوم اینتنس",
+        "nameEn": "Dior Dior Homme Intense"
+      }
+    ],
+    "dark-door-sport": [
+      {
+        "id": "dior-dior-homme-sport",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور هوم اسپرت",
+        "nameEn": "Dior Dior Homme Sport"
+      }
+    ],
+    "decadent-dream": [
+      {
+        "id": "amouage-guidance",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج گایدنس",
+        "nameEn": "Amouage Guidance"
+      }
+    ],
+    "decadent-wonder": [
+      {
+        "id": "amouage-love-delight",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج لاو دیلایت",
+        "nameEn": "Amouage Love Delight"
+      }
+    ],
+    "delilah-blanc": [
+      {
+        "id": "parfums-de-marly-valaya",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی والایا",
+        "nameEn": "Parfums de Marly Valaya"
+      }
+    ],
+    "delilah-pour-femme": [
+      {
+        "id": "parfums-de-marly-delina",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی دلینا",
+        "nameEn": "Parfums de Marly Delina"
+      }
+    ],
+    "dubai-nights-midnight": [
+      {
+        "id": "yves-saint-laurent-myslf",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن مای سلف",
+        "nameEn": "Yves Saint Laurent MYSLF"
+      }
+    ],
+    "dubai-nights-umbra": [
+      {
+        "id": "rabanne-invictus-aqua",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان اینوکتوس آکوا",
+        "nameEn": "Rabanne Invictus Aqua"
+      }
+    ],
+    "dunescape": [
+      {
+        "id": "ysl-y",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "ebene": [
+      {
+        "id": "yves-saint-laurent-babycat",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن بیبی کت",
+        "nameEn": "Yves Saint Laurent Babycat"
+      }
+    ],
+    "eclair-affair": [
+      {
+        "id": "giardini-di-toscana-bianco-latte",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جیاردینی دی توسکانا بیانکو لاته",
+        "nameEn": "Giardini di Toscana Bianco Latte"
+      }
+    ],
+    "eclaire": [
+      {
+        "id": "bianco-latte",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بیانکو لاته",
+        "nameEn": "Bianco Latte"
+      }
+    ],
+    "eclat-de-lune": [
+      {
+        "id": "givenchy-linterdit-tubereuse-noire",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جیونچی له اینتردیت توبرز نویر",
+        "nameEn": "Givenchy L’Interdit Tubereuse Noire"
+      }
+    ],
+    "effects-of-uniq": [
+      {
+        "id": "yves-saint-laurent-black-opium-le-parfum",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن بلک اپیوم له پارفوم",
+        "nameEn": "Yves Saint Laurent Black Opium Le Parfum"
+      }
+    ],
+    "ego-tigre": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اونتوس",
+        "nameEn": "Aventus"
+      }
+    ],
+    "el-dorado": [
+      {
+        "id": "marc-antoine-barrois-ganymede",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مارک آنتوان بارووا گنیمید",
+        "nameEn": "Marc-Antoine Barrois Ganymede"
+      }
+    ],
+    "emeer": [
+      {
+        "id": "clive-christian-town-country",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کلایو کریستین تاون اند کانتری",
+        "nameEn": "Clive Christian Town & Country"
+      }
+    ],
+    "eminent": [
+      {
+        "id": "xerjoff-alexandria-ii",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف الکساندریا 2",
+        "nameEn": "Xerjoff Alexandria II"
+      }
+    ],
+    "emir-fire-your-desire": [
+      {
+        "id": "angels",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "آنجلز شیر",
+        "nameEn": "Angels' Share"
+      }
+    ],
+    "encode-blue": [
+      {
+        "id": "montblanc-explorer-ultra-blue",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مون بلان اکسپلورر اولترا بلو",
+        "nameEn": "Montblanc Explorer Ultra Blue"
+      }
+    ],
+    "eshal-vanilla": [
+      {
+        "id": "kayali-fragrances-vanilla-28",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کایالی وانیلا ۲۸",
+        "nameEn": "Kayali Fragrances Vanilla | 28"
+      }
+    ],
+    "eternal-touch": [
+      {
+        "id": "tom-ford-tobacco-vanille",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد توباکو وانیل",
+        "nameEn": "Tom Ford Tobacco Vanille"
+      }
+    ],
+    "ethnic-oud": [
+      {
+        "id": "amouage-interlude",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج اینترلود",
+        "nameEn": "Amouage Interlude"
+      }
+    ],
+    "euzonea": [
+      {
+        "id": "calvin-klein-euphoria",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کلوین کلاین ایفوریا",
+        "nameEn": "Calvin Klein Euphoria"
+      }
+    ],
+    "exclusif-oud": [
+      {
+        "id": "carolina-herrera-oud-couture",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کارولینا هررا عود کوتور",
+        "nameEn": "Carolina Herrera Oud Couture"
+      }
+    ],
+    "exclusif-rose": [
+      {
+        "id": "carolina-herrera-burning-rose",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کارولینا هررا برنینگ رز",
+        "nameEn": "Carolina Herrera Burning Rose"
+      }
+    ],
+    "exclusif-saffron": [
+      {
+        "id": "carolina-herrera-saffron-lazuli",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کارولینا هررا سافرون لازولی",
+        "nameEn": "Carolina Herrera Saffron Lazuli"
+      }
+    ],
+    "exclusif-tabac": [
+      {
+        "id": "carolina-herrera-mystery-tobacco",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کارولینا هررا میستری توباکو",
+        "nameEn": "Carolina Herrera Mystery Tobacco"
+      }
+    ],
+    "exotic": [
+      {
+        "id": "erba-pura",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اربا پورا",
+        "nameEn": "Erba Pura"
+      }
+    ],
+    "expose-blanc": [
+      {
+        "id": "hugo-boss-boss-bottled-unlimited",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "هوگو باس باتلد آنلیمیتد",
+        "nameEn": "Hugo Boss Boss Bottled Unlimited"
+      }
+    ],
+    "exquisite-club": [
+      {
+        "id": "givenchy-gentleman-society",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جیونچی جنتلمن سوسایتی",
+        "nameEn": "Givenchy Gentleman Society"
+      }
+    ],
+    "exquisite-prive": [
+      {
+        "id": "givenchy-gentleman-reserve-privee",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جیونچی جنتلمن ریزرو پرایو",
+        "nameEn": "Givenchy Gentleman Reserve Privee"
+      }
+    ],
+    "extra-woods": [
+      {
+        "id": "bvlgari-man-wood-essence",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بولگاری من وود اسنس",
+        "nameEn": "Bvlgari MAN wood essence"
+      }
+    ],
+    "extravagant-lover": [
+      {
+        "id": "valentino-born-in-roma-green-stravaganza",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "والنتینو بورن این روما گرین استراوگانزا",
+        "nameEn": "Valentino Born in Roma Green Stravaganza"
+      }
+    ],
+    "fabulo-intense": [
+      {
+        "id": "tom-ford-fucking-fabulous",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد فاکینگ فابولوس",
+        "nameEn": "Tom Ford Fucking Fabulous"
+      }
+    ],
+    "fahad": [
+      {
+        "id": "yves-saint-laurent-myslf-le-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن مایسلف له پارفوم",
+        "nameEn": "Yves Saint Laurent MYSLF Le Parfum"
+      }
+    ],
+    "fakhar": [
+      {
+        "id": "ysl-y",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "fakhar-gold-extrait": [
+      {
+        "id": "rabanne-1-million-parfum",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پاکو رابان وان میلیون پارفوم",
+        "nameEn": "Rabanne 1 Million Parfum"
+      }
+    ],
+    "fakhar-platin": [
+      {
+        "id": "yves-saint-laurent-y-elixir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای الکسیر",
+        "nameEn": "Yves Saint Laurent Y Elixir"
+      }
+    ],
+    "fierte-luna": [
+      {
+        "id": "xerjoff-xj-1861-naxos",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف ناکسوس",
+        "nameEn": "Xerjoff XJ 1861 Naxos"
+      }
+    ],
+    "fire-on-ice": [
+      {
+        "id": "by-kilian-angels-share-paradis",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "بای کیلیان آنجلز شیر پارادایس",
+        "nameEn": "By Kilian Angels' Share Paradis"
+      }
+    ],
+    "floral-ambrosia": [
+      {
+        "id": "gucci-bloom-ambrosia-di-fiori",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "گوچی بلوم امبروزیا دی فیوری",
+        "nameEn": "Gucci Bloom Ambrosia di Fiori"
+      }
+    ],
+    "floral-bloom": [
+      {
+        "id": "gucci-bloom",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گوچی بلوم",
+        "nameEn": "Gucci Bloom"
+      }
+    ],
+    "floral-profumo": [
+      {
+        "id": "gucci-bloom-profumo-di-fiori",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گوچی بلوم پرفومو دی فیوری",
+        "nameEn": "Gucci Bloom profumo di fiori"
+      }
+    ],
+    "florence": [
+      {
+        "id": "gucci-flora",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گوچی فلورا",
+        "nameEn": "Gucci Flora"
+      }
+    ],
+    "forbidden-fruit-aromatix-x": [
+      {
+        "id": "lorenzo-pazzaglia-un-gria",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لورنزو پاتزالیا آن گرایا",
+        "nameEn": "Lorenzo Pazzaglia Un Gria"
+      }
+    ],
+    "forbidden-love": [
+      {
+        "id": "lost-cherry",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد لاست چری",
+        "nameEn": "Tom Ford Lost Cherry"
+      }
+    ],
+    "freeze": [
+      {
+        "id": "yves-saint-laurent-y-iced-cologne",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای آیسد کلن",
+        "nameEn": "Yves Saint Laurent Y Iced Cologne"
+      }
+    ],
+    "frostbite-aromatix-x": [
+      {
+        "id": "gisada-ambassador-men",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گیسادا امبسادر من",
+        "nameEn": "Gisada Ambassador Men"
+      }
+    ],
+    "fusion-intense": [
+      {
+        "id": "tom-ford-fucking-fabulous",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد فاکینگ فابولوس",
+        "nameEn": "Tom Ford Fucking Fabulous"
+      }
+    ],
+    "galactic-men-intense": [
+      {
+        "id": "mugler-a-men-pure-havane",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "موگلر ای من پیور هاوانا",
+        "nameEn": "Mugler A*Men Pure Havane"
+      }
+    ],
+    "glacier-bold": [
+      {
+        "id": "le-beau",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له بیو",
+        "nameEn": "Jean Paul Gaultier Le Beau"
+      }
+    ],
+    "glacier-le-noir": [
+      {
+        "id": "jean-paul-gaultier-le-male-le-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل له پرفیوم",
+        "nameEn": "Jean Paul Gaultier Le Male Le Parfum"
+      }
+    ],
+    "glacier-pour-homme": [
+      {
+        "id": "jean-paul-gaultier-le-male",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل",
+        "nameEn": "Jean Paul Gaultier Le Male"
+      }
+    ],
+    "glacier-ultra": [
+      {
+        "id": "ultra-male",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اولترا میل",
+        "nameEn": "Ultra Male"
+      }
+    ],
+    "gnawa": [
+      {
+        "id": "amouage-guidance",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج گایدنس",
+        "nameEn": "Amouage Guidance"
+      }
+    ],
+    "grandeur": [
+      {
+        "id": "viktor-rolf-flowerbomb",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ویکتور اند رولف فلاور بمب",
+        "nameEn": "Viktor&Rolf Flowerbomb"
+      }
+    ],
+    "grise": [
+      {
+        "id": "dior-gris",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دیور گریس دیور",
+        "nameEn": "Dior Gris"
+      }
+    ],
+    "gusta": [
+      {
+        "id": "tiziana-terenzi-gumin",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تیزیانا ترنزی گامین",
+        "nameEn": "Tiziana Terenzi Gumin"
+      }
+    ],
+    "hashtag-zodiac": [
+      {
+        "id": "amouage-guidance-46",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج گایدنس 46",
+        "nameEn": "Amouage Guidance 46"
+      }
+    ],
+    "hawas-atlantis": [
+      {
+        "id": "rabanne-invictus-legend",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان اینوکتوس لجند",
+        "nameEn": "Rabanne Invictus Legend"
+      }
+    ],
+    "hawas-black": [
+      {
+        "id": "nishane-hacivat",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "نیشانه حاجیوات",
+        "nameEn": "Nishane Hacivat"
+      }
+    ],
+    "hawas-chrome": [
+      {
+        "id": "erba-pura",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف اربا پورا",
+        "nameEn": "Xerjoff Erba Pura"
+      }
+    ],
+    "hawas-elixir": [
+      {
+        "id": "jean-paul-gaultier-le-male-elixir",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل الکسیر",
+        "nameEn": "Jean Paul Gaultier Le Male Elixir"
+      }
+    ],
+    "hawas-fire": [
+      {
+        "id": "gissah-imperial-valley",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "قصه ایمپریال والی",
+        "nameEn": "Gissah Imperial Valley"
+      }
+    ],
+    "hawas-for-him": [
+      {
+        "id": "invictus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان اینوکتوس",
+        "nameEn": "Rabanne Invictus"
+      }
+    ],
+    "hawas-kobra": [
+      {
+        "id": "louis-vuitton-imagination",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون ایمجینیشن",
+        "nameEn": "Louis Vuitton Imagination"
+      }
+    ],
+    "hawas-la-mer": [
+      {
+        "id": "rayhaan-pacific-aura",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ریحان پاسیفیک آورا",
+        "nameEn": "Rayhaan Pacific Aura"
+      }
+    ],
+    "hawas-london": [
+      {
+        "id": "ex-nihilo-brompton-immortals",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اکس نیهیلو برومپتون ایمورتالز",
+        "nameEn": "Ex Nihilo Brompton Immortals"
+      }
+    ],
+    "hawas-majestic": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "باکارات رژ",
+        "nameEn": "Baccarat Rouge 540"
+      }
+    ],
+    "hawas-nautilus": [
+      {
+        "id": "xerjoff-40-knots",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف فورتی ناتس",
+        "nameEn": "Xerjoff 40 Knots"
+      }
+    ],
+    "hawas-reina": [
+      {
+        "id": "rabanne-olympea-absolu",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان المپیا ابسولو",
+        "nameEn": "Rabanne Olympéa Absolu"
+      }
+    ],
+    "hawas-rouge": [
+      {
+        "id": "rabanne-olympea",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان المپیا",
+        "nameEn": "Rabanne Olympéa"
+      }
+    ],
+    "hawas-thunder-for-men": [
+      {
+        "id": "yves-saint-laurent-myslf-labsolu",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن مایسلف ابسولو",
+        "nameEn": "Yves Saint Laurent MYSLF L’Absolu"
+      }
+    ],
+    "hawas-tropical": [
+      {
+        "id": "jean-paul-gaultier-le-beau-paradise-garden",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له بو پارادایس گاردن",
+        "nameEn": "Jean Paul Gaultier Le Beau Paradise Garden"
+      }
+    ],
+    "hayaati-gold-elixir": [
+      {
+        "id": "giorgio-armani-code-profumo",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی کد پروفومو",
+        "nameEn": "Giorgio Armani Code Profumo"
+      }
+    ],
+    "hayaati-lattafa": [
+      {
+        "id": "invictus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پاکو رابان اینوکتوس",
+        "nameEn": "Rabanne Invictus"
+      }
+    ],
+    "hayaati-maleky": [
+      {
+        "id": "rabanne-phantom",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان فانتوم",
+        "nameEn": "Rabanne Phantom"
+      }
+    ],
+    "herculean-leather": [
+      {
+        "id": "memo-paris-iberian-leather",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ممو پاریس ایبرین لدر",
+        "nameEn": "Memo Paris Iberian Leather"
+      }
+    ],
+    "highness-iii": [
+      {
+        "id": "creed-royal-oud",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید رویال عود",
+        "nameEn": "Creed Royal Oud"
+      }
+    ],
+    "his-confession": [
+      {
+        "id": "dior-dior-homme-intense",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "دیور دیور هوم اینتنس",
+        "nameEn": "Dior Dior Homme Intense"
+      }
+    ],
+    "historic-doria": [
+      {
+        "id": "jean-paul-gaultier-so-scandal",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه سو اسکندال",
+        "nameEn": "Jean Paul Gaultier So Scandal!"
+      }
+    ],
+    "historic-olmeda": [
+      {
+        "id": "versace-dylan-blue",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ورساچه دایلان بلو",
+        "nameEn": "Versace Dylan Blue"
+      }
+    ],
+    "historic-sahara": [
+      {
+        "id": "althair",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی التیر",
+        "nameEn": "Parfums de Marly Althaïr"
+      }
+    ],
+    "hunter-intense": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "ساواج",
+        "nameEn": "Sauvage"
+      }
+    ],
+    "idivo": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اونتوس",
+        "nameEn": "Aventus"
+      }
+    ],
+    "ighraa": [
+      {
+        "id": "dior-sauvage-elixir",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور ساواج الکسیر",
+        "nameEn": "Dior Sauvage Elixir"
+      }
+    ],
+    "ignite-oud": [
+      {
+        "id": "parfums-de-marly-haltane",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی هالتان",
+        "nameEn": "Parfums de Marly Haltane"
+      }
+    ],
+    "imperial-ocean": [
+      {
+        "id": "issey-miyake-le-sel-d-issey",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایسی میاکه له سل د ایسی",
+        "nameEn": "Issey Miyake Le Sel d'Issey"
+      }
+    ],
+    "incense-ebony": [
+      {
+        "id": "tom-ford-ebene-fume",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد ابنه فیوم",
+        "nameEn": "Tom Ford Ebene Fume"
+      }
+    ],
+    "infini-elixir": [
+      {
+        "id": "initio-parfums-prives-side-effect",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اینیشیو ساید افکت",
+        "nameEn": "Initio Parfums Prives Side Effect"
+      }
+    ],
+    "infini-oud": [
+      {
+        "id": "initio-parfums-prives-oud-for-greatness",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اینیشیو عود فور گریتنس",
+        "nameEn": "Initio Parfums Prives Oud for Greatness"
+      }
+    ],
+    "infini-rose": [
+      {
+        "id": "initio-parfums-prives-atomic-rose",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اینیشیو اتمیک رز",
+        "nameEn": "Initio Parfums Prives Atomic Rose"
+      }
+    ],
+    "infinity": [
+      {
+        "id": "yves-saint-laurent-l-homme-ultime",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "ایو سن لورن لهوم اولتایم",
+        "nameEn": "Yves Saint Laurent L'Homme Ultime"
+      }
+    ],
+    "irida": [
+      {
+        "id": "tom-ford-electric-cherry",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد الکتریک چری",
+        "nameEn": "Tom Ford Electric Cherry"
+      }
+    ],
+    "island": [
+      {
+        "id": "le-beau",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "له بو",
+        "nameEn": "Le Beau"
+      }
+    ],
+    "island-vanilla-dunes": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "الثیر",
+        "nameEn": "Althair"
+      }
+    ],
+    "itqan-gold": [
+      {
+        "id": "maison-crivelli-oud-maracuja",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میسون کریولی عود ماراکوجا",
+        "nameEn": "Maison Crivelli Oud Maracujá"
+      }
+    ],
+    "jasmere": [
+      {
+        "id": "marc-antoine-barrois-tilia",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مارک آنتوان بارووا تیلیا",
+        "nameEn": "Marc-Antoine Barrois Tilia"
+      }
+    ],
+    "jean-lowe-fraiche": [
+      {
+        "id": "louis-vuitton-nouveau-monde",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون نوویو موند",
+        "nameEn": "Louis Vuitton Nouveau Monde"
+      }
+    ],
+    "jean-lowe-matiere": [
+      {
+        "id": "louis-vuitton-matiere-noire",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون متیر نویر",
+        "nameEn": "Louis Vuitton Matière Noire"
+      }
+    ],
+    "jean-lowe-noir": [
+      {
+        "id": "louis-vuitton-ombre-nomade",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "لویی ویتون امبر نومد",
+        "nameEn": "Louis Vuitton Ombre Nomade"
+      }
+    ],
+    "jean-lowe-vibe": [
+      {
+        "id": "louis-vuitton-pacific-chill",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "لویی ویتون پسفیک چیل",
+        "nameEn": "Louis Vuitton Pacific Chill"
+      }
+    ],
+    "jorge-di-profondo": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-profondo",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو پروفوندو",
+        "nameEn": "Giorgio Armani Acqua di Giò Profondo"
+      }
+    ],
+    "jorge-di-profumo": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-profumo",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو پروفومو",
+        "nameEn": "Giorgio Armani Acqua di Giò Profumo"
+      }
+    ],
+    "jorge-di-profumo-aqua": [
+      {
+        "id": "giorgio-armani-acqua-di-gio",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو",
+        "nameEn": "Giorgio Armani Acqua di Giò"
+      }
+    ],
+    "joud": [
+      {
+        "id": "none-khamrah-qahwa",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لطافه خمره قهوه",
+        "nameEn": "None Khamrah Qahwa"
+      }
+    ],
+    "jubilant-noir": [
+      {
+        "id": "versace-crystal-noir",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ورساچه کریستال نویر",
+        "nameEn": "Versace Crystal Noir"
+      }
+    ],
+    "junoon-rose": [
+      {
+        "id": "amouage-blossom-love",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج بلاسم لاو",
+        "nameEn": "Amouage Blossom Love"
+      }
+    ],
+    "just-married": [
+      {
+        "id": "lanvin-marry-me",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لانوین مری می",
+        "nameEn": "Lanvin Marry Me"
+      }
+    ],
+    "kaaf": [
+      {
+        "id": "parfums-de-marly-percival",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی پرسیوال",
+        "nameEn": "Parfums de Marly Percival"
+      }
+    ],
+    "kalos": [
+      {
+        "id": "parfums-de-marly-kalan",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی کالان",
+        "nameEn": "Parfums de Marly Kalan"
+      }
+    ],
+    "karat": [
+      {
+        "id": "tiziana-terenzi-kirke",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تیزیانا ترنزی کیرکه",
+        "nameEn": "Tiziana Terenzi Kirke"
+      }
+    ],
+    "kayaan-classic": [
+      {
+        "id": "dior-dior-homme-intense",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور دیور هوم اینتنس",
+        "nameEn": "Dior Dior Homme Intense"
+      }
+    ],
+    "khamrah": [
+      {
+        "id": "angels",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "آنجلز شیر",
+        "nameEn": "Angels' Share"
+      }
+    ],
+    "khamrah-waha": [
+      {
+        "id": "le-beau",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "له بو",
+        "nameEn": "Le Beau"
+      }
+    ],
+    "kiaana-angel": [
+      {
+        "id": "kayali-fragrances-yum-pistachio-gelato-33",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کایالی یام پستچیو ژلاتو",
+        "nameEn": "Kayali Fragrances Yum Pistachio Gelato | 33"
+      }
+    ],
+    "kiaana-crush": [
+      {
+        "id": "creed-queen-of-silk",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید کوئین آف سیلک",
+        "nameEn": "Creed Queen of Silk"
+      }
+    ],
+    "kiaana-vibes-for-women": [
+      {
+        "id": "carolina-herrera-la-bomba",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کارولینا هررا لا بومبا",
+        "nameEn": "Carolina Herrera La Bomba"
+      }
+    ],
+    "kingsman": [
+      {
+        "id": "dolce-gabbana-k",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دولچه گابانا کی",
+        "nameEn": "Dolce&Gabbana K"
+      }
+    ],
+    "kismet-angel": [
+      {
+        "id": "angels",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "آنجلز شیر",
+        "nameEn": "Angels' Share"
+      }
+    ],
+    "kismet-for-women": [
+      {
+        "id": "by-kilian-good-girl-gone-bad-extreme",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان گود گرل گان بد اکسترم",
+        "nameEn": "By Kilian Good Girl Gone Bad Extreme"
+      }
+    ],
+    "kismet-magic": [
+      {
+        "id": "angels",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان آنجلز شیر",
+        "nameEn": "By Kilian Angels' Share"
+      }
+    ],
+    "kismet-moscow": [
+      {
+        "id": "by-kilian-vodka-on-the-rocks",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان ودکا ان د راکز",
+        "nameEn": "By Kilian Vodka on the Rocks"
+      }
+    ],
+    "l-aventure-ciel": [
+      {
+        "id": "millesime",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "میلسیم امپریال",
+        "nameEn": "Millésime Impérial"
+      }
+    ],
+    "l-aventure-femme": [
+      {
+        "id": "creed-aventus-for-her",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "کرید اونتوس فور هر",
+        "nameEn": "Creed Aventus for Her"
+      }
+    ],
+    "l-aventure-fraiche": [
+      {
+        "id": "silver-mountain",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "سیلور مانتین واتر",
+        "nameEn": "Silver Mountain Water"
+      }
+    ],
+    "l-aventure-knight": [
+      {
+        "id": "irish-tweed",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "کرید گرین آیریش توید",
+        "nameEn": "Creed Green Irish Tweed"
+      }
+    ],
+    "l-oudh": [
+      {
+        "id": "dior-oud-ispahan",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دیور عود اسپهان",
+        "nameEn": "Dior Oud Ispahan"
+      }
+    ],
+    "la-collection-d-antiquites-1910": [
+      {
+        "id": "rabanne-1-million-elixir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پاکو رابان وان میلیون الکسیر",
+        "nameEn": "Rabanne 1 Million Elixir"
+      }
+    ],
+    "la-vivacite": [
+      {
+        "id": "lancome-la-vie-est-belle",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لانکوم لا ویه است بله",
+        "nameEn": "Lancôme La Vie Est Belle"
+      }
+    ],
+    "la-voie": [
+      {
+        "id": "giorgio-armani-my-way",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی مای وی",
+        "nameEn": "Giorgio Armani My Way"
+      }
+    ],
+    "le-parfait-pour-homme": [
+      {
+        "id": "irish-tweed",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید گرین ایریش توید",
+        "nameEn": "Creed Green Irish Tweed"
+      }
+    ],
+    "leyden": [
+      {
+        "id": "layton",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "لیتون",
+        "nameEn": "Layton"
+      }
+    ],
+    "liam": [
+      {
+        "id": "bdk-parfums-gris-charnel",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بی دی کی گریس شارنل",
+        "nameEn": "BDK Parfums Gris Charnel"
+      }
+    ],
+    "liam-blue-shine": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-profondo",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو پروفوندو",
+        "nameEn": "Giorgio Armani Acqua di Giò Profondo"
+      }
+    ],
+    "liquid-brun": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "پارفومز د مارلی التیر",
+        "nameEn": "Parfums de Marly Althaïr"
+      }
+    ],
+    "liquid-brun-limited-edition": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی التیر",
+        "nameEn": "Parfums de Marly Althaïr"
+      }
+    ],
+    "love-spark": [
+      {
+        "id": "tom-ford-electric-cherry",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد الکتریک چری",
+        "nameEn": "Tom Ford Electric Cherry"
+      }
+    ],
+    "lovely-ch-rie": [
+      {
+        "id": "lost-cherry",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "لاست چری",
+        "nameEn": "Lost Cherry"
+      }
+    ],
+    "lueur-d-espoir-silhouette": [
+      {
+        "id": "louis-vuitton-stellar-times",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون استیلار تایمز",
+        "nameEn": "Louis Vuitton Stellar Times"
+      }
+    ],
+    "lynked-forever": [
+      {
+        "id": "valentino-born-in-roma-the-gold-donna",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "والنتینو بورن این روما د گولد دونا",
+        "nameEn": "Valentino Born in Roma the Gold Donna"
+      }
+    ],
+    "lynked-freedom": [
+      {
+        "id": "azzaro-the-most-wanted-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آزارو موست وانتد پارفوم",
+        "nameEn": "Azzaro The Most Wanted Parfum"
+      }
+    ],
+    "maahir-honor": [
+      {
+        "id": "xerjoff-torino21",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف تورینو ۲۱",
+        "nameEn": "Xerjoff Torino21"
+      }
+    ],
+    "magnetiq-aromatix-x": [
+      {
+        "id": "yves-saint-laurent-myslf",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن مای سلف",
+        "nameEn": "Yves Saint Laurent MYSLF"
+      }
+    ],
+    "maharjan-silver": [
+      {
+        "id": "silver-mountain",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "سیلور مانتین واتر",
+        "nameEn": "Silver Mountain Water"
+      }
+    ],
+    "maitre-de-blue": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "شنل بلو د شنل",
+        "nameEn": "Chanel Bleu de Chanel"
+      }
+    ],
+    "malibu-hawas": [
+      {
+        "id": "le-beau",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "له بو",
+        "nameEn": "Le Beau"
+      }
+    ],
+    "marjan-silver": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بلو د شنل",
+        "nameEn": "Bleu de Chanel"
+      }
+    ],
+    "marmara": [
+      {
+        "id": "amouage-purpose-50",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج پرپس 50",
+        "nameEn": "Amouage Purpose 50"
+      }
+    ],
+    "marwa": [
+      {
+        "id": "louis-vuitton-imagination",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "لویی ویتون ایمجینیشن",
+        "nameEn": "Louis Vuitton Imagination"
+      }
+    ],
+    "mawj-moscow-mule": [
+      {
+        "id": "by-kilian-blue-moon-ginger-dash",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان بلو مون جینجر دش",
+        "nameEn": "By Kilian Blue Moon Ginger Dash"
+      }
+    ],
+    "mayar": [
+      {
+        "id": "mugler-angel-nova",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "موگلر آنجل نوا",
+        "nameEn": "Mugler Angel Nova"
+      }
+    ],
+    "mazaaji": [
+      {
+        "id": "elie-saab-le-parfum-royal",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "الی ساب له پارفوم رویال",
+        "nameEn": "Elie Saab Le Parfum Royal"
+      }
+    ],
+    "megara": [
+      {
+        "id": "orto-parisi-megamare",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اورتو پاریسی مگاماره",
+        "nameEn": "Orto Parisi Megamare"
+      }
+    ],
+    "minerva": [
+      {
+        "id": "memo-paris-marfa",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ممو پاریس مارفا",
+        "nameEn": "Memo Paris Marfa"
+      }
+    ],
+    "monarque": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "الثیر",
+        "nameEn": "Althair"
+      }
+    ],
+    "montaigne-coco": [
+      {
+        "id": "mancera-coco-vanille",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "مانسرا کوکو وانیل",
+        "nameEn": "Mancera Coco Vanille"
+      }
+    ],
+    "montaigne-vanille": [
+      {
+        "id": "mancera-vanille-exclusive",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "مانسرا وانیل اکسکلوسیو",
+        "nameEn": "Mancera Vanille Exclusive"
+      }
+    ],
+    "musamam": [
+      {
+        "id": "gucci-guilty-absolute",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گوچی گیلتی ابسولوت",
+        "nameEn": "Gucci Guilty Absolute"
+      }
+    ],
+    "mysterious-amber": [
+      {
+        "id": "tom-ford-amber-absolute",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد امبر ابسولوت",
+        "nameEn": "Tom Ford Amber Absolute"
+      }
+    ],
+    "mystique-bouquet": [
+      {
+        "id": "parfums-de-marly-valaya",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی والایا",
+        "nameEn": "Parfums de Marly Valaya"
+      }
+    ],
+    "najdia": [
+      {
+        "id": "invictus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پاکو رابان اینویکتوس",
+        "nameEn": "Rabanne Invictus"
+      }
+    ],
+    "narissa-ambre": [
+      {
+        "id": "narciso-rodriguez-narciso-ambree",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "نارسیسو رودریگز نارسیسو امبر",
+        "nameEn": "Narciso Rodriguez Narciso Ambree"
+      }
+    ],
+    "narissa-rose-musc-for-her": [
+      {
+        "id": "narciso-rodriguez-musc-noir-rose-for-her",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "نارسیسو رودریگز ماسک نویر فور هر",
+        "nameEn": "Narciso Rodriguez Musc Noir Rose For Her"
+      }
+    ],
+    "nasheet": [
+      {
+        "id": "ani",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "آنی",
+        "nameEn": "Ani"
+      }
+    ],
+    "naughty-dates-aromatix-x": [
+      {
+        "id": "paris-corner-date-caramel",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاریس کرنر دیت کارامل",
+        "nameEn": "Paris Corner Date Caramel"
+      }
+    ],
+    "nitro-red": [
+      {
+        "id": "invictus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اینویکتوس",
+        "nameEn": "Invictus"
+      }
+    ],
+    "noble-cedar": [
+      {
+        "id": "carolina-herrera-cedar-chic",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کارولینا هررا سدار شیک",
+        "nameEn": "Carolina Herrera Cedar Chic"
+      }
+    ],
+    "noble-essence": [
+      {
+        "id": "amouage-purpose-50",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج پرپس 50",
+        "nameEn": "Amouage Purpose 50"
+      }
+    ],
+    "noir-absolu": [
+      {
+        "id": "azzaro-forever-wanted-elixir",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آزارو فور اور وانتد الکسیر",
+        "nameEn": "Azzaro Forever Wanted Elixir"
+      }
+    ],
+    "north-stag-expressions-i-un": [
+      {
+        "id": "bvlgari-tygar",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بولگاری تایگار",
+        "nameEn": "Bvlgari Tygar"
+      }
+    ],
+    "north-stag-expressions-ii-deux": [
+      {
+        "id": "layton",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی لیتون",
+        "nameEn": "Parfums de Marly Layton"
+      }
+    ],
+    "north-stag-expressions-iii-trois": [
+      {
+        "id": "louis-vuitton-imagination",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون ایمجینیشن",
+        "nameEn": "Louis Vuitton Imagination"
+      }
+    ],
+    "north-stag-expressions-iv-quatre": [
+      {
+        "id": "louis-vuitton-afternoon-swim",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون افترنون سوییم",
+        "nameEn": "Louis Vuitton Afternoon Swim"
+      }
+    ],
+    "oasis": [
+      {
+        "id": "tiziana-terenzi-orza",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تیزیانا ترنزی اورزا",
+        "nameEn": "Tiziana Terenzi Orza"
+      }
+    ],
+    "odyssey-aoud": [
+      {
+        "id": "initio-parfums-prives-oud-for-greatness",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اینیشیو عود فور گریتنس",
+        "nameEn": "Initio Parfums Prives Oud for Greatness"
+      }
+    ],
+    "odyssey-artisto": [
+      {
+        "id": "le-beau",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له بیو",
+        "nameEn": "Jean Paul Gaultier Le Beau"
+      }
+    ],
+    "odyssey-eau-de-montagne": [
+      {
+        "id": "les-liquides-imaginaires-blanche-bete",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "له لیکوئید ایمجینر بلانچ بته",
+        "nameEn": "Les Liquides Imaginaires Blanche Bête"
+      }
+    ],
+    "odyssey-homme": [
+      {
+        "id": "tom-ford-noir-extreme",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد نویر اکستریم",
+        "nameEn": "Tom Ford Noir Extreme"
+      }
+    ],
+    "odyssey-homme-white-edition": [
+      {
+        "id": "giorgio-armani-stronger-with-you",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو",
+        "nameEn": "Giorgio Armani Stronger With You"
+      }
+    ],
+    "odyssey-lichi-lush": [
+      {
+        "id": "stephane-humbert-lucas-777-harrods-ruby-naga",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ هارودز رابی ناگا",
+        "nameEn": "Stéphane Humbert Lucas 777 Harrods Ruby Naga"
+      }
+    ],
+    "odyssey-limoni-fresh": [
+      {
+        "id": "louis-vuitton-afternoon-swim",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون افترنون سوییم",
+        "nameEn": "Louis Vuitton Afternoon Swim"
+      }
+    ],
+    "odyssey-mandarin-sky": [
+      {
+        "id": "jean-paul-gaultier-scandal-pour-homme",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "ژان پل گوتیه اسکندال پور هوم",
+        "nameEn": "Jean Paul Gaultier Scandal Pour Homme"
+      }
+    ],
+    "odyssey-marshmallow": [
+      {
+        "id": "kayali-fragrances-yum-boujee-marshmallow-81",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کایالی یام بوجی مارشمالو 81",
+        "nameEn": "Kayali Fragrances Yum Boujee Marshmallow | 81"
+      }
+    ],
+    "odyssey-mega": [
+      {
+        "id": "ysl-y",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "odyssey-mega-man": [
+      {
+        "id": "ysl-y",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "odyssey-nexus": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-profumo",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو پروفومو",
+        "nameEn": "Giorgio Armani Acqua di Giò Profumo"
+      }
+    ],
+    "odyssey-spectra": [
+      {
+        "id": "jean-paul-gaultier-ultra-male",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه اولترا میل",
+        "nameEn": "Jean Paul Gaultier Ultra Male"
+      }
+    ],
+    "odyssey-toffee-coffee": [
+      {
+        "id": "mancera-amore-caffe",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مانسرا آمور کافه",
+        "nameEn": "Mancera Amore Caffè"
+      }
+    ],
+    "odyssey-tyrant-special-edition": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "ساواج",
+        "nameEn": "Sauvage"
+      }
+    ],
+    "old-money": [
+      {
+        "id": "hermes-terre-d-hermes-intense",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "هرمس تق د هرمس اینتنس",
+        "nameEn": "Hermès Terre d'Hermès Intense"
+      }
+    ],
+    "olivia": [
+      {
+        "id": "rabanne-olympea",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان المپیا",
+        "nameEn": "Rabanne Olympéa"
+      }
+    ],
+    "opera-rouge": [
+      {
+        "id": "yves-saint-laurent-black-opium-over-red",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن بلک اپیوم اور رد",
+        "nameEn": "Yves Saint Laurent Black Opium Over Red"
+      }
+    ],
+    "optus-v": [
+      {
+        "id": "amouage-opus-v",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج اوپوس پنج",
+        "nameEn": "Amouage Opus V"
+      }
+    ],
+    "optus-vii": [
+      {
+        "id": "amouage-memoir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "آمواج ممیور",
+        "nameEn": "Amouage Memoir"
+      }
+    ],
+    "opulence-leather": [
+      {
+        "id": "louis-vuitton-nouveau-monde",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لویی ویتون نوویو موند",
+        "nameEn": "Louis Vuitton Nouveau Monde"
+      }
+    ],
+    "panther-pour-homme": [
+      {
+        "id": "rabanne-phantom",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پاکو رابان فانتوم",
+        "nameEn": "Rabanne Phantom"
+      }
+    ],
+    "peachy-peach": [
+      {
+        "id": "tom-ford-bitter-peach",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تام فورد پیتر پیچ",
+        "nameEn": "Tom Ford Bitter Peach"
+      }
+    ],
+    "perfume-oasis": [
+      {
+        "id": "erba-pura",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اربا پورا",
+        "nameEn": "Erba Pura"
+      }
+    ],
+    "perseus": [
+      {
+        "id": "parfums-de-marly-pegasus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی پگاسوس",
+        "nameEn": "Parfums de Marly Pegasus"
+      }
+    ],
+    "perseviron": [
+      {
+        "id": "althair",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "الثیر",
+        "nameEn": "Althair"
+      }
+    ],
+    "philos-centro": [
+      {
+        "id": "xerjoff-accento",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف اکسنتو",
+        "nameEn": "Xerjoff Accento"
+      }
+    ],
+    "philos-opus-noir": [
+      {
+        "id": "xerjoff-opera",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "زرجوف اوپرا",
+        "nameEn": "Xerjoff Opera"
+      }
+    ],
+    "philos-pura": [
+      {
+        "id": "erba-pura",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف اربا پورا",
+        "nameEn": "Xerjoff Erba Pura"
+      }
+    ],
+    "philos-rosso": [
+      {
+        "id": "baccarat",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "باکارات رژ",
+        "nameEn": "Baccarat Rouge 540"
+      }
+    ],
+    "pink-eclipse": [
+      {
+        "id": "prada-paradoxe",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پرادا پارادوکس",
+        "nameEn": "Prada Paradoxe"
+      }
+    ],
+    "pink-shimmer-secret": [
+      {
+        "id": "victoria-s-secret-bombshell",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ویکتوریا سکرت بامبشل",
+        "nameEn": "Victoria's Secret Bombshell"
+      }
+    ],
+    "pisa": [
+      {
+        "id": "bvlgari-tygar",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بولگاری تایگار",
+        "nameEn": "Bvlgari Tygar"
+      },
+      {
+        "id": "ysl-y",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "platine-blanc-aromatix-x": [
+      {
+        "id": "xerjoff-torino21",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف تورینو ۲۱",
+        "nameEn": "Xerjoff Torino21"
+      }
+    ],
+    "precious-gold": [
+      {
+        "id": "marc-jacobs-perfect-intense",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مارک جاکوبز پرفکت اینتنس",
+        "nameEn": "Marc Jacobs Perfect Intense"
+      }
+    ],
+    "precious-pink": [
+      {
+        "id": "marc-jacobs-perfect",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مارک جاکوبز پرفکت",
+        "nameEn": "Marc Jacobs Perfect"
+      }
+    ],
+    "private-key-to-my-dreams-for": [
+      {
+        "id": "giorgio-armani-stronger-with-you",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو",
+        "nameEn": "Giorgio Armani Stronger With You"
+      }
+    ],
+    "private-key-to-my-love": [
+      {
+        "id": "erba-pura",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اربا پورا",
+        "nameEn": "Erba Pura"
+      }
+    ],
+    "proud-of-you-absolute": [
+      {
+        "id": "giorgio-armani-stronger-with-you-absolutely",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو ابسلوتلی",
+        "nameEn": "Giorgio Armani Stronger With You Absolutely"
+      }
+    ],
+    "proud-of-you-intense": [
+      {
+        "id": "giorgio-armani-stronger-with-you-intensely",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو اینتنسلی",
+        "nameEn": "Giorgio Armani Stronger With You Intensely"
+      }
+    ],
+    "purple-wood": [
+      {
+        "id": "dior-purple-oud",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دیور پرپل عود",
+        "nameEn": "Dior Purple Oud"
+      }
+    ],
+    "qaed-al-fursan-untamed": [
+      {
+        "id": "versace-eros-najim",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ورساچه اروس نجیم",
+        "nameEn": "Versace Eros Najim"
+      }
+    ],
+    "qimmah": [
+      {
+        "id": "carolina-herrera-good-girl",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کارولینا هررا گود گرل",
+        "nameEn": "Carolina Herrera Good Girl"
+      }
+    ],
+    "raed-luxe": [
+      {
+        "id": "dolce-gabbana-k",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دولچه گابانا کی",
+        "nameEn": "Dolce&Gabbana K"
+      }
+    ],
+    "raghba": [
+      {
+        "id": "xerjoff-bouquet-ideale",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "زرجوف بوکت آیدیل",
+        "nameEn": "Xerjoff Bouquet Ideale"
+      }
+    ],
+    "raghba-wood-intense": [
+      {
+        "id": "fireplace",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بای د فایرپلیس",
+        "nameEn": "By the Fireplace"
+      }
+    ],
+    "ramad-earthy": [
+      {
+        "id": "amouage-sindbad",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج سندباد",
+        "nameEn": "Amouage Sindbad"
+      }
+    ],
+    "ramad-louban": [
+      {
+        "id": "amouage-reasons",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج ریزنز",
+        "nameEn": "Amouage Reasons"
+      }
+    ],
+    "ramad-myrrh": [
+      {
+        "id": "ormonde-jayne-montabaco",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اورموند جین مونتاباکو",
+        "nameEn": "Ormonde Jayne Montabaco"
+      }
+    ],
+    "ramad-oriental": [
+      {
+        "id": "amouage-outlands",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج آوتلندز",
+        "nameEn": "Amouage Outlands"
+      }
+    ],
+    "ramz-silver": [
+      {
+        "id": "jean-paul-gaultier-ultra-male",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه اولترا میل",
+        "nameEn": "Jean Paul Gaultier Ultra Male"
+      }
+    ],
+    "rare-reef": [
+      {
+        "id": "louis-vuitton-pacific-chill",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "لویی ویتون پسفیک چیل",
+        "nameEn": "Louis Vuitton Pacific Chill"
+      }
+    ],
+    "ravine-ginger": [
+      {
+        "id": "goldfield-banks-australia-ingenious-ginger",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گلدفیلد اند بنکس اینجنیوس جینجر",
+        "nameEn": "Goldfield & Banks Australia Ingenious Ginger"
+      }
+    ],
+    "ravine-ice": [
+      {
+        "id": "goldfield-banks-australia-pacific-rock-moss",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گلدفیلد اند بنکس پسیفیک راک مس",
+        "nameEn": "Goldfield & Banks Australia Pacific Rock Moss"
+      }
+    ],
+    "regal-oud": [
+      {
+        "id": "maison-crivelli-oud-maracuja",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میسون کریولی عود ماراکوجا",
+        "nameEn": "Maison Crivelli Oud Maracujá"
+      }
+    ],
+    "reyna-pour-femme": [
+      {
+        "id": "parfums-de-marly-oriana",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی اوریانا",
+        "nameEn": "Parfums de Marly Oriana"
+      }
+    ],
+    "roman-leather": [
+      {
+        "id": "memo-paris-italian-leather",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ممو پاریس ایتالین لدر",
+        "nameEn": "Memo Paris Italian Leather"
+      }
+    ],
+    "romance-reverie": [
+      {
+        "id": "xerjoff-elle-anniversary",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف ال انیورسری",
+        "nameEn": "Xerjoff Elle Anniversary"
+      }
+    ],
+    "rose-noir": [
+      {
+        "id": "rabanne-olympea",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان المپیا",
+        "nameEn": "Rabanne Olympéa"
+      }
+    ],
+    "rose-origami": [
+      {
+        "id": "tom-ford-cafe-rose",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد کافه رز",
+        "nameEn": "Tom Ford Cafe Rose"
+      }
+    ],
+    "rose-oud": [
+      {
+        "id": "dior-oud-rosewood",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دیور عود رز وود",
+        "nameEn": "Dior Oud Rosewood"
+      }
+    ],
+    "royal-blend": [
+      {
+        "id": "angels",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان آنجلزشیر",
+        "nameEn": "By Kilian Angels' Share"
+      }
+    ],
+    "royal-blend-nero": [
+      {
+        "id": "none-khamrah",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لطافه خمره",
+        "nameEn": "None Khamrah"
+      }
+    ],
+    "royal-blend-sequoia": [
+      {
+        "id": "by-kilian-angels-share-paradis",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "بای کیلیان آنجلز شیر پارادایس",
+        "nameEn": "By Kilian Angels' Share Paradis"
+      }
+    ],
+    "royal-blend-vintage": [
+      {
+        "id": "by-kilian-old-fashioned",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان اولد فشن",
+        "nameEn": "By Kilian Old Fashioned"
+      }
+    ],
+    "royal-cherry": [
+      {
+        "id": "lost-cherry",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "لاست چری",
+        "nameEn": "Lost Cherry"
+      }
+    ],
+    "royal-taboo-aromatix-x": [
+      {
+        "id": "creed-centaurus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید سنتورس",
+        "nameEn": "Creed Centaurus"
+      }
+    ],
+    "russe-leather": [
+      {
+        "id": "memo-paris-russian-leather",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ممو پاریس روسین لدر",
+        "nameEn": "Memo Paris Russian Leather"
+      }
+    ],
+    "salvo": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور ساواج",
+        "nameEn": "Dior Sauvage"
+      }
+    ],
+    "salvo-elixir": [
+      {
+        "id": "dior-sauvage-elixir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دیور ساواج الکسیر",
+        "nameEn": "Dior Sauvage Elixir"
+      }
+    ],
+    "salvo-intense": [
+      {
+        "id": "dior-sauvage-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "دیور ساواج پارفوم",
+        "nameEn": "Dior Sauvage Parfum"
+      }
+    ],
+    "saphire-jewel": [
+      {
+        "id": "xerjoff-xj-1861-naxos",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف ناکسوس",
+        "nameEn": "Xerjoff XJ 1861 Naxos"
+      }
+    ],
+    "sauville-pour-homme": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "ساواج",
+        "nameEn": "Sauvage"
+      }
+    ],
+    "sceptre-amazonite": [
+      {
+        "id": "bvlgari-falkar",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "بولگاری فالکار",
+        "nameEn": "Bvlgari Falkar"
+      }
+    ],
+    "sceptre-bronzite": [
+      {
+        "id": "bvlgari-tygar",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "بولگاری تایگار",
+        "nameEn": "Bvlgari Tygar"
+      }
+    ],
+    "sceptre-desert": [
+      {
+        "id": "stephane-humbert-lucas-777-venom-incarnat",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ ونوم اینکارنت",
+        "nameEn": "Stéphane Humbert Lucas 777 Venom Incarnat"
+      }
+    ],
+    "sceptre-oceana": [
+      {
+        "id": "bvlgari-le-gemme-orom",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "بولگاری له جم اوروم",
+        "nameEn": "Bvlgari Le Gemme Orom"
+      }
+    ],
+    "sehr": [
+      {
+        "id": "tom-ford-vanilla-sex",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد وانیلا سکس",
+        "nameEn": "Tom Ford Vanilla Sex"
+      }
+    ],
+    "shades-blue": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بلو د شنل",
+        "nameEn": "Bleu de Chanel"
+      }
+    ],
+    "shaheen-silver": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اونتوس",
+        "nameEn": "Aventus"
+      }
+    ],
+    "sharaf-the-club": [
+      {
+        "id": "creed-absolu-aventus",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "کرید اونتوس ابسولو",
+        "nameEn": "Creed Absolu Aventus"
+      }
+    ],
+    "sheikh-al-shuyukh-final-edition": [
+      {
+        "id": "ysl-y",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "sheikh-al-shuyukh-luxe-edition": [
+      {
+        "id": "lancome-oud-bouquet",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لانکوم عود باکت",
+        "nameEn": "Lancôme Oud Bouquet"
+      }
+    ],
+    "sheikh-al-shuyukh-markaz-concentrated": [
+      {
+        "id": "aventus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      }
+    ],
+    "sherif": [
+      {
+        "id": "parfums-de-marly-greenley",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی گرینلی",
+        "nameEn": "Parfums de Marly Greenley"
+      }
+    ],
+    "smoky": [
+      {
+        "id": "dior-tobacolor",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دیور توباکالر",
+        "nameEn": "Dior Tobacolor"
+      }
+    ],
+    "smoky-touch": [
+      {
+        "id": "tom-ford-tuscan-leather",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد توسکان لدر",
+        "nameEn": "Tom Ford Tuscan Leather"
+      }
+    ],
+    "solitaire": [
+      {
+        "id": "penhaligon-s-a-kiss-of-bliss",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پنهالیگونز ا کیس آف بلیس",
+        "nameEn": "Penhaligon's A Kiss Of Bliss"
+      }
+    ],
+    "space-age": [
+      {
+        "id": "byredo-space-rage-travx",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بایردو اسپیس ریج تراوکس",
+        "nameEn": "Byredo Space Rage Travx"
+      }
+    ],
+    "spartacus": [
+      {
+        "id": "jean-paul-gaultier-le-male-elixir-absolu",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل الکسیر ابسولو",
+        "nameEn": "Jean Paul Gaultier Le Male Elixir Absolu"
+      }
+    ],
+    "spectre": [
+      {
+        "id": "matiere-premiere-falcon-leather",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "متیر پریمیر فالکن لدر",
+        "nameEn": "Matiere Premiere Falcon Leather"
+      }
+    ],
+    "spectre-ghost": [
+      {
+        "id": "ani",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "نیشانه آنی",
+        "nameEn": "Nishane Ani"
+      }
+    ],
+    "spectre-wraith": [
+      {
+        "id": "by-kilian-black-phantom",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بای کیلیان بلک فانتوم",
+        "nameEn": "By Kilian Black Phantom"
+      }
+    ],
+    "spectrum": [
+      {
+        "id": "roja-parfums-elysium",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "روژا الیزیوم",
+        "nameEn": "Roja Parfums Elysium"
+      }
+    ],
+    "stallion": [
+      {
+        "id": "marc-antoine-barrois-ganymede",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مارک آنتوان بارووا گانیمید",
+        "nameEn": "Marc-Antoine Barrois Ganymede"
+      }
+    ],
+    "summer-sin-extrait-de-parfum-zodiac": [
+      {
+        "id": "mancera-instant-crush",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مانسرا اینستنت کراش",
+        "nameEn": "Mancera Instant Crush"
+      }
+    ],
+    "sun-kissed-aromatix-x": [
+      {
+        "id": "maison-martin-margiela-never-ending-summer",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "میزون مارتین مارژیلا نِوِر اندینگ سامر",
+        "nameEn": "Maison Martin Margiela Never ending Summer"
+      }
+    ],
+    "supremacy-gala": [
+      {
+        "id": "gucci-flora-gorgeous-gardenia",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "گوچی فلورا گورجس گاردنیا",
+        "nameEn": "Gucci Flora Gorgeous Gardenia"
+      }
+    ],
+    "supremacy-in-heaven": [
+      {
+        "id": "silver-mountain",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید سیلور مانتین واتر",
+        "nameEn": "Creed Silver Mountain Water"
+      }
+    ],
+    "supremacy-in-oud": [
+      {
+        "id": "initio-parfums-prives-oud-for-greatness",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اینیشیو عود فور گریتنس",
+        "nameEn": "Initio Parfums Prives Oud for Greatness"
+      }
+    ],
+    "supremacy-incense": [
+      {
+        "id": "amouage-interlude",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج اینترلود",
+        "nameEn": "Amouage Interlude"
+      }
+    ],
+    "supremacy-not-only-intense": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      },
+      {
+        "id": "nishane-hacivat",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "نیشانه حاجیوات",
+        "nameEn": "Nishane Hacivat"
+      }
+    ],
+    "supremacy-silver": [
+      {
+        "id": "aventus",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید اونتوس",
+        "nameEn": "Creed Aventus"
+      }
+    ],
+    "supremacy-tapis-rouge": [
+      {
+        "id": "gritti-duchessa",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "گریتی دوچسا",
+        "nameEn": "Gritti Duchessa"
+      }
+    ],
+    "swar-d-amour": [
+      {
+        "id": "stephane-humbert-lucas-777-sea-my-love",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ سی مای لاو",
+        "nameEn": "Stéphane Humbert Lucas 777 Sea My Love"
+      }
+    ],
+    "tag-him": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بلو د شنل",
+        "nameEn": "Bleu de Chanel"
+      }
+    ],
+    "teas-me-aromatix-x": [
+      {
+        "id": "caline-pure-vision-homme",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کالین پیور ویژن هوم",
+        "nameEn": "Câline Pure Vision Homme"
+      }
+    ],
+    "terra": [
+      {
+        "id": "orto-parisi-terroni",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اورتو پاریسی ترونی",
+        "nameEn": "Orto Parisi Terroni"
+      }
+    ],
+    "the-artist-no-1": [
+      {
+        "id": "frederic-malle-portrait-of-a-lady",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "فردریک مال پورتریت آف لیدی",
+        "nameEn": "Frederic Malle Portrait Of A Lady"
+      }
+    ],
+    "the-artist-no-2": [
+      {
+        "id": "frederic-malle-promise",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "فردریک مال الوعد",
+        "nameEn": "Frederic Malle Promise"
+      }
+    ],
+    "the-kingdom-for-men": [
+      {
+        "id": "jean-paul-gaultier-le-male-elixir",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ژان پل گوتیه له میل الکسیر",
+        "nameEn": "Jean Paul Gaultier Le Male Elixir"
+      }
+    ],
+    "the-lion-s-club-majestueux": [
+      {
+        "id": "parfums-de-marly-herod",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی هرود",
+        "nameEn": "Parfums de Marly Herod"
+      }
+    ],
+    "the-lion-s-club-valer": [
+      {
+        "id": "parfums-de-marly-sedley",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی سدلی",
+        "nameEn": "Parfums de Marly Sedley"
+      }
+    ],
+    "the-pride-of-for-men": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "ساواج",
+        "nameEn": "Sauvage"
+      }
+    ],
+    "tiramisu-caramel": [
+      {
+        "id": "bianco-latte",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بیانکو لاته",
+        "nameEn": "Bianco Latte"
+      }
+    ],
+    "tiramisu-coco": [
+      {
+        "id": "mancera-amore-caffe",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مانسرا اموری کافه",
+        "nameEn": "Mancera Amore Caffè"
+      }
+    ],
+    "titan": [
+      {
+        "id": "giorgio-armani-stronger-with-you-parfum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو پارفوم",
+        "nameEn": "Giorgio Armani Stronger With You Parfum"
+      }
+    ],
+    "toro-pour-homme": [
+      {
+        "id": "hermes-terre-d-hermes",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "هرمس تق دی هرمس",
+        "nameEn": "Hermès Terre d'Hermès"
+      }
+    ],
+    "toro-pour-homme-glace": [
+      {
+        "id": "hermes-terre-d-hermes-eau-givree",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "هرمس تق د هرمس او گیوری",
+        "nameEn": "Hermès Terre d'Hermès Eau Givrée"
+      }
+    ],
+    "toscano-leather": [
+      {
+        "id": "tom-ford-tuscan-leather",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد توسکان لدر",
+        "nameEn": "Tom Ford Tuscan Leather"
+      }
+    ],
+    "tres-bon": [
+      {
+        "id": "aventus",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "اونتوس",
+        "nameEn": "Aventus"
+      }
+    ],
+    "tres-jour": [
+      {
+        "id": "givenchy-ange-ou-demon-le-secret",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جیونچی آنجئو د مون له سکرت",
+        "nameEn": "Givenchy Ange ou Démon Le Secret"
+      }
+    ],
+    "tres-nuit": [
+      {
+        "id": "irish-tweed",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کرید گرین آیریش",
+        "nameEn": "Creed Green Irish Tweed"
+      }
+    ],
+    "tres-nuit-lyric": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-profondo",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو پروفوندو",
+        "nameEn": "Giorgio Armani Acqua di Giò Profondo"
+      }
+    ],
+    "tres-nuit-lyric-pour-homme": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-profondo",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی اکوا دی جیو پروفوندو",
+        "nameEn": "Giorgio Armani Acqua di Giò Profondo"
+      }
+    ],
+    "turathi-blue": [
+      {
+        "id": "bvlgari-tygar",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "بولگاری تایگار",
+        "nameEn": "Bvlgari Tygar"
+      }
+    ],
+    "turathi-brown": [
+      {
+        "id": "yves-saint-laurent-tuxedo",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "ایو سن لورن تاکسیدو",
+        "nameEn": "Yves Saint Laurent Tuxedo"
+      }
+    ],
+    "turathi-electric": [
+      {
+        "id": "ex-nihilo-blue-talisman",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "اکس نیهیلو بلو تالیسمان",
+        "nameEn": "Ex Nihilo Blue Talisman"
+      }
+    ],
+    "tweet": [
+      {
+        "id": "hermes-twilly-d-hermes",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "هرمس تویلی د هرمس",
+        "nameEn": "Hermès Twilly d'Hermès"
+      }
+    ],
+    "unlimited-zodiac-samam": [
+      {
+        "id": "amouage-outlands",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "آمواج اوتلندز",
+        "nameEn": "Amouage Outlands"
+      }
+    ],
+    "velvet-oud": [
+      {
+        "id": "tom-ford-tuscan-leather",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "تام فورد توسکان لدر",
+        "nameEn": "Tom Ford Tuscan Leather"
+      }
+    ],
+    "ventana-marine": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "شنل بلو د شنل",
+        "nameEn": "Chanel Bleu de Chanel"
+      }
+    ],
+    "ventana-pour-homme": [
+      {
+        "id": "sauvage",
+        "relation": "similar",
+        "source": "pilot",
+        "nameFa": "دیور ساواج",
+        "nameEn": "Dior Sauvage"
+      }
+    ],
+    "very-velvet-aqua": [
+      {
+        "id": "victoria-s-secret-very-sexy-sea",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ویکتوریا سکرت وری سکسی سی",
+        "nameEn": "Victoria's Secret Very Sexy Sea"
+      }
+    ],
+    "very-velvet-rouge": [
+      {
+        "id": "victoria-s-secret-very-sexy",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ویکتوریا سکرت وری سکسی",
+        "nameEn": "Victoria's Secret Very Sexy"
+      }
+    ],
+    "victoria": [
+      {
+        "id": "dolce-gabbana-devotion",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "دولچه گابانا دوشن",
+        "nameEn": "Dolce&Gabbana Devotion"
+      }
+    ],
+    "victoria-flower": [
+      {
+        "id": "viktor-rolf-flowerbomb",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ویکتور اند رولف فلاور بمب",
+        "nameEn": "Viktor&Rolf Flowerbomb"
+      }
+    ],
+    "victoria-flower-orchid": [
+      {
+        "id": "viktor-rolf-flowerbomb-ruby-orchid",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "ویکتور اند رولف فلاور بمب رابی ارکید",
+        "nameEn": "Viktor&Rolf Flowerbomb Ruby Orchid"
+      }
+    ],
+    "victorioso": [
+      {
+        "id": "invictus",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پاکو رابان اینویکتوس",
+        "nameEn": "Rabanne Invictus"
+      }
+    ],
+    "vintage-radio": [
+      {
+        "id": "paragon",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "پاراگون",
+        "nameEn": "Paragon"
+      }
+    ],
+    "voce-viva": [
+      {
+        "id": "creed-wind-flowers",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "کرید ویند فلاورز",
+        "nameEn": "Creed Wind Flowers"
+      }
+    ],
+    "voux-elegante": [
+      {
+        "id": "xerjoff-xj-1861-naxos",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف ناکسوس",
+        "nameEn": "Xerjoff XJ 1861 Naxos"
+      }
+    ],
+    "voux-violette": [
+      {
+        "id": "xerjoff-accento",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "زرجوف اکسنتو",
+        "nameEn": "Xerjoff Accento"
+      }
+    ],
+    "voyage-bleu": [
+      {
+        "id": "bleu",
+        "relation": "similar",
+        "source": "fragrantica",
+        "nameFa": "بلو د شنل",
+        "nameEn": "Bleu de Chanel"
+      }
+    ],
+    "vulcan-baie": [
+      {
+        "id": "stephane-humbert-lucas-777-pink-boa",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ پینک بوا",
+        "nameEn": "Stéphane Humbert Lucas 777 Pink Boa"
+      }
+    ],
+    "vulcan-feu": [
+      {
+        "id": "stephane-humbert-lucas-777-god-of-fire",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ گاد آف فایر",
+        "nameEn": "Stéphane Humbert Lucas 777 God of Fire"
+      }
+    ],
+    "vulcan-sable": [
+      {
+        "id": "stephane-humbert-lucas-777-sand-dance",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "استفان هامبرت لوکاس ۷۷۷ سند دنس",
+        "nameEn": "Stéphane Humbert Lucas 777 Sand Dance"
+      }
+    ],
+    "winsome": [
+      {
+        "id": "yves-saint-laurent-tuxedo",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن تاکسیدو",
+        "nameEn": "Yves Saint Laurent Tuxedo"
+      }
+    ],
+    "x-xandal-aromatix-x": [
+      {
+        "id": "lorenzo-pazzaglia-van-py-rhum",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "لورنزو پاتزالیا ون پای روم",
+        "nameEn": "Lorenzo Pazzaglia Van Py Rhum"
+      }
+    ],
+    "yara-candy": [
+      {
+        "id": "britney-spears-fantasy",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "بریتنی اسپیرز فانتزی",
+        "nameEn": "Britney Spears Fantasy"
+      }
+    ],
+    "yara-elixir": [
+      {
+        "id": "kayali-fragrances-yum-boujee-marshmallow-81",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "کایالی یام بوجی مارشمالو",
+        "nameEn": "Kayali Fragrances Yum Boujee Marshmallow | 81"
+      }
+    ],
+    "yara-moi": [
+      {
+        "id": "marc-jacobs-perfect-intense",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "مارک جاکوبز پرفکت اینتنس",
+        "nameEn": "Marc Jacobs Perfect Intense"
+      }
+    ],
+    "yeah": [
+      {
+        "id": "ysl-y",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "ایو سن لورن وای",
+        "nameEn": "Yves Saint Laurent Y"
+      }
+    ],
+    "your-touch": [
+      {
+        "id": "giorgio-armani-stronger-with-you",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو",
+        "nameEn": "Giorgio Armani Stronger With You"
+      }
+    ],
+    "your-touch-amber": [
+      {
+        "id": "giorgio-armani-stronger-with-you-amber",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو امبر",
+        "nameEn": "Giorgio Armani Stronger With You Amber"
+      }
+    ],
+    "your-touch-intense": [
+      {
+        "id": "giorgio-armani-stronger-with-you-intensely",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو اینتنسلی",
+        "nameEn": "Giorgio Armani Stronger With You Intensely"
+      }
+    ],
+    "your-touch-oud": [
+      {
+        "id": "giorgio-armani-stronger-with-you-oud",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو عود",
+        "nameEn": "Giorgio Armani Stronger With You Oud"
+      }
+    ],
+    "your-touch-santal": [
+      {
+        "id": "giorgio-armani-stronger-with-you-sandalwood",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو صندل وود",
+        "nameEn": "Giorgio Armani Stronger With You Sandalwood"
+      }
+    ],
+    "your-touch-tobacco": [
+      {
+        "id": "giorgio-armani-stronger-with-you-tobacco",
+        "relation": "inspired",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی استرانگر ویت یو توباکو",
+        "nameEn": "Giorgio Armani Stronger With You Tobacco"
+      }
+    ],
+    "yum-yum": [
+      {
+        "id": "nina-ricci-rose-extase",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "نینا ریچی رز اکستاز",
+        "nameEn": "Nina Ricci Rose Extase"
+      }
+    ],
+    "zaffiro-crafted-oud": [
+      {
+        "id": "thameen-carved-oud",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تامین کارود عود",
+        "nameEn": "Thameen Carved Oud"
+      }
+    ],
+    "zaffiro-regale": [
+      {
+        "id": "thameen-riviere",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "تامین ریویر",
+        "nameEn": "Thameen Riviere"
+      }
+    ],
+    "zeleny": [
+      {
+        "id": "parfums-de-marly-greenley",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "پارفومز د مارلی گرینلی",
+        "nameEn": "Parfums de Marly Greenley"
+      }
+    ],
+    "zeno": [
+      {
+        "id": "shiseido-zen",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "شیسیدو زن",
+        "nameEn": "Shiseido Zen"
+      }
+    ],
+    "zest": [
+      {
+        "id": "giorgio-armani-acqua-di-gio-elixir",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "جورجیو آرمانی آکوا دی جیو الکسیر",
+        "nameEn": "Giorgio Armani Acqua di Giò Elixir"
+      }
+    ],
+    "zodiac": [
+      {
+        "id": "ex-nihilo-blue-talisman",
+        "relation": "similar",
+        "source": "shop",
+        "nameFa": "اکس نیهیلو بلو تالیسمان",
+        "nameEn": "Ex Nihilo Blue Talisman"
+      }
+    ]
+  }
+}

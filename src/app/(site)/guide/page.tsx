@@ -7,7 +7,8 @@ import { Shell } from "@/components/Shell";
 import { Alert } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BUDGETS, OCCASIONS, REFERENCES, SEASONS } from "@/lib/catalog";
+import { budgetChoices } from "@/lib/budgets";
+import { OCCASIONS, REFERENCES, SEASONS } from "@/lib/catalog";
 import { cn, faNum } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 import type { Season } from "@/lib/types";
@@ -267,7 +268,7 @@ export default function GuidePage() {
                 ))
               : null}
             {current === "budget"
-              ? BUDGETS.map((item) => (
+              ? budgetChoices().map((item) => (
                   <Choice key={item.id} pressed={budget === item.id} compact onClick={() => pickBudget(item.id)}>
                     {item.label}
                   </Choice>

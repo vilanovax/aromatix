@@ -10,6 +10,8 @@ type Persisted = {
   library: Record<string, UserPerfume>;
   compare: string[];
   nudgeSeen: boolean;
+  /** نام انگلیسی نت‌ها کنار فارسی. */
+  noteNamesEn: boolean;
 };
 
 type LegacyPersisted = {
@@ -27,6 +29,7 @@ type Store = Persisted & {
   saveExperience: (slug: string, rating: number, owned: boolean) => void;
   clearExperience: (slug: string) => void;
   setDisliked: (slug: string) => void;
+  setNoteNamesEn: (on: boolean) => void;
   dismissNudge: () => void;
   toggleCompare: (slug: string) => void;
   openShops: (slug: string) => void;
@@ -45,6 +48,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   const [library, setLibrary] = useState<Record<string, UserPerfume>>({});
   const [compare, setCompare] = useState<string[]>([]);
   const [nudgeSeen, setNudgeSeen] = useState(false);
+  const [noteNamesEn, setNoteNamesEnState] = useState(false);
   const [shopFor, setShopFor] = useState<string | null>(null);
   const [termFor, setTermFor] = useState<string | null>(null);
 
@@ -70,13 +74,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
     setLibrary(data.library);
     setCompare(data.compare);
     setNudgeSeen(data.nudgeSeen);
+    setNoteNamesEnState(data.noteNamesEn);
   }
 
   useEffect(() => {
     if (!ready) return;
-    const data: Persisted = { profile, library, compare, nudgeSeen };
+    const data: Persisted = { profile, library, compare, nudgeSeen, noteNamesEn };
     localStorage.setItem(KEY, JSON.stringify(data));
-  }, [ready, profile, library, compare, nudgeSeen]);
+  }, [ready, profile, library, compare, nudgeSeen, noteNamesEn]);
 
   const value = useMemo<Store>(
     () => ({
@@ -85,6 +90,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       library,
       compare,
       nudgeSeen,
+      noteNamesEn,
       shopFor,
       termFor,
       setProfile: setProfileState,
@@ -149,6 +155,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           ),
         );
       },
+      setNoteNamesEn: setNoteNamesEnState,
       dismissNudge: () => setNudgeSeen(true),
       toggleCompare: (slug) => {
         setCompare((current) => {
@@ -169,7 +176,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       },
       closeTerm: () => setTermFor(null),
     }),
-    [ready, profile, library, compare, nudgeSeen, shopFor, termFor],
+    [ready, profile, library, compare, nudgeSeen, noteNamesEn, shopFor, termFor],
   );
 
   return <AromaContext.Provider value={value}>{children}</AromaContext.Provider>;
@@ -201,6 +208,7 @@ function parsePersisted(raw: string): Persisted | null {
       library: normalizeLibrary(data.library),
       compare: Array.isArray(data.compare) ? data.compare.filter((item) => typeof item === "string") : [],
       nudgeSeen: Boolean(data.nudgeSeen),
+      noteNamesEn: Boolean(data.noteNamesEn),
     };
   } catch {
     return null;
@@ -215,6 +223,7 @@ function parseLegacy(raw: string): Persisted | null {
       library: migrateTaste(data.taste ?? {}),
       compare: Array.isArray(data.compare) ? data.compare.filter((item) => typeof item === "string") : [],
       nudgeSeen: false,
+      noteNamesEn: false,
     };
   } catch {
     return null;

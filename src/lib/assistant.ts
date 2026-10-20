@@ -2,6 +2,7 @@ import {
   decisionFacts,
   findPerfumeByName,
   getPerfume,
+  matchBrand,
   isPublicPerfume,
   publicLead,
   leaningShare,
@@ -9,6 +10,7 @@ import {
   sharedAccordNames,
   sweetness,
 } from "@/lib/catalog";
+import { budgetLabel, lowerBudget, smallestBudget } from "@/lib/budgets";
 import { faNum, joinFa } from "@/lib/format";
 import { findKnowledge } from "@/lib/knowledge";
 import { findReference, normalizeAsk } from "@/lib/references";
@@ -24,8 +26,6 @@ export type Reply =
   | { kind: "compare"; title: string; body: string; a: string; b: string }
   | { kind: "refine"; body: string }
   | { kind: "miss"; body: string };
-
-const STEPS = [12, 8, 5, 2];
 
 export function respond(raw: string, profile: Profile | null, results: Perfume[], context: AskContext = {}) {
   const text = normalize(raw).trim();
@@ -92,10 +92,9 @@ export function respond(raw: string, profile: Profile | null, results: Perfume[]
 
   if (/ارزان/.test(text)) {
     if (!profile) return needList();
-    const ceiling = profile.budget;
-    const cheaper = ceiling == null ? 8 : STEPS.find((step) => step < ceiling);
+    const cheaper = lowerBudget(profile.budget);
     if (!cheaper) {
-      return { profile, reply: { kind: "miss", body: "کف بودجه همین تا ۲ میلیون است." } as Reply };
+      return { profile, reply: { kind: "miss", body: `کف بودجه همین ${budgetLabel(smallestBudget())} است.` } as Reply };
     }
     const next: Profile = { ...profile, budget: cheaper, note: "سقف بودجه کمتر شد." };
     return {
@@ -174,6 +173,7 @@ export function isPerfumeLookup(input: string) {
 export type AskIntent =
   | { type: "perfume"; slug: string; similar: boolean; occasion: string | null; season: Season | null }
   | { type: "reference"; id: string; occasion: string | null; season: Season | null; budget: number | null }
+  | { type: "brand"; slug: string }
   | { type: "learn"; slug: string }
   | { type: "results"; profile: Profile }
   | { type: "miss" };
@@ -202,6 +202,8 @@ export function interpretQuery(raw: string): AskIntent {
   if (!scene) {
     const lesson = findKnowledge(text);
     if (lesson) return { type: "learn", slug: lesson.slug };
+    const brand = matchBrand(text);
+    if (brand) return { type: "brand", slug: brand.slug };
   }
   if (parsed && scene) return { type: "results", profile: parsed };
   return { type: "miss" };

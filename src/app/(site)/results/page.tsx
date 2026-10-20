@@ -7,6 +7,7 @@ import { Alert } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
+import { higherBudget } from "@/lib/budgets";
 import { LEANINGS } from "@/lib/catalog";
 import { countWord, faNum } from "@/lib/format";
 import { matchPerfumes, resultHeading } from "@/lib/match";
@@ -71,18 +72,18 @@ export default function ResultsPage() {
                   ? `با بودجهٔ تا ${faNum(profile.budget)} میلیون، برای این موقعیت عطر مطمئنی در این نمونه نیست.`
                   : "برای این موقعیت عطر مطمئنی در این نمونه نیست."}
               </p>
-              {profile.budget != null && profile.budget < 8 ? (
+              {profile.budget != null && higherBudget(profile.budget) != null ? (
                 <Button
                   className="mt-4 min-h-12 w-full"
                   onClick={() =>
                     setProfile({
                       ...profile,
-                      budget: profile.budget === 2 ? 5 : 8,
+                      budget: higherBudget(profile.budget!),
                       note: "سقف بودجه بالاتر رفت.",
                     })
                   }
                 >
-                  بودجه را تا {faNum(profile.budget === 2 ? 5 : 8)} میلیون بالا ببر
+                  بودجه را تا {faNum(higherBudget(profile.budget)!)} میلیون بالا ببر
                 </Button>
               ) : (
                 <Button href="/guide" variant="ghost" className="mt-4 min-h-12 w-full">

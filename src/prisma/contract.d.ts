@@ -18,7 +18,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'fe4223143f00f76193c1f086a2d10cd848663727c90fd18645be5c154412028b'>;
+  StorageHashBase<'dc8f454a74d56a754589f82df0c14cc1f7d81a589fa8f8f6a9ef08a737309938'>;
 export type ExecutionHash = ExecutionHashBase<string>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
@@ -233,12 +233,19 @@ type DefaultLiteralValue<CodecId extends string, Encoded> = CodecId extends keyo
 
 export type FieldOutputTypes = {
   readonly aroma: {
+    readonly AppSetting: {
+      readonly key: CodecTypes['pg/text@1']['output'];
+      readonly value: CodecTypes['pg/text@1']['output'];
+    };
     readonly CatalogBrand: {
       readonly active: CodecTypes['pg/bool@1']['output'];
       readonly description: CodecTypes['pg/text@1']['output'];
+      readonly instagram: CodecTypes['pg/text@1']['output'];
+      readonly logo: CodecTypes['pg/text@1']['output'];
       readonly nameEn: CodecTypes['pg/text@1']['output'];
       readonly nameFa: CodecTypes['pg/text@1']['output'];
       readonly slug: CodecTypes['pg/text@1']['output'];
+      readonly website: CodecTypes['pg/text@1']['output'];
     };
     readonly CatalogPerfume: {
       readonly brandSlug: CodecTypes['pg/text@1']['output'];
@@ -247,6 +254,17 @@ export type FieldOutputTypes = {
       readonly nameFa: CodecTypes['pg/text@1']['output'];
       readonly slug: CodecTypes['pg/text@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    };
+    readonly CatalogReport: {
+      readonly adminNote: CodecTypes['pg/text@1']['output'];
+      readonly body: CodecTypes['pg/text@1']['output'];
+      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/int4@1']['output'];
+      readonly perfumeSlug: CodecTypes['pg/text@1']['output'];
+      readonly resolvedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly status: 'open' | 'fixed' | 'dismissed';
+      readonly topic: 'price' | 'identity' | 'scent' | 'shop' | 'other';
+      readonly userId: CodecTypes['pg/int4@1']['output'] | null;
     };
     readonly CatalogShop: {
       readonly active: CodecTypes['pg/bool@1']['output'];
@@ -317,12 +335,19 @@ export type FieldOutputTypes = {
 };
 export type FieldInputTypes = {
   readonly aroma: {
+    readonly AppSetting: {
+      readonly key: CodecTypes['pg/text@1']['input'];
+      readonly value: CodecTypes['pg/text@1']['input'];
+    };
     readonly CatalogBrand: {
       readonly active: CodecTypes['pg/bool@1']['input'];
       readonly description: CodecTypes['pg/text@1']['input'];
+      readonly instagram: CodecTypes['pg/text@1']['input'];
+      readonly logo: CodecTypes['pg/text@1']['input'];
       readonly nameEn: CodecTypes['pg/text@1']['input'];
       readonly nameFa: CodecTypes['pg/text@1']['input'];
       readonly slug: CodecTypes['pg/text@1']['input'];
+      readonly website: CodecTypes['pg/text@1']['input'];
     };
     readonly CatalogPerfume: {
       readonly brandSlug: CodecTypes['pg/text@1']['input'];
@@ -331,6 +356,17 @@ export type FieldInputTypes = {
       readonly nameFa: CodecTypes['pg/text@1']['input'];
       readonly slug: CodecTypes['pg/text@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    };
+    readonly CatalogReport: {
+      readonly adminNote: CodecTypes['pg/text@1']['input'];
+      readonly body: CodecTypes['pg/text@1']['input'];
+      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/int4@1']['input'];
+      readonly perfumeSlug: CodecTypes['pg/text@1']['input'];
+      readonly resolvedAt: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly status: 'open' | 'fixed' | 'dismissed';
+      readonly topic: 'price' | 'identity' | 'scent' | 'shop' | 'other';
+      readonly userId: CodecTypes['pg/int4@1']['input'] | null;
     };
     readonly CatalogShop: {
       readonly active: CodecTypes['pg/bool@1']['input'];
@@ -401,12 +437,19 @@ export type FieldInputTypes = {
 };
 export type StorageColumnTypes = {
   readonly aroma: {
+    readonly AppSetting: {
+      readonly key: CodecTypes['pg/text@1']['output'];
+      readonly value: CodecTypes['pg/text@1']['output'];
+    };
     readonly CatalogBrand: {
       readonly active: CodecTypes['pg/bool@1']['output'];
       readonly description: CodecTypes['pg/text@1']['output'];
+      readonly instagram: CodecTypes['pg/text@1']['output'];
+      readonly logo: CodecTypes['pg/text@1']['output'];
       readonly nameEn: CodecTypes['pg/text@1']['output'];
       readonly nameFa: CodecTypes['pg/text@1']['output'];
       readonly slug: CodecTypes['pg/text@1']['output'];
+      readonly website: CodecTypes['pg/text@1']['output'];
     };
     readonly CatalogPerfume: {
       readonly brandSlug: CodecTypes['pg/text@1']['output'];
@@ -415,6 +458,17 @@ export type StorageColumnTypes = {
       readonly nameFa: CodecTypes['pg/text@1']['output'];
       readonly slug: CodecTypes['pg/text@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    };
+    readonly CatalogReport: {
+      readonly adminNote: CodecTypes['pg/text@1']['output'];
+      readonly body: CodecTypes['pg/text@1']['output'];
+      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+      readonly id: CodecTypes['pg/int4@1']['output'];
+      readonly perfumeSlug: CodecTypes['pg/text@1']['output'];
+      readonly resolvedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+      readonly status: 'open' | 'fixed' | 'dismissed';
+      readonly topic: 'price' | 'identity' | 'scent' | 'shop' | 'other';
+      readonly userId: CodecTypes['pg/int4@1']['output'] | null;
     };
     readonly CatalogShop: {
       readonly active: CodecTypes['pg/bool@1']['output'];
@@ -485,12 +539,19 @@ export type StorageColumnTypes = {
 };
 export type StorageColumnInputTypes = {
   readonly aroma: {
+    readonly AppSetting: {
+      readonly key: CodecTypes['pg/text@1']['input'];
+      readonly value: CodecTypes['pg/text@1']['input'];
+    };
     readonly CatalogBrand: {
       readonly active: CodecTypes['pg/bool@1']['input'];
       readonly description: CodecTypes['pg/text@1']['input'];
+      readonly instagram: CodecTypes['pg/text@1']['input'];
+      readonly logo: CodecTypes['pg/text@1']['input'];
       readonly nameEn: CodecTypes['pg/text@1']['input'];
       readonly nameFa: CodecTypes['pg/text@1']['input'];
       readonly slug: CodecTypes['pg/text@1']['input'];
+      readonly website: CodecTypes['pg/text@1']['input'];
     };
     readonly CatalogPerfume: {
       readonly brandSlug: CodecTypes['pg/text@1']['input'];
@@ -499,6 +560,17 @@ export type StorageColumnInputTypes = {
       readonly nameFa: CodecTypes['pg/text@1']['input'];
       readonly slug: CodecTypes['pg/text@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
+    };
+    readonly CatalogReport: {
+      readonly adminNote: CodecTypes['pg/text@1']['input'];
+      readonly body: CodecTypes['pg/text@1']['input'];
+      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
+      readonly id: CodecTypes['pg/int4@1']['input'];
+      readonly perfumeSlug: CodecTypes['pg/text@1']['input'];
+      readonly resolvedAt: CodecTypes['pg/timestamptz-string@1']['input'] | null;
+      readonly status: 'open' | 'fixed' | 'dismissed';
+      readonly topic: 'price' | 'identity' | 'scent' | 'shop' | 'other';
+      readonly userId: CodecTypes['pg/int4@1']['input'] | null;
     };
     readonly CatalogShop: {
       readonly active: CodecTypes['pg/bool@1']['input'];
@@ -569,12 +641,20 @@ export type StorageColumnInputTypes = {
 };
 
 export namespace Models {
+  export type aroma_AppSetting = {
+    key: CodecTypes['pg/text@1']['output'];
+    value: CodecTypes['pg/text@1']['output'];
+    readonly [RelationKeys]?: never;
+  };
   export type aroma_CatalogBrand = {
     active: CodecTypes['pg/bool@1']['output'];
     description: CodecTypes['pg/text@1']['output'];
+    instagram: CodecTypes['pg/text@1']['output'];
+    logo: CodecTypes['pg/text@1']['output'];
     nameEn: CodecTypes['pg/text@1']['output'];
     nameFa: CodecTypes['pg/text@1']['output'];
     slug: CodecTypes['pg/text@1']['output'];
+    website: CodecTypes['pg/text@1']['output'];
     perfumes: aroma_CatalogPerfume[];
     readonly [RelationKeys]?: 'perfumes';
   };
@@ -587,6 +667,19 @@ export namespace Models {
     updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     brand: aroma_CatalogBrand;
     readonly [RelationKeys]?: 'brand';
+  };
+  export type aroma_CatalogReport = {
+    adminNote: CodecTypes['pg/text@1']['output'];
+    body: CodecTypes['pg/text@1']['output'];
+    createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
+    id: CodecTypes['pg/int4@1']['output'];
+    perfumeSlug: CodecTypes['pg/text@1']['output'];
+    resolvedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
+    status: 'open' | 'fixed' | 'dismissed';
+    topic: 'price' | 'identity' | 'scent' | 'shop' | 'other';
+    userId: CodecTypes['pg/int4@1']['output'] | null;
+    user: aroma_User | null;
+    readonly [RelationKeys]?: 'user';
   };
   export type aroma_CatalogShop = {
     active: CodecTypes['pg/bool@1']['output'];
@@ -646,8 +739,9 @@ export namespace Models {
     phone: CodecTypes['pg/text@1']['output'];
     role: 'member' | 'admin';
     perfumes: aroma_UserPerfume[];
+    reports: aroma_CatalogReport[];
     sessions: aroma_Session[];
-    readonly [RelationKeys]?: 'perfumes' | 'sessions';
+    readonly [RelationKeys]?: 'perfumes' | 'reports' | 'sessions';
   };
   export type aroma_UserPerfume = {
     disliked: CodecTypes['pg/bool@1']['output'];
@@ -667,8 +761,10 @@ export namespace Models {
 
 export declare const models: {
   aroma: {
+    AppSetting: Models.aroma_AppSetting;
     CatalogBrand: Models.aroma_CatalogBrand;
     CatalogPerfume: Models.aroma_CatalogPerfume;
+    CatalogReport: Models.aroma_CatalogReport;
     CatalogShop: Models.aroma_CatalogShop;
     LearnArticle: Models.aroma_LearnArticle;
     LoginAttempt: Models.aroma_LoginAttempt;
@@ -698,6 +794,26 @@ type ContractBase = Omit<
         readonly kind: 'postgres-schema';
         readonly entries: {
           readonly table: {
+            readonly AppSetting: {
+              columns: {
+                readonly key: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly value: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['key'] };
+              uniques: readonly [];
+              indexes: readonly [];
+              foreignKeys: readonly [];
+            };
             readonly CatalogBrand: {
               columns: {
                 readonly active: {
@@ -711,6 +827,26 @@ type ContractBase = Omit<
                   readonly many: false;
                 };
                 readonly description: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly instagram: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly logo: {
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
@@ -736,6 +872,16 @@ type ContractBase = Omit<
                   readonly dataType: 'pg/text';
                   readonly codecId: 'pg/text@1';
                   readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly website: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
                   readonly many: false;
                 };
               };
@@ -805,6 +951,113 @@ type ContractBase = Omit<
                     readonly namespaceId: 'aroma' & NamespaceId;
                     readonly tableName: 'CatalogBrand';
                     readonly columns: readonly ['slug'];
+                  };
+                },
+              ];
+            };
+            readonly CatalogReport: {
+              columns: {
+                readonly adminNote: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', ''>;
+                  };
+                  readonly many: false;
+                };
+                readonly body: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly createdAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: false;
+                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
+                  readonly many: false;
+                };
+                readonly id: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'function';
+                    readonly expression: 'autoincrement()';
+                  };
+                  readonly many: false;
+                };
+                readonly perfumeSlug: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly resolvedAt: {
+                  readonly dataType: 'pg/timestamptz';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+                readonly status: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly default: {
+                    readonly kind: 'literal';
+                    readonly value: DefaultLiteralValue<'pg/text@1', 'open'>;
+                  };
+                  readonly many: false;
+                };
+                readonly topic: {
+                  readonly dataType: 'pg/text';
+                  readonly codecId: 'pg/text@1';
+                  readonly nullable: false;
+                  readonly many: false;
+                };
+                readonly userId: {
+                  readonly dataType: 'pg/int4';
+                  readonly codecId: 'pg/int4@1';
+                  readonly nullable: true;
+                  readonly many: false;
+                };
+              };
+              primaryKey: { readonly columns: readonly ['id'] };
+              uniques: readonly [];
+              indexes: readonly [
+                {
+                  readonly name: 'CatalogReport_perfumeSlug_idx_cf34a880';
+                  readonly prefix: 'CatalogReport_perfumeSlug_idx';
+                  readonly columns: readonly ['perfumeSlug'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'CatalogReport_status_createdAt_idx_58610442';
+                  readonly prefix: 'CatalogReport_status_createdAt_idx';
+                  readonly columns: readonly ['status', 'createdAt'];
+                  readonly unique: false;
+                },
+                {
+                  readonly name: 'CatalogReport_userId_idx_a489d58a';
+                  readonly prefix: 'CatalogReport_userId_idx';
+                  readonly columns: readonly ['userId'];
+                  readonly unique: false;
+                },
+              ];
+              foreignKeys: readonly [
+                {
+                  readonly source: {
+                    readonly namespaceId: 'aroma' & NamespaceId;
+                    readonly tableName: 'CatalogReport';
+                    readonly columns: readonly ['userId'];
+                  };
+                  readonly target: {
+                    readonly namespaceId: 'aroma' & NamespaceId;
+                    readonly tableName: 'User';
+                    readonly columns: readonly ['id'];
                   };
                 },
               ];
@@ -1329,6 +1582,14 @@ type ContractBase = Omit<
         readonly entries: {
           readonly table: {};
           readonly valueSet: {
+            readonly ReportStatus: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['open', 'fixed', 'dismissed'];
+            };
+            readonly ReportTopic: {
+              readonly kind: 'valueSet';
+              readonly values: readonly ['price', 'identity', 'scent', 'shop', 'other'];
+            };
             readonly UserRole: {
               readonly kind: 'valueSet';
               readonly values: readonly ['member', 'admin'];
@@ -1344,6 +1605,10 @@ type ContractBase = Omit<
   readonly target: 'postgres';
   readonly targetFamily: 'sql';
   readonly roots: {
+    readonly AppSetting: {
+      readonly namespace: 'aroma' & NamespaceId;
+      readonly model: 'AppSetting';
+    };
     readonly CatalogBrand: {
       readonly namespace: 'aroma' & NamespaceId;
       readonly model: 'CatalogBrand';
@@ -1351,6 +1616,10 @@ type ContractBase = Omit<
     readonly CatalogPerfume: {
       readonly namespace: 'aroma' & NamespaceId;
       readonly model: 'CatalogPerfume';
+    };
+    readonly CatalogReport: {
+      readonly namespace: 'aroma' & NamespaceId;
+      readonly model: 'CatalogReport';
     };
     readonly CatalogShop: {
       readonly namespace: 'aroma' & NamespaceId;
@@ -1379,6 +1648,27 @@ type ContractBase = Omit<
     readonly namespaces: {
       readonly aroma: {
         readonly models: {
+          readonly AppSetting: {
+            readonly fields: {
+              readonly key: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly value: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+            };
+            readonly relations: Record<string, never>;
+            readonly storage: {
+              readonly table: 'AppSetting';
+              readonly namespaceId: 'aroma';
+              readonly fields: {
+                readonly key: { readonly column: 'key' };
+                readonly value: { readonly column: 'value' };
+              };
+            };
+          };
           readonly CatalogBrand: {
             readonly fields: {
               readonly active: {
@@ -1386,6 +1676,14 @@ type ContractBase = Omit<
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/bool@1' };
               };
               readonly description: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly instagram: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly logo: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
@@ -1398,6 +1696,10 @@ type ContractBase = Omit<
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
               readonly slug: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly website: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
@@ -1421,9 +1723,12 @@ type ContractBase = Omit<
               readonly fields: {
                 readonly active: { readonly column: 'active' };
                 readonly description: { readonly column: 'description' };
+                readonly instagram: { readonly column: 'instagram' };
+                readonly logo: { readonly column: 'logo' };
                 readonly nameEn: { readonly column: 'nameEn' };
                 readonly nameFa: { readonly column: 'nameFa' };
                 readonly slug: { readonly column: 'slug' };
+                readonly website: { readonly column: 'website' };
               };
             };
           };
@@ -1481,6 +1786,78 @@ type ContractBase = Omit<
                 readonly nameFa: { readonly column: 'nameFa' };
                 readonly slug: { readonly column: 'slug' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
+              };
+            };
+          };
+          readonly CatalogReport: {
+            readonly fields: {
+              readonly adminNote: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly body: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly createdAt: {
+                readonly nullable: false;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly id: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+              readonly perfumeSlug: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly resolvedAt: {
+                readonly nullable: true;
+                readonly type: {
+                  readonly kind: 'scalar';
+                  readonly codecId: 'pg/timestamptz-string@1';
+                };
+              };
+              readonly status: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly topic: {
+                readonly nullable: false;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
+              };
+              readonly userId: {
+                readonly nullable: true;
+                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
+              };
+            };
+            readonly relations: {
+              readonly user: {
+                readonly to: { readonly namespace: 'aroma' & NamespaceId; readonly model: 'User' };
+                readonly cardinality: 'N:1';
+                readonly nullable: true;
+                readonly on: {
+                  readonly localFields: readonly ['userId'];
+                  readonly targetFields: readonly ['id'];
+                };
+              };
+            };
+            readonly storage: {
+              readonly table: 'CatalogReport';
+              readonly namespaceId: 'aroma';
+              readonly fields: {
+                readonly adminNote: { readonly column: 'adminNote' };
+                readonly body: { readonly column: 'body' };
+                readonly createdAt: { readonly column: 'createdAt' };
+                readonly id: { readonly column: 'id' };
+                readonly perfumeSlug: { readonly column: 'perfumeSlug' };
+                readonly resolvedAt: { readonly column: 'resolvedAt' };
+                readonly status: { readonly column: 'status' };
+                readonly topic: { readonly column: 'topic' };
+                readonly userId: { readonly column: 'userId' };
               };
             };
           };
@@ -1773,6 +2150,17 @@ type ContractBase = Omit<
                   readonly targetFields: readonly ['userId'];
                 };
               };
+              readonly reports: {
+                readonly to: {
+                  readonly namespace: 'aroma' & NamespaceId;
+                  readonly model: 'CatalogReport';
+                };
+                readonly cardinality: '1:N';
+                readonly on: {
+                  readonly localFields: readonly ['id'];
+                  readonly targetFields: readonly ['userId'];
+                };
+              };
               readonly sessions: {
                 readonly to: {
                   readonly namespace: 'aroma' & NamespaceId;
@@ -1880,6 +2268,24 @@ type ContractBase = Omit<
       readonly public: {
         readonly models: Record<string, never>;
         readonly enum: {
+          readonly ReportStatus: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'open'; readonly value: 'open' },
+              { readonly name: 'fixed'; readonly value: 'fixed' },
+              { readonly name: 'dismissed'; readonly value: 'dismissed' },
+            ];
+          };
+          readonly ReportTopic: {
+            readonly codecId: 'pg/text@1';
+            readonly members: readonly [
+              { readonly name: 'price'; readonly value: 'price' },
+              { readonly name: 'identity'; readonly value: 'identity' },
+              { readonly name: 'scent'; readonly value: 'scent' },
+              { readonly name: 'shop'; readonly value: 'shop' },
+              { readonly name: 'other'; readonly value: 'other' },
+            ];
+          };
           readonly UserRole: {
             readonly codecId: 'pg/text@1';
             readonly members: readonly [
@@ -1889,6 +2295,18 @@ type ContractBase = Omit<
           };
         };
         readonly enumMemberTypes?: {
+          readonly ReportStatus: readonly [
+            { readonly name: 'open'; readonly value: 'open' },
+            { readonly name: 'fixed'; readonly value: 'fixed' },
+            { readonly name: 'dismissed'; readonly value: 'dismissed' },
+          ];
+          readonly ReportTopic: readonly [
+            { readonly name: 'price'; readonly value: 'price' },
+            { readonly name: 'identity'; readonly value: 'identity' },
+            { readonly name: 'scent'; readonly value: 'scent' },
+            { readonly name: 'shop'; readonly value: 'shop' },
+            { readonly name: 'other'; readonly value: 'other' },
+          ];
           readonly UserRole: readonly [
             { readonly name: 'member'; readonly value: 'member' },
             { readonly name: 'admin'; readonly value: 'admin' },

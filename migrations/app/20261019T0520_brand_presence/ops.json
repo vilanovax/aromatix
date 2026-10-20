@@ -1,0 +1,128 @@
+[
+  {
+    "id": "column.aroma.CatalogBrand.instagram",
+    "label": "Add column \"instagram\" to \"CatalogBrand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "instagram",
+        "table": "CatalogBrand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"instagram\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "instagram"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"instagram\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogBrand\" ADD COLUMN \"instagram\" text DEFAULT '' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"instagram\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "instagram"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.aroma.CatalogBrand.logo",
+    "label": "Add column \"logo\" to \"CatalogBrand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "logo",
+        "table": "CatalogBrand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"logo\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "logo"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"logo\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogBrand\" ADD COLUMN \"logo\" text DEFAULT '' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"logo\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "logo"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.aroma.CatalogBrand.website",
+    "label": "Add column \"website\" to \"CatalogBrand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "column",
+        "name": "website",
+        "table": "CatalogBrand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"website\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "website"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"website\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogBrand\" ADD COLUMN \"website\" text DEFAULT '' NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"website\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "aroma",
+          "CatalogBrand",
+          "website"
+        ]
+      }
+    ]
+  }
+]

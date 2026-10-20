@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { Separator } from "@/components/ui/separator";
 import { getPerfume, shownOffers } from "@/lib/catalog";
+import { offerAvailability, offerStockLine } from "@/lib/offer-stock";
 import { cn, millionToman } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 import type { ShopOffer } from "@/lib/types";
@@ -59,7 +60,7 @@ export function ShopSheet() {
         ) : (
           <ul className="mt-2">
             {shops.map((shop, index) => (
-              <li key={shop.shop}>
+              <li key={shop.shopSlug ?? shop.shop}>
                 {index > 0 ? <Separator /> : null}
                 <div className="py-4">
                   <div className="flex items-baseline justify-between gap-3">
@@ -69,21 +70,24 @@ export function ShopSheet() {
                   <p className="mt-2 flex items-center gap-2 text-label text-muted-foreground">
                     <span
                       aria-hidden="true"
-                      className={cn("size-2 shrink-0 rounded-full", shop.stockConfirmed ? "bg-stock-ok" : "bg-stock-pending")}
+                      className={cn(
+                        "size-2 shrink-0 rounded-full",
+                        offerAvailability(shop) === "in_stock" && "bg-stock-ok",
+                        offerAvailability(shop) === "unknown" && "bg-stock-pending",
+                        offerAvailability(shop) === "out_of_stock" && "bg-destructive",
+                      )}
                     />
-                    <span>
-                      {shop.stockConfirmed
-                        ? `موجود · بررسی ${shop.checkedOn}`
-                        : `موجودی تأیید نشده · بررسی ${shop.checkedOn}`}
-                    </span>
+                    <span>{offerStockLine(shop)}</span>
                   </p>
-                  {shop.stockConfirmed ? (
+                  {offerAvailability(shop) === "in_stock" ? (
                     <Button href={shop.href} size="lg" className="mt-4 min-h-12 w-full">
                       خرید از {shop.shop}
                     </Button>
                   ) : (
                     <Alert variant="warning" className="mt-4">
-                      آخرین قیمت ثبت‌شده است. موجودی تأیید نشده، برای همین لینک خرید نیست.
+                      {offerAvailability(shop) === "out_of_stock"
+                        ? "این فروشگاه این عطر را ندارد. آخرین قیمت برای مقایسه مانده و لینک خرید نیست."
+                        : "آخرین قیمت ثبت‌شده است. موجودی تأیید نشده، برای همین لینک خرید نیست."}
                     </Alert>
                   )}
                 </div>
@@ -97,6 +101,13 @@ export function ShopSheet() {
 }
 
 function compareShops(a: ShopOffer, b: ShopOffer) {
-  if (a.stockConfirmed !== b.stockConfirmed) return a.stockConfirmed ? -1 : 1;
+  const rank = (offer: ShopOffer) => {
+    const stock = offerAvailability(offer);
+    if (stock === "in_stock") return 0;
+    if (stock === "unknown") return 1;
+    return 2;
+  };
+  const byStock = rank(a) - rank(b);
+  if (byStock !== 0) return byStock;
   return a.price - b.price;
 }

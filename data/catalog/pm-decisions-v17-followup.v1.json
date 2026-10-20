@@ -1,0 +1,1020 @@
+{
+  "_meta": {
+    "status": "PM_DECIDED",
+    "base": "all-app-v17.LOCKED-20261017-1758.json",
+    "base_sha256": "bd9a46f97949a70d6fd7e761611dd4a684a296ee5bf9a2b46cc05f5254588e7d",
+    "base_records": 1075,
+    "date": "2026-10-17",
+    "decided_at": "2026-10-17T14:43:22.049144+00:00",
+    "applies_to": "v18 prep — do not mutate v17 lock file",
+    "sources": [
+      "new-records-why-approval.v1.json",
+      "v17-change-list.v1.xlsx",
+      "all-app-v17.LOCKED-20261017-1758.json"
+    ],
+    "pm_summary_fa": "monarque: نت آمبروکسان+بادام کاراملی و why همان جفت گرم زمستان. ۶ تکراری صفحه → alias روی کانونیکال. ۳+۱ زیربرند Zodiac approve؛ andaleeb کنار. ۶۰ draft: approve به‌جز پیش‌نویس با «شیرین»؛ اسلاگهای آوانویسی اول rename. ۵ بدون draft defer.",
+    "instruction_fa": "این تصمیم‌ها برای ساخت v18 است. قفل v17 را بازنویسی نکنید. بعد از اعمال، sha256 قفل جدید را گزارش دهید."
+  },
+  "q1_monarque": {
+    "slug": "monarque",
+    "pm_decision": "edit_notes_and_why",
+    "new_notes_min": [
+      {
+        "layer": "top",
+        "name": "دارچین"
+      },
+      {
+        "layer": "top",
+        "name": "هل"
+      },
+      {
+        "layer": "middle",
+        "name": "وانیل"
+      },
+      {
+        "layer": "base",
+        "name": "پرالین"
+      },
+      {
+        "layer": "base",
+        "name": "تونکا"
+      },
+      {
+        "layer": "base",
+        "name": "آمبروکسان"
+      },
+      {
+        "layer": "base",
+        "name": "بادام کاراملی"
+      }
+    ],
+    "pm_text": "آمبروکسان و بادام کاراملی گرم است و برای زمستان مناسب است.",
+    "note_fa": "با ۵ نت همه جفت زمستان پر بود؛ آمبروکسان و بادام کاراملی را از صفحه نگه دارید.",
+    "source_url": "https://www.fragrantica.com/perfume/Armaf/Monarque-98713.html"
+  },
+  "q2_duplicate_pages": {
+    "pm_decision": "merge_as_alias",
+    "note_fa": "رکورد دوم نسازید؛ نام پارک‌شده را به aliases کانونیکال اضافه کنید و از پارک خارج/حذف کنید.",
+    "items": [
+      {
+        "parked_slug": "9pm-rbl",
+        "canonical_slug": "9-pm-rebel",
+        "pm_decision": "merge_as_alias"
+      },
+      {
+        "parked_slug": "blend-of-khalta",
+        "canonical_slug": "khalta-blend-of",
+        "pm_decision": "merge_as_alias"
+      },
+      {
+        "parked_slug": "dark-dor-asprt",
+        "canonical_slug": "dark-door-sport",
+        "pm_decision": "merge_as_alias"
+      },
+      {
+        "parked_slug": "for-him-hawas",
+        "canonical_slug": "hawas-for-him",
+        "pm_decision": "merge_as_alias"
+      },
+      {
+        "parked_slug": "kobra-hawas",
+        "canonical_slug": "hawas-kobra",
+        "pm_decision": "merge_as_alias"
+      },
+      {
+        "parked_slug": "rouge-hawas",
+        "canonical_slug": "hawas-rouge",
+        "pm_decision": "merge_as_alias"
+      }
+    ]
+  },
+  "q3_subbrands": {
+    "note_fa": "Zodiac زیربرند صمام؛ Asdaaf مبهم کنار.",
+    "items": [
+      {
+        "slug": "hashtag-zodiac",
+        "pm_decision": "approve",
+        "note_fa": "Extrait فقط غلظت است؛ جنسیت از فرگرانتیکا.",
+        "url": "https://www.fragrantica.com/perfume/Zodiac/Hashtag-Extrait-de-Parfum-104778.html"
+      },
+      {
+        "slug": "regal-oud",
+        "pm_decision": "approve",
+        "note_fa": "Extrait فقط غلظت است؛ جنسیت از فرگرانتیکا.",
+        "url": "https://www.fragrantica.com/perfume/Zodiac/Regal-Oud-Extrait-de-Parfum-104806.html"
+      },
+      {
+        "slug": "unlimited-zodiac-samam",
+        "pm_decision": "approve",
+        "note_fa": "Extrait فقط غلظت است؛ جنسیت از فرگرانتیکا.",
+        "url": "https://www.fragrantica.com/perfume/Zodiac/Unlimited-Extrait-de-Parfum-104833.html"
+      },
+      {
+        "slug": "summer-sin-extrait-de-parfum-zodiac",
+        "pm_decision": "approve",
+        "note_fa": "قبلاً مطمئن؛ با whyهای جدید وارد شود.",
+        "url": "https://www.fragrantica.com/perfume/Zodiac/Summer-Sin-Extrait-de-Parfum-104805.html"
+      },
+      {
+        "slug": "andaleeb-by-asdaaf",
+        "pm_decision": "defer",
+        "note_fa": "دو صفحهٔ مبهم؛ تا انتخاب دستی وارد نشود.",
+        "url": null
+      }
+    ]
+  },
+  "q4_new_records": {
+    "source": "new-records-why-approval.v1.json",
+    "approve_drafts_count": 58,
+    "reject_until_rewrite_count": 2,
+    "defer_no_draft_count": 5,
+    "slug_renames": [
+      {
+        "current": "ajod-pink-to-pink-krmi-alksir",
+        "nameFa": "اجود پینک تو پینک کرمی الکسیر",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ajwad-Pink-to-Pink-Creamy-Elixir-138399.html",
+        "suggested_slug": "ajwad-pink-to-pink-creamy-elixir",
+        "draft_why": "تمشک و دانه وانیل شیرین است و برای روزهای گرم مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "bnt-horan",
+        "nameFa": "بنت حوران",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ard-Al-Zaafaran/Bint-Hooran-64211.html",
+        "suggested_slug": "bint-horan",
+        "draft_why": "وانیل و گل مریم برای زمستان مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "jin-lao-vrdeh-aora",
+        "nameFa": "جین لاو ورده اورا",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Jean-Lowe-Verde-Aura-138033.html",
+        "suggested_slug": "jean-lowe-verde-aura",
+        "draft_why": "لیمو و بالنگ خنک است و برای روزهای گرم مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "klab-d-nait-vomn",
+        "nameFa": "کلاب د نایت وومن",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Club-de-Nuit-Woman-27655.html",
+        "suggested_slug": "club-de-nuit-woman",
+        "draft_why": "پرتقال و رز برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "lominos-sahara",
+        "nameFa": "لومینوس صاحارا",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Luminous-Sahara-123467.html",
+        "suggested_slug": "luminous-sahara",
+        "draft_why": "بهارنارنج و ترنج برای زمستان مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "mon-drift-blo-aintns",
+        "nameFa": "مون دریفت بلو اینتنس",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Moondrift-Blue-Intense-143069.html",
+        "suggested_slug": "moondrift-blue-intense",
+        "draft_why": "وتیور هائیتی و فلفل صورتی برای روزهای گرم مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "msghal",
+        "nameFa": "مثقال",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ard-Al-Zaafaran/Mithqal-77976.html",
+        "suggested_slug": "methqal",
+        "draft_why": "کهربا و چوب صندل گرم است و برای هوای معتدل مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "tobako-rash",
+        "nameFa": "توباکو راش",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Afnan/Tobacco-Rush-75682.html",
+        "suggested_slug": "tobacco-rush",
+        "draft_why": "تنباکو و اسطوخودوس برای زمستان مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      },
+      {
+        "current": "vrsnsia-nvir",
+        "nameFa": "ورسنسیا نویر",
+        "nameEn": "",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Versencia-Noir-89036.html",
+        "suggested_slug": "versencia-noir",
+        "draft_why": "هل و گاردنیا برای زمستان مناسب است.",
+        "pm_decision": "rename_then_approve",
+        "note_fa": "اسلاگ از URL/نام انگلیسی فرگرانتیکا؛ بعد why پیش‌نویس را وارد کن."
+      }
+    ],
+    "drafts": [
+      {
+        "slug": "25experience",
+        "suggested_slug": null,
+        "nameFa": "25 اکپسرینس",
+        "brand": "خدلج",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Khadlaj-Perfumes/25-Experience-101044.html",
+        "draft_why": "هل و اکالیپتوس برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "9pm-night-out",
+        "suggested_slug": null,
+        "nameFa": "ناین پی ام نایت اوت",
+        "brand": "افنان",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Afnan/9-PM-Night-Out-123313.html",
+        "draft_why": "کنیاک و اسطوخودوس برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "alqiam-gold",
+        "suggested_slug": null,
+        "nameFa": "القیم گلد",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Al-Qiam-Gold-82816.html",
+        "draft_why": "تمشک و چرم برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "art-of-arabia-i-pride",
+        "suggested_slug": null,
+        "nameFa": "آرت آف عربیا ۱ پراید",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Art-of-Arabia-I-92423.html",
+        "draft_why": "ترنج و آمبروکسان برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "art-of-arabia-ii-pride",
+        "suggested_slug": null,
+        "nameFa": "آرت آف عربیا ۲ پراید",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Art-of-Arabia-II-92424.html",
+        "draft_why": "بادام و عود گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "art-of-arabia-iii-pride",
+        "suggested_slug": null,
+        "nameFa": "آرت آف عربیا ۳ پراید",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Art-of-Arabia-III-92425.html",
+        "draft_why": "کندر و خرما گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "art-of-nature-i-pride",
+        "suggested_slug": null,
+        "nameFa": "آرت آف نیچر ۱ پراید",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Art-Of-Nature-I-98241.html",
+        "draft_why": "انجیر و آلو برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "art-of-nature-ii-pride",
+        "suggested_slug": null,
+        "nameFa": "آرت آف نیچر ۲ پراید",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Art-Of-Nature-II-98242.html",
+        "draft_why": "کندر و نارنگی برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "aura-d-eclat",
+        "suggested_slug": null,
+        "nameFa": "اورا د اکلت",
+        "brand": "میسون الحمرا",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Aura-D-Eclat-93540.html",
+        "draft_why": "گل صدتومانی و چمن برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "bade-e-al-oud-honor-glory",
+        "suggested_slug": null,
+        "nameFa": "بدیع العود هانر اند گلوری",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Bade-e-Al-Oud-Honor-Glory-84302.html",
+        "draft_why": "دارچین و چوب صندل گرم است و برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "bade-e-al-oud-sublime",
+        "suggested_slug": null,
+        "nameFa": "بدیع العود سابلیم",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Bade-e-Al-Oud-Sublime-83309.html",
+        "draft_why": "سیب و لیچی برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "encre-noire-a-l-extreme",
+        "suggested_slug": null,
+        "nameFa": "انکر نویر ال اکستریم",
+        "brand": "لالیک",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lalique/Encre-Noire-A-L-Extreme-32356.html",
+        "draft_why": "وتیور هائیتی و وتیور گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "khumar-l-immensite",
+        "suggested_slug": null,
+        "nameFa": "خمار ال ایمنسیت",
+        "brand": "وادی الخلیج",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Wadi-Al-Khaleej/Khumar-L-Immensite-138392.html",
+        "draft_why": "زنجبیل و رزماری خنک است و برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-alliance-spirit",
+        "suggested_slug": null,
+        "nameFa": "ال الاینس اسپریت",
+        "brand": "رو بروکا",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Rue-Broca/L-Alliance-Spirit-103251.html",
+        "draft_why": "آکوزون و نارنگی ماندارین برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-amour",
+        "suggested_slug": null,
+        "nameFa": "لامور",
+        "brand": "لالیک",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lalique/L-Amour-16931.html",
+        "draft_why": "نرولی و یاس برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-aventure-ciel",
+        "suggested_slug": null,
+        "nameFa": "له اونچر سیل",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Ciel-94349.html",
+        "draft_why": "لیمو و عنبر برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-aventure-femme",
+        "suggested_slug": null,
+        "nameFa": "ل اونچر فم",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Femme-51820.html",
+        "draft_why": "آناناس و انگور سیاه شیرین است و برای روزهای گرم مناسب است.",
+        "pm_decision": "reject_until_rewrite",
+        "pm_text": null,
+        "flags": [
+          "rewrite_required: صفت «شیرین» مجاز نیست؛ فقط خنک/گرم یا بدون صفت"
+        ]
+      },
+      {
+        "slug": "l-aventure-fraiche",
+        "suggested_slug": null,
+        "nameFa": "له اونچر فرش",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Fraiche-96480.html",
+        "draft_why": "چای و برگ بنفشه برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-aventure-grapefruit",
+        "suggested_slug": null,
+        "nameFa": "له اونچر گریپ فروت",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Grapefruit-94350.html",
+        "draft_why": "توت‌های قرمز و لیچی برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-aventure-iris",
+        "suggested_slug": null,
+        "nameFa": "له اونچر ایریس",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Iris-94351.html",
+        "draft_why": "هل و زنبق برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-aventure-knight",
+        "suggested_slug": null,
+        "nameFa": "ل اونچر نایت",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Knight-51824.html",
+        "draft_why": "به لیمو و برگ بنفشه برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-aventure-sport",
+        "suggested_slug": null,
+        "nameFa": "له اونچر اسپورت",
+        "brand": "الحرمین",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Al-Haramain-Perfumes/L-Aventure-Sport-133366.html",
+        "draft_why": "نارنگی ماندارین و جورجی‌وود برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-intense-rouge-addiction",
+        "suggested_slug": null,
+        "nameFa": "ال اینتنس رژ ادیکشن",
+        "brand": "میسون الحمرا",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/L-Intense-Rouge-Addiction-92628.html",
+        "draft_why": "پرتقال خونی و زنجبیل برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-intrude",
+        "suggested_slug": null,
+        "nameFa": "له اینترود",
+        "brand": "میسون الحمرا",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/L-Intrude-93651.html",
+        "draft_why": "گلابی و گل مریم برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "l-oudh",
+        "suggested_slug": null,
+        "nameFa": "ال عود",
+        "brand": "میسون الحمرا",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/L-Oudh-96829.html",
+        "draft_why": "لادن و چوب صندل گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "la-collection-d-antiquites-1505",
+        "suggested_slug": null,
+        "nameFa": "لا کالکشن د آنتی کوئتس 1505",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/La-Collection-d-antiquites-1505-92037.html",
+        "draft_why": "گیلاس سیاه و زعفران برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "la-collection-d-antiquites-1886",
+        "suggested_slug": null,
+        "nameFa": "لا کالکشن د آنتیکوئیته 1886",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/La-Collection-D-antiquites-1886-92028.html",
+        "draft_why": "ترنج و ماته برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "la-collection-d-antiquites-1910",
+        "suggested_slug": null,
+        "nameFa": "لا کالکشن د آنتیکوئیته 1910",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/La-Collection-D-antiquites-1910-92036.html",
+        "draft_why": "سیب و داوانا برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "let-s-move-salsa",
+        "suggested_slug": null,
+        "nameFa": "لتس موو سالسا",
+        "brand": "آرماف",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Let-s-Move-Salsa-126367.html",
+        "draft_why": "بهارنارنج و نرولی برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "let-s-move-tango",
+        "suggested_slug": null,
+        "nameFa": "لتس موو تانگو",
+        "brand": "آرماف",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Let-s-Move-Tango-126366.html",
+        "draft_why": "ترنج و بادام برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "lueur-d-espoir-ambre",
+        "suggested_slug": null,
+        "nameFa": "لوئور دی اسپویر آمبر",
+        "brand": "پاریس کرنر",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/PARIS-CORNER/Lueur-D-Espoir-Ambre-111167.html",
+        "draft_why": "کندر و چوب عنبر گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "lueur-d-espoir-arena-intense",
+        "suggested_slug": null,
+        "nameFa": "لر د اسپار آرنا اینتنس",
+        "brand": "پاریس کرنر",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/PARIS-CORNER/Lueur-d-Espoir-Arena-Intense-111169.html",
+        "draft_why": "ترنج و زعفران برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "lueur-d-espoir-memories-of-summer",
+        "suggested_slug": null,
+        "nameFa": "لر د اسپار مموریس آف سامر",
+        "brand": "پاریس کرنر",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/PARIS-CORNER/Lueur-d-Espoir-Memories-of-Summer-111166.html",
+        "draft_why": "گریپ‌فروت و کهربا برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "lueur-d-espoir-serene-grove",
+        "suggested_slug": null,
+        "nameFa": "لر د اسپار سرین گراو",
+        "brand": "پاریس کرنر",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/PARIS-CORNER/Lueur-d-Espoir-Serene-Grove-111168.html",
+        "draft_why": "لیمو و ریحان خنک است و برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "lueur-d-espoir-silhouette",
+        "suggested_slug": null,
+        "nameFa": "لر د اسپار سیلوئت",
+        "brand": "پاریس کرنر",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/PARIS-CORNER/Lueur-d-Espoir-Silhouette-114153.html",
+        "draft_why": "بهارنارنج و کهربا برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "ma-ani",
+        "suggested_slug": null,
+        "nameFa": "معانی",
+        "brand": "احمد المغربی",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ahmed-Al-Maghribi/Ma-ani-136561.html",
+        "draft_why": "میوه سرو کوهی و مریم‌گلی خنک است و برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "o-clock",
+        "suggested_slug": null,
+        "nameFa": "د اکلاک",
+        "brand": "احمد المغربی",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ahmed-Al-Maghribi/O-Clock-139525.html",
+        "draft_why": "اسطوخودوس و چرم برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "odyssey-bahamas",
+        "suggested_slug": null,
+        "nameFa": "اودیسی باهاماس",
+        "brand": "آرماف",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Odyssey-BA-HA-MAS-115127.html",
+        "draft_why": "طالبی و جلبک برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "odyssey-lichi-lush",
+        "suggested_slug": null,
+        "nameFa": "Odyssey Li’chi Lush/اودیسی لیچی لاش",
+        "brand": "آرماف",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Odyssey-Li-chi-Lush-129500.html",
+        "draft_why": "لیچی و نارنگی برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "ombre-d-or",
+        "suggested_slug": null,
+        "nameFa": "امبر دور مردانه",
+        "brand": "آرماف",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Ombre-d-Or-109771.html",
+        "draft_why": "لیمو ترش و زعفران برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "oud-amg",
+        "suggested_slug": null,
+        "nameFa": "عود ای ام جی",
+        "brand": "احمد المغربی",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ahmed-Al-Maghribi/Oud-A-M-G-139671.html",
+        "draft_why": "عود هندی و عود کامبوجی گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "perle-d-or",
+        "suggested_slug": null,
+        "nameFa": "پرل دور",
+        "brand": "آرماف",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Perle-d-Or-112769.html",
+        "draft_why": "ترنج و بهارنارنج خنک است و برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "raed-oud",
+        "suggested_slug": null,
+        "nameFa": "رائد عود",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ra-ed-Oud-85098.html",
+        "draft_why": "زعفران و سیپریول / ناگارموتا برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "swar-d-amour",
+        "suggested_slug": null,
+        "nameFa": "سوار د آمور",
+        "brand": "عربیات پرستیژ",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Arabiyat-Prestige/Swar-D-Amour-137507.html",
+        "draft_why": "نارنگی و کهربا برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "taweel",
+        "suggested_slug": null,
+        "nameFa": "تاویل",
+        "brand": "لطافه",
+        "group": "q7_rematch",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ta-weel-85095.html",
+        "draft_why": "زنجبیل و بهارنارنج خنک است و برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "ajod-pink-to-pink-krmi-alksir",
+        "suggested_slug": "ajwad-pink-to-pink-creamy-elixir",
+        "nameFa": "اجود پینک تو پینک کرمی الکسیر",
+        "brand": "لطافه",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ajwad-Pink-to-Pink-Creamy-Elixir-138399.html",
+        "draft_why": "تمشک و دانه وانیل شیرین است و برای روزهای گرم مناسب است.",
+        "pm_decision": "reject_until_rewrite",
+        "pm_text": null,
+        "flags": [
+          "rewrite_required: صفت «شیرین» مجاز نیست؛ فقط خنک/گرم یا بدون صفت",
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "bnt-horan",
+        "suggested_slug": "bint-horan",
+        "nameFa": "بنت حوران",
+        "brand": "ارض الزعفران",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ard-Al-Zaafaran/Bint-Hooran-64211.html",
+        "draft_why": "وانیل و گل مریم برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "exquisite-club",
+        "suggested_slug": null,
+        "nameFa": "اکسکوزیت کلاب",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Club-Exquisite-120259.html",
+        "draft_why": "هل و گلابی برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "jin-lao-vrdeh-aora",
+        "suggested_slug": "jean-lowe-verde-aura",
+        "nameFa": "جین لاو ورده اورا",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Jean-Lowe-Verde-Aura-138033.html",
+        "draft_why": "لیمو و بالنگ خنک است و برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "klab-d-nait-vomn",
+        "suggested_slug": "club-de-nuit-woman",
+        "nameFa": "کلاب د نایت وومن",
+        "brand": "آرماف",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Club-de-Nuit-Woman-27655.html",
+        "draft_why": "پرتقال و رز برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "lominos-sahara",
+        "suggested_slug": "luminous-sahara",
+        "nameFa": "لومینوس صاحارا",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Luminous-Sahara-123467.html",
+        "draft_why": "بهارنارنج و ترنج برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "malibu-hawas",
+        "suggested_slug": null,
+        "nameFa": "هوس مالیبو",
+        "brand": "رصاصی",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Rasasi/Hawas-Malibu-112707.html",
+        "draft_why": "آناناس و کهربا برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "mon-drift-blo-aintns",
+        "suggested_slug": "moondrift-blue-intense",
+        "nameFa": "مون دریفت بلو اینتنس",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Moondrift-Blue-Intense-143069.html",
+        "draft_why": "وتیور هائیتی و فلفل صورتی برای روزهای گرم مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "msghal",
+        "suggested_slug": "methqal",
+        "nameFa": "مثقال",
+        "brand": "ارض الزعفران",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Ard-Al-Zaafaran/Mithqal-77976.html",
+        "draft_why": "کهربا و چوب صندل گرم است و برای هوای معتدل مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "tobako-rash",
+        "suggested_slug": "tobacco-rush",
+        "nameFa": "توباکو راش",
+        "brand": "افنان",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Afnan/Tobacco-Rush-75682.html",
+        "draft_why": "تنباکو و اسطوخودوس برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "valar-series-a-walk-on-dirt",
+        "suggested_slug": null,
+        "nameFa": "والار ا واک آن درت",
+        "brand": "پاریس کرنر",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/PARIS-CORNER/A-Walk-on-Dirt-Valar-Series-113926.html",
+        "draft_why": "سرو و ترنج برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "vrsnsia-nvir",
+        "suggested_slug": "versencia-noir",
+        "nameFa": "ورسنسیا نویر",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Versencia-Noir-89036.html",
+        "draft_why": "هل و گاردنیا برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": [
+          "translit_slug_review"
+        ]
+      },
+      {
+        "slug": "zaffiro-crafted-oud",
+        "suggested_slug": null,
+        "nameFa": "زافیرو کرافتد عود",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Zaffiro-Collection-Crafted-Oud-96842.html",
+        "draft_why": "عود و چوب سدر گرم است و برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "zaffiro-regale",
+        "suggested_slug": null,
+        "nameFa": "زافیرو رگال",
+        "brand": "میسون الحمرا",
+        "group": "q8_emirati",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Zaffiro-Collection-Regale-96841.html",
+        "draft_why": "لیمو و وانیل برای زمستان مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      },
+      {
+        "slug": "summer-sin-extrait-de-parfum-zodiac",
+        "suggested_slug": null,
+        "nameFa": "سمام مدل زودیاک سامر سین د",
+        "brand": "صمام",
+        "group": "q6_subbrand",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Zodiac/Summer-Sin-Extrait-de-Parfum-104805.html",
+        "draft_why": "زعفران و چوب عنبر گرم است و برای تمام فصل‌ها مناسب است.",
+        "pm_decision": "approve",
+        "pm_text": null,
+        "flags": []
+      }
+    ],
+    "no_draft": [
+      {
+        "slug": "domino-essence-05",
+        "nameFa": "دومینو اسنس 05",
+        "status": "no draft: why_duplicate",
+        "other_blockers": [
+          "why_duplicate"
+        ],
+        "pm_decision": "defer",
+        "note_fa": "این دور وارد کاتالوگ نشود؛ why دستی / جفت آزاد بعداً."
+      },
+      {
+        "slug": "qaaed",
+        "nameFa": "قائد",
+        "status": "no draft: why_duplicate",
+        "other_blockers": [
+          "why_duplicate"
+        ],
+        "pm_decision": "defer",
+        "note_fa": "این دور وارد کاتالوگ نشود؛ why دستی / جفت آزاد بعداً."
+      },
+      {
+        "slug": "raed-silver",
+        "nameFa": "رائد نقره ای",
+        "status": "no draft: why_duplicate",
+        "other_blockers": [
+          "why_duplicate"
+        ],
+        "pm_decision": "defer",
+        "note_fa": "این دور وارد کاتالوگ نشود؛ why دستی / جفت آزاد بعداً."
+      },
+      {
+        "slug": "rain-drops",
+        "nameFa": "رین دراپس",
+        "status": "no draft: empty why (no draft possible)",
+        "other_blockers": [
+          "empty why (no draft possible)"
+        ],
+        "pm_decision": "defer",
+        "note_fa": "این دور وارد کاتالوگ نشود؛ why دستی / جفت آزاد بعداً."
+      },
+      {
+        "slug": "safwaan-l-autre-oud",
+        "nameFa": "صفوان عطر عود",
+        "status": "no draft: why_duplicate",
+        "other_blockers": [
+          "why_duplicate"
+        ],
+        "pm_decision": "defer",
+        "note_fa": "این دور وارد کاتالوگ نشود؛ why دستی / جفت آزاد بعداً."
+      }
+    ],
+    "note_fa": "قبل از ورود به کاتالوگ: اسلاگهای translit_slug_review را rename کن؛ پیش‌نویس با صفت غیرمجاز را بازنویسی کن؛ ۵ مورد بدون draft این دور نیایند."
+  }
+}

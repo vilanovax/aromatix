@@ -1,0 +1,523 @@
+{
+  "_meta": {
+    "source": "PM 2026-10-17 18:12",
+    "lock": "all-app-v18.LOCKED-20261017-1816.json",
+    "created": "2026-10-17 Asia/Tehran",
+    "count": 26,
+    "status": "PM_DECIDED",
+    "decided_at": "2026-10-17T15:27:36.726073+00:00",
+    "applies_to": "v19",
+    "lock_base": "all-app-v18.LOCKED-20261017-1816.json",
+    "lock_sha256": "f740232b42177bcf1991972e6346acb0fa11784d7b33ab078633d99547c51482",
+    "pm_summary_fa": "monarque: بادام شکری بدون گرم. ajwad و l-aventure approve. klab → alias club-de-nuit-woman. سه Zodiac + هفت پیش‌نویس قدیمی approve. ۴ duplicate-why و rain-drops و andaleeb defer. شش merge قبلی done. encre و raed-oud در v19 بازنویسی؛ zaffiro و mithqal تأیید.",
+    "instruction_fa": "اعمال روی پایهٔ v18 برای ساخت قفل v19. قفل v18 را بازنویسی نکنید. بعد از اعمال sha256 قفل جدید را گزارش دهید."
+  },
+  "pending": [
+    {
+      "slug": "ajwad-pink-to-pink-creamy-elixir",
+      "category": "§30 rewrite (PM rejected «شیرین»)",
+      "proposed_why": "تمشک و دانه وانیل برای روزهای گرم مناسب است.",
+      "previous_draft": "تمشک و دانه وانیل شیرین است و برای روزهای گرم مناسب است.",
+      "reason": "تمشک neutral, دانه وانیل warm → no temperature word allowed; «شیرین» removed",
+      "pm_action": "approve / edit",
+      "checks": {
+        "pair_time": "تمشک+وانیل | روزهای گرم",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "old_slug": "ajod-pink-to-pink-krmi-alksir",
+      "pm_decision": "approve",
+      "pm_text": "تمشک و دانه وانیل برای روزهای گرم مناسب است.",
+      "pm_note_fa": "بازنویسی بدون «شیرین» تأیید شد."
+    },
+    {
+      "slug": "l-aventure-femme",
+      "category": "§30 rewrite (held: same «شیرین» issue)",
+      "proposed_why": "آناناس و انگور سیاه برای روزهای گرم مناسب است.",
+      "previous_draft": "آناناس و انگور سیاه شیرین است و برای روزهای گرم مناسب است.",
+      "reason": "draft was in the 60 but says «شیرین است»; held by analogy with ajod. آناناس/انگور سیاه both neutral → no temperature word",
+      "pm_action": "approve rewrite, or approve original draft",
+      "checks": {
+        "pair_time": "آناناس+انگور سیاه | روزهای گرم",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "آناناس و انگور سیاه برای روزهای گرم مناسب است.",
+      "pm_note_fa": "همان الگوی حذف «شیرین»."
+    },
+    {
+      "slug": "klab-d-nait-vomn",
+      "category": "duplicate of locked record",
+      "proposed_why": null,
+      "previous_draft": "پرتقال و رز برای تمام فصل‌ها مناسب است.",
+      "reason": "same perfume (Armaf Club de Nuit Woman, fragrantica 27655) as locked v17 club-de-nuit-woman; requested slug taken",
+      "pm_action": "suggest: alias-merge «کلاب د نایت وومن» into club-de-nuit-woman (and optionally set its sourceUrl), drop the row",
+      "pm_decision": "alias_merge",
+      "pm_text": null,
+      "pm_note_fa": "رکورد جدا نساز؛ به aliases کانونیکال اضافه کن و ردیف را حذف/نبند.",
+      "canonical_slug": "club-de-nuit-woman",
+      "alias_names": [
+        "کلاب د نایت وومن",
+        "klab d nait vomn",
+        "club de nuit woman"
+      ]
+    },
+    {
+      "slug": "hashtag-zodiac",
+      "category": "sub-brand draft (DRAFT ONLY)",
+      "proposed_why": "گلاب و فلفل صورتی برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "PM accepted link; notes+gender imported; why needs approval",
+      "pm_action": "approve / edit",
+      "checks": {
+        "pair_time": "فلفل+گلاب | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "notes": [
+        "فلفل صورتی",
+        "گلاب",
+        "یاس",
+        "رز",
+        "کهربا",
+        "وانیل"
+      ],
+      "gender": "مشترک",
+      "pm_decision": "approve",
+      "pm_text": "گلاب و فلفل صورتی برای زمستان مناسب است."
+    },
+    {
+      "slug": "regal-oud",
+      "category": "sub-brand draft (DRAFT ONLY)",
+      "proposed_why": "پشن فروت و عود برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "PM accepted link; notes+gender imported; why needs approval",
+      "pm_action": "approve / edit",
+      "checks": {
+        "pair_time": "عود+پشن فروت | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "notes": [
+        "پشن فروت",
+        "نت‌های میوه‌ای",
+        "عود",
+        "چرم",
+        "کهربا"
+      ],
+      "gender": "مشترک",
+      "pm_decision": "approve",
+      "pm_text": "پشن فروت و عود برای زمستان مناسب است."
+    },
+    {
+      "slug": "unlimited-zodiac-samam",
+      "category": "sub-brand draft (DRAFT ONLY)",
+      "proposed_why": "بادیان و فلفل سیچوان برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "PM accepted link; notes+gender imported; why needs approval",
+      "pm_action": "approve / edit",
+      "checks": {
+        "pair_time": "بادیان+فلفل | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "notes": [
+        "فلفل سیچوان",
+        "هل",
+        "زعفران",
+        "بادیان",
+        "اوپوپوناکس",
+        "عود"
+      ],
+      "gender": "مشترک",
+      "pm_decision": "approve",
+      "pm_text": "بادیان و فلفل سیچوان برای زمستان مناسب است."
+    },
+    {
+      "slug": "domino-essence-05",
+      "category": "why_duplicate (excluded)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_action": "PM to write a unique why",
+      "notes": [
+        "top:نت‌های سبز",
+        "top:میوه‌ها",
+        "middle:نت‌های چوبی",
+        "middle:نت‌های گلی",
+        "base:کهربا",
+        "base:وانیل"
+      ],
+      "seasons": [
+        "winter"
+      ],
+      "pm_decision": "defer",
+      "pm_text": null,
+      "pm_note_fa": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "qaaed",
+      "category": "why_duplicate (excluded)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_action": "PM to write a unique why",
+      "notes": [
+        "top:دارچین",
+        "top:هل",
+        "middle:زعفران",
+        "middle:چوب صندل",
+        "base:عود",
+        "base:چرم"
+      ],
+      "seasons": [
+        "winter"
+      ],
+      "pm_decision": "defer",
+      "pm_text": null,
+      "pm_note_fa": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "raed-silver",
+      "category": "why_duplicate (excluded)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_action": "PM to write a unique why",
+      "notes": [
+        "top:مرکبات",
+        "top:ادویه‌ها",
+        "middle:دارچین",
+        "middle:کهربا",
+        "base:وانیل",
+        "base:مشک"
+      ],
+      "seasons": [
+        "all"
+      ],
+      "pm_decision": "defer",
+      "pm_text": null,
+      "pm_note_fa": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "safwaan-l-autre-oud",
+      "category": "why_duplicate (excluded)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "every eligible note pair + season is already used by a locked record; no unique draft",
+      "pm_action": "PM to write a unique why",
+      "notes": [
+        "top:رز",
+        "middle:نت‌های ادویه‌ای",
+        "middle:کهربا",
+        "base:عود",
+        "base:نت‌های چوبی"
+      ],
+      "seasons": [
+        "winter"
+      ],
+      "pm_decision": "defer",
+      "pm_text": null,
+      "pm_note_fa": "جفت آزاد نیست؛ این دور وارد نشود."
+    },
+    {
+      "slug": "rain-drops",
+      "category": "no draft possible (excluded)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "Fragrantica lists only generic notes (Floral/Woodsy/Fruity Notes, Ambergris)",
+      "pm_action": "PM to write a why or drop",
+      "notes": [
+        "top:نت‌های گلی",
+        "top:نت‌های چوبی",
+        "middle:نت‌های میوه‌ای",
+        "middle:عنبر"
+      ],
+      "pm_decision": "defer",
+      "pm_text": null,
+      "pm_note_fa": "فقط نت عمومی؛ why ساخته نشود تا نت مشخص بیاید."
+    },
+    {
+      "slug": "andaleeb-by-asdaaf",
+      "category": "parked (PM)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "two Asdaaf pages, neither exact (Al Andaleeb / Andaleeb Flora)",
+      "pm_action": "none — stays parked",
+      "pm_decision": "defer",
+      "pm_text": null,
+      "pm_note_fa": "دو صفحهٔ مبهم؛ کنار بماند."
+    },
+    {
+      "slug": "monarque",
+      "category": "PM decision not applied",
+      "proposed_why": null,
+      "previous_draft": "آمبروکسان و بادام کاراملی گرم است و برای زمستان مناسب است.",
+      "reason": "Fragrantica: Candied Almond = بادام شکری (glossary), not بادام کاراملی; آمبروکسان is neutral in §30 table so «گرم» invalid. Unchanged in v18.",
+      "pm_action": "PM to decide (e.g. «آمبروکسان و بادام شکری برای زمستان مناسب است.» — unique, no temp word) ",
+      "suggested_alternative_checks": {
+        "pair_time": "آمبروکسان+بادام | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false
+      },
+      "pm_decision": "edit",
+      "pm_text": "آمبروکسان و بادام شکری برای زمستان مناسب است.",
+      "pm_note_fa": "نت Candied Almond = بادام شکری؛ بدون صفت دما (§30 چون آمبروکسان خنثی است).",
+      "also_fix_notes": [
+        {
+          "layer": "top",
+          "name": "دارچین"
+        },
+        {
+          "layer": "top",
+          "name": "هل"
+        },
+        {
+          "layer": "middle",
+          "name": "وانیل"
+        },
+        {
+          "layer": "base",
+          "name": "پرالین"
+        },
+        {
+          "layer": "base",
+          "name": "تونکا"
+        },
+        {
+          "layer": "base",
+          "name": "آمبروکسان"
+        },
+        {
+          "layer": "base",
+          "name": "بادام شکری"
+        }
+      ]
+    },
+    {
+      "slug": "stronger-with-you-intensely",
+      "category": "other queue draft",
+      "proposed_why": "دارچین و کهربا گرم است و برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "price_band_out_of_v1; why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "دارچین+کهربا | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "دارچین و کهربا گرم است و برای زمستان مناسب است."
+    },
+    {
+      "slug": "eros-parfum",
+      "category": "other queue draft",
+      "proposed_why": "نعناع و سیب سبز برای تمام فصل‌ها مناسب است.",
+      "previous_draft": null,
+      "reason": "price_band_out_of_v1; why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "سیب+نعناع | تمام فصل‌ها",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "نعناع و سیب سبز برای تمام فصل‌ها مناسب است."
+    },
+    {
+      "slug": "floral-ambrosia",
+      "category": "other queue draft",
+      "proposed_why": "یاس و پیچ امین‌الدوله برای روزهای گرم مناسب است.",
+      "previous_draft": null,
+      "reason": "single_accord; why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "پیچ امین الدوله+یاس | روزهای گرم",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "یاس و پیچ امین‌الدوله برای روزهای گرم مناسب است."
+    },
+    {
+      "slug": "fakhar-women",
+      "category": "other queue draft",
+      "proposed_why": "یاس و وانیل برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "وانیل+یاس | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "یاس و وانیل برای زمستان مناسب است."
+    },
+    {
+      "slug": "creamy-biscuit",
+      "category": "other queue draft",
+      "proposed_why": "بیسکویت و نارگیل برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "single_accord; why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "بیسکویت+نارگیل | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "بیسکویت و نارگیل برای زمستان مناسب است."
+    },
+    {
+      "slug": "island-vanilla-dunes",
+      "category": "other queue draft",
+      "proposed_why": "وانیل و بهارنارنج برای زمستان مناسب است.",
+      "previous_draft": null,
+      "reason": "why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "بهارنارنج+وانیل | زمستان",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "وانیل و بهارنارنج برای زمستان مناسب است."
+    },
+    {
+      "slug": "club-de-nuit-intense-parfum-limited-edition",
+      "category": "other queue draft",
+      "proposed_why": "ترنج و یاس برای تمام فصل‌ها مناسب است.",
+      "previous_draft": null,
+      "reason": "price_band_out_of_v1; why_pending_approval",
+      "pm_action": "approve / edit (some also blocked by price band / single accord)",
+      "checks": {
+        "pair_time": "ترنج+یاس | تمام فصل‌ها",
+        "unique_vs_v18": true,
+        "has_شیرین": false,
+        "unique_among_pending": true
+      },
+      "pm_decision": "approve",
+      "pm_text": "ترنج و یاس برای تمام فصل‌ها مناسب است."
+    },
+    {
+      "slug": "9pm-rbl",
+      "category": "merged sheet row (info)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "merged into 9-pm-rebel; row no longer parked so it now shows in the review queue (never seeded)",
+      "pm_action": "optional: confirm exclusion",
+      "pm_decision": "done",
+      "pm_text": null,
+      "pm_note_fa": "ادغام alias انجام شده؛ تأیید.",
+      "canonical_slug": "9-pm-rebel"
+    },
+    {
+      "slug": "blend-of-khalta",
+      "category": "merged sheet row (info)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "merged into khalta-blend-of; row no longer parked so it now shows in the review queue (never seeded)",
+      "pm_action": "optional: confirm exclusion",
+      "pm_decision": "done",
+      "pm_text": null,
+      "pm_note_fa": "ادغام alias انجام شده؛ تأیید.",
+      "canonical_slug": "khalta-blend-of"
+    },
+    {
+      "slug": "dark-dor-asprt",
+      "category": "merged sheet row (info)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "merged into dark-door-sport; row no longer parked so it now shows in the review queue (never seeded)",
+      "pm_action": "optional: confirm exclusion",
+      "pm_decision": "done",
+      "pm_text": null,
+      "pm_note_fa": "ادغام alias انجام شده؛ تأیید.",
+      "canonical_slug": "dark-door-sport"
+    },
+    {
+      "slug": "for-him-hawas",
+      "category": "merged sheet row (info)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "merged into hawas-for-him; row no longer parked so it now shows in the review queue (never seeded)",
+      "pm_action": "optional: confirm exclusion",
+      "pm_decision": "done",
+      "pm_text": null,
+      "pm_note_fa": "ادغام alias انجام شده؛ تأیید.",
+      "canonical_slug": "hawas-for-him"
+    },
+    {
+      "slug": "kobra-hawas",
+      "category": "merged sheet row (info)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "merged into hawas-kobra; row no longer parked so it now shows in the review queue (never seeded)",
+      "pm_action": "optional: confirm exclusion",
+      "pm_decision": "done",
+      "pm_text": null,
+      "pm_note_fa": "ادغام alias انجام شده؛ تأیید.",
+      "canonical_slug": "hawas-kobra"
+    },
+    {
+      "slug": "rouge-hawas",
+      "category": "merged sheet row (info)",
+      "proposed_why": null,
+      "previous_draft": null,
+      "reason": "merged into hawas-rouge; row no longer parked so it now shows in the review queue (never seeded)",
+      "pm_action": "optional: confirm exclusion",
+      "pm_decision": "done",
+      "pm_text": null,
+      "pm_note_fa": "ادغام alias انجام شده؛ تأیید.",
+      "canonical_slug": "hawas-rouge"
+    }
+  ],
+  "extra_v18_ratifications": [
+    {
+      "slug": "encre-noire-a-l-extreme",
+      "category": "ratify / rewrite in v19",
+      "pm_decision": "edit",
+      "pm_text": "وتیور هائیتی و بنزوئین گرم است و برای زمستان مناسب است.",
+      "previous_why_in_v18": "وتیور هائیتی و وتیور گرم است و برای زمستان مناسب است.",
+      "pm_note_fa": "وتیور هائیتی ≡ وتیور در short≡full؛ جفت قبلی نامعتبر/ضعیف بود.",
+      "in_v18": true
+    },
+    {
+      "slug": "raed-oud",
+      "category": "ratify / rewrite in v19",
+      "pm_decision": "edit",
+      "pm_text": "زعفران و ناگارموتا برای زمستان مناسب است.",
+      "previous_why_in_v18": "زعفران و سیپریول / ناگارموتا برای زمستان مناسب است.",
+      "pm_note_fa": "علامت «/» در why ممنوع؛ در notes می‌تواند «سیپریول / ناگارموتا» بماند یا به ناگارموتا نرمال شود.",
+      "in_v18": true
+    },
+    {
+      "slug": "zaffiro-crafted-oud",
+      "category": "ratify keep in v18",
+      "pm_decision": "ratify_keep",
+      "pm_text": null,
+      "pm_note_fa": "جفت مشابه پیش‌نویس ردشدهٔ eminent/natural-oud؛ چون در کاتالوگ آزاد بود قبول می‌ماند.",
+      "in_v18": true
+    },
+    {
+      "slug": "mithqal",
+      "category": "slug naming",
+      "pm_decision": "done",
+      "pm_note_fa": "نام اسلاگ mithqal (نه methqal) طبق فرگرانتیکا تأیید است.",
+      "in_v18": true
+    }
+  ]
+}

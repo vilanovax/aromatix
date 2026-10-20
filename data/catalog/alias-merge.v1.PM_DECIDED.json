@@ -1,0 +1,161 @@
+{
+  "_meta": {
+    "source": "PM 2026-10-18 09:21",
+    "count": 9,
+    "note": "Parked record shares its Fragrantica page with a locked v21 record -> proposed alias merge (aliases only, no record change).",
+    "status": "PM_DECIDED",
+    "pm_decision": "approve",
+    "pm_note": "هر ۹ مورد alias روی رکورد قفل‌شده. رکورد دوم نسازید. وشوشه ۳۰ میل همان وشوشه است (حجم). ماهر مشکی و ماهیر ادیشن مشکی هر دو Black Edition. تراثی قهوه‌ای همان turathi-brown."
+  },
+  "alias_merges": [
+    {
+      "slug_parked": "apex-power-zodiac",
+      "brand": "Samam",
+      "nameFa": "اپکس پاور زودیاک",
+      "nameEn_sheet": "Apex Power Zodiac",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Zodiac/Apex-Power-135727.html",
+      "fragrantica_h1": "Apex Power Zodiac for women and men",
+      "merge_into": "apex-power",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [],
+      "match_basis": "h1 'Apex Power Zodiac'; Zodiac counts under Samam",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "carat-pure-gold",
+      "brand": "Lattafa",
+      "nameFa": "۲۴ قیراط الذهب النقی 24",
+      "nameEn_sheet": "Carat Pure Gold",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/24-Carat-Pure-Gold-25821.html",
+      "fragrantica_h1": "24 Carat Pure Gold Lattafa Perfumes for women and men",
+      "merge_into": "24-carat-pure-gold",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "۲۴ قیراط الذهب النقی 24",
+        "carat pure gold"
+      ],
+      "match_basis": "«۲۴ قیراط الذهب النقی» = 24 Carat Pure Gold (gold is in both names)",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "washwashah-parfume",
+      "brand": "Lattafa",
+      "nameFa": "وشوشه 30 میل",
+      "nameEn_sheet": "Washwashah Parfume",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Washwasha-25893.html",
+      "fragrantica_h1": "Washwasha Lattafa Perfumes for women",
+      "merge_into": "washwasha",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "وشوشه 30 میل",
+        "washwashah parfume"
+      ],
+      "match_basis": "Washwashah = Washwasha; 'Parfume' is concentration only",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "extrait-de-parfum-shk-iii-by-saoud-al-kaabi",
+      "brand": "Armaf",
+      "nameFa": "د اس اچ کی 3",
+      "nameEn_sheet": "Extrait de Parfum Shk III by Saoud Al Kaabi",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Armaf/SHK-III-140061.html",
+      "fragrantica_h1": "SHK III Armaf for women and men",
+      "merge_into": "shk-iii",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "د اس اچ کی 3",
+        "extrait de parfum shk iii by saoud al kaabi"
+      ],
+      "match_basis": "'Extrait de Parfum' = concentration; Saoud Al Kaabi = perfumer credit (page perfumer Saoud AlKaabi)",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "extrait-de-parfum-shk-iv-by-saoud-al-kaabi",
+      "brand": "Armaf",
+      "nameFa": "د اس اچ کی 4",
+      "nameEn_sheet": "Extrait de Parfum Shk IV by Saoud Al Kaabi",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Armaf/SHK-IV-140062.html",
+      "fragrantica_h1": "SHK IV Armaf for women and men",
+      "merge_into": "shk-iv",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "د اس اچ کی 4",
+        "extrait de parfum shk iv by saoud al kaabi"
+      ],
+      "match_basis": "as SHK III",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "club-de-nuit-precieux-women-4",
+      "brand": "Armaf",
+      "nameFa": "کلاب دنایت پرسیوس زنانه شماره چهار",
+      "nameEn_sheet": "Club de Nuit Precieux Women 4",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Armaf/Club-de-Nuit-Precieux-IV-115124.html",
+      "fragrantica_h1": "Club de Nuit Precieux IV Armaf for women",
+      "merge_into": "club-de-nuit-precieux-iv",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "کلاب دنایت پرسیوس زنانه شماره چهار",
+        "club de nuit precieux women 4"
+      ],
+      "match_basis": "«شماره چهار» = IV; page for women",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "maahir-black",
+      "brand": "Lattafa",
+      "nameFa": "ماهر مشکی",
+      "nameEn_sheet": "Maahir Black",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Maahir-Black-Edition-66564.html",
+      "fragrantica_h1": "Maahir Black Edition Lattafa Perfumes for women and men",
+      "merge_into": "maahir-black-edition",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "ماهر مشکی",
+        "maahir black"
+      ],
+      "match_basis": "«ماهر مشکی» = Maahir Black; the only black Maahir is 'Black Edition'",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "mahir-adishn-mshki",
+      "brand": "Lattafa",
+      "nameFa": "ماهیر ادیشن مشکی",
+      "nameEn_sheet": "",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Maahir-Black-Edition-66564.html",
+      "fragrantica_h1": "Maahir Black Edition Lattafa Perfumes for women and men",
+      "merge_into": "maahir-black-edition",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "ماهیر ادیشن مشکی"
+      ],
+      "match_basis": "«ماهیر ادیشن مشکی» = Maahir Black Edition",
+      "pm_decision": "approve",
+      "pm_note": ""
+    },
+    {
+      "slug_parked": "turathi",
+      "brand": "Afnan",
+      "nameFa": "تراثی قهوه ای افنان-Afnan Turathi",
+      "nameEn_sheet": "Turathi",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Afnan/Turathi-Brown-84403.html",
+      "fragrantica_h1": "Turathi Brown Afnan for men",
+      "merge_into": "turathi-brown",
+      "merge_target_kind": "locked v21 record",
+      "aliases_to_add": [
+        "تراثی قهوه ای افنان-Afnan Turathi",
+        "turathi"
+      ],
+      "match_basis": "«تراثی قهوه ای» = Turathi Brown (colour matches)",
+      "pm_decision": "approve",
+      "pm_note": ""
+    }
+  ]
+}

@@ -1,4 +1,6 @@
 import { OCCASIONS, SEASONS, brandByName } from "@/lib/catalog";
+import { inspirationIds, inspirationValue } from "@/lib/inspiration";
+import { referenceList } from "@/lib/references";
 import type { BottleShape, Perfume, Season } from "@/lib/types";
 
 const GENDERS = ["مشترک", "مردانه", "زنانه"] as const;
@@ -162,7 +164,11 @@ export function parsePerfumeInput(
   const confidence = numberIn(input.confidence, 0, 1);
   if (confidence == null) return { error: "اطمینان را بین ۰ و ۱ بنویس." };
 
-  const inspired = optionalText(input.inspiredBy, 40);
+  const inspiredIds = inspirationIds(
+    Array.isArray(input.inspiredBy) || typeof input.inspiredBy === "string" ? input.inspiredBy : null,
+  );
+  const knownReferences = new Set(referenceList().map((item) => item.id));
+  if (inspiredIds.some((id) => !knownReferences.has(id))) return { error: "عطرِ مرجع شناخته نشد." };
   const perfume: Perfume = {
     slug,
     nameFa,
@@ -189,6 +195,7 @@ export function parsePerfumeInput(
   if (image) perfume.image = image;
   const perfumer = optionalText(input.perfumer, 80);
   if (perfumer) perfume.perfumer = perfumer;
+  const inspired = inspirationValue(inspiredIds);
   if (inspired) perfume.inspiredBy = inspired;
   return { value: perfume };
 }

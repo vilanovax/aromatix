@@ -1,19 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, ChevronLeft } from "lucide-react";
 import { AccountStrip } from "@/components/AccountStrip";
 import { AccordMark } from "@/components/AccordMark";
-import { ScentMark } from "@/components/Bottle";
+import { PerfumePhoto, ScentMark } from "@/components/Bottle";
 import { Shell } from "@/components/Shell";
 import { TasteRow } from "@/components/TasteRow";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { cheaperUnconfirmed, getPerfume, isPublicPerfume, publicLead, publishedPerfumes } from "@/lib/catalog";
-import { computeDna, shelfBucket } from "@/lib/dna";
-import { cn, faNum, millionToman } from "@/lib/format";
+import { computeDna, shelfBucket, type DnaProfile } from "@/lib/dna";
+import { cn, faNum, joinFa, millionToman } from "@/lib/format";
 import { perfumeHref } from "@/lib/nav";
+import { noteHref } from "@/lib/notes";
 import { suggestForTaste, wantedNeighbors } from "@/lib/match";
 import { useAroma } from "@/lib/store";
 import type { Perfume, UserPerfume } from "@/lib/types";
@@ -75,45 +77,7 @@ export default function ShelfPage() {
           </div>
         ) : (
           <>
-            <Card className="mt-6 p-4" aria-label="سلیقه تا اینجا">
-              {hasExperience ? (
-                <>
-                  <h2 className="text-title font-semibold">سلیقه‌ات تا اینجا</h2>
-                  <p className="mt-2 text-pretty text-body">{dna.sentence}</p>
-                  {dna.stage === "dna" && dna.top.length > 0 ? (
-                    <ul className="mt-4 flex flex-col gap-3">
-                      {dna.top.map((family) => (
-                        <li key={family.id}>
-                          <div className="flex items-baseline justify-between gap-3 text-label">
-                            <span className="font-medium">{family.label}</span>
-                            <span className="tabular-nums text-muted-foreground">{faNum(family.percent)}٪</span>
-                          </div>
-                          <div
-                            className="mt-2 h-2 overflow-hidden rounded-full bg-secondary"
-                            role="img"
-                            aria-label={`${family.label} ${faNum(family.percent)} درصد`}
-                          >
-                            <div
-                              className="h-full rounded-full"
-                              style={{ width: `${Math.max(family.percent, 4)}%`, background: family.color }}
-                            />
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-                </>
-              ) : (
-                <>
-                  <h2 className="text-title font-semibold">هنوز سلیقه‌ات شکل نگرفته</h2>
-                  <p className="mt-2 text-pretty text-body">
-                    {stats.some((stat) => stat.id === "wanted")
-                      ? "از لیست پایین یکی را که بو کردی امتیاز بده تا سلیقه‌ات اینجا دیده شود."
-                      : "یک عطر را تجربه کن و امتیاز بده تا سلیقه‌ات اینجا دیده شود."}
-                  </p>
-                </>
-              )}
-            </Card>
+            <TasteCard dna={dna} wanted={stats.some((stat) => stat.id === "wanted")} />
 
             {stats.length > 0 ? (
               <ul className="mt-4 flex flex-wrap justify-start gap-2" aria-label="بخش‌های قفسه">
@@ -164,6 +128,160 @@ export default function ShelfPage() {
   );
 }
 
+function TasteCard({ dna, wanted }: { dna: DnaProfile; wanted: boolean }) {
+  const [open, setOpen] = useState(false);
+  const chart = (dna.stage === "early" || dna.stage === "dna") && dna.top.length > 0;
+  const total = dna.top.reduce((sum, family) => sum + family.percent, 0) || 1;
+
+  return (
+    <Card className="mt-6 p-4" aria-label="سلیقه تا اینجا">
+      {dna.validCount === 0 ? (
+        <>
+          <h2 className="text-title font-semibold">هنوز سلیقه‌ات شکل نگرفته</h2>
+          <p className="mt-2 text-pretty text-body">
+            {wanted
+              ? "از لیست پایین یکی را که بو کردی امتیاز بده تا سلیقه‌ات اینجا دیده شود."
+              : "یک عطر را تجربه کن و امتیاز بده تا سلیقه‌ات اینجا دیده شود."}
+          </p>
+        </>
+      ) : (
+        <>
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-title font-semibold">سلیقه‌ات تا اینجا</h2>
+            {dna.stage === "early" && chart ? (
+              <span className="shrink-0 text-label text-muted-foreground">برداشت اولیه</span>
+            ) : null}
+          </div>
+          <p className="mt-2 text-pretty text-body">{dna.sentence}</p>
+          {chart ? (
+            <>
+              <div
+                className="mt-4 flex h-2 overflow-hidden rounded-full bg-secondary"
+                role="img"
+                aria-label={dna.top.map((family) => `${family.label} ${faNum(family.percent)} درصد`).join("، ")}
+              >
+                {dna.top.map((family) => (
+                  <div
+                    key={family.id}
+                    className="h-full"
+                    style={{ width: `${(family.percent / total) * 100}%`, background: family.color }}
+                  />
+                ))}
+              </div>
+              {dna.notes.length > 0 ? (
+                <ul className="mt-3 flex flex-wrap gap-2" aria-label="نت‌های محبوب">
+                  {dna.notes.map((note) => (
+                    <li key={note.name}>
+                      <Link
+                        href={noteHref(note.name, "/shelf")}
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full bg-secondary px-3 text-label outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+                      >
+                        <span className="size-2 shrink-0 rounded-full" style={{ background: note.color }} aria-hidden="true" />
+                        {note.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <button
+                type="button"
+                aria-expanded={open}
+                onClick={() => setOpen((value) => !value)}
+                className="mt-4 flex min-h-11 w-full items-center justify-between gap-3 rounded-full border border-input bg-card px-4 text-body font-medium outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+              >
+                {open ? "بستن جزئیات" : "جزئیات سلیقه"}
+                <ChevronDown
+                  className={cn(
+                    "size-4 shrink-0 transition-transform duration-(--motion) ease-motion motion-reduce:transition-none",
+                    open && "rotate-180",
+                  )}
+                  strokeWidth={2}
+                  aria-hidden="true"
+                />
+              </button>
+              {open ? (
+                <div className="mt-4">
+                  <ul className="flex flex-col gap-3">
+                    {dna.top.map((family) => (
+                      <ReadingBar
+                        key={family.id}
+                        label={family.label}
+                        percent={family.percent}
+                        color={family.color}
+                        from={family.from}
+                      />
+                    ))}
+                  </ul>
+                  {dna.notes.length > 0 ? (
+                    <>
+                      <h3 className="mt-5 text-body font-semibold">نت‌هایی که بیشتر می‌پسندی</h3>
+                      <ul className="mt-3 flex flex-col gap-3">
+                        {dna.notes.map((note) => (
+                          <ReadingBar
+                            key={note.name}
+                            label={note.name}
+                            percent={note.percent}
+                            color={note.color}
+                            from={note.from}
+                            href={noteHref(note.name, "/shelf")}
+                          />
+                        ))}
+                      </ul>
+                    </>
+                  ) : null}
+                </div>
+              ) : null}
+            </>
+          ) : null}
+        </>
+      )}
+    </Card>
+  );
+}
+
+function ReadingBar({
+  label,
+  percent,
+  color,
+  from,
+  href,
+}: {
+  label: string;
+  percent: number;
+  color: string;
+  from: string[];
+  href?: string;
+}) {
+  const name = href ? (
+    <Link
+      href={href}
+      className="inline-flex min-h-11 items-center gap-1 font-medium outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
+    >
+      {label}
+      <ChevronLeft className="size-4 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+    </Link>
+  ) : (
+    <span className="font-medium">{label}</span>
+  );
+
+  return (
+    <li>
+      <div className="flex items-center justify-between gap-3 text-label">
+        {name}
+        <span className="tabular-nums text-muted-foreground">{faNum(percent)}٪</span>
+      </div>
+      <div
+        className="mt-2 h-2 overflow-hidden rounded-full bg-secondary"
+        role="img"
+        aria-label={`${label} ${faNum(percent)} درصد`}
+      >
+        <div className="h-full rounded-full" style={{ width: `${Math.max(percent, 4)}%`, background: color }} />
+      </div>
+      {from.length > 0 ? <p className="mt-1 text-label text-muted-foreground">از {joinFa(from)}</p> : null}
+    </li>
+  );
+}
+
 function Suggest({ id, title, note, items }: { id: string; title: string; note: string; items: Perfume[] }) {
   if (items.length === 0) return null;
   return (
@@ -183,7 +301,7 @@ function Suggest({ id, title, note, items }: { id: string; title: string; note: 
                   href={href}
                   className="flex min-h-16 items-center gap-3 p-3 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
                 >
-                  <ScentMark perfume={perfume} className="h-14 w-12 shrink-0 rounded-control" />
+                  <PerfumePhoto perfume={perfume} sizes="thumb" alt="" className="h-14 w-12 shrink-0 rounded-control" />
                   <span className="min-w-0 flex-1 text-start">
                     <span className="block text-title font-semibold">{perfume.nameFa}</span>
                     <span className="mt-1 block text-label text-muted-foreground">
@@ -213,7 +331,12 @@ function ShelfItem({ perfume, state, muted }: { perfume: Perfume; state: UserPer
           href={href}
           className="flex items-start gap-3 p-4 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
         >
-          <ScentMark perfume={perfume} className={cn("h-16 w-14 shrink-0 rounded-control", muted && "opacity-55 grayscale")} />
+          <PerfumePhoto
+            perfume={perfume}
+            sizes="thumb"
+            alt=""
+            className={cn("h-16 w-12 shrink-0 rounded-control", muted && "opacity-55 grayscale")}
+          />
           <span className="min-w-0 flex-1 text-start">
             <span className="block text-title font-semibold">{perfume.nameFa}</span>
             <span className="mt-1 block text-label text-muted-foreground">

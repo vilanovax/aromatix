@@ -1,4 +1,6 @@
 import { publicLead, publishedPerfumes, sharedAccordNames, sweetness } from "@/lib/catalog";
+import { inspirationIds, sharesInspiration } from "@/lib/inspiration";
+import { remindsOfFor } from "@/lib/reminds-of";
 import { joinFa, millionToman } from "@/lib/format";
 import { suggestForTaste } from "@/lib/match";
 import type { ScentFace } from "@/lib/personal-fit";
@@ -80,11 +82,22 @@ export function alternativeGroups(input: {
   return groups;
 }
 
+function echoIds(perfume: Perfume): string[] {
+  const ids = inspirationIds(perfume.inspiredBy);
+  const links = perfume.remindsOf?.length ? perfume.remindsOf : remindsOfFor(perfume.slug);
+  for (const link of links) {
+    if (!ids.includes(link.id)) ids.push(link.id);
+  }
+  return ids;
+}
+
 export function perfumePool(perfume: Perfume) {
   const slugs = new Set<string>([...perfume.similar]);
+  const mine = new Set(echoIds(perfume));
   for (const item of publishedPerfumes()) {
     if (item.slug === perfume.slug) continue;
-    if (perfume.inspiredBy && item.inspiredBy === perfume.inspiredBy) slugs.add(item.slug);
+    if (sharesInspiration(perfume.inspiredBy, item.inspiredBy)) slugs.add(item.slug);
+    else if (echoIds(item).some((id) => mine.has(id))) slugs.add(item.slug);
   }
   return [...slugs]
     .map((slug) => publishedPerfumes().find((item) => item.slug === slug))
@@ -154,8 +167,8 @@ function asPerfume(face: ScentFace): Perfume {
     nameEn: "",
     brand: "",
     marketGender: "مشترک",
-    concentration: "",
-    volumeMl: 0,
+    concentration: null,
+    volumeMl: null,
     bottle: "rect",
     cap: "",
     accords: face.accords,

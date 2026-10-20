@@ -16,14 +16,27 @@ export type Note = {
   name: string;
 };
 
+export type OfferStock = "in_stock" | "out_of_stock" | "unknown";
+
 export type ShopOffer = {
+  /** نام نمایشی فروشگاه. هویت پیشنهاد `shopSlug` است. */
   shop: string;
+  shopSlug?: string;
   price: number;
   checkedOn: string;
   /** زمان دقیق بررسی؛ برای صف قیمت کهنه در مدیریت. */
   checkedAt?: string;
+  /** فقط `in_stock` لینک خرید دارد. فیلد قدیمی؛ `stock` دقیق‌تر است. */
   stockConfirmed: boolean;
+  stock?: OfferStock;
   href: string;
+};
+
+/** لینک «یادآور این عطر» به یک مرجع در `references`. */
+export type RemindsOfLink = {
+  id: string;
+  relation: "similar" | "inspired";
+  source?: string;
 };
 
 export type Perfume = {
@@ -32,10 +45,12 @@ export type Perfume = {
   nameEn: string;
   brand: string;
   /** نام تأییدشدهٔ عطار. تا وقتی در کاتالوگ نیست، در صفحه نشان داده نمی‌شود. */
-  perfumer?: string;
+  perfumer?: string | null;
   marketGender: "مشترک" | "مردانه" | "زنانه";
-  concentration: string;
-  volumeMl: number;
+  /** خالی یعنی هنوز در کاتالوگ ثبت نشده؛ در UI نشان داده نمی‌شود. */
+  concentration: string | null;
+  /** خالی یعنی حجم معلوم نیست؛ در UI نشان داده نمی‌شود. */
+  volumeMl: number | null;
   bottle: BottleShape;
   cap: string;
   image?: string;
@@ -46,13 +61,26 @@ export type Perfume = {
   tags: string[];
   longevity: number | null;
   sillage: number | null;
-  inspiredBy?: string;
+  /** شناسهٔ مرجع در `references`. یک عطر یا چند عطر. */
+  inspiredBy?: string | string[] | null;
+  /**
+   * عطرهایی که این شیشه یادشان می‌اندازد (شبیه / الهام‌گرفته).
+   * جدا از `inspiredBy`؛ برای نمایش «یاد این عطر می‌افتد».
+   */
+  remindsOf?: RemindsOfLink[] | null;
   why: string;
   similar: string[];
   shops: ShopOffer[];
   confidence: number;
   /** نام‌هایی که دستیار علاوه بر نام فارسی و انگلیسی می‌شناسد. */
   aliases?: string[];
+  /** خانوادهٔ بویایی (کاتالوگ). */
+  family?: string | null;
+  /** برآورد قیمت کاتالوگ؛ فروشگاه جداست. */
+  priceMin?: number | null;
+  priceMax?: number | null;
+  /** صفحهٔ فراگرانتیکا؛ اگر باشد به‌صورت آیکون در صفحهٔ عطر باز می‌شود. */
+  sourceUrl?: string | null;
 };
 
 export type Profile = {

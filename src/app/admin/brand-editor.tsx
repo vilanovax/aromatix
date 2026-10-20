@@ -28,24 +28,81 @@ export function BrandEditor({
   const [nameFa, setNameFa] = useState(brand?.nameFa ?? "");
   const [nameEn, setNameEn] = useState(brand?.nameEn ?? "");
   const [description, setDescription] = useState(brand?.description ?? "");
+  const [logo, setLogo] = useState(brand?.logo ?? "");
+  const [website, setWebsite] = useState(brand?.website ?? "");
+  const [instagram, setInstagram] = useState(brand?.instagram ?? "");
   const [active, setActive] = useState(brand?.active ?? true);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [pending, setPending] = useState(false);
-  const [baseline, setBaseline] = useState(() => pack(brand?.slug ?? "", brand?.nameFa ?? "", brand?.nameEn ?? "", brand?.description ?? "", brand?.active ?? true));
-  const dirty = pack(slug, nameFa, nameEn, description, active) !== baseline;
+  const [uploading, setUploading] = useState(false);
+  const [logoNote, setLogoNote] = useState<string | null>(null);
+  const [baseline, setBaseline] = useState(() =>
+    pack(
+      brand?.slug ?? "",
+      brand?.nameFa ?? "",
+      brand?.nameEn ?? "",
+      brand?.description ?? "",
+      brand?.logo ?? "",
+      brand?.website ?? "",
+      brand?.instagram ?? "",
+      brand?.active ?? true,
+    ),
+  );
+  const websiteValue = normalizeWebsite(website);
+  const logoValue = logo.trim();
+  const websiteReady = websiteValue.length === 0 || /^https:\/\/\S+$/.test(websiteValue);
+  const websiteError = website.trim() && !websiteReady ? "وب‌سایت باید با https:// شروع شود." : undefined;
+  const dirty =
+    pack(slug, nameFa, nameEn, description, logoValue, websiteValue, instagram.trim(), active) !== baseline;
   const slugReady = /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug.trim().toLowerCase());
   const namesReady = nameFa.trim().length >= 2 && nameEn.trim().length >= 2;
+  const canSave = namesReady && websiteReady && (mode === "create" ? slugReady : dirty);
+
+  async function uploadLogo(file: File) {
+    if (!brand?.slug) {
+      setLogoNote("اول برند را ذخیره کن، بعد لوگو را بگذار.");
+      return;
+    }
+    setUploading(true);
+    setLogoNote(null);
+    setError(null);
+    try {
+      const body = new FormData();
+      body.set("file", file);
+      const response = await fetch(`/api/admin/brands/${brand.slug}/logo`, { method: "POST", body });
+      const data = (await response.json()) as { logo?: string; error?: string };
+      if (!response.ok || !data.logo) {
+        setLogoNote(data.error ?? "لوگو ذخیره نشد.");
+        return;
+      }
+      setLogo(data.logo);
+      setBaseline(pack(slug, nameFa, nameEn, description, data.logo, websiteValue, instagram.trim(), active));
+      setLogoNote("لوگو آماده و ذخیره شد.");
+      router.refresh();
+    } catch {
+      setLogoNote("لوگو ذخیره نشد.");
+    } finally {
+      setUploading(false);
+    }
+  }
 
   async function submit(event: React.FormEvent) {
     event.preventDefault();
     setPending(true);
     setError(null);
     setSaved(false);
-    const result =
-      mode === "create"
-        ? await createBrand({ slug, nameFa, nameEn, description })
-        : await updateBrand({ slug: brand?.slug, nameFa, nameEn, description, active });
+    const payload = {
+      slug: mode === "create" ? slug : brand?.slug,
+      nameFa,
+      nameEn,
+      description,
+      logo: logoValue,
+      website: websiteValue,
+      instagram: instagram.trim(),
+      active,
+    };
+    const result = mode === "create" ? await createBrand(payload) : await updateBrand(payload);
     setPending(false);
     if (!result.ok) {
       setError(result.error);
@@ -56,12 +113,23 @@ export function BrandEditor({
       router.refresh();
       return;
     }
-    setBaseline(pack(slug, nameFa, nameEn, description, active));
+    setWebsite(websiteValue);
+    setLogo(logoValue);
+    setBaseline(pack(slug, nameFa, nameEn, description, logoValue, websiteValue, instagram.trim(), active));
     setSaved(true);
     router.refresh();
   }
 
-  const status = error ?? (dirty ? "تغییر ذخیره نشده" : saved ? "ذخیره شد" : mode === "create" ? "اسلاگ بعد از ساخت عوض نمی‌شود." : `${active ? "فعال" : "غیرفعال"} · ${faNum(perfumeCount)} عطر`);
+  const status =
+    error ??
+    websiteError ??
+    (dirty
+      ? "تغییر ذخیره نشده"
+      : saved
+        ? "ذخیره شد"
+        : mode === "create"
+          ? "اسلاگ بعد از ساخت عوض نمی‌شود."
+          : `${active ? "فعال" : "غیرفعال"} · ${faNum(perfumeCount)} عطر`);
 
   return (
     <form onSubmit={submit} className="space-y-4">
@@ -73,7 +141,14 @@ export function BrandEditor({
           <div className="min-w-0 flex-1">
             <h1 className="truncate text-headline font-bold">{nameFa.trim() || "برند جدید"}</h1>
             <p className="flex min-w-0 items-baseline gap-2">
-              <span className={error || dirty ? "truncate text-label text-destructive" : "truncate text-label text-muted-foreground"} role={error ? "alert" : "status"}>
+              <span
+                className={
+                  error || websiteError || dirty
+                    ? "truncate text-label text-destructive"
+                    : "truncate text-label text-muted-foreground"
+                }
+                role={error || websiteError ? "alert" : "status"}
+              >
                 {status}
               </span>
               {mode === "edit" ? (
@@ -89,7 +164,7 @@ export function BrandEditor({
                 لیست عطرها
               </Button>
             ) : null}
-            <Button type="submit" size="md" disabled={pending || (mode === "edit" ? !dirty : !slugReady || !namesReady)}>
+            <Button type="submit" size="md" disabled={pending || !canSave}>
               {pending ? "در حال ذخیره" : mode === "create" ? "افزودن برند" : "ذخیره"}
             </Button>
           </div>
@@ -121,6 +196,66 @@ export function BrandEditor({
         </Field>
       </Card>
 
+      <Card className="grid gap-4 p-4 sm:p-5">
+        <div>
+          <h2 className="text-title font-semibold">حضور برند</h2>
+          <p className="mt-1 text-pretty text-label text-muted-foreground">لوگو و لینک‌های رسمی شرکت روی صفحهٔ برند دیده می‌شود.</p>
+        </div>
+        <div>
+          <p className="text-label text-muted-foreground">لوگو</p>
+          <div className="mt-2 flex items-center gap-4">
+            <div className="flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-control border border-border bg-secondary">
+              {logoValue ? <img src={logoValue} alt="" className="max-h-full max-w-full object-contain" /> : null}
+            </div>
+            <div className="min-w-0">
+              <label className="inline-flex min-h-11 cursor-pointer items-center rounded-control border border-border bg-card px-4 text-label font-medium">
+                <input
+                  type="file"
+                  accept="image/png,image/jpeg,image/webp"
+                  className="sr-only"
+                  disabled={uploading || mode === "create"}
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    event.target.value = "";
+                    if (file) void uploadLogo(file);
+                  }}
+                />
+                {uploading ? "در حال آماده‌سازی…" : "انتخاب لوگو"}
+              </label>
+              <p className="mt-2 text-pretty text-label text-muted-foreground" role={logoNote && logoNote !== "لوگو آماده و ذخیره شد." ? "alert" : "status"}>
+                {mode === "create"
+                  ? "بعد از ساخت برند می‌توانی لوگو را بگذاری."
+                  : (logoNote ?? "پی‌ان‌جی، جی‌پگ یا وب‌پی. قبل از ذخیره به مربع ۵۱۲ و وب‌پی سبک تبدیل می‌شود.")}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <Field label="وب‌سایت" hint={websiteError ? undefined : "اگر بدون https:// بنویسی، موقع خروج از فیلد اضافه می‌شود."}>
+            <Input
+              dir="ltr"
+              value={website}
+              autoCapitalize="none"
+              spellCheck={false}
+              placeholder="https://example.com"
+              error={websiteError}
+              onChange={(event) => setWebsite(event.target.value)}
+              onBlur={() => setWebsite(websiteValue)}
+            />
+          </Field>
+          <Field label="اینستاگرام" hint="آیدی یا لینک کامل.">
+            <Input
+              dir="ltr"
+              value={instagram}
+              autoCapitalize="none"
+              spellCheck={false}
+              placeholder="@frenchavenue"
+              onChange={(event) => setInstagram(event.target.value)}
+            />
+          </Field>
+        </div>
+      </Card>
+
       {mode === "edit" ? (
         <Card className="flex items-center justify-between gap-4 p-4 sm:p-5">
           <div className="min-w-0">
@@ -136,6 +271,21 @@ export function BrandEditor({
   );
 }
 
-function pack(slug: string, nameFa: string, nameEn: string, description: string, active: boolean) {
-  return JSON.stringify([slug, nameFa, nameEn, description, active]);
+function normalizeWebsite(value: string) {
+  const text = value.trim();
+  if (!text || /^https?:\/\//i.test(text)) return text;
+  return `https://${text.replace(/^\/+/, "")}`;
+}
+
+function pack(
+  slug: string,
+  nameFa: string,
+  nameEn: string,
+  description: string,
+  logo: string,
+  website: string,
+  instagram: string,
+  active: boolean,
+) {
+  return JSON.stringify([slug, nameFa, nameEn, description, logo, website, instagram, active]);
 }

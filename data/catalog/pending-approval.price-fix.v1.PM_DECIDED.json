@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "created": "2026-10-18 14:33 Asia/Tehran",
+    "source": "Rum 2026-10-18: real price ~16,000,000 toman; shops 2026-10-18: narsiso 16,099,000 (in stock), lotus 15,900,000 (in stock), aroma out of stock",
+    "rule": "RULES §58: v1 cap = 20M; band 12–20 is inside v1",
+    "note": "Draft for PM. Nothing changed in locks/parked.",
+    "status": "PM_DECIDED",
+    "decided_at": "2026-10-18T11:33:27.446379+00:00",
+    "applies_to": "price guide on v22 record; no new perfume; optional v23 only if price fields change",
+    "pm_summary_fa": "باند ۱۲–۲۰ درست است و داخل سقف v1. ورود مجدد نه؛ به‌روزرسانی قیمت همان عطر قفل‌شده."
+  },
+  "items": [
+    {
+      "slug": "club-de-nuit-intense-parfum-limited-edition",
+      "brand": "Armaf",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Armaf/Club-de-Nuit-Intense-Man-Limited-Edition-Parfum-77861.html",
+      "old_price_band": "20–30M (sheet)",
+      "proposed_price_band": "12–20M",
+      "proposed_priceMin": 15900000,
+      "proposed_priceMax": 16099000,
+      "evidence": [
+        "https://www.narsiso.shop/product/club-de-nuit-intense-man-parfum-limited-edition-collection-pride/ (16,099,000 تومان، موجود)",
+        "https://lotusperfumeshop.ir/product/150/%D8%B9%D8%B7%D8%B1-%D8%A7%D8%AF%DA%A9%D9%84%D9%86-%D8%A7%D9%85%D8%A7%D8%B1%D8%A7%D8%AA%DB%8C-%DA%A9%D9%84%D8%A7%D8%A8-%D8%AF%D9%86%D8%A7%DB%8C%D8%AA-%D8%A7%DB%8C%D9%86%D8%AA%D9%86%D8%B3-%D9%85%D9%86-%D9%84%DB%8C%D9%85%DB%8C%D8%AA%D8%AF-%D8%A7%D8%AF%DB%8C%D8%B4%D9%86-%D8%B4%D8%B1%DA%A9%D8%AA-%D8%A2%D8%B1%D9%85%D8%A7%D9%81-%D8%AF%DA%A9%D8%A7%D9%86%D8%AA%D8%A2%DA%A9%D8%A8%D9%86%D8%AF/ (15,900,000 تومان، موجود)"
+      ],
+      "current_status": "parked pm_keep_out_price_band; approved why stored",
+      "proposal": "correct price band and enter next version (v23)",
+      "pm_decision": "update_existing_price",
+      "pm_note": "رکورد جدید نساز. صفحهٔ ۷۷۸۶۱ همان club-de-nuit-intense-man-limited-edition در v22 است. اسلاگ پارک‌شده فقط alias شود. قیمت راهنمای کاتالوگ را به ۱۵٬۹۰۰٬۰۰۰ تا ۱۶٬۰۹۹٬۰۰۰ تومان به‌روز کن (داخل سقف ۲۰M). why قفل‌شده «لیمو و مشک سفید…» را عوض نکن. فروشگاه‌ها جدا بمانند.",
+      "canonical_slug": "club-de-nuit-intense-man-limited-edition",
+      "do_not_overwrite_why": "لیمو و مشک سفید برای تمام فصل‌ها مناسب است."
+    }
+  ]
+}

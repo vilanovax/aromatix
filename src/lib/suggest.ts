@@ -1,12 +1,13 @@
 import { interpretQuery } from "@/lib/assistant";
-import { publishedPerfumes } from "@/lib/catalog";
+import { listedPrice, matchBrand, perfumesByBrand, publishedPerfumes } from "@/lib/catalog";
+import { faNum, millionToman } from "@/lib/format";
 import { publishedEntries } from "@/lib/knowledge";
 import { findReference, normalizeAsk, referenceList, type ReferenceProfile } from "@/lib/references";
 import type { Perfume } from "@/lib/types";
 
 export type Suggestion = {
   id: string;
-  kind: "perfume" | "reference" | "learn" | "search";
+  kind: "perfume" | "reference" | "learn" | "search" | "brand";
   title: string;
   support?: string;
   query: string;
@@ -20,6 +21,22 @@ export function suggestQueries(raw: string): Suggestion[] {
 
   const items: Suggestion[] = [];
   const seen = new Set<string>();
+
+  const brand = matchBrand(raw);
+  if (brand) {
+    const catalog = perfumesByBrand(brand.nameFa);
+    items.push({
+      id: `brand-${brand.slug}`,
+      kind: "brand",
+      title: brand.nameFa,
+      support: `${brand.nameEn} · ${faNum(catalog.length)} عطر`,
+      query: brand.nameFa,
+    });
+    for (const perfume of catalog) {
+      items.push(perfumeSuggestion(perfume));
+    }
+    return items;
+  }
 
   const correction = didYouMean(query);
   if (correction) {
@@ -35,14 +52,7 @@ export function suggestQueries(raw: string): Suggestion[] {
   }
 
   for (const perfume of perfumeHits(query)) {
-    items.push({
-      id: `perfume-${perfume.slug}`,
-      kind: "perfume",
-      title: perfume.nameFa,
-      support: perfume.brand,
-      query: perfume.nameFa,
-      perfume,
-    });
+    items.push(perfumeSuggestion(perfume));
   }
 
   const exact = findReference(query);
@@ -80,6 +90,26 @@ export function suggestQueries(raw: string): Suggestion[] {
   return items.slice(0, 6);
 }
 
+function perfumeSuggestion(perfume: Perfume): Suggestion {
+  return {
+    id: `perfume-${perfume.slug}`,
+    kind: "perfume",
+    title: perfume.nameFa,
+    support: perfumeLine(perfume),
+    query: perfume.nameFa,
+    perfume,
+  };
+}
+
+function perfumeLine(perfume: Perfume) {
+  const bits = [perfume.brand];
+  if (perfume.concentration) bits.push(perfume.concentration);
+  if (perfume.volumeMl) bits.push(`${faNum(perfume.volumeMl)} میلی‌لیتر`);
+  const price = listedPrice(perfume);
+  if (price) bits.push(millionToman(price));
+  return bits.join(" · ");
+}
+
 function referenceSuggestion(reference: ReferenceProfile): Suggestion {
   return {
     id: `ref-${reference.id}`,
@@ -88,6 +118,15 @@ function referenceSuggestion(reference: ReferenceProfile): Suggestion {
     support: reference.line,
     query: reference.nameFa,
   };
+}
+
+/** هر عطری که این عبارت در نام فارسی، انگلیسی یا نام دیگرش باشد. */
+export function perfumesMatchingName(raw: string): Perfume[] {
+  const query = normalizeAsk(raw);
+  if (query.length < 2) return [];
+  return publishedPerfumes()
+    .filter((perfume) => nameRank(perfume, query) > 0)
+    .sort((a, b) => nameRank(b, query) - nameRank(a, query) || a.nameFa.localeCompare(b.nameFa, "fa"));
 }
 
 function perfumeHits(query: string) {
@@ -106,7 +145,7 @@ function nameRank(perfume: Perfume, query: string) {
     if (!name) continue;
     if (name === query) best = Math.max(best, 3);
     else if (name.startsWith(query)) best = Math.max(best, 2);
-    else if (query.length >= 3 && name.includes(query)) best = Math.max(best, 1);
+    else if (name.includes(query)) best = Math.max(best, 1);
   }
   return best;
 }

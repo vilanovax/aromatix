@@ -379,14 +379,15 @@ export function entryForAccord(name: string) {
   return publishedEntries().find((entry) => entry.accordNames?.includes(name));
 }
 
-export function entryForConcentration(label: string) {
+export function entryForConcentration(label: string | null | undefined) {
+  if (!label) return undefined;
   return publishedEntries().find((entry) => entry.concentrationLabels?.includes(label));
 }
 
 export function relatedPerfumes(entry: KnowledgeEntry, limit = 5): Perfume[] {
   const matches = publishedPerfumes().filter((perfume) => {
     if (entry.slug === "testers-decants-dupes") return Boolean(perfume.inspiredBy);
-    if (entry.concentrationLabels?.includes(perfume.concentration)) return true;
+    if (perfume.concentration && entry.concentrationLabels?.includes(perfume.concentration)) return true;
     if (entry.noteNames?.some((name) => perfume.notes.some((note) => note.name === name))) return true;
     if (entry.accordNames?.some((name) => perfume.accords.some((accord) => accord.name === name))) return true;
     return false;

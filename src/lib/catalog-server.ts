@@ -1,6 +1,9 @@
 import "server-only";
 import { cache } from "react";
+import { BUDGET_SETTING_KEY, DEFAULT_BUDGET_MILLIONS, parseBudgetMillions } from "@/lib/budgets";
 import { installCatalog, seedShops, seedSnapshot, type CatalogSnapshot, type Shop } from "@/lib/catalog";
+import { catalogImage } from "@/lib/perfume-images";
+import { attachRemindsOf } from "@/lib/reminds-of";
 import type { Perfume } from "@/lib/types";
 import { db } from "@/prisma/db";
 
@@ -18,7 +21,15 @@ function perfumeFromDocument(
     if (!value || typeof value !== "object" || !Array.isArray(value.accords) || !Array.isArray(value.shops)) {
       return null;
     }
-    return { ...value, slug, nameFa, nameEn, brand: brandName };
+    const image = catalogImage(slug, value.image);
+    return attachRemindsOf({
+      ...value,
+      slug,
+      nameFa,
+      nameEn,
+      brand: brandName,
+      ...(image ? { image } : {}),
+    });
   } catch {
     return null;
   }
@@ -35,7 +46,7 @@ const loadCatalogState = cache(async (): Promise<{ store: CatalogStore; snapshot
       installCatalog(seed);
       return { store: "empty", snapshot: seed };
     }
-    const shops = await readyShops();
+    const [shops, budgets] = await Promise.all([readyShops(), readBudgetMillions()]);
     const brandName = new Map(brands.map((brand) => [brand.slug, brand.nameFa]));
     const perfumes = rows.flatMap((row) => {
       const perfume = perfumeFromDocument(
@@ -53,9 +64,13 @@ const loadCatalogState = cache(async (): Promise<{ store: CatalogStore; snapshot
         nameFa: brand.nameFa,
         nameEn: brand.nameEn,
         description: brand.description,
+        logo: brand.logo,
+        website: brand.website,
+        instagram: brand.instagram,
         active: brand.active,
       })),
       shops,
+      budgets,
       perfumes,
     };
     installCatalog(snapshot);
@@ -71,6 +86,18 @@ const loadCatalogState = cache(async (): Promise<{ store: CatalogStore; snapshot
 export const loadCatalogBundle = loadCatalogState;
 
 export const loadCatalog = cache(async (): Promise<CatalogSnapshot> => (await loadCatalogState()).snapshot);
+
+async function readBudgetMillions() {
+  try {
+    const row = await db.orm.aroma.AppSetting.where((item) => item.key.eq(BUDGET_SETTING_KEY)).select("value").first();
+    return parseBudgetMillions(row?.value) ?? [...DEFAULT_BUDGET_MILLIONS];
+  } catch (error) {
+    console.error(error);
+    return [...DEFAULT_BUDGET_MILLIONS];
+  }
+}
+
+export { readBudgetMillions };
 
 async function readyShops(): Promise<Shop[]> {
   let rows = await db.orm.aroma.CatalogShop.orderBy((row) => row.nameFa.asc()).all();

@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { readBrandPins, writeBrandPins } from "@/lib/admin/brand-pins";
 import { parsePerfumeInput, type PerfumeInput } from "@/lib/admin/perfume-input";
 import { requireSection } from "@/lib/auth/admin";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
@@ -122,7 +123,15 @@ export async function publishSeedCatalog(): Promise<ActionResult> {
   }
 }
 
-function readBrandFields(input: { nameFa?: unknown; nameEn?: unknown; description?: unknown; active?: unknown }) {
+function readBrandFields(input: {
+  nameFa?: unknown;
+  nameEn?: unknown;
+  description?: unknown;
+  logo?: unknown;
+  website?: unknown;
+  instagram?: unknown;
+  active?: unknown;
+}) {
   const nameFa = typeof input.nameFa === "string" ? input.nameFa.trim().replace(/\s+/g, " ") : "";
   const nameEn = typeof input.nameEn === "string" ? input.nameEn.trim().replace(/\s+/g, " ") : "";
   const description = typeof input.description === "string" ? input.description.trim().replace(/\s+/g, " ") : "";
@@ -131,7 +140,20 @@ function readBrandFields(input: { nameFa?: unknown; nameEn?: unknown; descriptio
     return { ok: false as const, error: "نام فارسی و انگلیسی برند را بنویس." };
   }
   if (description.length > 400) return { ok: false as const, error: "توضیح برند حداکثر ۴۰۰ حرف باشد." };
-  return { ok: true as const, nameFa, nameEn, description, active };
+  const logo = cleanLine(input.logo, 300);
+  const website = cleanLine(input.website, 200);
+  const instagram = cleanLine(input.instagram, 120);
+  if (logo && !isBrandLogo(logo)) {
+    return { ok: false as const, error: "لوگو باید مسیر داخلی با / یا لینک https باشد." };
+  }
+  if (website && !/^https:\/\/\S+$/.test(website)) {
+    return { ok: false as const, error: "وب‌سایت باید با https:// شروع شود." };
+  }
+  return { ok: true as const, nameFa, nameEn, description, logo, website, instagram, active };
+}
+
+function isBrandLogo(value: string) {
+  return value.startsWith("/") || /^https:\/\/\S+$/.test(value);
 }
 
 export async function createBrand(input: {
@@ -139,6 +161,9 @@ export async function createBrand(input: {
   nameFa?: unknown;
   nameEn?: unknown;
   description?: unknown;
+  logo?: unknown;
+  website?: unknown;
+  instagram?: unknown;
 }): Promise<ActionResult> {
   if (!(await requireSection("brands"))) return denied();
   const slug = typeof input.slug === "string" ? input.slug.trim().toLowerCase() : "";
@@ -157,6 +182,9 @@ export async function createBrand(input: {
       nameFa: fields.nameFa,
       nameEn: fields.nameEn,
       description: fields.description,
+      logo: fields.logo,
+      website: fields.website,
+      instagram: fields.instagram,
       active: true,
     });
     publish();
@@ -172,6 +200,9 @@ export async function updateBrand(input: {
   nameFa?: unknown;
   nameEn?: unknown;
   description?: unknown;
+  logo?: unknown;
+  website?: unknown;
+  instagram?: unknown;
   active?: unknown;
 }): Promise<ActionResult> {
   if (!(await requireSection("brands"))) return denied();
@@ -189,6 +220,9 @@ export async function updateBrand(input: {
       nameFa: fields.nameFa,
       nameEn: fields.nameEn,
       description: fields.description,
+      logo: fields.logo,
+      website: fields.website,
+      instagram: fields.instagram,
       active: fields.active,
     });
     if (current.nameFa !== fields.nameFa) {
@@ -322,8 +356,9 @@ export async function updateShop(input: {
       const now = new Date().toISOString();
       for (const row of rows) {
         const perfume = JSON.parse(row.document) as Perfume;
-        if (!perfume.shops?.some((offer) => offer.shop === current.nameFa)) continue;
-        perfume.shops = perfume.shops.map((offer) => (offer.shop === current.nameFa ? { ...offer, shop: fields.nameFa } : offer));
+        const matches = (offer: Perfume["shops"][number]) => offer.shopSlug === slug || (!offer.shopSlug && offer.shop === current.nameFa);
+        if (!perfume.shops?.some(matches)) continue;
+        perfume.shops = perfume.shops.map((offer) => (matches(offer) ? { ...offer, shop: fields.nameFa, shopSlug: slug } : offer));
         await db.orm.aroma.CatalogPerfume.where((item) => item.slug.eq(row.slug)).update({
           document: JSON.stringify(perfume),
           updatedAt: now,
@@ -355,16 +390,34 @@ export async function setShopActive(input: { slug?: unknown; active?: unknown })
   }
 }
 
+export async function setBrandPinned(input: { slug?: unknown; pinned?: unknown }): Promise<ActionResult> {
+  if (!(await requireSection("brands"))) return denied();
+  const slug = typeof input.slug === "string" ? input.slug : "";
+  const pinned = input.pinned === true;
+  await loadCatalog();
+  if (!allBrands().some((brand) => brand.slug === slug)) return { ok: false, error: "این برند در کاتالوگ نیست." };
+  try {
+    const current = await readBrandPins();
+    const next = pinned ? [slug, ...current.filter((item) => item !== slug)] : current.filter((item) => item !== slug);
+    await writeBrandPins(next);
+    revalidatePath("/admin/brands");
+    return { ok: true, slug };
+  } catch (error) {
+    console.error(error);
+    return { ok: false, error: "پین برند ذخیره نشد." };
+  }
+}
+
 export async function setBrandActive(input: { slug?: unknown; active?: unknown }): Promise<ActionResult> {
   if (!(await requireSection("brands"))) return denied();
   const slug = typeof input.slug === "string" ? input.slug : "";
   const active = input.active === true;
-  await loadCatalog();
-  const current = allBrands().find((brand) => brand.slug === slug);
-  if (!current) return { ok: false, error: "این برند در کاتالوگ نیست." };
   try {
+    const current = await db.orm.aroma.CatalogBrand.where((row) => row.slug.eq(slug)).select("slug").first();
+    if (!current) return { ok: false, error: "این برند در کاتالوگ نیست." };
     await db.orm.aroma.CatalogBrand.where((row) => row.slug.eq(slug)).update({ active });
     publish();
+    revalidatePath("/admin/brands");
     return { ok: true, slug };
   } catch (error) {
     console.error(error);

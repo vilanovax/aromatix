@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  serverExternalPackages: ["sharp"],
   agentRules: false,
   devIndicators: false,
   turbopack: {

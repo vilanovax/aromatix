@@ -1,6 +1,7 @@
 export const ADMIN_SECTIONS = [
   { id: "overview", label: "نمای کلی", href: "/admin", group: "کار" },
   { id: "reports", label: "گزارش", href: "/admin/reports", group: "کار" },
+  { id: "corrections", label: "اصلاحات", href: "/admin/corrections", group: "کار" },
   { id: "perfumes", label: "عطرها", href: "/admin/perfumes", group: "کاتالوگ" },
   { id: "brands", label: "برندها", href: "/admin/brands", group: "کاتالوگ" },
   { id: "shops", label: "فروشگاه‌ها", href: "/admin/shops", group: "کاتالوگ" },

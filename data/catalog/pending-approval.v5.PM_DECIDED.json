@@ -1,0 +1,3026 @@
+{
+  "_meta": {
+    "source": "PM 2026-10-18 09:21",
+    "base_lock": "all-app-v21.LOCKED-20261017-1934.json",
+    "base_lock_sha256": "77d20c989277a6ee6bc3db6c38478903d48ea7c9a28c8f6795fa54290ec3c4c8",
+    "base_parked": "parked/parked-all.v7.json",
+    "created": "2026-10-18 Asia/Tehran",
+    "status": "PM_DECIDED",
+    "note": "v22-prep research package. Nothing locked. All whys are DRAFTS (never auto-approved). Fill pm_decision (approve/reject/defer) / pm_text (replacement why) / pm_note.",
+    "rules": "Fragrantica wins on every field (§34); clones only via their own page; series prefix/colour/number must match; gender from Fragrantica (unisex = مشترک); accords = fixed vocabulary + catalog colours; record-specific animalic→مشک / coconut→میوه only when the 2–4 gate would fail (§42); strict §30 temperature word; no شیرین / no '/'; pair+season unique vs v21 + batch + why-rejected.",
+    "count": 22,
+    "decided_at": "2026-10-18T06:49:36.392996+00:00",
+    "applies_to": "v22",
+    "approve_count": 22,
+    "alias_merges": "approve all 9 in alias-merge.v1.json",
+    "uncertain": "36 stay out; do not seed",
+    "pm_summary_fa": "۲۲ رکورد با why پیش‌نویس approve. ۹ alias-merge approve. andaleeb-flora جدا از معوق. ۳۶ نامطمئن و ۶ معوق و ۲۷۱ پیدا نشده وارد نشوند. animalic/coconut سراسری نه.",
+    "instruction_fa": "روی پایهٔ v21 قفل v22 بسازید. v21 را بازنویسی نکنید. sha256 قفل جدید را گزارش دهید."
+  },
+  "pending": [
+    {
+      "slug": "ameer-al-arab-imperium",
+      "slug_parked": "ameer-al-arab-imperium",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "امیر العرب امپریوم",
+      "nameEn": "Ameer Al Arab Imperium",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Asdaaf/Ameer-Al-Arab-Imperium-100148.html",
+      "fragrantica_h1": "Ameer Al Arab Imperium Asdaaf for men",
+      "match_basis": "h1 'Ameer Al Arab Imperium Asdaaf' = record name; Asdaaf counts under Lattafa",
+      "gender": "مردانه",
+      "concentration": null,
+      "notes": [
+        "top:ترنج",
+        "top:زنجبیل",
+        "middle:سیب",
+        "middle:کشمران",
+        "base:مشک",
+        "base:کهربا"
+      ],
+      "notes_en": [
+        "Bergamot",
+        "Ginger",
+        "Apple",
+        "Cashmeran",
+        "Musk",
+        "Amber"
+      ],
+      "accords": [
+        "ادویه 0.3 #8E3D32 (from fresh spicy)",
+        "مرکبات 0.24 #C6B15A (from citrus)",
+        "مشک 0.24 #B7A99A (from musky)",
+        "آروماتیک 0.22 #7FA58A (from aromatic)"
+      ],
+      "family": "چوبی آروماتیک",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "ترنج و کشمران برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "ameer-al-arab-imperium",
+        "nameFa": "امیر العرب امپریوم",
+        "nameEn": "Ameer Al Arab Imperium",
+        "brand": "لطافه",
+        "aliases": [
+          "ameer al arab imperium",
+          "lattafa ameer al arab imperium",
+          "امیر العرب امپریوم",
+          "ameer-al-arab-imperium"
+        ],
+        "family": "چوبی آروماتیک",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Asdaaf/Ameer-Al-Arab-Imperium-100148.html",
+        "marketGender": "مردانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.3
+          },
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.24
+          },
+          {
+            "name": "مشک",
+            "color": "#B7A99A",
+            "strength": 0.24
+          },
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.22
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "top",
+            "name": "زنجبیل"
+          },
+          {
+            "layer": "middle",
+            "name": "سیب"
+          },
+          {
+            "layer": "middle",
+            "name": "کشمران"
+          },
+          {
+            "layer": "base",
+            "name": "مشک"
+          },
+          {
+            "layer": "base",
+            "name": "کهربا"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "ترنج و کشمران برای روزهای گرم مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "ameerat-al-arab",
+      "slug_parked": "ameerat-al-arab",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "امیره العرب",
+      "nameEn": "Ameerat Al Arab",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Asdaaf/Ameerat-Al-Arab-81376.html",
+      "fragrantica_h1": "Ameerat Al Arab Asdaaf for women",
+      "match_basis": "h1 'Ameerat Al Arab Asdaaf' = record (Ameer Al Arab is a different perfume)",
+      "gender": "زنانه",
+      "concentration": null,
+      "notes": [
+        "top:مرکبات",
+        "top:ترنج",
+        "middle:مشک سفید",
+        "base:یاس",
+        "base:مشک"
+      ],
+      "notes_en": [
+        "Citruses",
+        "Bergamot",
+        "White Musk",
+        "Jasmine",
+        "Musk"
+      ],
+      "accords": [
+        "مرکبات 0.33 #C6B15A (from citrus)",
+        "گل 0.27 #C47B86 (from white floral)",
+        "مشک 0.22 #B7A99A (from musky)",
+        "چوب 0.18 #6E5436 (from woody)"
+      ],
+      "family": "گلی",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "مشک سفید و یاس برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "why_adjective_dropped_no_temp_pair"
+      ],
+      "proposed_record": {
+        "slug": "ameerat-al-arab",
+        "nameFa": "امیره العرب",
+        "nameEn": "Ameerat Al Arab",
+        "brand": "لطافه",
+        "aliases": [
+          "ameerat al arab",
+          "lattafa ameerat al arab",
+          "امیره العرب",
+          "ameerat-al-arab"
+        ],
+        "family": "گلی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Asdaaf/Ameerat-Al-Arab-81376.html",
+        "marketGender": "زنانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.33
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.27
+          },
+          {
+            "name": "مشک",
+            "color": "#B7A99A",
+            "strength": 0.22
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.18
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "مرکبات"
+          },
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "middle",
+            "name": "مشک سفید"
+          },
+          {
+            "layer": "base",
+            "name": "یاس"
+          },
+          {
+            "layer": "base",
+            "name": "مشک"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": []
+      },
+      "pm_decision": "approve",
+      "pm_text": "مشک سفید و یاس برای روزهای گرم مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "ameerat-al-arab-prive-rose",
+      "slug_parked": "ameerat-al-arab-prive-rose",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "امیره العرب پریو رز",
+      "nameEn": "Ameerat Al Arab Prive Rose",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Asdaaf/Ameerat-Al-Arab-Prive-Rose-81967.html",
+      "fragrantica_h1": "Ameerat Al Arab Prive Rose Asdaaf for women",
+      "match_basis": "h1 identical",
+      "gender": "زنانه",
+      "concentration": null,
+      "notes": [
+        "top:توت‌فرنگی",
+        "top:پرتقال",
+        "middle:رز",
+        "middle:مشک سفید",
+        "base:تونکا",
+        "base:کهربا"
+      ],
+      "notes_en": [
+        "Strawberry",
+        "Orange",
+        "Rose",
+        "White Musk",
+        "Tonka Bean",
+        "Amber"
+      ],
+      "accords": [
+        "گل 0.42 #C47B86 (from rose+white floral)",
+        "میوه 0.23 #D2B15C (from fruity)",
+        "مشک 0.2 #B7A99A (from musky)",
+        "عنبر 0.15 #C47B4A (from amber)"
+      ],
+      "family": "گلی میوه‌ای",
+      "season": "all",
+      "season_fa": "تمام فصول",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "توت‌فرنگی و پرتقال برای تمام فصل‌ها مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "ameerat-al-arab-prive-rose",
+        "nameFa": "امیره العرب پریو رز",
+        "nameEn": "Ameerat Al Arab Prive Rose",
+        "brand": "لطافه",
+        "aliases": [
+          "ameerat al arab prive rose",
+          "lattafa ameerat al arab prive rose",
+          "امیره العرب پریو رز",
+          "ameerat-al-arab-prive-rose"
+        ],
+        "family": "گلی میوه‌ای",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Asdaaf/Ameerat-Al-Arab-Prive-Rose-81967.html",
+        "marketGender": "زنانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.42
+          },
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.23
+          },
+          {
+            "name": "مشک",
+            "color": "#B7A99A",
+            "strength": 0.2
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.15
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "توت‌فرنگی"
+          },
+          {
+            "layer": "top",
+            "name": "پرتقال"
+          },
+          {
+            "layer": "middle",
+            "name": "رز"
+          },
+          {
+            "layer": "middle",
+            "name": "مشک سفید"
+          },
+          {
+            "layer": "base",
+            "name": "تونکا"
+          },
+          {
+            "layer": "base",
+            "name": "کهربا"
+          }
+        ],
+        "seasons": [
+          "all"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "توت‌فرنگی و پرتقال برای تمام فصل‌ها مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "andaleeb-flora",
+      "slug_parked": "andaleeb-flora",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "عندلیب فلورا",
+      "nameEn": "Andaleeb Flora",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Asdaaf/Andaleeb-Flora-119253.html",
+      "fragrantica_h1": "Andaleeb Flora Asdaaf for women",
+      "match_basis": "h1 identical (not the deferred andaleeb-by-asdaaf)",
+      "gender": "زنانه",
+      "concentration": null,
+      "notes": [
+        "top:ترنج",
+        "top:پرتقال",
+        "middle:یاس",
+        "middle:رز",
+        "base:مشک",
+        "base:چوب صندل"
+      ],
+      "notes_en": [
+        "Bergamot",
+        "Orange",
+        "Jasmine",
+        "Rose",
+        "Musk",
+        "Sandalwood"
+      ],
+      "accords": [
+        "مرکبات 0.28 #C6B15A (from citrus)",
+        "گل 0.38 #C47B86 (from white floral+rose)",
+        "چوب 0.18 #6E5436 (from woody)",
+        "مشک 0.16 #B7A99A (from musky)"
+      ],
+      "family": "گلی میوه‌ای",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "پرتقال و رز برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "andaleeb-flora",
+        "nameFa": "عندلیب فلورا",
+        "nameEn": "Andaleeb Flora",
+        "brand": "لطافه",
+        "aliases": [
+          "andaleeb flora",
+          "lattafa andaleeb flora",
+          "عندلیب فلورا",
+          "andaleeb-flora"
+        ],
+        "family": "گلی میوه‌ای",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Asdaaf/Andaleeb-Flora-119253.html",
+        "marketGender": "زنانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.28
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.38
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.18
+          },
+          {
+            "name": "مشک",
+            "color": "#B7A99A",
+            "strength": 0.16
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "top",
+            "name": "پرتقال"
+          },
+          {
+            "layer": "middle",
+            "name": "یاس"
+          },
+          {
+            "layer": "middle",
+            "name": "رز"
+          },
+          {
+            "layer": "base",
+            "name": "مشک"
+          },
+          {
+            "layer": "base",
+            "name": "چوب صندل"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": []
+      },
+      "pm_decision": "approve",
+      "pm_text": "پرتقال و رز برای روزهای گرم مناسب است.",
+      "pm_note": "جدا از andaleeb-by-asdaaf معوق است (آن یکی دو صفحهٔ مبهم بود). این ردیف صفحهٔ Andaleeb Flora است و وارد شود. معوق دست نخورد."
+    },
+    {
+      "slug": "bagdad",
+      "slug_parked": "baghdad-zodiac",
+      "brand": "Samam",
+      "sub_brand": "Zodiac",
+      "brand_fa": "صمام",
+      "nameFa": "بغداد زودیاک",
+      "nameEn": "Bagdad",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Zodiac/Bagdad-135728.html",
+      "fragrantica_h1": "Bagdad Zodiac for women and men",
+      "match_basis": "Baghdad = Bagdad (spelling only); h1 'Bagdad Zodiac'",
+      "gender": "مشترک",
+      "concentration": "اکستریت",
+      "notes": [
+        "top:عسل",
+        "top:انار",
+        "middle:چای سیاه",
+        "middle:کاپوچینو",
+        "base:تونکا",
+        "base:چوب سدر"
+      ],
+      "notes_en": [
+        "Honey",
+        "Pomegranate",
+        "Black Tea",
+        "Cappuccino",
+        "Tonka Bean",
+        "Cedarwood"
+      ],
+      "accords": [
+        "چوب 0.33 #6E5436 (from woody)",
+        "میوه 0.25 #D2B15C (from fruity)",
+        "آروماتیک 0.22 #7FA58A (from aromatic)",
+        "مرکبات 0.2 #C6B15A (from citrus)"
+      ],
+      "family": "چوبی ادویه‌ای",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۸ تا ۱۲",
+      "priceMin": 8000000,
+      "priceMax": 12000000,
+      "why_draft": "عسل و چوب سدر گرم است و برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet زنانه)"
+      ],
+      "proposed_record": {
+        "slug": "bagdad",
+        "nameFa": "بغداد زودیاک",
+        "nameEn": "Bagdad",
+        "brand": "صمام",
+        "aliases": [
+          "baghdad zodiac",
+          "samam baghdad zodiac",
+          "بغداد زودیاک",
+          "baghdad-zodiac"
+        ],
+        "family": "چوبی ادویه‌ای",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Zodiac/Bagdad-135728.html",
+        "marketGender": "مشترک",
+        "concentration": "اکستریت",
+        "volumeMl": 60,
+        "priceMin": 8000000,
+        "priceMax": 12000000,
+        "accords": [
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.33
+          },
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.25
+          },
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.22
+          },
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.2
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "عسل"
+          },
+          {
+            "layer": "top",
+            "name": "انار"
+          },
+          {
+            "layer": "middle",
+            "name": "چای سیاه"
+          },
+          {
+            "layer": "middle",
+            "name": "کاپوچینو"
+          },
+          {
+            "layer": "base",
+            "name": "تونکا"
+          },
+          {
+            "layer": "base",
+            "name": "چوب سدر"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "عسل و چوب سدر گرم است و برای زمستان مناسب است.",
+      "pm_note": "جنسیت مشترک از فرگرانتیکا قبول."
+    },
+    {
+      "slug": "candid",
+      "slug_parked": "candid-hb",
+      "brand": "Maison Alhambra",
+      "sub_brand": null,
+      "brand_fa": "میسون الحمرا",
+      "nameFa": "کاندید هاردباکس",
+      "nameEn": "Candid",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Maison-Alhambra/Candid-93542.html",
+      "fragrantica_h1": "Candid Maison Alhambra for women",
+      "match_basis": "HB = hard box (packaging); h1 'Candid Maison Alhambra'",
+      "gender": "زنانه",
+      "concentration": null,
+      "notes": [
+        "top:ترنج",
+        "top:مرکبات",
+        "middle:بهارنارنج",
+        "middle:یاس",
+        "base:پاچولی",
+        "base:وانیل"
+      ],
+      "notes_en": [
+        "Bergamot",
+        "Citruses",
+        "Orange Blossom",
+        "Jasmine",
+        "Patchouli",
+        "Vanilla"
+      ],
+      "accords": [
+        "گل 0.26 #C47B86 (from white floral)",
+        "چوب 0.37 #6E5436 (from patchouli+woody)",
+        "وانیل 0.21 #C4A574 (from vanilla)",
+        "ادویه 0.16 #8E3D32 (from warm spicy)"
+      ],
+      "family": "گلی",
+      "season": "all",
+      "season_fa": "تمام فصول",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "ترنج و پاچولی برای تمام فصل‌ها مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "candid",
+        "nameFa": "کاندید هاردباکس",
+        "nameEn": "Candid",
+        "brand": "میسون الحمرا",
+        "aliases": [
+          "candid hb",
+          "alhambra candid hb",
+          "کاندید هاردباکس",
+          "کاندید هاردباکس الحمبرا",
+          "candid-hb"
+        ],
+        "family": "گلی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Candid-93542.html",
+        "marketGender": "زنانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.26
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.37
+          },
+          {
+            "name": "وانیل",
+            "color": "#C4A574",
+            "strength": 0.21
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.16
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "top",
+            "name": "مرکبات"
+          },
+          {
+            "layer": "middle",
+            "name": "بهارنارنج"
+          },
+          {
+            "layer": "middle",
+            "name": "یاس"
+          },
+          {
+            "layer": "base",
+            "name": "پاچولی"
+          },
+          {
+            "layer": "base",
+            "name": "وانیل"
+          }
+        ],
+        "seasons": [
+          "all"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm",
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "ترنج و پاچولی برای تمام فصل‌ها مناسب است.",
+      "pm_note": "هاردباکس بسته‌بندی است نه عطر جدا. رکورد با صفحهٔ Candid وارد شود؛ «هاردباکس» در aliases بماند و nameFa ترجیحاً «کاندید»."
+    },
+    {
+      "slug": "kiss-sea-deep-want",
+      "slug_parked": "liis-sea-deepwant",
+      "brand": "Samam",
+      "sub_brand": null,
+      "brand_fa": "صمام",
+      "nameFa": "کیس اند سی دیپ وانت",
+      "nameEn": "Kiss & Sea Deep Want",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Samam/Kiss-Sea-Deep-Want-106433.html",
+      "fragrantica_h1": "Kiss & Sea Deep Want Samam for women and men",
+      "match_basis": "Persian «کیس اند سی دیپ وانت» = Kiss & Sea Deep Want; sheet English 'Liis' is a typo",
+      "gender": "مشترک",
+      "concentration": null,
+      "notes": [
+        "top:چوب رز پالیساندر",
+        "top:اسطوخودوس",
+        "middle:گل برف",
+        "middle:رز",
+        "base:عود",
+        "base:وانیل"
+      ],
+      "notes_en": [
+        "Palisander Rosewood",
+        "Lavender",
+        "Lily-of-the-Valley",
+        "Rose",
+        "Agarwood",
+        "Vanilla"
+      ],
+      "accords": [
+        "چوب 0.28 #6E5436 (from woody)",
+        "عنبر 0.26 #C47B4A (from amber)",
+        "گل 0.25 #C47B86 (from white floral)",
+        "ادویه 0.21 #8E3D32 (from warm spicy)"
+      ],
+      "family": "شرقی چوبی",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۸ تا ۱۲",
+      "priceMin": 8000000,
+      "priceMax": 12000000,
+      "why_draft": "اسطوخودوس و گل برف برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet None)"
+      ],
+      "proposed_record": {
+        "slug": "kiss-sea-deep-want",
+        "nameFa": "کیس اند سی دیپ وانت",
+        "nameEn": "Kiss & Sea Deep Want",
+        "brand": "صمام",
+        "aliases": [
+          "liis sea deepwant",
+          "liis & sea deepwant",
+          "کیس اند سی دیپ وانت",
+          "liis-sea-deepwant"
+        ],
+        "family": "شرقی چوبی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Samam/Kiss-Sea-Deep-Want-106433.html",
+        "marketGender": "مشترک",
+        "concentration": null,
+        "volumeMl": null,
+        "priceMin": 8000000,
+        "priceMax": 12000000,
+        "accords": [
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.28
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.26
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.25
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.21
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "چوب رز پالیساندر"
+          },
+          {
+            "layer": "top",
+            "name": "اسطوخودوس"
+          },
+          {
+            "layer": "middle",
+            "name": "گل برف"
+          },
+          {
+            "layer": "middle",
+            "name": "رز"
+          },
+          {
+            "layer": "base",
+            "name": "عود"
+          },
+          {
+            "layer": "base",
+            "name": "وانیل"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm",
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "اسطوخودوس و گل برف برای زمستان مناسب است.",
+      "pm_note": "Liis غلط تایپی Kiss است؛ تطبیق قبول."
+    },
+    {
+      "slug": "majd-al-sultan",
+      "slug_parked": "majd-al-sultan",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "مجد السلطان",
+      "nameEn": "Majd Al Sultan",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Asdaaf/Majd-Al-Sultan-68297.html",
+      "fragrantica_h1": "Majd Al Sultan Asdaaf for men",
+      "match_basis": "h1 identical",
+      "gender": "مردانه",
+      "concentration": null,
+      "notes": [
+        "top:دود",
+        "top:تنباکو",
+        "middle:کندر",
+        "middle:مر",
+        "base:رزین‌ها",
+        "base:کهربا"
+      ],
+      "notes_en": [
+        "Smoke",
+        "Tobacco",
+        "Incense",
+        "Myrrh",
+        "Resins",
+        "Amber"
+      ],
+      "accords": [
+        "عنبر 0.35 #C47B4A (from amber)",
+        "دودی 0.22 #5C6164 (from smoky)",
+        "چوب 0.22 #6E5436 (from woody)",
+        "ادویه 0.21 #8E3D32 (from warm spicy)"
+      ],
+      "family": "شرقی ادویه‌ای",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "تنباکو و مر گرم است و برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "majd-al-sultan",
+        "nameFa": "مجد السلطان",
+        "nameEn": "Majd Al Sultan",
+        "brand": "لطافه",
+        "aliases": [
+          "majd al sultan",
+          "lattafa majd al sultan",
+          "مجد السلطان",
+          "majd-al-sultan"
+        ],
+        "family": "شرقی ادویه‌ای",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Asdaaf/Majd-Al-Sultan-68297.html",
+        "marketGender": "مردانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.35
+          },
+          {
+            "name": "دودی",
+            "color": "#5C6164",
+            "strength": 0.22
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.22
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.21
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "دود"
+          },
+          {
+            "layer": "top",
+            "name": "تنباکو"
+          },
+          {
+            "layer": "middle",
+            "name": "کندر"
+          },
+          {
+            "layer": "middle",
+            "name": "مر"
+          },
+          {
+            "layer": "base",
+            "name": "رزین‌ها"
+          },
+          {
+            "layer": "base",
+            "name": "کهربا"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm",
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "تنباکو و مر گرم است و برای زمستان مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "odyssey-tyrant-special-edition",
+      "slug_parked": "odyssey-tyrant-special",
+      "brand": "Armaf",
+      "sub_brand": null,
+      "brand_fa": "آرماف",
+      "nameFa": "اودیسی تایرنت اسپشیال ادیشن",
+      "nameEn": "Odyssey Tyrant Special Edition",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Armaf/Odyssey-Tyrant-Special-Edition-83135.html",
+      "fragrantica_h1": "Odyssey Tyrant Special Edition Armaf for men",
+      "match_basis": "Persian «اسپشیال ادیشن» = Special Edition",
+      "gender": "مردانه",
+      "concentration": null,
+      "notes": [
+        "top:گریپ‌فروت",
+        "top:مرکبات",
+        "middle:فلفل",
+        "middle:اسطوخودوس",
+        "base:آمبروکسان",
+        "base:نت‌های چوبی"
+      ],
+      "notes_en": [
+        "Grapefruit",
+        "Citruses",
+        "Pepper",
+        "Lavender",
+        "Ambroxan",
+        "Woody Notes"
+      ],
+      "accords": [
+        "ادویه 0.27 #8E3D32 (from fresh spicy)",
+        "مرکبات 0.26 #C6B15A (from citrus)",
+        "آروماتیک 0.25 #7FA58A (from aromatic)",
+        "چوب 0.22 #6E5436 (from woody)"
+      ],
+      "family": "شرقی چوبی",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۵ تا ۸",
+      "priceMin": 5000000,
+      "priceMax": 8000000,
+      "why_draft": "گریپ‌فروت و فلفل برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مردانه (sheet مشترک)"
+      ],
+      "proposed_record": {
+        "slug": "odyssey-tyrant-special-edition",
+        "nameFa": "اودیسی تایرنت اسپشیال ادیشن",
+        "nameEn": "Odyssey Tyrant Special Edition",
+        "brand": "آرماف",
+        "aliases": [
+          "odyssey tyrant special",
+          "armaf odyssey tyrant special",
+          "اودیسی تایرنت اسپشیال ادیشن",
+          "odyssey-tyrant-special"
+        ],
+        "family": "شرقی چوبی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Armaf/Odyssey-Tyrant-Special-Edition-83135.html",
+        "marketGender": "مردانه",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": 5000000,
+        "priceMax": 8000000,
+        "accords": [
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.27
+          },
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.26
+          },
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.25
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.22
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "گریپ‌فروت"
+          },
+          {
+            "layer": "top",
+            "name": "مرکبات"
+          },
+          {
+            "layer": "middle",
+            "name": "فلفل"
+          },
+          {
+            "layer": "middle",
+            "name": "اسطوخودوس"
+          },
+          {
+            "layer": "base",
+            "name": "آمبروکسان"
+          },
+          {
+            "layer": "base",
+            "name": "نت‌های چوبی"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "گریپ‌فروت و فلفل برای روزهای گرم مناسب است.",
+      "pm_note": "جنسیت مردانه از فرگرانتیکا قبول."
+    },
+    {
+      "slug": "qaaed-al-shabaab",
+      "slug_parked": "qaaed-al-shabab",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "قائد الشباب",
+      "nameEn": "Qaa'ed Al Shabaab",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Qaa-ed-Al-Shabaab-70246.html",
+      "fragrantica_h1": "Qaa'ed Al Shabaab Lattafa Perfumes for men",
+      "match_basis": "Qaaed Al Shabab = Qaa'ed Al Shabaab (spelling only)",
+      "gender": "مردانه",
+      "concentration": "ادوپرفیوم",
+      "notes": [
+        "top:اسمانتوس",
+        "top:یلانگ‌یلانگ",
+        "middle:چرم",
+        "middle:چوب سدر",
+        "base:عود",
+        "base:کهربای روشن"
+      ],
+      "notes_en": [
+        "Osmanthus",
+        "Ylang-Ylang",
+        "Leather",
+        "Cedar",
+        "Agarwood (Oud)",
+        "Light Amber"
+      ],
+      "accords": [
+        "عود 0.24 #4A1F1A (from oud)",
+        "چوب 0.2 #6E5436 (from woody)",
+        "گل 0.38 #C47B86 (from floral+yellow floral)",
+        "عنبر 0.18 #C47B4A (from amber)"
+      ],
+      "family": "شرقی",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "اسمانتوس و یلانگ‌یلانگ برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "qaaed-al-shabaab",
+        "nameFa": "قائد الشباب",
+        "nameEn": "Qaa'ed Al Shabaab",
+        "brand": "لطافه",
+        "aliases": [
+          "qaaed al shabab",
+          "qaaed al shabab lattafa",
+          "قائد الشباب",
+          "قائد الشباب لطافه",
+          "qaaed-al-shabab"
+        ],
+        "family": "شرقی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Qaa-ed-Al-Shabaab-70246.html",
+        "marketGender": "مردانه",
+        "concentration": "ادوپرفیوم",
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "عود",
+            "color": "#4A1F1A",
+            "strength": 0.24
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.2
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.38
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.18
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "اسمانتوس"
+          },
+          {
+            "layer": "top",
+            "name": "یلانگ‌یلانگ"
+          },
+          {
+            "layer": "middle",
+            "name": "چرم"
+          },
+          {
+            "layer": "middle",
+            "name": "چوب سدر"
+          },
+          {
+            "layer": "base",
+            "name": "عود"
+          },
+          {
+            "layer": "base",
+            "name": "کهربای روشن"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm",
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "اسمانتوس و یلانگ‌یلانگ برای زمستان مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "raed-luxe",
+      "slug_parked": "raed-lux",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "رائد لوکس",
+      "nameEn": "Ra'ed Luxe",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ra-ed-Luxe-65392.html",
+      "fragrantica_h1": "Ra'ed Luxe Lattafa Perfumes for women and men",
+      "match_basis": "Raed Lux = Ra'ed Luxe (spelling only; not the deferred raed-silver)",
+      "gender": "مشترک",
+      "concentration": "ادوپرفیوم",
+      "notes": [
+        "top:سرو کوهی",
+        "top:هندوانه",
+        "middle:نت‌های گیاهی",
+        "middle:اسطوخودوس",
+        "base:یخ",
+        "base:توت‌فرنگی"
+      ],
+      "notes_en": [
+        "Juniper",
+        "Watermelon",
+        "Herbal Notes",
+        "Lavender",
+        "Ice",
+        "Strawberry"
+      ],
+      "accords": [
+        "آروماتیک 0.3 #7FA58A (from aromatic)",
+        "میوه 0.25 #D2B15C (from fruity)",
+        "چوب 0.24 #6E5436 (from woody)",
+        "آبی 0.21 #6E93A3 (from aquatic)"
+      ],
+      "family": "شرقی ادویه‌ای",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "سرو کوهی و هندوانه خنک است و برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet مردانه)"
+      ],
+      "proposed_record": {
+        "slug": "raed-luxe",
+        "nameFa": "رائد لوکس",
+        "nameEn": "Ra'ed Luxe",
+        "brand": "لطافه",
+        "aliases": [
+          "raed lux",
+          "raed lux lattafa",
+          "رائد لوکس",
+          "رائد لوکس لطافه",
+          "raed-lux"
+        ],
+        "family": "شرقی ادویه‌ای",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ra-ed-Luxe-65392.html",
+        "marketGender": "مشترک",
+        "concentration": "ادوپرفیوم",
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.3
+          },
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.25
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.24
+          },
+          {
+            "name": "آبی",
+            "color": "#6E93A3",
+            "strength": 0.21
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "سرو کوهی"
+          },
+          {
+            "layer": "top",
+            "name": "هندوانه"
+          },
+          {
+            "layer": "middle",
+            "name": "نت‌های گیاهی"
+          },
+          {
+            "layer": "middle",
+            "name": "اسطوخودوس"
+          },
+          {
+            "layer": "base",
+            "name": "یخ"
+          },
+          {
+            "layer": "base",
+            "name": "توت‌فرنگی"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "سرو کوهی و هندوانه خنک است و برای روزهای گرم مناسب است.",
+      "pm_note": "جنسیت مشترک از فرگرانتیکا؛ جدا از raed-silver معوق."
+    },
+    {
+      "slug": "saphire-jewel",
+      "slug_parked": "saphire-jewel-zodiac",
+      "brand": "Samam",
+      "sub_brand": "Zodiac",
+      "brand_fa": "صمام",
+      "nameFa": "سافایر ژول",
+      "nameEn": "Saphire Jewel",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Zodiac/Saphire-Jewel-104768.html",
+      "fragrantica_h1": "Saphire Jewel Zodiac for women",
+      "match_basis": "h1 'Saphire Jewel Zodiac'",
+      "gender": "زنانه",
+      "concentration": "اکستریت",
+      "notes": [
+        "top:ترنج",
+        "top:اسطوخودوس",
+        "middle:یاس سامباک",
+        "middle:کشمران",
+        "base:برگ تنباکو",
+        "base:تونکا"
+      ],
+      "notes_en": [
+        "Bergamot",
+        "Lavender",
+        "Jasmine Sambac",
+        "Cashmeran",
+        "Tobacco Leaf",
+        "Tonka Bean"
+      ],
+      "accords": [
+        "مرکبات 0.3 #C6B15A (from citrus)",
+        "وانیل 0.27 #C4A574 (from vanilla)",
+        "آروماتیک 0.23 #7FA58A (from aromatic)",
+        "گل 0.2 #C47B86 (from white floral)"
+      ],
+      "family": "مرکباتی گورمند",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۸ تا ۱۲",
+      "priceMin": 8000000,
+      "priceMax": 12000000,
+      "why_draft": "ترنج و کشمران برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "saphire-jewel",
+        "nameFa": "سافایر ژول",
+        "nameEn": "Saphire Jewel",
+        "brand": "صمام",
+        "aliases": [
+          "saphire jewel zodiac",
+          "سافایر ژول",
+          "saphire-jewel-zodiac"
+        ],
+        "family": "مرکباتی گورمند",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Zodiac/Saphire-Jewel-104768.html",
+        "marketGender": "زنانه",
+        "concentration": "اکستریت",
+        "volumeMl": 60,
+        "priceMin": 8000000,
+        "priceMax": 12000000,
+        "accords": [
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.3
+          },
+          {
+            "name": "وانیل",
+            "color": "#C4A574",
+            "strength": 0.27
+          },
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.23
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.2
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "top",
+            "name": "اسطوخودوس"
+          },
+          {
+            "layer": "middle",
+            "name": "یاس سامباک"
+          },
+          {
+            "layer": "middle",
+            "name": "کشمران"
+          },
+          {
+            "layer": "base",
+            "name": "برگ تنباکو"
+          },
+          {
+            "layer": "base",
+            "name": "تونکا"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "ترنج و کشمران برای زمستان مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "sheikh-al-shuyukh-markaz-concentrated",
+      "slug_parked": "sheikh-al-shuyukh-concentrated",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "شیخ الشیوخ مرکز",
+      "nameEn": "Sheikh Al Shuyukh Markaz Concentrated",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Sheikh-Al-Shuyukh-Markaz-Concentrated-99143.html",
+      "fragrantica_h1": "Sheikh Al Shuyukh Markaz Concentrated Lattafa Perfumes for women and men",
+      "match_basis": "Persian «مرکز» = Markaz; h1 'Sheikh Al Shuyukh Markaz Concentrated'",
+      "gender": "مشترک",
+      "concentration": "ادوپرفیوم",
+      "notes": [
+        "top:آناناس",
+        "top:ترنج",
+        "middle:لیمو ترش",
+        "middle:لیمو",
+        "base:عنبر",
+        "base:چرم"
+      ],
+      "notes_en": [
+        "Pineapple",
+        "Bergamot",
+        "Lime",
+        "Lemon",
+        "Ambergris",
+        "Leather"
+      ],
+      "accords": [
+        "مرکبات 0.35 #C6B15A (from citrus)",
+        "میوه 0.26 #D2B15C (from fruity)",
+        "ادویه 0.21 #8E3D32 (from fresh spicy)",
+        "چوب 0.18 #6E5436 (from woody)"
+      ],
+      "family": "چرمی",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "آناناس و لیمو ترش برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet مردانه)"
+      ],
+      "proposed_record": {
+        "slug": "sheikh-al-shuyukh-markaz-concentrated",
+        "nameFa": "شیخ الشیوخ مرکز",
+        "nameEn": "Sheikh Al Shuyukh Markaz Concentrated",
+        "brand": "لطافه",
+        "aliases": [
+          "sheikh al shuyukh concentrated",
+          "sheikh al shuyukh concentrated lattafa",
+          "شیخ الشیوخ مرکز",
+          "شیخ الشیوخ مرکز لطافه",
+          "sheikh-al-shuyukh-concentrated"
+        ],
+        "family": "چرمی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Sheikh-Al-Shuyukh-Markaz-Concentrated-99143.html",
+        "marketGender": "مشترک",
+        "concentration": "ادوپرفیوم",
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.35
+          },
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.26
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.21
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.18
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "آناناس"
+          },
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "middle",
+            "name": "لیمو ترش"
+          },
+          {
+            "layer": "middle",
+            "name": "لیمو"
+          },
+          {
+            "layer": "base",
+            "name": "عنبر"
+          },
+          {
+            "layer": "base",
+            "name": "چرم"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "آناناس و لیمو ترش برای روزهای گرم مناسب است.",
+      "pm_note": "جنسیت مشترک از فرگرانتیکا قبول."
+    },
+    {
+      "slug": "vulcan-baie",
+      "slug_parked": "vulcan-baie",
+      "brand": "French Avenue",
+      "sub_brand": null,
+      "brand_fa": "فرنچ اونیو",
+      "nameFa": "ولکان بای",
+      "nameEn": "Vulcan Baie",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/French-Avenue/Vulcan-Baie-110650.html",
+      "fragrantica_h1": "Vulcan Baie French Avenue for women and men",
+      "match_basis": "h1 identical",
+      "gender": "مشترک",
+      "concentration": "اکستریت",
+      "notes": [
+        "top:بلک‌بری",
+        "top:انگور سیاه",
+        "middle:تمشک",
+        "middle:ریحان",
+        "base:توت‌فرنگی",
+        "base:مشک"
+      ],
+      "notes_en": [
+        "Blackberry",
+        "Black Currant",
+        "Raspberry",
+        "Basil",
+        "Strawberry",
+        "Musk"
+      ],
+      "accords": [
+        "میوه 0.41 #D2B15C (from fruity)",
+        "آروماتیک 0.2 #7FA58A (from aromatic)",
+        "ادویه 0.2 #8E3D32 (from fresh spicy)",
+        "چوب 0.19 #6E5436 (from woody)"
+      ],
+      "family": "گلی میوه‌ای",
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۵ تا ۸",
+      "priceMin": 5000000,
+      "priceMax": 8000000,
+      "why_draft": "بلک‌بری و انگور سیاه برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "why_adjective_dropped_no_temp_pair"
+      ],
+      "proposed_record": {
+        "slug": "vulcan-baie",
+        "nameFa": "ولکان بای",
+        "nameEn": "Vulcan Baie",
+        "brand": "فرنچ اونیو",
+        "aliases": [
+          "Vulcan Baie",
+          "French Avenue Vulcan Baie",
+          "vulcan-baie"
+        ],
+        "family": "گلی میوه‌ای",
+        "sourceUrl": "https://www.fragrantica.com/perfume/French-Avenue/Vulcan-Baie-110650.html",
+        "marketGender": "مشترک",
+        "concentration": "اکستریت",
+        "volumeMl": 100,
+        "priceMin": 5000000,
+        "priceMax": 8000000,
+        "accords": [
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.41
+          },
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.2
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.2
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.19
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "بلک‌بری"
+          },
+          {
+            "layer": "top",
+            "name": "انگور سیاه"
+          },
+          {
+            "layer": "middle",
+            "name": "تمشک"
+          },
+          {
+            "layer": "middle",
+            "name": "ریحان"
+          },
+          {
+            "layer": "base",
+            "name": "توت‌فرنگی"
+          },
+          {
+            "layer": "base",
+            "name": "مشک"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "بلک‌بری و انگور سیاه برای روزهای گرم مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "hicky",
+      "slug_parked": "zodiac-hicky",
+      "brand": "Samam",
+      "sub_brand": "Zodiac",
+      "brand_fa": "صمام",
+      "nameFa": "زودیاک هیکی",
+      "nameEn": "Hicky Extrait de Parfum",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Zodiac/Hicky-Extrait-de-Parfum-104782.html",
+      "fragrantica_h1": "Hicky Extrait de Parfum Zodiac for women and men",
+      "match_basis": "Hicky; 'Extrait de Parfum' is concentration only",
+      "gender": "مشترک",
+      "concentration": "اکستریت",
+      "notes": [
+        "top:ترنج",
+        "base:بلوط",
+        "base:پاچولی"
+      ],
+      "notes_en": [
+        "Bergamot",
+        "Oak",
+        "Patchouli"
+      ],
+      "accords": [
+        "چوب 0.49 #6E5436 (from woody+patchouli)",
+        "میوه 0.21 #D2B15C (from fruity)",
+        "مرکبات 0.15 #C6B15A (from citrus)",
+        "ادویه 0.15 #8E3D32 (from warm spicy)"
+      ],
+      "family": "شیپر",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۸ تا ۱۲",
+      "priceMin": 8000000,
+      "priceMax": 12000000,
+      "why_draft": "ترنج و بلوط برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "why_adjective_dropped_no_temp_pair"
+      ],
+      "proposed_record": {
+        "slug": "hicky",
+        "nameFa": "زودیاک هیکی",
+        "nameEn": "Hicky Extrait de Parfum",
+        "brand": "صمام",
+        "aliases": [
+          "zodiac hicky",
+          "samam zodiac hicky",
+          "زودیاک هیکی",
+          "zodiac-hicky"
+        ],
+        "family": "شیپر",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Zodiac/Hicky-Extrait-de-Parfum-104782.html",
+        "marketGender": "مشترک",
+        "concentration": "اکستریت",
+        "volumeMl": 60,
+        "priceMin": 8000000,
+        "priceMax": 12000000,
+        "accords": [
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.49
+          },
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.21
+          },
+          {
+            "name": "مرکبات",
+            "color": "#C6B15A",
+            "strength": 0.15
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.15
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "ترنج"
+          },
+          {
+            "layer": "base",
+            "name": "بلوط"
+          },
+          {
+            "layer": "base",
+            "name": "پاچولی"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "ترنج و بلوط برای زمستان مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "the-kingdom-for-men",
+      "slug_parked": "the-kingdom-male",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "المملکه مردانه",
+      "nameEn": "The Kingdom For Men",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/The-Kingdom-For-Men-97995.html",
+      "fragrantica_h1": "The Kingdom For Men Lattafa Perfumes for men",
+      "match_basis": "Male = For Men",
+      "gender": "مردانه",
+      "concentration": "ادوپرفیوم",
+      "notes": [
+        "top:اسطوخودوس",
+        "top:نعناع",
+        "middle:وانیل",
+        "middle:تنباکو",
+        "base:تونکا",
+        "base:بنزوئین"
+      ],
+      "notes_en": [
+        "Lavender",
+        "Mint",
+        "Vanilla",
+        "Tobacco",
+        "Tonka",
+        "Benzoin"
+      ],
+      "accords": [
+        "وانیل 0.33 #C4A574 (from vanilla)",
+        "آروماتیک 0.27 #7FA58A (from aromatic)",
+        "عنبر 0.22 #C47B4A (from amber)",
+        "ادویه 0.18 #8E3D32 (from fresh spicy)"
+      ],
+      "family": "آروماتیک",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "۵ تا ۸",
+      "priceMin": 5000000,
+      "priceMax": 8000000,
+      "why_draft": "تنباکو و بنزوئین گرم است و برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "the-kingdom-for-men",
+        "nameFa": "المملکه مردانه",
+        "nameEn": "The Kingdom For Men",
+        "brand": "لطافه",
+        "aliases": [
+          "kingdom male",
+          "the kingdom lattafa male",
+          "المملکه مردانه",
+          "المملکه مردانه لطافه",
+          "the-kingdom-male"
+        ],
+        "family": "آروماتیک",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/The-Kingdom-For-Men-97995.html",
+        "marketGender": "مردانه",
+        "concentration": "ادوپرفیوم",
+        "volumeMl": 100,
+        "priceMin": 5000000,
+        "priceMax": 8000000,
+        "accords": [
+          {
+            "name": "وانیل",
+            "color": "#C4A574",
+            "strength": 0.33
+          },
+          {
+            "name": "آروماتیک",
+            "color": "#7FA58A",
+            "strength": 0.27
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.22
+          },
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.18
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "اسطوخودوس"
+          },
+          {
+            "layer": "top",
+            "name": "نعناع"
+          },
+          {
+            "layer": "middle",
+            "name": "وانیل"
+          },
+          {
+            "layer": "middle",
+            "name": "تنباکو"
+          },
+          {
+            "layer": "base",
+            "name": "تونکا"
+          },
+          {
+            "layer": "base",
+            "name": "بنزوئین"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "تنباکو و بنزوئین گرم است و برای زمستان مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "the-kingdom-for-women",
+      "slug_parked": "the-kingdom-female",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "المملکه زنانه",
+      "nameEn": "The Kingdom For Women",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/The-Kingdom-For-Women-98648.html",
+      "fragrantica_h1": "The Kingdom For Women Lattafa Perfumes for women",
+      "match_basis": "Female = For Women",
+      "gender": "زنانه",
+      "concentration": "ادوپرفیوم",
+      "notes": [
+        "top:گلابی",
+        "top:گل صدتومانی",
+        "middle:پرالین",
+        "middle:یاس",
+        "base:وانیل",
+        "base:مشک"
+      ],
+      "notes_en": [
+        "Pear",
+        "Peony",
+        "Praline",
+        "Jasmine",
+        "Vanilla",
+        "Musk"
+      ],
+      "accords": [
+        "میوه 0.29 #D2B15C (from fruity)",
+        "وانیل 0.27 #C4A574 (from vanilla)",
+        "گل 0.23 #C47B86 (from floral)",
+        "عنبر 0.21 #C47B4A (from amber)"
+      ],
+      "family": "گلی میوه‌ای گورمند",
+      "season": "all",
+      "season_fa": "تمام فصول",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "گلابی و گل صدتومانی برای تمام فصل‌ها مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "the-kingdom-for-women",
+        "nameFa": "المملکه زنانه",
+        "nameEn": "The Kingdom For Women",
+        "brand": "لطافه",
+        "aliases": [
+          "kingdom female",
+          "the kingdom lattafa female",
+          "المملکه زنانه",
+          "المملکه زنانه لطافه",
+          "the-kingdom-female"
+        ],
+        "family": "گلی میوه‌ای گورمند",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/The-Kingdom-For-Women-98648.html",
+        "marketGender": "زنانه",
+        "concentration": "ادوپرفیوم",
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.29
+          },
+          {
+            "name": "وانیل",
+            "color": "#C4A574",
+            "strength": 0.27
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.23
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.21
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "گلابی"
+          },
+          {
+            "layer": "top",
+            "name": "گل صدتومانی"
+          },
+          {
+            "layer": "middle",
+            "name": "پرالین"
+          },
+          {
+            "layer": "middle",
+            "name": "یاس"
+          },
+          {
+            "layer": "base",
+            "name": "وانیل"
+          },
+          {
+            "layer": "base",
+            "name": "مشک"
+          }
+        ],
+        "seasons": [
+          "all"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "گلابی و گل صدتومانی برای تمام فصل‌ها مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "signatures-no-i",
+      "slug_parked": "perfume-signatures1",
+      "brand": "Maison Alhambra",
+      "sub_brand": null,
+      "brand_fa": "میسون الحمرا",
+      "nameFa": "سیگنچرز نامبر1",
+      "nameEn": "Signatures No I",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Maison-Alhambra/Signatures-No-I-96239.html",
+      "fragrantica_h1": "Signatures No I Maison Alhambra for women and men",
+      "match_basis": "«نامبر1» = No I",
+      "gender": "مشترک",
+      "concentration": null,
+      "notes": [
+        "top:اسمانتوس",
+        "top:یلانگ‌یلانگ",
+        "middle:چرم",
+        "middle:مشک",
+        "base:تنباکو",
+        "base:چوب صندل"
+      ],
+      "notes_en": [
+        "Osmanthus",
+        "Ylang Ylang",
+        "Leather",
+        "Musk",
+        "Tobacco",
+        "Sandalwood"
+      ],
+      "accords": [
+        "چوب 0.46 #6E5436 (from woody)",
+        "دودی 0.27 #5C6164 (from smoky)",
+        "مشک 0.27 #B7A99A (from musky)"
+      ],
+      "family": "چوبی",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "تنباکو و چوب صندل گرم است و برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet None)"
+      ],
+      "proposed_record": {
+        "slug": "signatures-no-i",
+        "nameFa": "سیگنچرز نامبر1",
+        "nameEn": "Signatures No I",
+        "brand": "میسون الحمرا",
+        "aliases": [
+          "signatures1",
+          "alhambra perfume signatures1",
+          "سیگنچرز نامبر1",
+          "الحمبرا سیگنچرز نامبر1 –",
+          "perfume-signatures1"
+        ],
+        "family": "چوبی",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Signatures-No-I-96239.html",
+        "marketGender": "مشترک",
+        "concentration": null,
+        "volumeMl": 50,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.46
+          },
+          {
+            "name": "دودی",
+            "color": "#5C6164",
+            "strength": 0.27
+          },
+          {
+            "name": "مشک",
+            "color": "#B7A99A",
+            "strength": 0.27
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "اسمانتوس"
+          },
+          {
+            "layer": "top",
+            "name": "یلانگ‌یلانگ"
+          },
+          {
+            "layer": "middle",
+            "name": "چرم"
+          },
+          {
+            "layer": "middle",
+            "name": "مشک"
+          },
+          {
+            "layer": "base",
+            "name": "تنباکو"
+          },
+          {
+            "layer": "base",
+            "name": "چوب صندل"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "تنباکو و چوب صندل گرم است و برای زمستان مناسب است.",
+      "pm_note": "نامبر۱ = No I قبول."
+    },
+    {
+      "slug": "signatures-no-ii",
+      "slug_parked": "perfume-signatures2",
+      "brand": "Maison Alhambra",
+      "sub_brand": null,
+      "brand_fa": "میسون الحمرا",
+      "nameFa": "سیگنچرز نامبر2",
+      "nameEn": "Signatures No II",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Maison-Alhambra/Signatures-No-II-94071.html",
+      "fragrantica_h1": "Signatures No II Maison Alhambra for women and men",
+      "match_basis": "«نامبر2» = No II",
+      "gender": "مشترک",
+      "concentration": null,
+      "notes": [
+        "top:دارچین",
+        "top:جوز هندی",
+        "middle:پاچولی",
+        "middle:یاس",
+        "base:تنباکو",
+        "base:وانیل"
+      ],
+      "notes_en": [
+        "Cinnamon",
+        "Nutmeg",
+        "Patchouli",
+        "Jasmine",
+        "Tobacco",
+        "Vanilla"
+      ],
+      "accords": [
+        "ادویه 0.31 #8E3D32 (from warm spicy)",
+        "چوب 0.3 #6E5436 (from woody)",
+        "عنبر 0.2 #C47B4A (from amber)",
+        "دارچین 0.19 #A65D3F (from cinnamon)"
+      ],
+      "family": "چوبی آروماتیک",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "جوز هندی و پاچولی گرم است و برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet None)"
+      ],
+      "proposed_record": {
+        "slug": "signatures-no-ii",
+        "nameFa": "سیگنچرز نامبر2",
+        "nameEn": "Signatures No II",
+        "brand": "میسون الحمرا",
+        "aliases": [
+          "signatures2",
+          "alhambra perfume signatures2",
+          "سیگنچرز نامبر2",
+          "الحمبرا سیگنچرز نامبر2 –",
+          "perfume-signatures2"
+        ],
+        "family": "چوبی آروماتیک",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Signatures-No-II-94071.html",
+        "marketGender": "مشترک",
+        "concentration": null,
+        "volumeMl": 50,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "ادویه",
+            "color": "#8E3D32",
+            "strength": 0.31
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.3
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.2
+          },
+          {
+            "name": "دارچین",
+            "color": "#A65D3F",
+            "strength": 0.19
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "دارچین"
+          },
+          {
+            "layer": "top",
+            "name": "جوز هندی"
+          },
+          {
+            "layer": "middle",
+            "name": "پاچولی"
+          },
+          {
+            "layer": "middle",
+            "name": "یاس"
+          },
+          {
+            "layer": "base",
+            "name": "تنباکو"
+          },
+          {
+            "layer": "base",
+            "name": "وانیل"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "warm",
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "جوز هندی و پاچولی گرم است و برای زمستان مناسب است.",
+      "pm_note": "نامبر۲ = No II قبول."
+    },
+    {
+      "slug": "signatures-no-iii",
+      "slug_parked": "perfume-signatures3",
+      "brand": "Maison Alhambra",
+      "sub_brand": null,
+      "brand_fa": "میسون الحمرا",
+      "nameFa": "سیگنچرز نامبر3",
+      "nameEn": "Signatures No III",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Maison-Alhambra/Signatures-No-III-96238.html",
+      "fragrantica_h1": "Signatures No III Maison Alhambra for women and men",
+      "match_basis": "«نامبر3» = No III",
+      "gender": "مشترک",
+      "concentration": null,
+      "notes": [
+        "top:آناناس",
+        "middle:وانیل",
+        "middle:کارامل",
+        "base:چوب صندل"
+      ],
+      "notes_en": [
+        "Pineapple",
+        "Vanilla",
+        "Caramel",
+        "Sandalwood"
+      ],
+      "accords": [
+        "میوه 0.58 #D2B15C (from fruity+tropical)",
+        "وانیل 0.22 #C4A574 (from vanilla)",
+        "چوب 0.2 #6E5436 (from woody)"
+      ],
+      "family": "چوبی آروماتیک",
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "کارامل و چوب صندل گرم است و برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "gender from Fragrantica: مشترک (sheet None)"
+      ],
+      "proposed_record": {
+        "slug": "signatures-no-iii",
+        "nameFa": "سیگنچرز نامبر3",
+        "nameEn": "Signatures No III",
+        "brand": "میسون الحمرا",
+        "aliases": [
+          "signatures3",
+          "alhambra perfume signatures3",
+          "سیگنچرز نامبر3",
+          "الحمبرا سیگنچرز نامبر3 –",
+          "perfume-signatures3"
+        ],
+        "family": "چوبی آروماتیک",
+        "sourceUrl": "https://www.fragrantica.com/perfume/Maison-Alhambra/Signatures-No-III-96238.html",
+        "marketGender": "مشترک",
+        "concentration": null,
+        "volumeMl": 50,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.58
+          },
+          {
+            "name": "وانیل",
+            "color": "#C4A574",
+            "strength": 0.22
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.2
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "آناناس"
+          },
+          {
+            "layer": "middle",
+            "name": "وانیل"
+          },
+          {
+            "layer": "middle",
+            "name": "کارامل"
+          },
+          {
+            "layer": "base",
+            "name": "چوب صندل"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "کارامل و چوب صندل گرم است و برای زمستان مناسب است.",
+      "pm_note": "نامبر۳ = No III قبول."
+    },
+    {
+      "slug": "ramz-lattafa-gold",
+      "slug_parked": "ramz",
+      "brand": "Lattafa",
+      "sub_brand": null,
+      "brand_fa": "لطافه",
+      "nameFa": "رمز گلد",
+      "nameEn": "Ramz Lattafa (Gold)",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ramz-Lattafa-Gold-70368.html",
+      "fragrantica_h1": "Ramz Lattafa (Gold) Lattafa Perfumes for women and men",
+      "match_basis": "«رمز گلد» = Ramz (Gold)",
+      "gender": "مشترک",
+      "concentration": "ادوپرفیوم",
+      "notes": [
+        "top:سیب",
+        "top:هلو",
+        "middle:رز",
+        "middle:یاس سامباک",
+        "base:چوب صندل",
+        "base:مشک سفید"
+      ],
+      "notes_en": [
+        "Apple",
+        "Peach",
+        "Rose",
+        "Jasmine Sambac",
+        "Sandalwood",
+        "White Musk"
+      ],
+      "accords": [
+        "میوه 0.25 #D2B15C (from fruity)",
+        "چوب 0.21 #6E5436 (from woody)",
+        "گل 0.39 #C47B86 (from white floral+rose)",
+        "مشک 0.15 #B7A99A (from musky)"
+      ],
+      "family": null,
+      "season": "winter",
+      "season_fa": "زمستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "سیب و هلو برای زمستان مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [
+        "why_adjective_dropped_no_temp_pair"
+      ],
+      "proposed_record": {
+        "slug": "ramz-lattafa-gold",
+        "nameFa": "رمز گلد",
+        "nameEn": "Ramz Lattafa (Gold)",
+        "brand": "لطافه",
+        "aliases": [
+          "ramz",
+          "ramz lattafa",
+          "رمز گلد"
+        ],
+        "family": null,
+        "sourceUrl": "https://www.fragrantica.com/perfume/Lattafa-Perfumes/Ramz-Lattafa-Gold-70368.html",
+        "marketGender": "مشترک",
+        "concentration": "ادوپرفیوم",
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.25
+          },
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.21
+          },
+          {
+            "name": "گل",
+            "color": "#C47B86",
+            "strength": 0.39
+          },
+          {
+            "name": "مشک",
+            "color": "#B7A99A",
+            "strength": 0.15
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "سیب"
+          },
+          {
+            "layer": "top",
+            "name": "هلو"
+          },
+          {
+            "layer": "middle",
+            "name": "رز"
+          },
+          {
+            "layer": "middle",
+            "name": "یاس سامباک"
+          },
+          {
+            "layer": "base",
+            "name": "چوب صندل"
+          },
+          {
+            "layer": "base",
+            "name": "مشک سفید"
+          }
+        ],
+        "seasons": [
+          "winter"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "سیب و هلو برای زمستان مناسب است.",
+      "pm_note": "why پیش‌نویس تأیید. غلظت خالی بماند اگر در صفحه و شیت نیست. جنسیت فرگرانتیکا ملاک است."
+    },
+    {
+      "slug": "island",
+      "slug_parked": "asland",
+      "brand": "Khadlaj",
+      "sub_brand": null,
+      "brand_fa": "خدلج",
+      "nameFa": "آیلند ( ایسلند )",
+      "nameEn": "Island",
+      "fragrantica_url": "https://www.fragrantica.com/perfume/Khadlaj-Perfumes/Island-102362.html",
+      "fragrantica_h1": "Island Khadlaj Perfumes for women and men",
+      "match_basis": "«آیلند ( ایسلند )» = Island",
+      "gender": "مشترک",
+      "concentration": null,
+      "notes": [
+        "top:آناناس",
+        "top:زنبق",
+        "middle:نارگیل",
+        "middle:نت‌های چوبی",
+        "base:تونکا",
+        "base:چوب صندل"
+      ],
+      "notes_en": [
+        "Pineapple",
+        "Iris",
+        "Coconut",
+        "Woodsy Notes",
+        "Tonka",
+        "Sandalwood"
+      ],
+      "accords": [
+        "چوب 0.3 #6E5436 (from woody)",
+        "عنبر 0.24 #C47B4A (from amber)",
+        "میوه 0.23 #D2B15C (from fruity)",
+        "وانیل 0.23 #C4A574 (from vanilla)"
+      ],
+      "family": null,
+      "season": "summer",
+      "season_fa": "تابستان",
+      "season_source": "Fragrantica When-To-Wear votes",
+      "price_band": "تا ۵",
+      "priceMin": null,
+      "priceMax": 5000000,
+      "why_draft": "آناناس و زنبق برای روزهای گرم مناسب است.",
+      "why_status": "DRAFT — needs PM approval (never auto-approved)",
+      "why_checks": {
+        "template": true,
+        "no_shirin": true,
+        "no_slash": true,
+        "strict_s30_temperature": true,
+        "both_notes_in_record": true,
+        "names_valid": true,
+        "two_distinct_notes_after_short_full": true,
+        "unique_sentence_vs_v21": true,
+        "unique_pair_season_vs_v21": true,
+        "unique_in_batch": true,
+        "not_in_why_rejected": true
+      },
+      "mapping_flags": [],
+      "flags": [],
+      "proposed_record": {
+        "slug": "island",
+        "nameFa": "آیلند ( ایسلند )",
+        "nameEn": "Island",
+        "brand": "خدلج",
+        "aliases": [
+          "asland",
+          "آیلند ( ایسلند )"
+        ],
+        "family": null,
+        "sourceUrl": "https://www.fragrantica.com/perfume/Khadlaj-Perfumes/Island-102362.html",
+        "marketGender": "مشترک",
+        "concentration": null,
+        "volumeMl": 100,
+        "priceMin": null,
+        "priceMax": 5000000,
+        "accords": [
+          {
+            "name": "چوب",
+            "color": "#6E5436",
+            "strength": 0.3
+          },
+          {
+            "name": "عنبر",
+            "color": "#C47B4A",
+            "strength": 0.24
+          },
+          {
+            "name": "میوه",
+            "color": "#D2B15C",
+            "strength": 0.23
+          },
+          {
+            "name": "وانیل",
+            "color": "#C4A574",
+            "strength": 0.23
+          }
+        ],
+        "notes": [
+          {
+            "layer": "top",
+            "name": "آناناس"
+          },
+          {
+            "layer": "top",
+            "name": "زنبق"
+          },
+          {
+            "layer": "middle",
+            "name": "نارگیل"
+          },
+          {
+            "layer": "middle",
+            "name": "نت‌های چوبی"
+          },
+          {
+            "layer": "base",
+            "name": "تونکا"
+          },
+          {
+            "layer": "base",
+            "name": "چوب صندل"
+          }
+        ],
+        "seasons": [
+          "summer"
+        ],
+        "occasions": [],
+        "tags": [
+          "sweet",
+          "warm"
+        ]
+      },
+      "pm_decision": "approve",
+      "pm_text": "آناناس و زنبق برای روزهای گرم مناسب است.",
+      "pm_note": "آیلند (ایسلند) = Island قبول."
+    }
+  ]
+}

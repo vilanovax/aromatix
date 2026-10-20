@@ -5,13 +5,19 @@ import {
   publishedPerfumes,
   isPublicPerfume,
   occasionLabel,
-  publicLead,
+  listedPrice,
   referenceLabel,
   seasonShort,
 } from "@/lib/catalog";
 import { computeDna, type DnaProfile } from "@/lib/dna";
+import { inspirationIds } from "@/lib/inspiration";
 import { countWord } from "@/lib/format";
+import { remindsOfFor } from "@/lib/reminds-of";
 import type { Perfume, Profile, UserPerfume } from "@/lib/types";
+
+function perfumeReminds(perfume: Perfume) {
+  return perfume.remindsOf?.length ? perfume.remindsOf : remindsOfFor(perfume.slug);
+}
 
 const FLOOR = 2;
 
@@ -28,7 +34,8 @@ export function matchPerfumes(profile: Profile, library: Record<string, UserPerf
       (a, b) =>
         b.score - a.score ||
         b.perfume.confidence - a.perfume.confidence ||
-        shownPrice(a.perfume) - shownPrice(b.perfume),
+        (shownPrice(a.perfume) ?? Number.POSITIVE_INFINITY) -
+          (shownPrice(b.perfume) ?? Number.POSITIVE_INFINITY),
     );
 
   return scored.slice(0, 5).map((item) => item.perfume);
@@ -94,7 +101,10 @@ function relevanceGate(profile: Profile) {
 
   const reference = profile.reference && profile.reference !== "none" ? profile.reference : null;
   if (reference) {
-    const direct = publishedPerfumes().filter((perfume) => perfume.inspiredBy === reference);
+    const direct = publishedPerfumes().filter((perfume) => {
+      if (inspirationIds(perfume.inspiredBy).includes(reference)) return true;
+      return perfumeReminds(perfume).some((link) => link.id === reference);
+    });
     const family = new Set(direct.flatMap((perfume) => [perfume.slug, ...perfume.similar]));
     return (perfume: Perfume) => family.has(perfume.slug);
   }
@@ -108,7 +118,8 @@ function relevanceGate(profile: Profile) {
 function scorePerfume(perfume: Perfume, profile: Profile, dna: DnaProfile) {
   if (profile.shift === "fresh" && !perfume.tags.includes("fresh")) return 0;
   if (profile.shift === "lasting" && (perfume.longevity ?? 0) < 4) return 0;
-  if (profile.budget != null && shownPrice(perfume) > profile.budget * 1_000_000) return 0;
+  const price = shownPrice(perfume);
+  if (profile.budget != null && price != null && price > profile.budget * 1_000_000) return 0;
 
   let score = 0;
   const seasonHit = perfume.seasons.includes(profile.season);
@@ -122,8 +133,11 @@ function scorePerfume(perfume: Perfume, profile: Profile, dna: DnaProfile) {
   const overlap = profile.occasions.filter((occasion) => perfume.occasions.includes(occasion)).length;
   score += profile.occasions.length === 0 ? 2 : overlap * 2;
 
-  if (profile.reference && profile.reference !== "none" && perfume.inspiredBy === profile.reference) {
-    score += 3;
+  if (profile.reference && profile.reference !== "none") {
+    const hit =
+      inspirationIds(perfume.inspiredBy).includes(profile.reference) ||
+      perfumeReminds(perfume).some((link) => link.id === profile.reference);
+    if (hit) score += 3;
   }
 
   if (profile.shift === "different") {
@@ -167,9 +181,11 @@ export function resultHeading(profile: Profile, count: number) {
 }
 
 function shownPrice(perfume: Perfume) {
-  return publicLead(perfume)?.price ?? Number.POSITIVE_INFINITY;
+  return listedPrice(perfume);
 }
 
 export function withinBudget(perfume: Perfume, budget: number) {
-  return shownPrice(perfume) <= budget * 1_000_000;
+  const price = shownPrice(perfume);
+  if (price == null) return true;
+  return price <= budget * 1_000_000;
 }

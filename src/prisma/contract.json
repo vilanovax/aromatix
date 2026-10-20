@@ -4,12 +4,20 @@
   "target": "postgres",
   "profileHash": "3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2",
   "roots": {
+    "AppSetting": {
+      "model": "AppSetting",
+      "namespace": "aroma"
+    },
     "CatalogBrand": {
       "model": "CatalogBrand",
       "namespace": "aroma"
     },
     "CatalogPerfume": {
       "model": "CatalogPerfume",
+      "namespace": "aroma"
+    },
+    "CatalogReport": {
+      "model": "CatalogReport",
       "namespace": "aroma"
     },
     "CatalogShop": {
@@ -45,6 +53,37 @@
     "namespaces": {
       "aroma": {
         "models": {
+          "AppSetting": {
+            "fields": {
+              "key": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "value": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {},
+            "storage": {
+              "fields": {
+                "key": {
+                  "column": "key"
+                },
+                "value": {
+                  "column": "value"
+                }
+              },
+              "namespaceId": "aroma",
+              "table": "AppSetting"
+            }
+          },
           "CatalogBrand": {
             "fields": {
               "active": {
@@ -55,6 +94,20 @@
                 }
               },
               "description": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "instagram": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "logo": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
@@ -76,6 +129,13 @@
                 }
               },
               "slug": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "website": {
                 "nullable": false,
                 "type": {
                   "codecId": "pg/text@1",
@@ -108,6 +168,12 @@
                 "description": {
                   "column": "description"
                 },
+                "instagram": {
+                  "column": "instagram"
+                },
+                "logo": {
+                  "column": "logo"
+                },
                 "nameEn": {
                   "column": "nameEn"
                 },
@@ -116,6 +182,9 @@
                 },
                 "slug": {
                   "column": "slug"
+                },
+                "website": {
+                  "column": "website"
                 }
               },
               "namespaceId": "aroma",
@@ -208,6 +277,136 @@
               },
               "namespaceId": "aroma",
               "table": "CatalogPerfume"
+            }
+          },
+          "CatalogReport": {
+            "fields": {
+              "adminNote": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "body": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "createdAt": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/timestamptz-string@1",
+                  "kind": "scalar"
+                }
+              },
+              "id": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              },
+              "perfumeSlug": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                }
+              },
+              "resolvedAt": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/timestamptz-string@1",
+                  "kind": "scalar"
+                }
+              },
+              "status": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                },
+                "valueSet": {
+                  "entityKind": "enum",
+                  "entityName": "ReportStatus",
+                  "namespaceId": "public",
+                  "plane": "domain"
+                }
+              },
+              "topic": {
+                "nullable": false,
+                "type": {
+                  "codecId": "pg/text@1",
+                  "kind": "scalar"
+                },
+                "valueSet": {
+                  "entityKind": "enum",
+                  "entityName": "ReportTopic",
+                  "namespaceId": "public",
+                  "plane": "domain"
+                }
+              },
+              "userId": {
+                "nullable": true,
+                "type": {
+                  "codecId": "pg/int4@1",
+                  "kind": "scalar"
+                }
+              }
+            },
+            "relations": {
+              "user": {
+                "cardinality": "N:1",
+                "nullable": true,
+                "on": {
+                  "localFields": [
+                    "userId"
+                  ],
+                  "targetFields": [
+                    "id"
+                  ]
+                },
+                "to": {
+                  "model": "User",
+                  "namespace": "aroma"
+                }
+              }
+            },
+            "storage": {
+              "fields": {
+                "adminNote": {
+                  "column": "adminNote"
+                },
+                "body": {
+                  "column": "body"
+                },
+                "createdAt": {
+                  "column": "createdAt"
+                },
+                "id": {
+                  "column": "id"
+                },
+                "perfumeSlug": {
+                  "column": "perfumeSlug"
+                },
+                "resolvedAt": {
+                  "column": "resolvedAt"
+                },
+                "status": {
+                  "column": "status"
+                },
+                "topic": {
+                  "column": "topic"
+                },
+                "userId": {
+                  "column": "userId"
+                }
+              },
+              "namespaceId": "aroma",
+              "table": "CatalogReport"
             }
           },
           "CatalogShop": {
@@ -680,6 +879,21 @@
                   "namespace": "aroma"
                 }
               },
+              "reports": {
+                "cardinality": "1:N",
+                "on": {
+                  "localFields": [
+                    "id"
+                  ],
+                  "targetFields": [
+                    "userId"
+                  ]
+                },
+                "to": {
+                  "model": "CatalogReport",
+                  "namespace": "aroma"
+                }
+              },
               "sessions": {
                 "cardinality": "1:N",
                 "on": {
@@ -862,6 +1076,48 @@
       },
       "public": {
         "enum": {
+          "ReportStatus": {
+            "codecId": "pg/text@1",
+            "members": [
+              {
+                "name": "open",
+                "value": "open"
+              },
+              {
+                "name": "fixed",
+                "value": "fixed"
+              },
+              {
+                "name": "dismissed",
+                "value": "dismissed"
+              }
+            ]
+          },
+          "ReportTopic": {
+            "codecId": "pg/text@1",
+            "members": [
+              {
+                "name": "price",
+                "value": "price"
+              },
+              {
+                "name": "identity",
+                "value": "identity"
+              },
+              {
+                "name": "scent",
+                "value": "scent"
+              },
+              {
+                "name": "shop",
+                "value": "shop"
+              },
+              {
+                "name": "other",
+                "value": "other"
+              }
+            ]
+          },
           "UserRole": {
             "codecId": "pg/text@1",
             "members": [
@@ -885,6 +1141,28 @@
       "aroma": {
         "entries": {
           "table": {
+            "AppSetting": {
+              "columns": {
+                "key": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "value": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                }
+              },
+              "foreignKeys": [],
+              "indexes": [],
+              "primaryKey": {
+                "columns": [
+                  "key"
+                ]
+              },
+              "uniques": []
+            },
             "CatalogBrand": {
               "columns": {
                 "active": {
@@ -897,6 +1175,24 @@
                   "nullable": false
                 },
                 "description": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "instagram": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "logo": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
                   "default": {
@@ -918,6 +1214,15 @@
                 "slug": {
                   "codecId": "pg/text@1",
                   "dataType": "pg/text",
+                  "nullable": false
+                },
+                "website": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
                   "nullable": false
                 }
               },
@@ -1002,6 +1307,150 @@
               "primaryKey": {
                 "columns": [
                   "slug"
+                ]
+              },
+              "uniques": []
+            },
+            "CatalogReport": {
+              "checks": [
+                {
+                  "expression": "\"status\" IN ('open', 'fixed', 'dismissed')",
+                  "name": "CatalogReport_status_check_8eef8884",
+                  "prefix": "CatalogReport_status_check"
+                },
+                {
+                  "expression": "\"topic\" IN ('price', 'identity', 'scent', 'shop', 'other')",
+                  "name": "CatalogReport_topic_check_14ecc761",
+                  "prefix": "CatalogReport_topic_check"
+                }
+              ],
+              "columns": {
+                "adminNote": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": ""
+                  },
+                  "nullable": false
+                },
+                "body": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "createdAt": {
+                  "codecId": "pg/timestamptz-string@1",
+                  "dataType": "pg/timestamptz",
+                  "default": {
+                    "expression": "now()",
+                    "kind": "function"
+                  },
+                  "nullable": false
+                },
+                "id": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "default": {
+                    "expression": "autoincrement()",
+                    "kind": "function"
+                  },
+                  "nullable": false
+                },
+                "perfumeSlug": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false
+                },
+                "resolvedAt": {
+                  "codecId": "pg/timestamptz-string@1",
+                  "dataType": "pg/timestamptz",
+                  "nullable": true
+                },
+                "status": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "default": {
+                    "kind": "literal",
+                    "value": "open"
+                  },
+                  "nullable": false,
+                  "valueSet": {
+                    "entityKind": "valueSet",
+                    "entityName": "ReportStatus",
+                    "namespaceId": "public",
+                    "plane": "storage"
+                  }
+                },
+                "topic": {
+                  "codecId": "pg/text@1",
+                  "dataType": "pg/text",
+                  "nullable": false,
+                  "valueSet": {
+                    "entityKind": "valueSet",
+                    "entityName": "ReportTopic",
+                    "namespaceId": "public",
+                    "plane": "storage"
+                  }
+                },
+                "userId": {
+                  "codecId": "pg/int4@1",
+                  "dataType": "pg/int4",
+                  "nullable": true
+                }
+              },
+              "foreignKeys": [
+                {
+                  "index": {
+                    "name": "CatalogReport_userId_idx_a489d58a"
+                  },
+                  "onDelete": "setNull",
+                  "source": {
+                    "columns": [
+                      "userId"
+                    ],
+                    "namespaceId": "aroma",
+                    "tableName": "CatalogReport"
+                  },
+                  "target": {
+                    "columns": [
+                      "id"
+                    ],
+                    "namespaceId": "aroma",
+                    "tableName": "User"
+                  }
+                }
+              ],
+              "indexes": [
+                {
+                  "columns": [
+                    "perfumeSlug"
+                  ],
+                  "name": "CatalogReport_perfumeSlug_idx_cf34a880",
+                  "prefix": "CatalogReport_perfumeSlug_idx",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "status",
+                    "createdAt"
+                  ],
+                  "name": "CatalogReport_status_createdAt_idx_58610442",
+                  "prefix": "CatalogReport_status_createdAt_idx",
+                  "unique": false
+                },
+                {
+                  "columns": [
+                    "userId"
+                  ],
+                  "name": "CatalogReport_userId_idx_a489d58a",
+                  "prefix": "CatalogReport_userId_idx",
+                  "unique": false
+                }
+              ],
+              "primaryKey": {
+                "columns": [
+                  "id"
                 ]
               },
               "uniques": []
@@ -1576,6 +2025,24 @@
         "entries": {
           "table": {},
           "valueSet": {
+            "ReportStatus": {
+              "kind": "valueSet",
+              "values": [
+                "open",
+                "fixed",
+                "dismissed"
+              ]
+            },
+            "ReportTopic": {
+              "kind": "valueSet",
+              "values": [
+                "price",
+                "identity",
+                "scent",
+                "shop",
+                "other"
+              ]
+            },
             "UserRole": {
               "kind": "valueSet",
               "values": [
@@ -1589,7 +2056,7 @@
         "kind": "postgres-schema"
       }
     },
-    "storageHash": "fe4223143f00f76193c1f086a2d10cd848663727c90fd18645be5c154412028b"
+    "storageHash": "dc8f454a74d56a754589f82df0c14cc1f7d81a589fa8f8f6a9ef08a737309938"
   },
   "capabilities": {
     "postgres": {

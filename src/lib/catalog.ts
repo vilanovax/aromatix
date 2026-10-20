@@ -1,3 +1,5 @@
+import { DEFAULT_BUDGET_MILLIONS, installBudgets } from "@/lib/budgets";
+import { offerAvailability } from "@/lib/offer-stock";
 import type { Leaning, Perfume, ShopOffer } from "@/lib/types";
 
 const narsiso = "https://narsiso.com";
@@ -17,13 +19,6 @@ export const SEASONS = [
   { id: "winter", label: "زمستان و سرما", short: "زمستان" },
   { id: "mild", label: "هوای معتدل", short: "هوای معتدل" },
   { id: "all", label: "همهٔ فصل‌ها", short: "همهٔ فصل‌ها" },
-] as const;
-
-export const BUDGETS = [
-  { id: 2, label: "تا ۲ میلیون" },
-  { id: 5, label: "تا ۵ میلیون" },
-  { id: 8, label: "تا ۸ میلیون" },
-  { id: 12, label: "تا ۱۲ میلیون" },
 ] as const;
 
 export const REFERENCES = [
@@ -138,6 +133,7 @@ const seedPerfumes: Perfume[] = [
     tags: ["sweet", "warm"],
     longevity: 5,
     sillage: 4,
+    inspiredBy: "althair",
     why: "وانیل و پرالین خامه‌ای است؛ شیرین‌تر از خمره و سنگین‌تر از اسد.",
     similar: ["kismet-angel", "khamrah"],
     confidence: 0.8,
@@ -483,6 +479,9 @@ export type Brand = {
   nameFa: string;
   nameEn: string;
   description: string;
+  logo: string;
+  website: string;
+  instagram: string;
   active: boolean;
 };
 
@@ -503,6 +502,7 @@ export type CatalogSnapshot = {
   perfumes: Perfume[];
   brands: Brand[];
   shops: Shop[];
+  budgets: number[];
 };
 
 export const seedShops: Shop[] = [
@@ -550,6 +550,9 @@ const seedBrands: Brand[] = [
     nameFa: "لطافه",
     nameEn: "Lattafa",
     description: "برند اماراتی با عطرهای گرم و شیرین. در آروما بیشتر برای شب، قرار و هوای معتدل بررسی شده.",
+    logo: "",
+    website: "",
+    instagram: "",
     active: true,
   },
   {
@@ -557,6 +560,9 @@ const seedBrands: Brand[] = [
     nameFa: "آرماف",
     nameEn: "Armaf",
     description: "برند اماراتی. کلاب دِ نویت و مایلستون این‌جا هستند و برای استفادهٔ روزمره بررسی شده‌اند.",
+    logo: "",
+    website: "",
+    instagram: "",
     active: true,
   },
   {
@@ -564,6 +570,9 @@ const seedBrands: Brand[] = [
     nameFa: "افنان",
     nameEn: "Afnan",
     description: "برند اماراتی. ۹ پی‌ام عطر شاخص این فهرست است، با وانیل و ادویه برای شب.",
+    logo: "",
+    website: "",
+    instagram: "",
     active: true,
   },
   {
@@ -571,6 +580,9 @@ const seedBrands: Brand[] = [
     nameFa: "میسون الحمرا",
     nameEn: "Maison Alhambra",
     description: "زیرمجموعهٔ لطافه، با عطرهایی که بوی نزدیک به عطرهای طراح دارند.",
+    logo: "",
+    website: "",
+    instagram: "",
     active: true,
   },
   {
@@ -578,6 +590,9 @@ const seedBrands: Brand[] = [
     nameFa: "فرنچ اونیو",
     nameEn: "French Avenue",
     description: "برند اماراتی با عطرهای غلیظ و شیرین. لیکویید برون در این فهرست است.",
+    logo: "",
+    website: "",
+    instagram: "",
     active: true,
   },
 ];
@@ -630,11 +645,15 @@ export function seedSnapshot(): CatalogSnapshot {
   return {
     brands: seedBrands.map((brand) => ({ ...brand })),
     shops: seedShops.map((shop) => ({ ...shop })),
+    budgets: [...DEFAULT_BUDGET_MILLIONS],
     perfumes: seedPerfumes.map((perfume) => ({
       ...perfume,
       accords: perfume.accords.map((accord) => ({ ...accord })),
       notes: perfume.notes.map((note) => ({ ...note })),
-      shops: perfume.shops.map((shop) => ({ ...shop })),
+      shops: perfume.shops.map((offer) => {
+        const shop = seedShops.find((item) => item.slug === offer.shopSlug || item.nameFa === offer.shop);
+        return shop ? { ...offer, shopSlug: shop.slug, shop: shop.nameFa } : { ...offer };
+      }),
       aliases: [...(seedAliases[perfume.slug] ?? [])],
     })),
   };
@@ -667,13 +686,25 @@ export function shopByName(nameFa: string) {
 /** A shop that is not in the directory still shows. A defined inactive shop does not. */
 export function shownOffers(perfume: Perfume) {
   return perfume.shops.filter((offer) => {
-    const shop = shopByName(offer.shop);
+    const shop = offer.shopSlug ? getShop(offer.shopSlug) : shopByName(offer.shop);
     return !shop || shop.active;
   });
 }
 
 export function publicLead(perfume: Perfume) {
   return cheapest(shownOffers(perfume));
+}
+
+/** قیمت راهنمای کاتالوگ وقتی فروشگاه هنوز وصل نیست. */
+export function guidePrice(perfume: Perfume): number | null {
+  if (typeof perfume.priceMin === "number" && perfume.priceMin > 0) return perfume.priceMin;
+  if (typeof perfume.priceMax === "number" && perfume.priceMax > 0) return perfume.priceMax;
+  return null;
+}
+
+/** قیمت قابل‌مقایسه برای بودجه: اول فروشگاه، بعد برآورد کاتالوگ، وگرنه نامعلوم. */
+export function listedPrice(perfume: Perfume): number | null {
+  return publicLead(perfume)?.price ?? guidePrice(perfume);
 }
 
 export function publishedPerfumes() {
@@ -691,6 +722,7 @@ export function installCatalog(next: CatalogSnapshot) {
   live = next;
   liveBySlug = Object.fromEntries(next.perfumes.map((perfume) => [perfume.slug, perfume]));
   liveNames = indexNames(publishedPerfumes());
+  installBudgets(next.budgets);
 }
 
 export function findPerfumeByName(text: string) {
@@ -736,6 +768,42 @@ export function brandCatalog() {
     .sort((a, b) => b.count - a.count || a.nameFa.localeCompare(b.nameFa, "fa"));
 }
 
+/** برند یکتا وقتی پرسش خودش نام برند است، مثل «فرنچ» برای فرنچ اونیو. */
+export function matchBrand(raw: string) {
+  const query = foldAsk(raw);
+  if (query.length < 2) return null;
+  const ranked = brandCatalog()
+    .map((brand) => ({ brand, rank: brandNameRank(brand, query) }))
+    .filter((item) => item.rank > 0)
+    .sort((a, b) => b.rank - a.rank || a.brand.nameFa.localeCompare(b.brand.nameFa, "fa"));
+  const best = ranked[0];
+  if (!best || best.rank < 2) return null;
+  if (ranked.length > 1 && ranked[1].rank === best.rank) return null;
+  return best.brand;
+}
+
+function brandNameRank(brand: Brand, query: string) {
+  const names = [brand.nameFa, brand.nameEn].map(foldAsk);
+  let best = 0;
+  for (const name of names) {
+    if (!name) continue;
+    if (name === query) best = Math.max(best, 3);
+    else if (name.startsWith(query)) best = Math.max(best, 2);
+  }
+  return best;
+}
+
+function foldAsk(input: string) {
+  return input
+    .replace(/[۰-۹]/g, (digit) => String("۰۱۲۳۴۵۶۷۸۹".indexOf(digit)))
+    .replace(/ي/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/\u200c/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
 const SWEET_TOP = new Set(["وانیل", "خرما", "پرالین", "قهوه", "کارامل"]);
 const SWEET_BODY = new Set(["وانیل", "خرما", "پرالین", "کارامل"]);
 
@@ -751,9 +819,17 @@ export function sweetness(perfume: Perfume) {
 
 function cheapest(offers: ShopOffer[]) {
   if (offers.length === 0) return null;
-  const confirmed = offers.filter((shop) => shop.stockConfirmed);
-  const pool = confirmed.length > 0 ? confirmed : offers;
-  return pool.reduce((best, shop) => (shop.price < best.price ? shop : best));
+  const rank = (offer: ShopOffer) => {
+    const stock = offerAvailability(offer);
+    if (stock === "in_stock") return 0;
+    if (stock === "unknown") return 1;
+    return 2;
+  };
+  return offers.reduce((best, shop) => {
+    const byStock = rank(shop) - rank(best);
+    if (byStock !== 0) return byStock < 0 ? shop : best;
+    return shop.price < best.price ? shop : best;
+  });
 }
 
 export function leadOffer(perfume: Perfume) {
@@ -766,7 +842,7 @@ export function cheaperUnconfirmed(perfume: Perfume) {
   const offers = shownOffers(perfume);
   const lead = cheapest(offers);
   if (!lead?.stockConfirmed) return null;
-  return offers.filter((shop) => !shop.stockConfirmed && shop.price < lead.price).sort((a, b) => a.price - b.price)[0] ?? null;
+  return offers.filter((shop) => offerAvailability(shop) === "unknown" && shop.price < lead.price).sort((a, b) => a.price - b.price)[0] ?? null;
 }
 
 export function sharedAccordNames(left: Perfume, right: Perfume) {

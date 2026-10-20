@@ -1,0 +1,200 @@
+[
+  {
+    "id": "table.CatalogReport",
+    "label": "Create table \"CatalogReport\"",
+    "summary": "Creates table \"CatalogReport\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "table",
+        "name": "CatalogReport"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"CatalogReport\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"CatalogReport\"",
+        "sql": "CREATE TABLE \"aroma\".\"CatalogReport\" (\n  \"adminNote\" text DEFAULT '' NOT NULL,\n  \"body\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"perfumeSlug\" text NOT NULL,\n  \"resolvedAt\" timestamptz,\n  \"status\" text DEFAULT 'open' NOT NULL,\n  \"topic\" text NOT NULL,\n  \"userId\" int4,\n  PRIMARY KEY (\"id\"),\n  CONSTRAINT \"CatalogReport_status_check_8eef8884\" CHECK (\"status\" IN ('open', 'fixed', 'dismissed')),\n  CONSTRAINT \"CatalogReport_topic_check_14ecc761\" CHECK (\"topic\" IN ('price', 'identity', 'scent', 'shop', 'other'))\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"CatalogReport\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.CatalogReport.CatalogReport_perfumeSlug_idx_cf34a880",
+    "label": "Create index \"CatalogReport_perfumeSlug_idx_cf34a880\" on \"CatalogReport\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "CatalogReport_perfumeSlug_idx_cf34a880",
+        "table": "CatalogReport"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"CatalogReport_perfumeSlug_idx_cf34a880\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport_perfumeSlug_idx_cf34a880\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"CatalogReport_perfumeSlug_idx_cf34a880\"",
+        "sql": "CREATE INDEX \"CatalogReport_perfumeSlug_idx_cf34a880\" ON \"aroma\".\"CatalogReport\" (\"perfumeSlug\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"CatalogReport_perfumeSlug_idx_cf34a880\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport_perfumeSlug_idx_cf34a880\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.CatalogReport.CatalogReport_status_createdAt_idx_58610442",
+    "label": "Create index \"CatalogReport_status_createdAt_idx_58610442\" on \"CatalogReport\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "CatalogReport_status_createdAt_idx_58610442",
+        "table": "CatalogReport"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"CatalogReport_status_createdAt_idx_58610442\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport_status_createdAt_idx_58610442\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"CatalogReport_status_createdAt_idx_58610442\"",
+        "sql": "CREATE INDEX \"CatalogReport_status_createdAt_idx_58610442\" ON \"aroma\".\"CatalogReport\" (\"status\", \"createdAt\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"CatalogReport_status_createdAt_idx_58610442\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport_status_createdAt_idx_58610442\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "index.CatalogReport.CatalogReport_userId_idx_a489d58a",
+    "label": "Create index \"CatalogReport_userId_idx_a489d58a\" on \"CatalogReport\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "index",
+        "name": "CatalogReport_userId_idx_a489d58a",
+        "table": "CatalogReport"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure index \"CatalogReport_userId_idx_a489d58a\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport_userId_idx_a489d58a\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create index \"CatalogReport_userId_idx_a489d58a\"",
+        "sql": "CREATE INDEX \"CatalogReport_userId_idx_a489d58a\" ON \"aroma\".\"CatalogReport\" (\"userId\")",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify index \"CatalogReport_userId_idx_a489d58a\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"aroma\".\"CatalogReport_userId_idx_a489d58a\""
+        ]
+      }
+    ]
+  },
+  {
+    "id": "foreignKey.CatalogReport.CatalogReport_userId_fkey",
+    "label": "Add foreign key \"CatalogReport_userId_fkey\" on \"CatalogReport\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "aroma",
+        "objectType": "foreignKey",
+        "name": "CatalogReport_userId_fkey",
+        "table": "CatalogReport"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure FK \"CatalogReport_userId_fkey\" does not exist",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "CatalogReport_userId_fkey",
+          "aroma",
+          "\"aroma\".\"CatalogReport\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add FK \"CatalogReport_userId_fkey\"",
+        "sql": "ALTER TABLE \"aroma\".\"CatalogReport\"\nADD CONSTRAINT \"CatalogReport_userId_fkey\"\nFOREIGN KEY (\"userId\")\nREFERENCES \"aroma\".\"User\" (\"id\")\nON DELETE SET NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify FK \"CatalogReport_userId_fkey\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"pg_constraint\" AS \"c\" INNER JOIN \"pg_namespace\" AS \"n\" ON \"n\".\"oid\" = \"c\".\"connamespace\" WHERE (\"c\".\"conname\" = $1 AND \"n\".\"nspname\" = $2 AND \"c\".\"conrelid\" = to_regclass($3))) AS \"result\"",
+        "params": [
+          "CatalogReport_userId_fkey",
+          "aroma",
+          "\"aroma\".\"CatalogReport\""
+        ]
+      }
+    ]
+  }
+]

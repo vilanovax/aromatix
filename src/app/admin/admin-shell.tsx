@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import {
   BarChart3,
   BookOpen,
+  Flag,
   LayoutDashboard,
   Settings,
   Sparkles,
@@ -21,6 +22,7 @@ const GROUP_ORDER = ["کار", "کاتالوگ", "حساب‌ها"] as const;
 const ICONS = {
   overview: LayoutDashboard,
   reports: BarChart3,
+  corrections: Flag,
   perfumes: Sparkles,
   brands: Tag,
   shops: Store,

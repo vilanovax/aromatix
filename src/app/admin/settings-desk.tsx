@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { changeAdminPassword, createAdmin, setAdminAccess } from "@/app/admin/settings-actions";
+import { changeAdminPassword, createAdmin, setAdminAccess, setGuideBudgets } from "@/app/admin/settings-actions";
+import { budgetLabel, cleanBudgetMillions } from "@/lib/budgets";
 import { applyAdminTheme, readAdminTheme, type AdminTheme } from "@/lib/admin/theme";
 import { Alert } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
@@ -32,13 +33,24 @@ export type BackupCounts = {
 
 const PARTS = [
   ["appearance", "ظاهر"],
+  ["budget", "بودجه"],
   ["password", "رمز"],
   ["create", "مدیر جدید"],
   ["access", "دسترسی"],
   ["backup", "بک‌آپ"],
 ] as const;
 
-export function SettingsDesk({ admins, counts }: { admins: SettingsAdmin[]; counts: BackupCounts }) {
+const BUDGET_SLOTS = ["اول", "دوم", "سوم", "چهارم"] as const;
+
+export function SettingsDesk({
+  admins,
+  counts,
+  budgets,
+}: {
+  admins: SettingsAdmin[];
+  counts: BackupCounts;
+  budgets: number[];
+}) {
   return (
     <div className="mt-5 space-y-4">
       <nav className="flex gap-1.5 overflow-x-auto" aria-label="بخش‌های تنظیمات">
@@ -49,6 +61,7 @@ export function SettingsDesk({ admins, counts }: { admins: SettingsAdmin[]; coun
         ))}
       </nav>
       <AppearanceCard />
+      <BudgetCard budgets={budgets} />
       <PasswordCard />
       <CreateCard />
       <AccessCard admins={admins} />
@@ -83,6 +96,74 @@ function AppearanceCard() {
           </TabsTrigger>
         </TabsList>
       </Tabs>
+    </Card>
+  );
+}
+
+function BudgetCard({ budgets }: { budgets: number[] }) {
+  const router = useRouter();
+  const [values, setValues] = useState(budgets.map(String));
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [saved, setSaved] = useState(false);
+  const dirty = values.join(",") !== budgets.join(",");
+  const preview = cleanBudgetMillions(values);
+
+  function edit(index: number, next: string) {
+    setSaved(false);
+    setValues((current) => current.map((item, itemIndex) => (itemIndex === index ? next : item)));
+  }
+
+  async function save() {
+    setPending(true);
+    setError(null);
+    setSaved(false);
+    const result = await setGuideBudgets(values);
+    setPending(false);
+    if (!result.ok) {
+      setError(result.error);
+      return;
+    }
+    setSaved(true);
+    router.refresh();
+  }
+
+  return (
+    <Card id="budget" className="scroll-mt-20 p-4 sm:p-5">
+      <h2 className="text-title font-semibold">بودجهٔ راهنما</h2>
+      <p className="mt-1 text-label text-muted-foreground">
+        چهار سقف قدم «تا چه قیمتی؟». واحد میلیون تومان است و از کم به زیاد چیده می‌شوند.
+      </p>
+      <div className="mt-4 grid grid-cols-2 gap-3">
+        {BUDGET_SLOTS.map((slot, index) => (
+          <label key={slot} className="block">
+            <span className="text-label text-muted-foreground">سقف {slot}، میلیون تومان</span>
+            <Input
+              className="mt-1"
+              dir="ltr"
+              inputMode="numeric"
+              value={values[index] ?? ""}
+              onChange={(event) => edit(index, event.target.value)}
+            />
+          </label>
+        ))}
+      </div>
+      <p className="mt-3 text-label text-muted-foreground">
+        {preview ? preview.map((value) => budgetLabel(value)).join("، ") : "چهار عدد متفاوت بین ۱ تا ۵۰."}
+      </p>
+      {error ? (
+        <Alert variant="destructive" className="mt-3">
+          {error}
+        </Alert>
+      ) : null}
+      {saved ? (
+        <Alert variant="success" className="mt-3">
+          ذخیره شد.
+        </Alert>
+      ) : null}
+      <Button type="button" className="mt-4" disabled={pending || !dirty} onClick={save}>
+        {pending ? "در حال ذخیره" : "ذخیرهٔ سقف‌ها"}
+      </Button>
     </Card>
   );
 }

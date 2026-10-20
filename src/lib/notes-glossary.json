@@ -1,0 +1,4797 @@
+{
+  "_meta": {
+    "source": "notes-fa-en.v1.xlsx",
+    "count": 585,
+    "withEnglish": 573,
+    "missingEnglish": 12,
+    "note": "English is resolved from this glossary. Perfume records keep Persian note names."
+  },
+  "notes": [
+    {
+      "nameFa": "مشک",
+      "nameEn": "Musk",
+      "count": 635,
+      "aliases": [
+        "گل مشک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "وانیل",
+      "nameEn": "Vanilla",
+      "count": 623,
+      "aliases": [
+        "vanille"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ترنج",
+      "nameEn": "Bergamot",
+      "count": 550,
+      "aliases": [
+        "برگاموت",
+        "برگامونت",
+        "ترج",
+        "ترنج تازه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پاچولی",
+      "nameEn": "Patchouli",
+      "count": 522,
+      "aliases": [
+        "نعناع هندی",
+        "پاتچولی",
+        "پچولی",
+        "نعنا هندی",
+        "درخت پچولی",
+        "گیاه پاتچولی",
+        "نعناع هندی شیرین",
+        "نعناع اندونزیایی",
+        "پاتچول",
+        "گیاه پاچولی",
+        "نعناع هندی سیاه",
+        "نعنای هندی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربا",
+      "nameEn": "Amber",
+      "count": 493,
+      "aliases": [
+        "عنبر",
+        "امبر",
+        "گل کهربا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یاس",
+      "nameEn": "Jasmine",
+      "count": 412,
+      "aliases": [
+        "یاسمن",
+        "گل یاس",
+        "یاسمین",
+        "گل یاسمین",
+        "یاس رازقی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب سدر",
+      "nameEn": "Cedar",
+      "count": 378,
+      "aliases": [
+        "سدر",
+        "درخت سدر",
+        "صنوبر",
+        "صدر (1) | EN: cedarwood",
+        "cedar wood"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب صندل",
+      "nameEn": "Sandalwood",
+      "count": 352,
+      "aliases": [
+        "صندل",
+        "سندالوود",
+        "چوب صندلی",
+        "صندل وود (1) | EN: sandal"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رز",
+      "nameEn": "Rose",
+      "count": 321,
+      "aliases": [
+        "گل رز",
+        "گل سرخ",
+        "شکوفه گل رز (1) | EN: classic rose"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اسطوخودوس",
+      "nameEn": "Lavender",
+      "count": 282,
+      "aliases": [
+        "اسطوخدوس",
+        "لاواندر",
+        "لیلای بنفش",
+        "سطوخودوس",
+        "اسطخدوس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "دانه تونکا",
+      "nameEn": "Tonka Bean",
+      "count": 276,
+      "aliases": [
+        "تونکا",
+        "لوبیا تونکا",
+        "لوبیاتونکا",
+        "باقلا تونکا",
+        "دانه‌تونکا",
+        "دانه ی تونکا",
+        "دانه تنکا (1) | EN: tonka"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "وتیور",
+      "nameEn": "Vetiver",
+      "count": 263,
+      "aliases": [
+        "خس خس",
+        "خس‌خس",
+        "درخت خس خس",
+        "روغن خس خس",
+        "خس خس خاکی",
+        "چوب وتیور"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نارنگی",
+      "nameEn": "Mandarin Orange",
+      "count": 210,
+      "aliases": [
+        "نارنگی ماندارین",
+        "پرتقال ماندارین",
+        "ماندارین",
+        "نارنگی ماندرین",
+        "پرتقال ماندرین",
+        "مانداریان (1) | EN: mandarin",
+        "tangerine",
+        "manadrin"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "فلفل صورتی",
+      "nameEn": "Pink Pepper",
+      "count": 209,
+      "aliases": [
+        "فلفل‌صورتی",
+        "دانه فلفل صورتی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بهارنارنج",
+      "nameEn": "Orange Blossom",
+      "count": 201,
+      "aliases": [
+        "شکوفه پرتقال",
+        "بهار نارنج",
+        "شکوفه‌ی پرتقال",
+        "گل پرتقال (1) | EN: orange flower"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عود",
+      "nameEn": "Oud",
+      "count": 193,
+      "aliases": [
+        "چوب آگار",
+        "چوب عود",
+        "نت های عودی",
+        "چوب عود کمیاب (1) | EN: agarwood (oud)",
+        "agarwood"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیمو",
+      "nameEn": "Lemon",
+      "count": 188,
+      "aliases": [
+        "lemonvolatile citrus blend"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هل",
+      "nameEn": "Cardamom",
+      "count": 184,
+      "aliases": [
+        "هل سبز (1) | EN: cardamon"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چرم",
+      "nameEn": "Leather",
+      "count": 174,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عنبر",
+      "nameEn": "Ambergris",
+      "count": 172,
+      "aliases": [
+        "عنبر سائل",
+        "عنبرگریس",
+        "عنبر خاکستری"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های چوبی",
+      "nameEn": "Woody Notes",
+      "count": 168,
+      "aliases": [
+        "روایح چوبی",
+        "نت های چوبی",
+        "چوبی",
+        "نمونه های چوبی",
+        "رایحه‌های چوبی چوب",
+        "نت های چوب",
+        "نت چوبی",
+        "آکوردهای چوبی",
+        "انواع چوب",
+        "نت‌های چوب (1) | EN: woodsy notes",
+        "woods"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زعفران",
+      "nameEn": "Saffron",
+      "count": 165,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "دارچین",
+      "nameEn": "Cinnamon",
+      "count": 161,
+      "aliases": [
+        "cinammon"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کندر",
+      "nameEn": "Incense",
+      "count": 154,
+      "aliases": [
+        "لوبان",
+        "صمغ کندر",
+        "الیبانوم",
+        "صمغکندر",
+        "بخور خوشبو",
+        "رزین کندر هندی",
+        "بخور",
+        "بخور دادن",
+        "اولبانوم",
+        "بخور کیارا (1) | EN: olibanum",
+        "frankincense"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "گریپ‌فروت",
+      "nameEn": "Grapefruit",
+      "count": 153,
+      "aliases": [
+        "گریپ فروت",
+        "گریپ فوروت",
+        "گریپ فرود (1) | EN: graperfuit"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پرتقال",
+      "nameEn": "Orange",
+      "count": 141,
+      "aliases": [
+        "نارنجی",
+        "پرتغال"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زنجبیل",
+      "nameEn": "Ginger",
+      "count": 139,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آمبروکسان",
+      "nameEn": "Ambroxan",
+      "count": 131,
+      "aliases": [
+        "امبروکسان",
+        "آمبروکسید"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مریم‌گلی",
+      "nameEn": "Sage",
+      "count": 131,
+      "aliases": [
+        "مریم گلی",
+        "سالویا",
+        "سالویا اسکلاریا",
+        "سیج",
+        "کلاری مریم گلی (1) | EN: clary sage"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "شمعدانی",
+      "nameEn": "Geranium",
+      "count": 125,
+      "aliases": [
+        "شاهبوی",
+        "گل شمعدانی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیب",
+      "nameEn": "Apple",
+      "count": 121,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خزه بلوط",
+      "nameEn": "Oakmoss",
+      "count": 113,
+      "aliases": [
+        "خزه درخت بلوط",
+        "گلسنگ",
+        "خزه‌ی بلوط (1) | EN: oak moss"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جوز هندی",
+      "nameEn": "Nutmeg",
+      "count": 109,
+      "aliases": [
+        "جوز",
+        "دانه جوز هندی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "انگور سیاه",
+      "nameEn": "Black Currant",
+      "count": 104,
+      "aliases": [
+        "انگور فرنگی سیاه",
+        "کاسیس",
+        "انگورفرنگی سیاه",
+        "کشمش سیاه",
+        "کشمش بی دانه سیاه (1) | EN: blackcurrant",
+        "cassis",
+        "fruity acidity of black current"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "لادن",
+      "nameEn": "Labdanum",
+      "count": 102,
+      "aliases": [
+        "لابدانیوم",
+        "لبدانوم",
+        "لابدانوم",
+        "گل لادن",
+        "رزین لبدانیوم",
+        "رزین لبدانوم",
+        "گل لابدانیوم",
+        "لادن فرانسوی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زنبق",
+      "nameEn": "Iris",
+      "count": 101,
+      "aliases": [
+        "عنبیه",
+        "گل زنبق",
+        "آیریس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "تمشک",
+      "nameEn": "Raspberry",
+      "count": 101,
+      "aliases": [
+        "رازبری",
+        "تمشک قرمز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آناناس",
+      "nameEn": "Pineapple",
+      "count": 95,
+      "aliases": [
+        "اناناس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گلابی",
+      "nameEn": "Pear",
+      "count": 93,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل برف",
+      "nameEn": "Lily-of-the-Valley",
+      "count": 90,
+      "aliases": [
+        "سوسن",
+        "زنبق دره",
+        "لیلی آف ذ والی (1) | EN: lily of the valley"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "نعناع",
+      "nameEn": "Mint",
+      "count": 88,
+      "aliases": [
+        "نعنا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مشک سفید",
+      "nameEn": "White Musk",
+      "count": 84,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بنفشه",
+      "nameEn": "Violet",
+      "count": 83,
+      "aliases": [
+        "گل بنفش",
+        "بنفشه شیرین",
+        "گل بنفشه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کارامل",
+      "nameEn": "Caramel",
+      "count": 82,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بنزوئین",
+      "nameEn": "Benzoin",
+      "count": 80,
+      "aliases": [
+        "بنزویت",
+        "بنزویین",
+        "بنزوئین گرم"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مرکبات",
+      "nameEn": "Citrus",
+      "count": 77,
+      "aliases": [
+        "میوه های مرکباتی",
+        "مرکباتی",
+        "نت های مرکبات (1) | EN: citruses"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب گایاک",
+      "nameEn": "Guaiac Wood",
+      "count": 76,
+      "aliases": [
+        "چوب گایاک هندی",
+        "گایاک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل مریم",
+      "nameEn": "Tuberose",
+      "count": 75,
+      "aliases": [
+        "مریم سفید"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هلو",
+      "nameEn": "Peach",
+      "count": 74,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل",
+      "nameEn": "Pepper",
+      "count": 74,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل صدتومانی",
+      "nameEn": "Peony",
+      "count": 68,
+      "aliases": [
+        "گل صد تومانی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یلانگ‌یلانگ",
+      "nameEn": "Ylang-Ylang",
+      "count": 67,
+      "aliases": [
+        "یلانگ یلانگ",
+        "گل یلانگ",
+        "یالانگ یالانگ (1) | EN: ylang ylang"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل سیاه",
+      "nameEn": "Black Pepper",
+      "count": 66,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پرالین",
+      "nameEn": "Praline",
+      "count": 61,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "تنباکو",
+      "nameEn": "Tobacco",
+      "count": 59,
+      "aliases": [
+        "دخانیات"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رزماری",
+      "nameEn": "Rosemary",
+      "count": 55,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خزه",
+      "nameEn": "Moss",
+      "count": 54,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ بنفشه",
+      "nameEn": "Violet Leaf",
+      "count": 52,
+      "aliases": [
+        "برگ بنفشه شیرین",
+        "برگ گل بنفشه (1) | EN: violet leaves"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نارگیل",
+      "nameEn": "Coconut",
+      "count": 48,
+      "aliases": [
+        "پودر نارگیل"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عسل",
+      "nameEn": "Honey",
+      "count": 48,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب صندل سفید",
+      "nameEn": "White Sandalwood",
+      "count": 47,
+      "aliases": [
+        "صندل سفید"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیمو ترش",
+      "nameEn": "Lime",
+      "count": 46,
+      "aliases": [
+        "لیموترش",
+        "لیمو ترش سبز",
+        "لایم",
+        "لیموترش سبز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های دریایی",
+      "nameEn": "Marine notes",
+      "count": 46,
+      "aliases": [
+        "نت های دریایی",
+        "دریایی",
+        "روایح دریایی",
+        "نت دریا (1) | EN: sea notes"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کشمران",
+      "nameEn": "Cashmeran",
+      "count": 45,
+      "aliases": [
+        "کشمیران",
+        "کاشمرن"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب کشمیر",
+      "nameEn": "Cashmere Wood",
+      "count": 44,
+      "aliases": [
+        "کشمیر",
+        "ترمه",
+        "چوب ترمه",
+        "چوب کشمیرد (1) | EN: cashmirwood",
+        "cashmere",
+        "kashmir wood"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آلو",
+      "nameEn": "Plum",
+      "count": 42,
+      "aliases": [
+        "آکورد آلو"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب عنبر",
+      "nameEn": "Amberwood",
+      "count": 40,
+      "aliases": [
+        "آمبروود",
+        "چوب کهربا",
+        "عنبروود",
+        "درخت عنبر"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل‌های سفید",
+      "nameEn": "White Flowers",
+      "count": 39,
+      "aliases": [
+        "گل های سفید",
+        "گل سفید",
+        "شکوفه های سفید"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توت‌فرنگی",
+      "nameEn": "Strawberry",
+      "count": 37,
+      "aliases": [
+        "توت فرنگی",
+        "توت‌فرنگی تازه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "المی",
+      "nameEn": "Elemi",
+      "count": 36,
+      "aliases": [
+        "لامی",
+        "حضور رزینی المی",
+        "درخت لامی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فریزیا",
+      "nameEn": "Freesia",
+      "count": 36,
+      "aliases": [
+        "گل فریزیا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "قهوه",
+      "nameEn": "Coffee",
+      "count": 35,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های گلی",
+      "nameEn": "Floral Notes",
+      "count": 35,
+      "aliases": [
+        "نت های گلی",
+        "روایح گلی",
+        "گلی",
+        "ر‌وایح گلی",
+        "رایحه‌های گل (1) | EN: creamy floras"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اسمانتوس",
+      "nameEn": "Osmanthus",
+      "count": 35,
+      "aliases": [
+        "گل اوسمانتوس",
+        "گل اسمانتوس چینی",
+        "اوسمانتوس",
+        "اسمنتوس",
+        "گل اسمانتوس",
+        "عثمانتوس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هلیوتروپ",
+      "nameEn": "Heliotrope",
+      "count": 33,
+      "aliases": [
+        "گل آفتاب پرست",
+        "گل افتاب پرست",
+        "هلیتروپ",
+        "هلیروتروپ",
+        "گل آفتاب‌پرست"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ادویه‌ها",
+      "nameEn": "Spices",
+      "count": 33,
+      "aliases": [
+        "ادویه جات",
+        "ادویه",
+        "ادویجات",
+        "ادویه‌جات",
+        "ادویه‌جات ملایم (1) | EN: sweet spices"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سرو",
+      "nameEn": "Cypress",
+      "count": 32,
+      "aliases": [
+        "سایپرس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نرولی",
+      "nameEn": "Neroli",
+      "count": 32,
+      "aliases": [
+        "گل نرولی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بادام",
+      "nameEn": "Almond",
+      "count": 31,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جیر",
+      "nameEn": "Suede",
+      "count": 31,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ریحان",
+      "nameEn": "Basil",
+      "count": 30,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیچی",
+      "nameEn": "Litchi",
+      "count": 30,
+      "aliases": [
+        "lychee"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مگنولیا",
+      "nameEn": "Magnolia",
+      "count": 30,
+      "aliases": [
+        "ماگنولیا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "روایح دودی",
+      "nameEn": "Smoke",
+      "count": 30,
+      "aliases": [
+        "دود",
+        "دود ملایم"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب آکیگالا",
+      "nameEn": "Akigalawood",
+      "count": 29,
+      "aliases": [
+        "آکیگالاوود",
+        "آکیگالا وود",
+        "آکیگالا‌وود",
+        "چوب آکیگالاوود",
+        "آکیگالوود"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گشنیز",
+      "nameEn": "Coriander",
+      "count": 29,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیپریول",
+      "nameEn": "Cypriol",
+      "count": 29,
+      "aliases": [
+        "گیاه ناگارموتا",
+        "روغن سیپریول یا ناگارموتا",
+        "سیپریول / ناگارموتا",
+        "ناگارموتا",
+        "روغن سایپریول",
+        "روغن سیپریول (1) | EN: cypriol oil or nagarmotha"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های سبز",
+      "nameEn": "Green Notes",
+      "count": 29,
+      "aliases": [
+        "نت های سبز",
+        "ترکیبات سبز",
+        "رایحه‌های سبز",
+        "نمونه های سبز",
+        "روایح سبز",
+        "سبز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توس",
+      "nameEn": "Birch",
+      "count": 28,
+      "aliases": [
+        "چوب درخت قان",
+        "چوب توس",
+        "درخت توس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ارکیده",
+      "nameEn": "Orchid",
+      "count": 28,
+      "aliases": [
+        "ارکید",
+        "ادکید"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکر",
+      "nameEn": "Sugar",
+      "count": 27,
+      "aliases": [
+        "قند"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ریشه زنبق",
+      "nameEn": "Orris",
+      "count": 26,
+      "aliases": [
+        "زنبق",
+        "اوریس",
+        "ریشه زنبق زرد (1) | EN: orris root"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زردآلو",
+      "nameEn": "Apricot",
+      "count": 25,
+      "aliases": [
+        "زرد آلو"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کاکائو",
+      "nameEn": "Cacao",
+      "count": 25,
+      "aliases": [
+        "cocoa"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میوه‌ها",
+      "nameEn": "Fruits",
+      "count": 25,
+      "aliases": [
+        "میوه‌جات",
+        "میوه های تازه",
+        "میوه ها",
+        "انواع میوه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گاردنیا",
+      "nameEn": "Gardenia",
+      "count": 25,
+      "aliases": [
+        "گاردنیای یاسمنی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پرتقال خونی",
+      "nameEn": "Blood Orange",
+      "count": 24,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میخک",
+      "nameEn": "Clove",
+      "count": 24,
+      "aliases": [
+        "cloves"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "انجیر",
+      "nameEn": "Fig",
+      "count": 24,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های میوه‌ای",
+      "nameEn": "Fruity Notes",
+      "count": 24,
+      "aliases": [
+        "میوه‌ای",
+        "روایح میوه ای",
+        "نت های میوه‌ای",
+        "میوه ای",
+        "رایحه‌های میوه‌ای (1) | EN: soft fruity accords"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های ادویه‌ای",
+      "nameEn": "Spicy Notes",
+      "count": 24,
+      "aliases": [
+        "نت های ادویه ای",
+        "ادویه‌ای",
+        "روایح ادویه‌ای",
+        "نت‌های تند"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توت سیاه",
+      "nameEn": "Blackberry",
+      "count": 23,
+      "aliases": [
+        "بلک‌بری",
+        "تمشک سیاه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مر",
+      "nameEn": "Myrrh",
+      "count": 23,
+      "aliases": [
+        "صمغ درختچه مر",
+        "صمغ درخت مر",
+        "میره",
+        "میر (1) | EN: myrhh"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "داوانا",
+      "nameEn": "Davana",
+      "count": 22,
+      "aliases": [
+        "گیاه داوانا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پشن فروت",
+      "nameEn": "Passionfruit",
+      "count": 22,
+      "aliases": [
+        "میوه گل ساعتی",
+        "ماراکوجا",
+        "میوه گل ساعت (1) | EN: passion fruit"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های آبی",
+      "nameEn": "Aquatic notes",
+      "count": 21,
+      "aliases": [
+        "نت های آبزی",
+        "روایح آبی",
+        "رایحه‌های آبی",
+        "نت های آبی",
+        "نت های آب (1) | EN: watery notes",
+        "water notes"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کنیاک",
+      "nameEn": "Cognac",
+      "count": 21,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خرما",
+      "nameEn": "Dates",
+      "count": 21,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یاس سامباک",
+      "nameEn": "Jasmine Sambac",
+      "count": 21,
+      "aliases": [
+        "یاس سمباک",
+        "یاسمین سامباک",
+        "یاسمن سامباک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میوه سرو کوهی",
+      "nameEn": "Juniper Berries",
+      "count": 21,
+      "aliases": [
+        "دانه سرو کوهی",
+        "توت عرعر",
+        "توت ارس",
+        "میوه ارس",
+        "توت سدر (1) | EN: juniper berry"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ریواس",
+      "nameEn": "Rhubarb",
+      "count": 21,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رز ترکی",
+      "nameEn": "Turkish Rose",
+      "count": 21,
+      "aliases": [
+        "گل رز ترکی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زیره",
+      "nameEn": "Cumin",
+      "count": 20,
+      "aliases": [
+        "زیره سبز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پتی‌گرین",
+      "nameEn": "Petitgrain",
+      "count": 20,
+      "aliases": [
+        "برگ درخت نارنج",
+        "پتیت گرین",
+        "پتی گرین",
+        "برگ نارنج"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آلدئید",
+      "nameEn": "Aldehydes",
+      "count": 19,
+      "aliases": [
+        "آلدهیدها",
+        "آلدهید",
+        "آلدهید ها",
+        "آلدئیدها",
+        "آلدهیدا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "درمنه",
+      "nameEn": "Artemisia",
+      "count": 19,
+      "aliases": [
+        "گیاه درمنه",
+        "آرتمیزیا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گیلاس",
+      "nameEn": "Cherry",
+      "count": 19,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رام",
+      "nameEn": "Rum",
+      "count": 19,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آویشن",
+      "nameEn": "Thyme",
+      "count": 19,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بخور",
+      "nameEn": "Bakhoor",
+      "count": 18,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "انبه",
+      "nameEn": "Mango",
+      "count": 18,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "طالبی",
+      "nameEn": "Melon",
+      "count": 18,
+      "aliases": [
+        "خربزه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توت‌های قرمز",
+      "nameEn": "Red Berries",
+      "count": 18,
+      "aliases": [
+        "توت قرمز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پیچ امین‌الدوله",
+      "nameEn": "Honeysuckle",
+      "count": 17,
+      "aliases": [
+        "پیچ امین الدوله",
+        "گل پیچ امین الدوله"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سوسن",
+      "nameEn": "Lily",
+      "count": 17,
+      "aliases": [
+        "لیلی",
+        "گل سوسن",
+        "لیلیوم"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "نت‌های پودری",
+      "nameEn": "Powdery Notes",
+      "count": 17,
+      "aliases": [
+        "پودری",
+        "روایح پودری"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای",
+      "nameEn": "Tea",
+      "count": 17,
+      "aliases": [
+        "چای برگ"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ادویه جات معطر",
+      "nameEn": "Aromatic Spices",
+      "count": 16,
+      "aliases": [
+        "ادویه های معطر",
+        "ادویه‌های آروماتیک",
+        "ادویه‌های معطر"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رز بلغاری",
+      "nameEn": "Bulgarian Rose",
+      "count": 16,
+      "aliases": [
+        "گل رز بلغاری"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیب سبز",
+      "nameEn": "Green Apple",
+      "count": 16,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سرو کوهی",
+      "nameEn": "Juniper",
+      "count": 16,
+      "aliases": [
+        "درخت عرعر",
+        "ارس",
+        "درخت سرو کوهی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بلوط",
+      "nameEn": "Oak",
+      "count": 16,
+      "aliases": [
+        "درخت بلوط",
+        "چوب بلوط"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مشک گیاهی (آمبرت)",
+      "nameEn": "Ambrette",
+      "count": 15,
+      "aliases": [
+        "آمبرت",
+        "دانه مشک (2) | EN: ambrette (musk mallow)"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب خشک",
+      "nameEn": "Dry Wood",
+      "count": 15,
+      "aliases": [
+        "چوب های خشک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مارشمالو",
+      "nameEn": "Marshmallow",
+      "count": 15,
+      "aliases": [
+        "پف نبات",
+        "مارشملو"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بادام تلخ",
+      "nameEn": "Bitter Almond",
+      "count": 14,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نارنج",
+      "nameEn": "Bitter Orange",
+      "count": 14,
+      "aliases": [
+        "پرتقال تلخ"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میوه‌های قرمز",
+      "nameEn": "Red Fruits",
+      "count": 14,
+      "aliases": [
+        "میوه های قرمز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بالنگ",
+      "nameEn": "Citron",
+      "count": 13,
+      "aliases": [
+        "سیترون"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گالبانوم",
+      "nameEn": "Galbanum",
+      "count": 13,
+      "aliases": [
+        "صمغ گالبانیوم",
+        "رزین باریجه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل سیچوان",
+      "nameEn": "Sichuan Pepper",
+      "count": 13,
+      "aliases": [
+        "سیچوان"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شاه‌بلوط",
+      "nameEn": "Chestnut",
+      "count": 12,
+      "aliases": [
+        "شاه بلوط",
+        "گردوی خوارزمی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فندق",
+      "nameEn": "Hazelnut",
+      "count": 12,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "وانیل ماداگاسکار",
+      "nameEn": "Madagascar Vanilla",
+      "count": 12,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میموزا",
+      "nameEn": "Mimosa",
+      "count": 12,
+      "aliases": [
+        "میموس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نمک",
+      "nameEn": "Salt",
+      "count": 12,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آب دریا",
+      "nameEn": "Sea water",
+      "count": 12,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های شیرین",
+      "nameEn": "Sweet Notes",
+      "count": 12,
+      "aliases": [
+        "نت های شیرین",
+        "شیرین"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سنبل",
+      "nameEn": "Hyacinth",
+      "count": 11,
+      "aliases": [
+        "سنبل ختایی",
+        "سنبل‌خطایی",
+        "هایسسی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های معدنی",
+      "nameEn": "Mineral notes",
+      "count": 11,
+      "aliases": [
+        "معدنی",
+        "رایحه‌های معدنی",
+        "نت های معدنی",
+        "نتهای معدنی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پاپیروس",
+      "nameEn": "Papyrus",
+      "count": 11,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خامه زده",
+      "nameEn": "Whipped Cream",
+      "count": 11,
+      "aliases": [
+        "خامه زده شده",
+        "خامه فرم گرفته",
+        "خامه زده‌شده"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آمبروفیکس",
+      "nameEn": "Ambrofix",
+      "count": 10,
+      "aliases": [
+        "امبروکسن",
+        "امبروفیکس"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "برگ بو",
+      "nameEn": "Bay Leaf",
+      "count": 10,
+      "aliases": [
+        "برگ خشک برگبو"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای سیاه",
+      "nameEn": "Black Tea",
+      "count": 10,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "وانیل بوربون",
+      "nameEn": "Bourbon Vanilla",
+      "count": 10,
+      "aliases": [
+        "وانیل بوربن"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کومارین",
+      "nameEn": "Coumarin",
+      "count": 10,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "صنوبر",
+      "nameEn": "Fir",
+      "count": 10,
+      "aliases": [
+        "چوب صنوبر",
+        "چوب درخت نراد",
+        "درخت نراد (1) | EN: spruce"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های گیاهی",
+      "nameEn": "Herbal Notes",
+      "count": 10,
+      "aliases": [
+        "نت های گیاهی",
+        "گیاهی",
+        "گیاه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شیرین بیان",
+      "nameEn": "Licorice",
+      "count": 10,
+      "aliases": [
+        "شیرین‌بیان",
+        "ریشه شیرین"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شیر",
+      "nameEn": "Milk",
+      "count": 10,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های شرقی",
+      "nameEn": "Oriental notes",
+      "count": 10,
+      "aliases": [
+        "رایحه‌های شرقی",
+        "روایح شرقی",
+        "نت های شرقی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پسته",
+      "nameEn": "Pistachio",
+      "count": 10,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رزین",
+      "nameEn": "Resin",
+      "count": 10,
+      "aliases": [
+        "رزین‌ها",
+        "رزین ها",
+        "صمغ (1) | EN: resins"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سدر ویرجینیا",
+      "nameEn": "Virginia Cedar",
+      "count": 10,
+      "aliases": [
+        "سرو ویرجینیا",
+        "ویرجینیا (1) | EN: virginian cedar"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هندوانه",
+      "nameEn": "Watermelon",
+      "count": 10,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های بالزامی",
+      "nameEn": "Balsamic Notes",
+      "count": 9,
+      "aliases": [
+        "نت های بالزامیک",
+        "رایحه‌های بالزامیک",
+        "نت‌های بالزامیک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گیلاس سیاه",
+      "nameEn": "Black Cherry",
+      "count": 9,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یاس مصری",
+      "nameEn": "Egyptian Jasmine",
+      "count": 9,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یاس بنفش",
+      "nameEn": "Lilac",
+      "count": 9,
+      "aliases": [
+        "سرخالو"
+      ],
+      "pair": "partial"
+    },
+    {
+      "nameFa": "نیلوفر",
+      "nameEn": "Lotus",
+      "count": 9,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ماهونیال",
+      "nameEn": "Mahonial",
+      "count": 9,
+      "aliases": [
+        "ترکیب ماهونیال",
+        "چوب ماهونیال"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل جامائیکا",
+      "nameEn": "Pimento",
+      "count": 9,
+      "aliases": [
+        "پیمنتو",
+        "فلفل شیرین (2) | EN: allspice"
+      ],
+      "pair": "fixed"
+    },
+    {
+      "nameFa": "تافی",
+      "nameEn": "Toffee",
+      "count": 9,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب",
+      "nameEn": "Wood",
+      "count": 9,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "بادیان",
+      "nameEn": "Anise",
+      "count": 8,
+      "aliases": [
+        "انیسون"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکلات",
+      "nameEn": "Chocolate",
+      "count": 8,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکلات تلخ",
+      "nameEn": "Dark Chocolate",
+      "count": 8,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "وتیور هائیتی",
+      "nameEn": "Haitian Vetiver",
+      "count": 8,
+      "aliases": [
+        "خس خس هائیتی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل ختمی",
+      "nameEn": "Marshmallow Flower",
+      "count": 8,
+      "aliases": [
+        "گل ختی"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پرتقال سیسیلی",
+      "nameEn": "Sicilian Orange",
+      "count": 8,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "استیراکس",
+      "nameEn": "Styrax",
+      "count": 8,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نیلوفر آبی",
+      "nameEn": "Water Lily",
+      "count": 8,
+      "aliases": [
+        "لاله مردابی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب سفید",
+      "nameEn": "White Wood",
+      "count": 8,
+      "aliases": [
+        "چوب‌های سفید (1) | EN: white woods"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توت",
+      "nameEn": "Berries",
+      "count": 7,
+      "aliases": [
+        "توت‌ها"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "دانه هویج",
+      "nameEn": "Carrot Seeds",
+      "count": 7,
+      "aliases": [
+        "تخم هویج"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیکلامن",
+      "nameEn": "Cyclamen",
+      "count": 7,
+      "aliases": [
+        "شکوفه گل سیکلامن",
+        "گل پنجه مریم"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل",
+      "nameEn": "Flowers",
+      "count": 7,
+      "aliases": [
+        "گل‌ها",
+        "گل عطری"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پلومریا",
+      "nameEn": "Frangipani",
+      "count": 7,
+      "aliases": [
+        "فرانجی‌پانی",
+        "فرنگیپانی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نارنگی سبز",
+      "nameEn": "Green Mandarin",
+      "count": 7,
+      "aliases": [
+        "ماندارین سبز (1) | EN: green tangerine"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نرگس",
+      "nameEn": "Narcissus",
+      "count": 7,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نمک دریا",
+      "nameEn": "Sea Salt",
+      "count": 7,
+      "aliases": [
+        "نمک دریایی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ تنباکو",
+      "nameEn": "Tobacco Leaf",
+      "count": 7,
+      "aliases": [
+        "برگ توتون"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میوه‌های استوایی",
+      "nameEn": "Tropical Fruits",
+      "count": 7,
+      "aliases": [
+        "میوه های استوایی",
+        "میوه استوایی (1) | EN: tropical fruit"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ابسولوت وانیل",
+      "nameEn": "Vanilla Absolute",
+      "count": 7,
+      "aliases": [
+        "وانیل مطلق"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های آروماتیک",
+      "nameEn": "Aromatic Notes",
+      "count": 6,
+      "aliases": [
+        "گیاهان معطر"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکر قهوه‌ای",
+      "nameEn": "Brown sugar",
+      "count": 6,
+      "aliases": [
+        "قند قهوه ای"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگاموت کالابریا",
+      "nameEn": "Calabrian bergamot",
+      "count": 6,
+      "aliases": [
+        "ترنج کالابریا",
+        "ترنج کالابریایی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خامه",
+      "nameEn": "Cream",
+      "count": 6,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گل محمدی",
+      "nameEn": "Damask Rose",
+      "count": 6,
+      "aliases": [
+        "گل رز داماس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های خاکی",
+      "nameEn": "Earthy Notes",
+      "count": 6,
+      "aliases": [
+        "خاک",
+        "روایح خاکی",
+        "نت های خاکی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گواوا",
+      "nameEn": "Guava",
+      "count": 6,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بستنی",
+      "nameEn": "Ice cream",
+      "count": 6,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "به لیمو",
+      "nameEn": "Lemon Verbena",
+      "count": 6,
+      "aliases": [
+        "شاهی لیمو"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل همیشه‌بهار",
+      "nameEn": "Marigold",
+      "count": 6,
+      "aliases": [
+        "گل همیشه بهار"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رز می",
+      "nameEn": "May Rose",
+      "count": 6,
+      "aliases": [
+        "rose de mai"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شلیل",
+      "nameEn": "Nectarine",
+      "count": 6,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اوپوپوناکس",
+      "nameEn": "Opoponax",
+      "count": 6,
+      "aliases": [
+        "اپوپوناکس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پونه کوهی",
+      "nameEn": "Oregano",
+      "count": 6,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های ازونی",
+      "nameEn": "Ozonic notes",
+      "count": 6,
+      "aliases": [
+        "نت های اوزونیک",
+        "اوزون",
+        "نت‌های اوزون",
+        "ازونیک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل قرمز شیرین",
+      "nameEn": "Paprika",
+      "count": 6,
+      "aliases": [
+        "پاپریکا",
+        "فلفل فرنگی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ نعناع هندی اندونزیایی",
+      "nameEn": "Patchouli Leaf",
+      "count": 6,
+      "aliases": [
+        "برگ پچولی",
+        "برگ پاچولی",
+        "برگ نعناع هندی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیب قرمز",
+      "nameEn": "Red Apple",
+      "count": 6,
+      "aliases": [
+        "سیب سرخ"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل قرمز",
+      "nameEn": "Red Pepper",
+      "count": 6,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آلبالو",
+      "nameEn": "Sour Cherry",
+      "count": 6,
+      "aliases": [
+        "گیلاس ترش"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نیشکر",
+      "nameEn": "Sugar Cane",
+      "count": 6,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیمو شیرین",
+      "nameEn": "Sweet Lime",
+      "count": 6,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "فلفل تیمور",
+      "nameEn": "Timur",
+      "count": 6,
+      "aliases": [
+        "تیمور",
+        "فلفل تیمور نپالی (1) | EN: timut pepper"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آب",
+      "nameEn": "Water",
+      "count": 6,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیمو آمالفی",
+      "nameEn": "Amalfi Lemon",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های حیوانی",
+      "nameEn": "Animal notes",
+      "count": 5,
+      "aliases": [
+        "روایح حیوانی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب رز برزیلی",
+      "nameEn": "Brazilian Rosewood",
+      "count": 5,
+      "aliases": [
+        "اقاقیای برزیلی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کالون",
+      "nameEn": "Calone",
+      "count": 5,
+      "aliases": [
+        "کالن",
+        "کلن"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای سیاه چینی",
+      "nameEn": "Chinese Black Tea",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیوت",
+      "nameEn": "Civet",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پشمک",
+      "nameEn": "Cotton Candy",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اکالیپتوس",
+      "nameEn": "Eucalyptus",
+      "count": 5,
+      "aliases": [
+        "اوکالیپتوس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جورجی‌وود",
+      "nameEn": "Georgywood",
+      "count": 5,
+      "aliases": [
+        "چوب جورجیوود"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "انگور",
+      "nameEn": "Grape",
+      "count": 5,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "برگ‌های سبز",
+      "nameEn": "Green Leaves",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بالزام گورجان",
+      "nameEn": "Gurjan balsam",
+      "count": 5,
+      "aliases": [
+        "بلسان گرجان",
+        "گرجان",
+        "موم گورجان"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لاکتون",
+      "nameEn": "Lactones",
+      "count": 5,
+      "aliases": [
+        "لاکتون ها"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیکور",
+      "nameEn": "Liquor",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ماته",
+      "nameEn": "Mate",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یاس مراکشی",
+      "nameEn": "Moroccan Jasmine",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه هلو",
+      "nameEn": "Peach Blossom",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کاج",
+      "nameEn": "Pine",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "انار",
+      "nameEn": "Pomegranate",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیمو سیسیلی",
+      "nameEn": "Sicilian Lemon",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های خورشیدی",
+      "nameEn": "Solar Notes",
+      "count": 5,
+      "aliases": [
+        "نت های خورشیدی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هلوی سفید",
+      "nameEn": "White Peach",
+      "count": 5,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شیر بادام",
+      "nameEn": "Almond Milk",
+      "count": 4,
+      "aliases": [
+        "شیربادام"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سدر اطلس",
+      "nameEn": "Atlas Cedar",
+      "count": 4,
+      "aliases": [
+        "سرو اطلس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "صنوبر بلسان",
+      "nameEn": "Balsam Fir",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "روغن کاد",
+      "nameEn": "Cade oil",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عود کامبوجی",
+      "nameEn": "Cambodian Oud",
+      "count": 4,
+      "aliases": [
+        "روایح عود کامبودی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زیره سبز ایرانی",
+      "nameEn": "Caraway",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میخک قرنفل",
+      "nameEn": "Carnation",
+      "count": 4,
+      "aliases": [
+        "گل میخک",
+        "میخک صدپر"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "دارچین سیلان",
+      "nameEn": "Ceylon Cinnamon",
+      "count": 4,
+      "aliases": [
+        "دارچین سیلانی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بابونه",
+      "nameEn": "Chamomile",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "دراگون فروت",
+      "nameEn": "Dragon Fruit",
+      "count": 4,
+      "aliases": [
+        "پیتایا",
+        "میوه اژدها",
+        "پیتاهایا"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "میوه‌های خشک",
+      "nameEn": "Dried Fruits",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب دریایی",
+      "nameEn": "Driftwood",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیب گرنی اسمیت",
+      "nameEn": "Granny Smith apple",
+      "count": 4,
+      "aliases": [
+        "سیب اسمیت"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای سبز",
+      "nameEn": "Green Tea",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هدیون",
+      "nameEn": "Hedione",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یخ",
+      "nameEn": "Ice",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عود هندی",
+      "nameEn": "Indian Oud",
+      "count": 4,
+      "aliases": [
+        "روایح عود هندی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ایزو ای سوپر",
+      "nameEn": "Iso E Super",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کیوی",
+      "nameEn": "Kiwi",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ",
+      "nameEn": "Leaves",
+      "count": 4,
+      "aliases": [
+        "نوعی برگ"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پوست لیمو",
+      "nameEn": "Lemon Zest",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه گلابی",
+      "nameEn": "Pear Blossom",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گریپ‌فروت صورتی",
+      "nameEn": "Pink Grapefruit",
+      "count": 4,
+      "aliases": [
+        "گریپ فروت صورتی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پوملو",
+      "nameEn": "Pomelo",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جلبک دریایی",
+      "nameEn": "Seaweed",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بادیان ستاره‌ای",
+      "nameEn": "Star Anise",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پرتقال شیرین",
+      "nameEn": "Sweet Orange",
+      "count": 4,
+      "aliases": [
+        "نارنجی شیرین"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "غلاف وانیل",
+      "nameEn": "Vanilla Bean",
+      "count": 4,
+      "aliases": [
+        "دانه وانیل (1) | EN: vanilla pod"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل وانیل",
+      "nameEn": "Vanilla Flower",
+      "count": 4,
+      "aliases": [
+        "گل وانیلی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توت‌های وحشی",
+      "nameEn": "Wild Berries",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یوزو",
+      "nameEn": "Yuzu",
+      "count": 4,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "موز",
+      "nameEn": "Banana",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مشک سیاه",
+      "nameEn": "Black Musk",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بادام شکری",
+      "nameEn": "Candied Almond",
+      "count": 3,
+      "aliases": [
+        "بادام کاراملی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "هویج",
+      "nameEn": "Carrot",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ دارچین",
+      "nameEn": "Cinnamon Leaf",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آب نارگیل",
+      "nameEn": "Coconut Water",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل پنبه",
+      "nameEn": "Cotton Flower",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جوانه انگورفرنگی",
+      "nameEn": "Currant buds",
+      "count": 3,
+      "aliases": [
+        "جوانه انگور سیاه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب آبنوس",
+      "nameEn": "Ebony",
+      "count": 3,
+      "aliases": [
+        "آبنوس",
+        "ابنوس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "صمغ صنوبر",
+      "nameEn": "Fir Resin",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چمن",
+      "nameEn": "Grass",
+      "count": 3,
+      "aliases": [
+        "گراس"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جاویدان",
+      "nameEn": "Immortelle",
+      "count": 3,
+      "aliases": [
+        "ایمورتل"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیموی ایتالیایی",
+      "nameEn": "Italian Lemon",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ماندارین ایتالیایی",
+      "nameEn": "Italian Mandarin",
+      "count": 3,
+      "aliases": [
+        "نارنگی ایتالیایی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "علف لیمو",
+      "nameEn": "Lemongrass",
+      "count": 3,
+      "aliases": [
+        "علف‌لیمو"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ماهون",
+      "nameEn": "Mahogany",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مالتول",
+      "nameEn": "Maltol",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مصطکی",
+      "nameEn": "Mastic or Lentisque",
+      "count": 3,
+      "aliases": [
+        "ماستیک"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میستیکال",
+      "nameEn": "Mystikal",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زنجبیل نیجریه",
+      "nameEn": "Nigerian Ginger",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت های آجیلی",
+      "nameEn": "Nutty Notes",
+      "count": 3,
+      "aliases": [
+        "نت‌های آجیلی",
+        "نت های آجیل"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زیتون",
+      "nameEn": "Olive",
+      "count": 3,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چوب رز پالیساندر",
+      "nameEn": "Palisander Rosewood",
+      "count": 3,
+      "aliases": [
+        "اقاقیای پالیساندر"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پالو سانتو",
+      "nameEn": "Palo Santo",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نعناع فلفلی",
+      "nameEn": "Peppermint",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گلاب",
+      "nameEn": "Rose Water",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ترنج سیسیلی",
+      "nameEn": "Sicilian Bergamot",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل ابریشم",
+      "nameEn": "Silk Tree Blossom",
+      "count": 3,
+      "aliases": [
+        "شکوفه درخت ابریشم"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گل آفتابگردان",
+      "nameEn": "Sunflower",
+      "count": 3,
+      "aliases": [
+        "گل آفتاب‌گردان"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چوب ساج",
+      "nameEn": "Teak Wood",
+      "count": 3,
+      "aliases": [
+        "چوب درخت ساج"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "نرولی تونس",
+      "nameEn": "Tunisian Neroli",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ارکیده وانیل",
+      "nameEn": "Vanilla Orchid",
+      "count": 3,
+      "aliases": [
+        "ارکیده وانیلی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ودکا",
+      "nameEn": "Vodka",
+      "count": 3,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "عسل سفید",
+      "nameEn": "White Honey",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سوسن سفید",
+      "nameEn": "White Lily",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رز سفید",
+      "nameEn": "White Rose",
+      "count": 3,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اسطوخودوس وحشی",
+      "nameEn": "Wild Lavender",
+      "count": 3,
+      "aliases": [
+        "اسطوخدوس وحشی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بهارنارنج آفریقایی",
+      "nameEn": "African Orange Flower",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جلبک",
+      "nameEn": "Algae",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه بادام",
+      "nameEn": "Almond Blossom",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آمارتو",
+      "nameEn": "Amaretto",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربای اکستریم",
+      "nameEn": "Amber Xtreme",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آمبرتولید",
+      "nameEn": "Ambrettolide",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آنژلیک",
+      "nameEn": "Angelica",
+      "count": 2,
+      "aliases": [
+        "انجلیکا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آکوزون",
+      "nameEn": "Aquozone",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بیسکویت",
+      "nameEn": "Biscuit",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربای سیاه",
+      "nameEn": "Black Amber",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زیره سیاه",
+      "nameEn": "Black Cumin",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آلو سیاه",
+      "nameEn": "Black Plum",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "نارنگی خونی",
+      "nameEn": "Blood Mandarin",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "بلوبری",
+      "nameEn": "Blueberry",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "برندی",
+      "nameEn": "Brandy",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رایحه‌های آب‌نبات",
+      "nameEn": "Candy",
+      "count": 2,
+      "aliases": [
+        "آبنبات"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "شاهدانه",
+      "nameEn": "Cannabis",
+      "count": 2,
+      "aliases": [
+        "شاه دانه"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شامپاین",
+      "nameEn": "Champagne",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه گیلاس",
+      "nameEn": "Cherry Blossom",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل چیلی",
+      "nameEn": "Chili Pepper",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کولا",
+      "nameEn": "Cola",
+      "count": 2,
+      "aliases": [
+        "کوکا کولا"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کرم بروله",
+      "nameEn": "Crème Brûlée",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "خیار",
+      "nameEn": "Cucumber",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "برگ سرو",
+      "nameEn": "Cypress Leaf",
+      "count": 2,
+      "aliases": [
+        "برگ‌های سرو"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "دولسه د لچه",
+      "nameEn": "Dulce de leche",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رزین المی",
+      "nameEn": "Elemi resin",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میوه‌های اگزوتیک",
+      "nameEn": "Exotic Fruits",
+      "count": 2,
+      "aliases": [
+        "میوه‌های عجیب"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آکورد گورمند",
+      "nameEn": "Gourmand Accord",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زالزالک",
+      "nameEn": "Hawthorn",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کامکوات",
+      "nameEn": "Kumquat",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربای روشن",
+      "nameEn": "Light Amber",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ماهونیا",
+      "nameEn": "Mahonia",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب عود از مالزی",
+      "nameEn": "Malaysian Oud",
+      "count": 2,
+      "aliases": [
+        "عود مالزیایی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "افرا",
+      "nameEn": "Maple",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میرابل",
+      "nameEn": "Mirabelle",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شاتوت",
+      "nameEn": "Mulberry",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "عود دودی",
+      "nameEn": "Oud Smoke",
+      "count": 2,
+      "aliases": [
+        "دود عود"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پاناکوتا",
+      "nameEn": "Panna Cotta",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پلارگونیوم",
+      "nameEn": "Pelargonium",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بلسان پرو",
+      "nameEn": "Peru Balsam",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل پتالیا",
+      "nameEn": "Petaila Flower",
+      "count": 2,
+      "aliases": [],
+      "pair": "partial"
+    },
+    {
+      "nameFa": "به",
+      "nameEn": "Quince",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "سوسن قرمز",
+      "nameEn": "Red Lily",
+      "count": 2,
+      "aliases": [
+        "لیلی قرمز"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برنج",
+      "nameEn": "Rice",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گلبرگ رز",
+      "nameEn": "Rose Petals",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب رز مصری",
+      "nameEn": "Rosewood",
+      "count": 2,
+      "aliases": [
+        "چوب رز"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "نارنگی سیسیلی",
+      "nameEn": "Sicilian Mandarin",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پوست",
+      "nameEn": "Skin",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل برفی",
+      "nameEn": "Snowdrop",
+      "count": 2,
+      "aliases": [],
+      "pair": "partial"
+    },
+    {
+      "nameFa": "نت های گلی تند",
+      "nameEn": "Spicy Floral Notes",
+      "count": 2,
+      "aliases": [
+        "گل‌های ادویه‌دار"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "بادام شیرین",
+      "nameEn": "Sweet Almond",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "میوه های شیرین",
+      "nameEn": "Sweet Fruits",
+      "count": 2,
+      "aliases": [
+        "میوه‌های شیرین"
+      ],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "شربت",
+      "nameEn": "Syrup",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ترخون",
+      "nameEn": "Tarragon",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ریحان تایلندی",
+      "nameEn": "Thai Basil",
+      "count": 2,
+      "aliases": [],
+      "pair": "partial"
+    },
+    {
+      "nameFa": "گاردنیای تاهیتی",
+      "nameEn": "Tiare Flower",
+      "count": 2,
+      "aliases": [
+        "گل تیاره"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بهارنارنج تونس",
+      "nameEn": "Tunisian Orange Blossom",
+      "count": 2,
+      "aliases": [
+        "بهارنارنج تونسی"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زردچوبه",
+      "nameEn": "Turmeric",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زنبق توسکانی",
+      "nameEn": "Tuscan Iris",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شاه‌پسند",
+      "nameEn": "Vervain",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ویسکی",
+      "nameEn": "Whiskey",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربای سفید",
+      "nameEn": "White Amber",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "شکوفه سفید",
+      "nameEn": "White Blossom",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکلات سفید",
+      "nameEn": "White Chocolate",
+      "count": 2,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "فلفل سفید",
+      "nameEn": "White Pepper",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای سفید",
+      "nameEn": "White Tea",
+      "count": 2,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "افسنطین",
+      "nameEn": "Wormwood",
+      "count": 2,
+      "aliases": [
+        "افسنتین"
+      ],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شمعدانی آفریقایی",
+      "nameEn": "African Geranium",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بنفشه آفریقایی",
+      "nameEn": "African Violet",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "عود",
+      "nameEn": "Agarwood / Oud",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آگاو",
+      "nameEn": "Agave",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آمبرمکس",
+      "nameEn": "Ambermax",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "دانه آمبرت",
+      "nameEn": "Ambrette Seed",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آمبروسناید",
+      "nameEn": "Ambrocenide",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آپرول",
+      "nameEn": "Aperol",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "شکوفه سیب",
+      "nameEn": "Apple Blossom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آکورد قلیان سیب",
+      "nameEn": "Apple Shisha Accord",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه زردآلو",
+      "nameEn": "Apricot Blossom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آکورد آروماتیک",
+      "nameEn": "Aromatic Accord",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خاکستر",
+      "nameEn": "Ash",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بلسان",
+      "nameEn": "Balsam",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پوست درخت",
+      "nameEn": "Bark",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بلینی",
+      "nameEn": "Bellini",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ غان",
+      "nameEn": "Birch Leaf",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "فلفل سیاه و صورتی",
+      "nameEn": "Black and Pink Pepper",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شیرین‌بیان سیاه",
+      "nameEn": "Black Licorice",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بلک وود",
+      "nameEn": "Blackwood",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چوب‌های روشن",
+      "nameEn": "Blonde Woods",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کریستال آبی",
+      "nameEn": "Blue Crystal",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های الکلی",
+      "nameEn": "Boozy Notes",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل گاوزبان",
+      "nameEn": "Borage",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "ویسکی بوربون",
+      "nameEn": "Bourbon Whiskey",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "فلفل برزیلی",
+      "nameEn": "Brazilian Pepper",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "جارو زرد",
+      "nameEn": "Broom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکر سوخته",
+      "nameEn": "Burnt Sugar",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "کره",
+      "nameEn": "Butter",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "باتر کریم",
+      "nameEn": "Buttercream",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "شیر کره",
+      "nameEn": "Buttermilk",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "باتراسکاچ",
+      "nameEn": "Butterscotch",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "غلاف کاکائو",
+      "nameEn": "Cacao Pod",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "کیک",
+      "nameEn": "Cake",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "میوه‌های شکری",
+      "nameEn": "Candied Fruits",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیب شکری",
+      "nameEn": "Candy Apple",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کاپوچینو",
+      "nameEn": "Cappuccino",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "میوه ستاره‌ای",
+      "nameEn": "Carambola (Star Fruit)",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خاویار",
+      "nameEn": "Caviar",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "مربای گیلاس",
+      "nameEn": "Cherry Jam",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "لیکور گیلاس",
+      "nameEn": "Cherry Liqueur",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چینوتو",
+      "nameEn": "Chinotto",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ترافل شکلاتی",
+      "nameEn": "Chocolate Truffle",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "کلمانتین",
+      "nameEn": "Clementine",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شبدر",
+      "nameEn": "Clover",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پودر کاکائو",
+      "nameEn": "Cocoa Powder",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پالس کاکائو",
+      "nameEn": "Cocoapulse™",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب کوکوبولو",
+      "nameEn": "Cocobolo",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شهد نارگیل",
+      "nameEn": "Coconut Nectar",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بتن",
+      "nameEn": "Concrete",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کوکی",
+      "nameEn": "Cookie",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "کوستوس",
+      "nameEn": "Costus",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کریم سودا",
+      "nameEn": "Cream Soda",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "خامه‌ای",
+      "nameEn": "Creamy Notes",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "عنبر کریستالی",
+      "nameEn": "Crystal Amber",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "انگور فرنگی",
+      "nameEn": "Currant",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "کاستارد",
+      "nameEn": "Custard",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "داتوره",
+      "nameEn": "Datura",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "قطره شبنم",
+      "nameEn": "Dew Drop",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای ارل گری",
+      "nameEn": "Earl Grey Tea",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اورنیل",
+      "nameEn": "Evernyl",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب‌های اگزوتیک",
+      "nameEn": "Exotic Woods",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سرخس",
+      "nameEn": "Fern",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ انجیر",
+      "nameEn": "Fig Leaf",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "درخت انجیر",
+      "nameEn": "Fig Tree",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "ماهی",
+      "nameEn": "Fish",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "جوانه گل",
+      "nameEn": "Flower Buds",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "منشور گل",
+      "nameEn": "Flower Prism",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "آکورد فوژه",
+      "nameEn": "Fougère Accord",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "بهارنارنج فرانسوی",
+      "nameEn": "French orange flower",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ادویجات تازه",
+      "nameEn": "Fresh Spices",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "تمشک یخ زده",
+      "nameEn": "Frozen Raspberry",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گل های میوه ای",
+      "nameEn": "Fruity Floral Notes",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "برگ گالبانوم",
+      "nameEn": "Galbanum Leaf",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل زنجبیل",
+      "nameEn": "Ginger flower",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نان زنجبیلی",
+      "nameEn": "Gingerbread",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "تنتور موی بز",
+      "nameEn": "Goat hair tincture",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ مو",
+      "nameEn": "Grape Leaf",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "تاک",
+      "nameEn": "Grapevine",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "لیموی سبز",
+      "nameEn": "Green Lemon",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گلابی سبز",
+      "nameEn": "Green Pear",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گرانادین",
+      "nameEn": "Grenadine",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربا خاکستری",
+      "nameEn": "Grey Amber",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پاستیل",
+      "nameEn": "Gummy Candy",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "یونجه",
+      "nameEn": "Hay",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "هیبیسکوس",
+      "nameEn": "Hibiscus",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شانه عسل",
+      "nameEn": "Honeycomb",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سدر هندی",
+      "nameEn": "Indian Cedar",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "زنجبیل هندی",
+      "nameEn": "Indian Ginger",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "یاسمین هندی",
+      "nameEn": "Indian Jasmine",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "رز هندی",
+      "nameEn": "Indian Rose",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "صندل هندی",
+      "nameEn": "Indian Sandalwood",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "توبروز هندی",
+      "nameEn": "Indian Tuberose",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ترنج ایتالیایی",
+      "nameEn": "Italian Bergamot",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "جک فروت",
+      "nameEn": "Jackfruit",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "ارکیده یاس",
+      "nameEn": "Jasmine Orchid",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای یاس",
+      "nameEn": "Jasmine Tea",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گدازه",
+      "nameEn": "Lava",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لاواندین",
+      "nameEn": "Lavandin",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اسطوخودوس ابسولوت",
+      "nameEn": "Lavender Absolute",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پای مرنگ لیمو",
+      "nameEn": "Lemon Meringue Pie",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "روغن لیمو",
+      "nameEn": "Lemon Oil",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "دمنوش لیمو",
+      "nameEn": "Lemon Tea",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "درخت لیمو",
+      "nameEn": "Lemon Tree",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چوب‌های روشن",
+      "nameEn": "Light Woods",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه نمدار",
+      "nameEn": "Linden Blossom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ریشه شیرینی‌تلخ",
+      "nameEn": "Liquorice Root",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سوسن ماداگاسکار",
+      "nameEn": "Madagascar Lily",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "مالت گازدار",
+      "nameEn": "Malt Soda",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "مارگاریتا",
+      "nameEn": "Margarita",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پنیر ماسکارپونه",
+      "nameEn": "Mascarpone Cheese",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای ماچا",
+      "nameEn": "Matcha Tea",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مرنگ",
+      "nameEn": "Meringue",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های فلزی",
+      "nameEn": "Metallic Notes",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آب‌نبات شیری",
+      "nameEn": "Milk Candy",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نت‌های شیری",
+      "nameEn": "Milky Notes",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آکورد موپل",
+      "nameEn": "Moepel accord",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه مورینگا",
+      "nameEn": "Moringa Blossom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "رز مراکشی",
+      "nameEn": "Moroccan Rose",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "ماسکو میول",
+      "nameEn": "Moscow Mule",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "مورد",
+      "nameEn": "Myrtle",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گلابی ناشی",
+      "nameEn": "Nashi Pear",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شهد",
+      "nameEn": "Nectar",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل جوز هندی",
+      "nameEn": "Nutmeg Flower",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "روغن پرتقال",
+      "nameEn": "Orange Oil",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گرد زنبق",
+      "nameEn": "Orris Powder",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "خربزه درختی",
+      "nameEn": "Papaya",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گل ساعتی",
+      "nameEn": "Passion Flower",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عصاره گلابی",
+      "nameEn": "Pear Nectar",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پونه",
+      "nameEn": "Pennyroyal",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پتی دانه",
+      "nameEn": "Petit Grain",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "خاک نم خورده",
+      "nameEn": "Petrichor",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "دانه‌های پیمنتو",
+      "nameEn": "Pimento Seeds",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "درخت کاج",
+      "nameEn": "Pine Tree",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه آناناس",
+      "nameEn": "Pineapple blossom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برگ آناناس",
+      "nameEn": "Pineapple Leaf",
+      "count": 1,
+      "aliases": [],
+      "pair": "fa-missing"
+    },
+    {
+      "nameFa": "توت‌های صورتی",
+      "nameEn": "Pink Berries",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "سوسن صورتی",
+      "nameEn": "Pink Lily",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نیلوفر صورتی",
+      "nameEn": "Pink Lotus",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کرم پسته",
+      "nameEn": "Pistachio Spread Cream",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "لیکور آلو",
+      "nameEn": "Plum Liquor",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پوماروز",
+      "nameEn": "Pomarose",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پاپ کورن",
+      "nameEn": "Popcorn",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پرالین",
+      "nameEn": "Praliné",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب‌های گران‌بها",
+      "nameEn": "Precious Woods",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "پیچک رانگون",
+      "nameEn": "Rangoon Creeper",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "فلفل قرمز تند",
+      "nameEn": "Red Chilli Pepper",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "نیلوفر قرمز",
+      "nameEn": "Red Lotus",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گل صد تومانی قرمز",
+      "nameEn": "Red Peony",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "رز قرمز",
+      "nameEn": "Red Rose",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "گل سنگ (رز سنگی)",
+      "nameEn": "Rock rose",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چای رویبوس",
+      "nameEn": "Rooibos Tea",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "ریشه‌ها",
+      "nameEn": "Roots",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شیر گل رز",
+      "nameEn": "Rose Milk",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "روزیفولیا",
+      "nameEn": "Rosyfolia",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سداب",
+      "nameEn": "Rue",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چرم سافیانو",
+      "nameEn": "Saffiano Leather",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کارامل نمکی",
+      "nameEn": "Salted Caramel",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "شن",
+      "nameEn": "Sand",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "بنزوئین سیام",
+      "nameEn": "Siam Benzoin",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کاج سیبری",
+      "nameEn": "Siberian Pine",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "برف",
+      "nameEn": "Snow",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چوب‌های نرم",
+      "nameEn": "Soft Woods",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "نعناع سبز",
+      "nameEn": "Spearmint",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "غبار ستاره",
+      "nameEn": "Stardust",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سنگ",
+      "nameEn": "Stone",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آب‌نبات گازدار توت‌فرنگی",
+      "nameEn": "Strawberry Fizz Candy",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "اسمورز توت‌فرنگی",
+      "nameEn": "Strawberry S’mores",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سیمفونید",
+      "nameEn": "Symphonide",
+      "count": 1,
+      "aliases": [],
+      "pair": "fa-missing"
+    },
+    {
+      "nameFa": "تاجت",
+      "nameEn": "Tagetes",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "یاس تاهیتی",
+      "nameEn": "Tahitian Jasmine",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "تمبر هندی",
+      "nameEn": "Tamarind",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چای سبز",
+      "nameEn": "Tea Green",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "شکوفه تنباکو",
+      "nameEn": "Tobacco Blossom",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "تولو بالسام",
+      "nameEn": "Tolu Balsam",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "تونیک",
+      "nameEn": "Tonic",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "ترافل",
+      "nameEn": "Truffle",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "راحت الحلقوم",
+      "nameEn": "Turkish Delight",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "چوب مخملی",
+      "nameEn": "Velvet Woods",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "عود ویتنامی",
+      "nameEn": "Vietnamese Oud",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "چوب سدر ویتیور",
+      "nameEn": "Virginia Cedarwood & Vetiver",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "سنگ آتش‌فشان",
+      "nameEn": "Volcanic Rock",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گردو",
+      "nameEn": "Walnut",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گندم",
+      "nameEn": "Wheat",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "هلیوتروپ سفید",
+      "nameEn": "White Heliotrope",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "یاسمن سفید",
+      "nameEn": "White Jasmine",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گلابی سفید",
+      "nameEn": "White Pear",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "گل صد تومانی سفید",
+      "nameEn": "White Peony",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "پودر سفید",
+      "nameEn": "White Powder",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "تنباکوی سفید",
+      "nameEn": "White Tobacco",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زنبق وحشی",
+      "nameEn": "Wild Iris",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "ویستریا",
+      "nameEn": "Wisteria",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آکوردهای چوبی",
+      "nameEn": "Woody Accord",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "کهربای چوبی",
+      "nameEn": "Woody Amber",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "مشک چوبی",
+      "nameEn": "Woody Musk",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "میوه‌های زرد",
+      "nameEn": "Yellow Fruits",
+      "count": 1,
+      "aliases": [],
+      "pair": "data"
+    },
+    {
+      "nameFa": "زنبق زرد",
+      "nameEn": "Yellow Iris",
+      "count": 1,
+      "aliases": [],
+      "pair": "translated"
+    },
+    {
+      "nameFa": "آمبرتونیک",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "ابریشم ایتالیایی",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "بوته وحشی",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "بوته وحشی جاوی",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "خزه شیشه ای",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "سرمه",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "شکوفه پای",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "صمغ زرد",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "لوبیا",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "میوه شور",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "نمشک",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    },
+    {
+      "nameFa": "کالو",
+      "nameEn": null,
+      "count": 1,
+      "aliases": [],
+      "pair": "missing"
+    }
+  ]
+}

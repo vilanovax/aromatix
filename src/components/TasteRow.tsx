@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { faNum } from "@/lib/format";
 import { useAroma } from "@/lib/store";
 
@@ -116,15 +117,13 @@ export function TasteRow({
                 />
               </div>
 
-              <Button
-                variant={owned ? "secondary" : "outline"}
-                size="lg"
-                aria-pressed={owned}
-                onClick={() => setOwned((current) => !current)}
-                className="mt-5 min-h-12 w-full"
-              >
-                این عطر رو دارم
-              </Button>
+              <Checkbox
+                checked={owned}
+                onCheckedChange={setOwned}
+                label="این عطر را دارم"
+                description="اگر شیشه‌اش پیش توست، جدا از امتیاز در قفسه‌ات می‌ماند."
+                className="mt-5 min-h-11 items-center rounded-surface border border-border bg-secondary px-4 py-3 text-body"
+              />
               <Button
                 size="lg"
                 className="mt-3 min-h-12 w-full"
@@ -193,7 +192,7 @@ export function TasteRow({
           title={state?.owned ? "چون این عطر را داری، می‌خوام لازم نیست" : undefined}
           disabled={Boolean(state?.owned)}
           onClick={() => setWanted(slug)}
-          className="min-h-11 !whitespace-normal px-1 font-normal"
+          className="min-h-11 whitespace-normal! px-1 font-normal"
         >
           می‌خوام
         </Button>
@@ -211,7 +210,7 @@ export function TasteRow({
             size="md"
             aria-pressed={Boolean(experienced)}
             onClick={openExperience}
-            className="min-h-11 w-full !whitespace-normal px-1 font-normal"
+            className="min-h-11 w-full whitespace-normal! px-1 font-normal"
           >
             تجربه کردم
           </Button>
@@ -221,7 +220,7 @@ export function TasteRow({
           size="md"
           aria-pressed={Boolean(state?.disliked)}
           onClick={() => setDisliked(slug)}
-          className="min-h-11 !whitespace-normal px-1 font-normal"
+          className="min-h-11 whitespace-normal! px-1 font-normal"
         >
           دوست ندارم
         </Button>

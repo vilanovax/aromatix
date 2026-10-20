@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ShopEditor } from "@/app/admin/shop-editor";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
+import { offerMatchesShop } from "@/lib/offers";
 import { guardSection } from "@/lib/auth/admin";
 
 export const metadata: Metadata = { title: "ویرایش فروشگاه · مدیریت آروما" };
@@ -15,16 +15,12 @@ export default async function EditShopPage({ params }: { params: Promise<{ slug:
   const shop = snapshot.shops.find((item) => item.slug === slug);
   if (!shop) notFound();
   const offerCount = snapshot.perfumes.reduce(
-    (count, perfume) => count + perfume.shops.filter((offer) => offer.shop === shop.nameFa).length,
+    (count, perfume) => count + perfume.shops.filter((offer) => offerMatchesShop(offer, shop)).length,
     0,
   );
 
   return (
     <div className="mx-auto max-w-3xl">
-      <Link href="/admin/shops" className="text-label text-muted-foreground">
-        فروشگاه‌ها
-      </Link>
-      <h1 className="mt-2 text-headline font-bold">{shop.nameFa}</h1>
       <ShopEditor mode="edit" shop={shop} offerCount={offerCount} />
     </div>
   );
