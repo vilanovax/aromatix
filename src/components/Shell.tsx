@@ -35,7 +35,7 @@ export function Shell({
   const { library, ready, compare } = useAroma();
   const { user } = useAccount();
   useEffect(() => {
-    const sections = new Set(["/", "/results", "/shelf", "/brands", "/learn", "/guide", "/compare"]);
+    const sections = new Set(["/", "/results", "/shelf", "/brands", "/learn", "/guide", "/browse", "/palette", "/layer", "/couple", "/how", "/compare"]);
     if (sections.has(pathname) || pathname.startsWith("/reference/")) recordUsage("section_view", pathname);
     const perfume = pathname.match(/^\/perfume\/([^/?#]+)/);
     if (perfume) recordUsage("perfume_view", decodeURIComponent(perfume[1]));

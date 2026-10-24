@@ -1,4 +1,4 @@
-import { publicLead, publishedPerfumes, sharedAccordNames, sweetness } from "@/lib/catalog";
+import { guidePrice, publicLead, publishedPerfumes, sharedAccordNames, sweetness } from "@/lib/catalog";
 import { inspirationIds, sharesInspiration } from "@/lib/inspiration";
 import { remindsOfFor } from "@/lib/reminds-of";
 import { joinFa, millionToman } from "@/lib/format";
@@ -6,10 +6,11 @@ import { suggestForTaste } from "@/lib/match";
 import type { ScentFace } from "@/lib/personal-fit";
 import type { Perfume, UserPerfume } from "@/lib/types";
 
+export type AltItem = { perfume: Perfume; reason: string };
 export type AltGroup = {
   id: "family" | "closest" | "milder" | "cheaper" | "escape";
   title: string;
-  items: Array<{ perfume: Perfume; reason: string }>;
+  items: AltItem[];
 };
 
 export function alternativeGroups(input: {
@@ -18,6 +19,8 @@ export function alternativeGroups(input: {
   budget: number | null;
   escape: boolean;
   library: Record<string, UserPerfume | undefined>;
+  /** When set, «ارزان‌تر» is priced against this bottle (Iran offers). */
+  source?: Perfume | null;
 }): AltGroup[] {
   const affordable = input.pool.filter((perfume) => within(perfume, input.budget));
   if (affordable.length === 0) return [];
@@ -43,13 +46,19 @@ export function alternativeGroups(input: {
     });
   }
 
-  const cheaper = pickCheaper(affordable.filter((perfume) => !used.has(perfume.slug)), closest);
-  if (cheaper) {
-    used.add(cheaper.slug);
+  const cheaperItems = cheaperAlternatives({
+    face: input.face,
+    pool: affordable.filter((perfume) => !used.has(perfume.slug)),
+    source: input.source ?? null,
+    closest,
+    limit: 3,
+  });
+  if (cheaperItems.length > 0) {
+    for (const item of cheaperItems) used.add(item.perfume.slug);
     groups.push({
       id: "cheaper",
-      title: "ارزان‌تر در همین حال‌وهوا",
-      items: [{ perfume: cheaper, reason: cheaperReason(input.face, cheaper) }],
+      title: "ارزان‌تر شبیه این، در ایران",
+      items: cheaperItems,
     });
   }
 
@@ -80,6 +89,46 @@ export function alternativeGroups(input: {
   }
 
   return groups;
+}
+
+/** Cheaper-in-Iran alternatives in the same scent neighborhood. */
+export function cheaperAlternatives(input: {
+  face: ScentFace;
+  pool: Perfume[];
+  source?: Perfume | null;
+  closest?: Perfume | null;
+  limit?: number;
+}): AltItem[] {
+  const limit = input.limit ?? 3;
+  const ceiling =
+    knownPrice(input.source) ??
+    knownPrice(input.closest) ??
+    null;
+  const priced = input.pool
+    .map((perfume) => ({ perfume, price: publicLead(perfume)?.price ?? null }))
+    .filter((item): item is { perfume: Perfume; price: number } => item.price != null);
+  if (priced.length === 0) return [];
+
+  const below =
+    ceiling != null ? priced.filter((item) => item.price < ceiling) : priced;
+  const source = below.length > 0 ? below : ceiling == null ? priced : [];
+  return source
+    .sort(
+      (a, b) =>
+        a.price - b.price ||
+        sharedAccordNames(asPerfume(input.face), b.perfume).length -
+          sharedAccordNames(asPerfume(input.face), a.perfume).length,
+    )
+    .slice(0, limit)
+    .map((item) => ({
+      perfume: item.perfume,
+      reason: cheaperReason(input.face, item.perfume, ceiling),
+    }));
+}
+
+function knownPrice(perfume: Perfume | null | undefined) {
+  if (!perfume) return null;
+  return publicLead(perfume)?.price ?? guidePrice(perfume);
 }
 
 function echoIds(perfume: Perfume): string[] {
@@ -115,18 +164,6 @@ function pickClosest(face: ScentFace, pool: Perfume[]) {
   return [...pool].sort((a, b) => sharedAccordNames(asPerfume(face), b).length - sharedAccordNames(asPerfume(face), a).length || b.confidence - a.confidence)[0] ?? null;
 }
 
-function pickCheaper(pool: Perfume[], closest: Perfume | null) {
-  const priced = pool
-    .map((perfume) => ({ perfume, price: publicLead(perfume)?.price ?? null }))
-    .filter((item): item is { perfume: Perfume; price: number } => item.price != null);
-  if (priced.length === 0) return null;
-  const closestPrice = closest ? publicLead(closest)?.price : null;
-  const below = closestPrice != null ? priced.filter((item) => item.price < closestPrice) : priced;
-  const source = below.length > 0 ? below : [];
-  if (closestPrice == null) return priced.sort((a, b) => a.price - b.price)[0]?.perfume ?? null;
-  return source.sort((a, b) => a.price - b.price)[0]?.perfume ?? null;
-}
-
 function pickMilder(pool: Perfume[], closest: Perfume | null) {
   if (!closest) return null;
   const quieter = pool.filter((perfume) => (perfume.sillage ?? 5) < (closest.sillage ?? 5));
@@ -137,11 +174,14 @@ function pickMilder(pool: Perfume[], closest: Perfume | null) {
   return lessSweet.sort((a, b) => sweetness(a) - sweetness(b))[0] ?? null;
 }
 
-function cheaperReason(face: ScentFace, perfume: Perfume) {
-  const price = publicLead(perfume)?.price;
+function cheaperReason(face: ScentFace, perfume: Perfume, ceiling: number | null) {
+  const offer = publicLead(perfume);
   const like = likeness(face, perfume);
-  if (price == null) return like;
-  return `${millionToman(price)}. ${like}`;
+  if (!offer) return like;
+  if (ceiling != null && offer.price < ceiling) {
+    return `${millionToman(offer.price)} در ${offer.shop}؛ ارزان‌تر از این شیشه. ${like}`;
+  }
+  return `${millionToman(offer.price)} در ${offer.shop}. ${like}`;
 }
 
 function milderReason(closest: Perfume | null, perfume: Perfume) {

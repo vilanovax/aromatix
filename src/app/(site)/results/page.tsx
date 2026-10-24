@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PerfumeCard } from "@/components/PerfumeCard";
 import { Shell } from "@/components/Shell";
 import { Alert } from "@/components/ui/alert";
@@ -8,9 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { higherBudget } from "@/lib/budgets";
-import { LEANINGS } from "@/lib/catalog";
+import { LEANINGS, getPerfume } from "@/lib/catalog";
+import { computeDna } from "@/lib/dna";
 import { countWord, faNum } from "@/lib/format";
-import { matchPerfumes, resultHeading } from "@/lib/match";
+import { matchPerfumes, resultHeading, suggestForTaste } from "@/lib/match";
+import { perfumeHref } from "@/lib/nav";
 import { useAroma } from "@/lib/store";
 import { recordUsages } from "@/lib/usage";
 import type { Leaning, Profile } from "@/lib/types";
@@ -18,6 +20,11 @@ import type { Leaning, Profile } from "@/lib/types";
 export default function ResultsPage() {
   const { ready, profile, setProfile, library } = useAroma();
   const results = useMemo(() => (profile ? matchPerfumes(profile, library) : []), [profile, library]);
+  const dna = useMemo(() => computeDna(library, getPerfume), [library]);
+  const taste = useMemo(
+    () => (dna.stage === "early" || dna.stage === "dna" ? suggestForTaste(library, 3) : []),
+    [dna.stage, library],
+  );
   useEffect(() => {
     if (results.length === 0) return;
     recordUsages(
@@ -45,6 +52,9 @@ export default function ResultsPage() {
               <Button href="/guide" variant="outline" className="min-h-11">
                 سؤال‌های کوتاه
               </Button>
+              <Button href="/browse" variant="outline" className="min-h-11">
+                فیلتر
+              </Button>
             </div>
           }
         />
@@ -60,6 +70,28 @@ export default function ResultsPage() {
                 : ""}
             </p>
             {profile.note ? <Alert className="mt-3">{profile.note}</Alert> : null}
+            {dna.stage === "early" || dna.stage === "dna" ? (
+              <Card className="mt-4 p-4">
+                <p className="text-label text-muted-foreground">سلیقهٔ تو</p>
+                <p className="mt-2 text-pretty text-body">{dna.sentence}</p>
+                {taste.length > 0 ? (
+                  <ul className="mt-3 flex flex-col gap-2">
+                    {taste.map((perfume) => (
+                      <li key={perfume.slug}>
+                        <Button
+                          href={perfumeHref(perfume.slug, "/results")}
+                          variant="ghost"
+                          className="min-h-11 w-full justify-start! px-0! font-medium"
+                        >
+                          {perfume.nameFa}
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+                <CopyLine text={dna.sentence} />
+              </Card>
+            ) : null}
             {results.length > 0 && profile.leaning == null ? (
               <LeaningQuestion profile={profile} onPick={setProfile} />
             ) : null}
@@ -103,6 +135,25 @@ export default function ResultsPage() {
         </div>
       )}
     </Shell>
+  );
+}
+
+function CopyLine({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <Button
+      type="button"
+      variant="outline"
+      className="mt-3 min-h-11 w-full bg-card!"
+      onClick={() => {
+        void navigator.clipboard.writeText(text).then(
+          () => setCopied(true),
+          () => setCopied(false),
+        );
+      }}
+    >
+      {copied ? "جمله کپی شد" : "کپی جملهٔ سلیقه"}
+    </Button>
   );
 }
 

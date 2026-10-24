@@ -52,6 +52,16 @@ export default function ShelfPage() {
         <h1 className="text-headline font-bold">آرومای من</h1>
         <p className="mt-2 text-pretty text-body text-muted-foreground">سلیقه و مجموعه‌ات روی همین دستگاه.</p>
         <AccountStrip />
+        {ready ? (
+          <div className="mt-4 flex flex-col gap-2">
+            <Button href="/layer" variant="outline" className="min-h-11 w-full bg-card!">
+              دو عطر را روی هم بزن
+            </Button>
+            <Button href="/couple" variant="outline" className="min-h-11 w-full bg-card!">
+              ست دونفره
+            </Button>
+          </div>
+        ) : null}
 
         {!ready ? null : entries.length === 0 ? (
           <div className="mt-8">

@@ -171,7 +171,15 @@ export function isPerfumeLookup(input: string) {
 }
 
 export type AskIntent =
-  | { type: "perfume"; slug: string; similar: boolean; occasion: string | null; season: Season | null }
+  | {
+      type: "perfume";
+      slug: string;
+      similar: boolean;
+      /** Scroll to Iran cheaper alternatives on the perfume page. */
+      cheaper: boolean;
+      occasion: string | null;
+      season: Season | null;
+    }
   | { type: "reference"; id: string; occasion: string | null; season: Season | null; budget: number | null }
   | { type: "brand"; slug: string }
   | { type: "learn"; slug: string }
@@ -186,6 +194,7 @@ export function interpretQuery(raw: string): AskIntent {
   const reference = findReference(text);
   const scene = hasScene(text);
   const similar = /شبیه|مثل/.test(text);
+  const cheaper = /ارزان|جایگزین|دوپ/.test(text);
   const parsed = scene || reference ? parseLine(text) : null;
   const occasion = parsed?.occasions[0] ?? null;
   const season = parsed && parsed.season !== "all" ? parsed.season : null;
@@ -193,11 +202,18 @@ export function interpretQuery(raw: string): AskIntent {
   if (reference && !perfume) {
     return { type: "reference", id: reference.id, occasion, season, budget: parsed?.budget ?? null };
   }
-  if (perfume && (similar || !scene)) {
-    return { type: "perfume", slug: perfume.slug, similar, occasion: scene ? occasion : null, season: scene ? season : null };
+  if (perfume && (similar || cheaper || !scene)) {
+    return {
+      type: "perfume",
+      slug: perfume.slug,
+      similar: similar || cheaper,
+      cheaper,
+      occasion: scene ? occasion : null,
+      season: scene ? season : null,
+    };
   }
   if (perfume && scene) {
-    return { type: "perfume", slug: perfume.slug, similar: false, occasion, season };
+    return { type: "perfume", slug: perfume.slug, similar: false, cheaper: false, occasion, season };
   }
   if (!scene) {
     const lesson = findKnowledge(text);

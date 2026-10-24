@@ -34,6 +34,7 @@ import { fragranticaHref } from "@/lib/fragrantica";
 import { cn, faNum, millionToman } from "@/lib/format";
 import { referenceHref, resolvePerfumeBack } from "@/lib/nav";
 import { contextFit, faceFromPerfume } from "@/lib/personal-fit";
+import { plainScentLine } from "@/lib/plain-scent";
 import { rememberVisit } from "@/lib/recent";
 import { echoesFor, type ReferenceProfile } from "@/lib/references";
 import { wearHref } from "@/lib/wear";
@@ -85,186 +86,228 @@ function PerfumeScreen() {
   const askedSeason = askedSeasonOf(search.get("season"));
   const face = faceFromPerfume(perfume);
   const context = contextFit(face, { occasion: search.get("occasion"), season: askedSeason });
+  const plain = plainScentLine(perfume);
+  const focus = search.get("focus");
 
   useEffect(() => {
     rememberVisit({ href: `/perfume/${perfume.slug}`, label: perfume.nameFa });
   }, [perfume.slug, perfume.nameFa]);
 
   useEffect(() => {
-    if (search.get("focus") !== "similar") return;
-    document.getElementById("similar")?.scrollIntoView({ block: "start" });
-  }, [search]);
+    if (focus !== "similar" && focus !== "cheaper") return;
+    const id = focus === "cheaper" ? "cheaper" : "similar";
+    document.getElementById(id)?.scrollIntoView({ block: "start" });
+  }, [focus]);
 
   return (
     <Shell composer back={back}>
       <ReportPerfume slug={perfume.slug} name={perfume.nameFa}>
-      <article className="vf app step-in px-5 pt-4 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-        <figure className="overflow-hidden rounded-surface bg-secondary">
-          <PerfumePhoto
-            perfume={perfume}
-            sizes="hero"
-            zoomable
-            alt={`شیشهٔ ${perfume.nameFa}`}
-            className="flex h-56 w-full items-center justify-center overflow-hidden sm:h-64"
-          />
-        </figure>
+        <article className="vf app step-in px-5 pt-4 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
+          <figure className="overflow-hidden rounded-surface bg-secondary">
+            <PerfumePhoto
+              perfume={perfume}
+              sizes="hero"
+              zoomable
+              alt={`شیشهٔ ${perfume.nameFa}`}
+              className="flex h-56 w-full items-center justify-center overflow-hidden sm:h-64"
+            />
+          </figure>
 
-        <header className="mt-5">
-          <div className="flex items-start gap-3">
-            <div className="min-w-0 flex-1">
-              <h1 className="text-balance text-display font-bold">{perfume.nameFa}</h1>
-              <p className="mt-1 text-body text-muted-foreground">
-                <BrandLink name={perfume.brand} from={perfume.slug} />
-              </p>
-              <p className="mt-1 text-label text-muted-foreground">
-                <bdi dir="ltr">{perfume.nameEn}</bdi>
-              </p>
+          <header className="mt-5">
+            <div className="flex items-start gap-3">
+              <div className="min-w-0 flex-1">
+                <h1 className="text-balance text-display font-bold">{perfume.nameFa}</h1>
+                <p className="mt-1 text-body text-muted-foreground">
+                  <BrandLink name={perfume.brand} from={perfume.slug} />
+                </p>
+                <p className="mt-1 text-label text-muted-foreground">
+                  <bdi dir="ltr">{perfume.nameEn}</bdi>
+                </p>
+              </div>
+              <div className="mt-1 flex shrink-0 items-center gap-2">
+                <FragranticaLink name={perfume.nameFa} href={fragranticaHref(perfume.sourceUrl)} />
+                <ReportPerfumeButton />
+                <Button
+                  variant={picked ? "default" : "outline"}
+                  size="sm"
+                  aria-pressed={picked}
+                  aria-label={picked ? `حذف ${perfume.nameFa} از مقایسه` : `افزودن ${perfume.nameFa} به مقایسه`}
+                  onClick={() => toggleCompare(perfume.slug)}
+                  className={cn("min-h-11 shrink-0 rounded-full! px-3 font-medium", !picked && "bg-card!")}
+                >
+                  {picked ? <Check strokeWidth={2} /> : null}
+                  مقایسه
+                </Button>
+              </div>
             </div>
-            <div className="mt-1 flex shrink-0 items-center gap-2">
-              <FragranticaLink name={perfume.nameFa} href={fragranticaHref(perfume.sourceUrl)} />
-              <ReportPerfumeButton />
-              <Button
-                variant={picked ? "default" : "outline"}
-                size="sm"
-                aria-pressed={picked}
-                aria-label={picked ? `حذف ${perfume.nameFa} از مقایسه` : `افزودن ${perfume.nameFa} به مقایسه`}
-                onClick={() => toggleCompare(perfume.slug)}
-                className={cn("min-h-11 shrink-0 rounded-full! px-3 font-medium", !picked && "bg-card!")}
-              >
-                {picked ? <Check strokeWidth={2} /> : null}
-                مقایسه
-              </Button>
-            </div>
+            <ReportPerfumePanel />
+
+            <ul className="mt-3 flex flex-wrap justify-start gap-2" aria-label="مشخصات شیشه">
+              {perfume.concentration ? (
+                <li>
+                  {concentrationEntry ? (
+                    <TermChip slug={concentrationEntry.slug}>{perfume.concentration}</TermChip>
+                  ) : (
+                    <Badge className="rounded-full bg-secondary px-3">{perfume.concentration}</Badge>
+                  )}
+                </li>
+              ) : null}
+              {perfume.volumeMl != null ? (
+                <li>
+                  <Badge className="rounded-full bg-secondary px-3">{faNum(perfume.volumeMl)} میلی‌لیتر</Badge>
+                </li>
+              ) : null}
+              {perfume.marketGender !== "مشترک" ? (
+                <li>
+                  <Badge variant="secondary">{perfume.marketGender}</Badge>
+                </li>
+              ) : null}
+            </ul>
+          </header>
+
+          <div className="mt-5">
+            <AccordMark accords={perfume.accords} names />
           </div>
-          <ReportPerfumePanel />
 
-          <ul className="mt-3 flex flex-wrap justify-start gap-2" aria-label="مشخصات شیشه">
-            {perfume.concentration ? (
-              <li>
-                {concentrationEntry ? (
-                  <TermChip slug={concentrationEntry.slug}>{perfume.concentration}</TermChip>
-                ) : (
-                  <Badge className="rounded-full bg-secondary px-3">{perfume.concentration}</Badge>
-                )}
-              </li>
-            ) : null}
-            {perfume.volumeMl != null ? (
-              <li>
-                <Badge className="rounded-full bg-secondary px-3">{faNum(perfume.volumeMl)} میلی‌لیتر</Badge>
-              </li>
-            ) : null}
-            {perfume.marketGender !== "مشترک" ? (
-              <li>
-                <Badge variant="secondary">{perfume.marketGender}</Badge>
-              </li>
-            ) : null}
-          </ul>
-        </header>
+          {plain ? (
+            <section className="mt-5" aria-labelledby="plain-title">
+              <h2 id="plain-title" className="sr-only">
+                به زبان ساده
+              </h2>
+              <p className="text-pretty text-body">{plain}</p>
+              {perfume.why && perfume.why.trim() !== plain.trim() ? (
+                <p className="mt-3 text-pretty text-body text-muted-foreground">{perfume.why}</p>
+              ) : null}
+            </section>
+          ) : perfume.why ? (
+            <p className="mt-5 text-pretty text-body">{perfume.why}</p>
+          ) : null}
 
-        <div className="mt-5">
-          <AccordMark accords={perfume.accords} names />
-        </div>
-
-        <p className="mt-5 text-pretty text-body">{perfume.why}</p>
-
-        {echoes.length > 0 ? <Echoes items={echoes} from={`/perfume/${perfume.slug}`} /> : null}
-
-        <Button
-          size="lg"
-          onClick={() => openShops(perfume.slug)}
-          className="mt-5 h-auto! w-full justify-between! gap-3 whitespace-normal! px-4 py-3 text-start"
-        >
-          <span className="min-w-0">
-            <span className="block text-body font-semibold">
-              {offer
-                ? `از ${millionToman(offer.price)}`
-                : guide
-                  ? `حدود ${millionToman(guide)}`
-                  : "فروشگاه‌ها"}
-            </span>
-            {offer ? (
-              <span className="mt-1 flex items-center gap-2 text-label font-normal leading-5 text-primary-foreground/80">
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "size-2 shrink-0 rounded-full",
-                    offerAvailability(offer) === "in_stock" && "bg-stock-ok-on-ink",
-                    offerAvailability(offer) !== "in_stock" && "bg-stock-pending-on-ink",
-                  )}
-                />
-                <span className="min-w-0 text-pretty">
-                  {offer.shop}، {offerStockLine(offer)}
+          <Button
+            size="lg"
+            onClick={() => openShops(perfume.slug)}
+            className="mt-5 h-auto! w-full justify-between! gap-3 whitespace-normal! px-4 py-3 text-start"
+          >
+            <span className="min-w-0">
+              <span className="block text-body font-semibold">
+                {offer
+                  ? `از ${millionToman(offer.price)}`
+                  : guide
+                    ? `حدود ${millionToman(guide)}`
+                    : "فروشگاه‌ها"}
+              </span>
+              {offer ? (
+                <span className="mt-1 flex items-center gap-2 text-label font-normal leading-5 text-primary-foreground/80">
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "size-2 shrink-0 rounded-full",
+                      offerAvailability(offer) === "in_stock" && "bg-stock-ok-on-ink",
+                      offerAvailability(offer) !== "in_stock" && "bg-stock-pending-on-ink",
+                    )}
+                  />
+                  <span className="min-w-0 text-pretty">
+                    {offer.shop}، {offerStockLine(offer)}
+                  </span>
                 </span>
-              </span>
-            ) : guide ? (
-              <span className="mt-1 block text-label font-normal leading-5 text-primary-foreground/80">
-                برآورد کاتالوگ؛ قیمت فروشگاه جدا ثبت می‌شود
-              </span>
-            ) : null}
-          </span>
-          <span className="inline-flex shrink-0 items-center gap-1 text-label font-medium">
-            فروشگاه‌ها
-            <ChevronLeft strokeWidth={2} />
-          </span>
-        </Button>
-        {cheaper ? (
-          <Alert variant="warning" className="mt-3">
-            در {cheaper.shop} {millionToman(cheaper.price)}، موجودی تأیید نشده
-          </Alert>
-        ) : null}
-
-        <ForYou face={face} context={context} />
-
-        {showFacts ? (
-          <Card className="mt-8 p-0">
-            <div>
-              {season ? (
-                <Fact
-                  label="فصل"
-                  value={season}
-                  href={wearHref(
-                    "season",
-                    perfume.seasons,
-                    `/perfume/${perfume.slug}`,
-                  )}
-                />
+              ) : guide ? (
+                <span className="mt-1 block text-label font-normal leading-5 text-primary-foreground/80">
+                  برآورد کاتالوگ؛ قیمت فروشگاه جدا ثبت می‌شود
+                </span>
               ) : null}
-              {perfume.longevity ? (
-                <Fact label="ماندگاری" term="longevity-sillage" value={performanceLabel("longevity", perfume.longevity)} />
-              ) : null}
-              {perfume.sillage ? (
-                <Fact label="پخش بو" term="longevity-sillage" value={performanceLabel("sillage", perfume.sillage)} />
-              ) : null}
-            </div>
-          </Card>
-        ) : null}
+            </span>
+            <span className="inline-flex shrink-0 items-center gap-1 text-label font-medium">
+              فروشگاه‌ها
+              <ChevronLeft strokeWidth={2} />
+            </span>
+          </Button>
+          {cheaper ? (
+            <Alert variant="warning" className="mt-3">
+              در {cheaper.shop} {millionToman(cheaper.price)}، موجودی تأیید نشده
+            </Alert>
+          ) : null}
 
-        {perfume.notes.length > 0 ? (
-          <section className="mt-8" aria-labelledby="pyramid-title">
-            <h2 id="pyramid-title" className="text-title font-semibold">
-              هرم بو
+          <Button
+            type="button"
+            variant="outline"
+            onClick={() => document.getElementById("cheaper")?.scrollIntoView({ block: "start" })}
+            className="mt-3 min-h-11 w-full justify-between! bg-card! px-4 font-medium"
+          >
+            <span>شبیه این، ارزان‌تر در ایران</span>
+            <ChevronLeft strokeWidth={1.5} aria-hidden="true" />
+          </Button>
+          <Button
+            href={`/layer?a=${encodeURIComponent(perfume.slug)}`}
+            variant="ghost"
+            className="mt-1 min-h-11 w-full justify-start! px-0! font-medium"
+          >
+            با عطر دیگری لایه کن
+          </Button>
+          <Button
+            href={`/couple?a=${encodeURIComponent(perfume.slug)}`}
+            variant="ghost"
+            className="min-h-11 w-full justify-start! px-0! font-medium"
+          >
+            ست دونفره با عطر دیگر
+          </Button>
+
+          <ForYou face={face} context={context} />
+
+          {showFacts ? (
+            <Card className="mt-8 p-0">
+              <div>
+                {season ? (
+                  <Fact
+                    label="فصل"
+                    value={season}
+                    href={wearHref("season", perfume.seasons, `/perfume/${perfume.slug}`)}
+                  />
+                ) : null}
+                {perfume.longevity ? (
+                  <Fact
+                    label="ماندگاری"
+                    term="longevity-sillage"
+                    value={performanceLabel("longevity", perfume.longevity)}
+                  />
+                ) : null}
+                {perfume.sillage ? (
+                  <Fact
+                    label="پخش بو"
+                    term="longevity-sillage"
+                    value={performanceLabel("sillage", perfume.sillage)}
+                  />
+                ) : null}
+              </div>
+            </Card>
+          ) : null}
+
+          {perfume.notes.length > 0 ? (
+            <section className="mt-8" aria-labelledby="pyramid-title">
+              <h2 id="pyramid-title" className="text-title font-semibold">
+                هرم بو
+              </h2>
+              <Card className="mt-3 px-4">
+                <NoteStack notes={perfume.notes} />
+              </Card>
+            </section>
+          ) : null}
+
+          {echoes.length > 0 ? <Echoes items={echoes} from={`/perfume/${perfume.slug}`} /> : null}
+
+          <AlternativeGroups perfume={perfume} from={`/perfume/${perfume.slug}`} />
+
+          <section className="mt-8" aria-labelledby="taste-title">
+            <h2 id="taste-title" className="text-title font-semibold">
+              این عطر چطوره؟
             </h2>
-            <Card className="mt-3 px-4">
-              <NoteStack notes={perfume.notes} />
+            <p className="mt-1 text-pretty text-label text-muted-foreground">
+              برای آرومای من و پیشنهاد بعدی نگه می‌داریم.
+            </p>
+            <Card className="mt-3 p-2">
+              <TasteRow slug={perfume.slug} name={perfume.nameFa} />
             </Card>
           </section>
-        ) : null}
-
-        <AlternativeGroups perfume={perfume} from={`/perfume/${perfume.slug}`} />
-
-        <section className="mt-8" aria-labelledby="taste-title">
-          <h2 id="taste-title" className="text-title font-semibold">
-            این عطر چطوره؟
-          </h2>
-          <p className="mt-1 text-pretty text-label text-muted-foreground">
-            برای آرومای من و پیشنهاد بعدی نگه می‌داریم.
-          </p>
-          <Card className="mt-3 p-2">
-            <TasteRow slug={perfume.slug} name={perfume.nameFa} />
-          </Card>
-        </section>
-
-      </article>
+        </article>
       </ReportPerfume>
     </Shell>
   );
@@ -315,7 +358,8 @@ function Fact({ label, value, term, href }: { label: string; value: string; term
       <span className="mt-1 block text-pretty text-body font-semibold">{value}</span>
     </>
   );
-  const className = "flex min-h-16 w-full flex-col justify-center border-b border-border px-4 py-3 text-start last:border-b-0";
+  const className =
+    "flex min-h-16 w-full flex-col justify-center border-b border-border px-4 py-3 text-start last:border-b-0";
   if (term) {
     return (
       <button
@@ -329,7 +373,10 @@ function Fact({ label, value, term, href }: { label: string; value: string; term
   }
   if (href) {
     return (
-      <Link href={href} className={cn(className, "outline-offset-2 hover:bg-press focus-visible:outline-2 focus-visible:outline-ring")}>
+      <Link
+        href={href}
+        className={cn(className, "outline-offset-2 hover:bg-press focus-visible:outline-2 focus-visible:outline-ring")}
+      >
         {body}
       </Link>
     );

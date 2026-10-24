@@ -33,6 +33,11 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
   if (path === "/brands" || path === "brands") return { href: "/brands", label: "برندها" };
   if (path === "/learn" || path === "learn") return { href: "/learn", label: "دانستنی‌ها" };
   if (path === "/guide") return { href: "/guide", label: "راهنما" };
+  if (path === "/browse") return { href: "/browse", label: "فیلتر" };
+  if (path === "/layer" || path.startsWith("/layer?")) return { href: "/layer", label: "لایه‌کردن" };
+  if (path === "/couple" || path.startsWith("/couple?")) return { href: "/couple", label: "ست دونفره" };
+  if (path === "/palette" || path.startsWith("/palette?")) return { href: "/palette", label: "از روی نت" };
+  if (path === "/how") return { href: "/how", label: "روش پیشنهاد" };
   if (path.startsWith("/search")) return { href: path, label: "جستجو" };
 
   if (path.startsWith("/compare")) {

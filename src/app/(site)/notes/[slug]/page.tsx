@@ -96,6 +96,13 @@ function NoteScreen() {
             ) : null}
           </h1>
           <p className="mt-2 text-pretty text-body text-muted-foreground">{summary(visible.length, activeBrand, byLayer)}</p>
+          <Button
+            href={`/palette?n=${encodeURIComponent(name)}`}
+            variant="ghost"
+            className="mt-2 min-h-11 justify-start! px-0! font-medium"
+          >
+            این نت را در پالت بگذار
+          </Button>
           {hits.length > 0 ? (
             <Card className="mt-4 p-3">
               <div className="grid grid-cols-2 gap-2" role="group" aria-label="مدل نمایش">

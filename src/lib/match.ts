@@ -11,7 +11,7 @@ import {
 } from "@/lib/catalog";
 import { computeDna, type DnaProfile } from "@/lib/dna";
 import { inspirationIds } from "@/lib/inspiration";
-import { countWord } from "@/lib/format";
+import { countWord, joinFa } from "@/lib/format";
 import { remindsOfFor } from "@/lib/reminds-of";
 import type { Perfume, Profile, UserPerfume } from "@/lib/types";
 
@@ -151,6 +151,13 @@ function scorePerfume(perfume: Perfume, profile: Profile, dna: DnaProfile) {
     score += share > 0 ? Math.round(share * 6) : -1;
   }
 
+  const wantedAccords = profile.accords ?? [];
+  if (wantedAccords.length > 0) {
+    const names = new Set(perfume.accords.map((accord) => accord.name));
+    const hits = wantedAccords.filter((name) => names.has(name)).length;
+    score += hits > 0 ? hits * 3 : -2;
+  }
+
   if (dna.stage === "early" || dna.stage === "dna") {
     for (const family of dna.all) {
       score += Math.round(leaningShare(perfume, family.id) * family.affinity * 4);
@@ -177,7 +184,8 @@ export function resultHeading(profile: Profile, count: number) {
   const ref = referenceLabel(profile.reference);
   const prefix = ref && profile.reference !== "none" ? `نزدیک به ${ref}، ` : "";
   const place = occasions ? ` برای ${occasions}` : "";
-  return `${prefix}${countWord(count)} عطر${place}${season}`;
+  const accords = profile.accords?.length ? ` با ${joinFa(profile.accords)}` : "";
+  return `${prefix}${countWord(count)} عطر${place}${season}${accords}`;
 }
 
 function shownPrice(perfume: Perfume) {

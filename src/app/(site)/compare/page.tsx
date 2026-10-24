@@ -23,6 +23,7 @@ import {
 import { cn, faNum, millionToman } from "@/lib/format";
 import { inspirationIds } from "@/lib/inspiration";
 import { perfumeHref } from "@/lib/nav";
+import { offerAvailability, offerStockLine } from "@/lib/offer-stock";
 import { getReference } from "@/lib/references";
 import { useAroma } from "@/lib/store";
 import type { Perfume } from "@/lib/types";
@@ -79,13 +80,19 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
   const scent = useMemo(() => diffLine(left, right), [left, right]);
   const fromPath = `/compare?a=${left.slug}&b=${right.slug}`;
 
+  const verdictTitle =
+    verdict.kind === "clear" ? "حکم کوتاه" : verdict.kind === "tradeoff" ? "بسته به اولویتت" : "نزدیک به هم";
+
   return (
     <div className="vf app px-4 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
       <h1 className="px-1 text-balance text-headline font-bold">
         {left.nameFa} یا {right.nameFa}؟
       </h1>
 
-      <Alert className="mt-3">{verdict.body}</Alert>
+      <Card className="mt-3 border-primary/30 bg-secondary/40 p-4">
+        <p className="text-label font-medium text-muted-foreground">{verdictTitle}</p>
+        <p className="mt-2 text-pretty text-body font-semibold">{verdict.body}</p>
+      </Card>
       {scent ? <p className="mt-3 px-1 text-pretty text-body text-muted-foreground">{scent}</p> : null}
 
       <div className="mt-5 grid grid-cols-2 gap-3">
@@ -99,12 +106,32 @@ function CompareBody({ left, right }: { left: Perfume; right: Perfume }) {
                 href={href}
                 className="block p-4 outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
               >
+                {lean ? (
+                  <span className="mb-2 block text-label font-medium text-primary">برای این معیارها جلوتر</span>
+                ) : null}
                 <span className="block text-title font-semibold">{perfume.nameFa}</span>
                 <span className="mt-1 block text-label text-muted-foreground">{perfume.brand}</span>
                 <span className="mt-3 block">
                   <AccordMark accords={perfume.accords} />
                 </span>
-                <span className="mt-3 block text-body font-semibold">{offer ? millionToman(offer.price) : "—"}</span>
+                <span className="mt-3 block text-body font-semibold">
+                  {offer ? millionToman(offer.price) : "قیمت تأییدشده نیست"}
+                </span>
+                {offer ? (
+                  <span className="mt-1 flex items-start gap-2 text-label text-muted-foreground">
+                    <span
+                      aria-hidden="true"
+                      className={cn(
+                        "mt-1.5 size-2 shrink-0 rounded-full",
+                        offerAvailability(offer) === "in_stock" && "bg-stock-ok",
+                        offerAvailability(offer) !== "in_stock" && "bg-stock-pending",
+                      )}
+                    />
+                    <span className="min-w-0 text-pretty">
+                      {offer.shop}، {offerStockLine(offer)}
+                    </span>
+                  </span>
+                ) : null}
               </Link>
             </Card>
           );

@@ -17,6 +17,7 @@ import { useAroma } from "@/lib/store";
 
 const CHIPS = [
   { label: "ساواج", insert: "ساواج" },
+  { label: "شبیه ساواج ارزان‌تر", insert: "شبیه ساواج ارزان‌تر" },
   { label: "محل کار", insert: "محل کار" },
   { label: "پاییزی", insert: "پاییزی" },
   { label: "زیر ۳ میلیون", insert: "زیر ۳ میلیون" },
@@ -53,7 +54,8 @@ export default function HomePage() {
     if (intent.type === "perfume") {
       const query = new URLSearchParams();
       query.set("from", "/");
-      if (intent.similar) query.set("focus", "similar");
+      if (intent.cheaper) query.set("focus", "cheaper");
+      else if (intent.similar) query.set("focus", "similar");
       if (intent.occasion) query.set("occasion", intent.occasion);
       if (intent.season) query.set("season", intent.season);
       router.push(`/perfume/${intent.slug}?${query}`);
@@ -145,6 +147,27 @@ export default function HomePage() {
             className="min-h-11 w-full justify-start! whitespace-normal! px-0! text-start font-medium"
           >
             نمی‌دونی از کجا شروع کنی؟ با ۴ سؤال شروع کن
+          </Button>
+          <Button
+            href="/browse"
+            variant="ghost"
+            className="min-h-11 w-full justify-start! whitespace-normal! px-0! text-start font-medium"
+          >
+            با فیلتر بگرد: فصل، موقعیت، بودجه
+          </Button>
+          <Button
+            href="/palette"
+            variant="ghost"
+            className="min-h-11 w-full justify-start! whitespace-normal! px-0! text-start font-medium"
+          >
+            از روی نت بساز
+          </Button>
+          <Button
+            href="/how"
+            variant="ghost"
+            className="min-h-11 w-full justify-start! whitespace-normal! px-0! text-start font-medium text-muted-foreground"
+          >
+            آروما چطور پیشنهاد می‌دهد؟
           </Button>
         </div>
 

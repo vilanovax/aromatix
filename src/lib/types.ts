@@ -91,6 +91,8 @@ export type Profile = {
   reference: string | null;
   shift: Shift;
   leaning?: Leaning | "any" | null;
+  /** حداکثر دو آکورد از فیلتر سبک. */
+  accords?: string[];
   note: string | null;
 };
 
