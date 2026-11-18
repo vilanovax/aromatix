@@ -6,7 +6,7 @@ import { displayPhone } from "@/lib/auth/phone";
 import { faNum } from "@/lib/format";
 import { db } from "@/prisma/db";
 
-export const metadata: Metadata = { title: "کاربران · مدیریت آروما" };
+export const metadata: Metadata = { title: "کاربران · مدیریت سنتیا" };
 
 export default async function UsersPage() {
   const admin = await guardSection("users");

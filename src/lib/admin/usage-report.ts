@@ -7,7 +7,7 @@ import { db } from "@/prisma/db";
 const SECTION_LABELS: Record<string, string> = {
   "/": "خانه",
   "/results": "پیشنهادها",
-  "/shelf": "آرومای من",
+  "/shelf": "سنتیای من",
   "/brands": "برندها",
   "/learn": "دانستنی‌ها",
   "/guide": "راهنما",

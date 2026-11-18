@@ -7,7 +7,7 @@ import { faNum } from "@/lib/format";
 import { reportStatusLabel, type ReportStatusId } from "@/lib/reports";
 import { db } from "@/prisma/db";
 
-export const metadata: Metadata = { title: "گزارش‌های عطر · مدیریت آروما" };
+export const metadata: Metadata = { title: "گزارش‌های عطر · مدیریت سنتیا" };
 
 const FILTERS: Array<{ id: ReportStatusId | "all"; label: string }> = [
   { id: "open", label: "باز" },

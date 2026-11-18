@@ -10,7 +10,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { id } = await params;
   const reference = getReference(decodeURIComponent(id));
-  if (!reference) return pageMeta("خانوادهٔ بو", "این خانواده در آروما نیست.");
+  if (!reference) return pageMeta("خانوادهٔ بو", "این خانواده در سنتیا نیست.");
   const aka = reference.aliases.filter((alias) => alias !== reference.nameFa).slice(0, 4);
   const extra = aka.length > 0 ? ` نام‌های دیگر: ${joinFa(aka)}.` : "";
   return pageMeta(reference.nameFa, `${reference.line} ${reference.why}${extra}`);

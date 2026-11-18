@@ -4,7 +4,7 @@ import { BrandEditor } from "@/app/admin/brand-editor";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "ویرایش برند · مدیریت آروما" };
+export const metadata: Metadata = { title: "ویرایش برند · مدیریت سنتیا" };
 
 export default async function EditBrandPage({ params }: { params: Promise<{ slug: string }> }) {
   await guardSection("brands");

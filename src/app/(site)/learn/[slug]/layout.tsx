@@ -12,7 +12,7 @@ export async function generateMetadata({
   await loadArticles();
   const { slug } = await params;
   const entry = getEntry(decodeURIComponent(slug));
-  if (!entry) return pageMeta("دانستنی", "این نوشته در آروما نیست.");
+  if (!entry) return pageMeta("دانستنی", "این نوشته در سنتیا نیست.");
   const aka = entry.aliases.slice(0, 3);
   const extra = aka.length > 0 ? ` واژه‌های مرتبط: ${joinFa(aka)}.` : "";
   return pageMeta(entry.title, `${entry.summary}${extra}`);

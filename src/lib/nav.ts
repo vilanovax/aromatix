@@ -29,7 +29,7 @@ export function resolvePerfumeBack(from: string | null): { href: string; label: 
 
   if (path === "/" || path === "home") return { href: "/", label: "خانه" };
   if (path === "/results" || path === "results") return fallback;
-  if (path === "/shelf" || path === "shelf") return { href: "/shelf", label: "آرومای من" };
+  if (path === "/shelf" || path === "shelf") return { href: "/shelf", label: "سنتیای من" };
   if (path === "/brands" || path === "brands") return { href: "/brands", label: "برندها" };
   if (path === "/learn" || path === "learn") return { href: "/learn", label: "دانستنی‌ها" };
   if (path === "/guide") return { href: "/guide", label: "راهنما" };

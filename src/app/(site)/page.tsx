@@ -167,7 +167,7 @@ export default function HomePage() {
             variant="ghost"
             className="min-h-11 w-full justify-start! whitespace-normal! px-0! text-start font-medium text-muted-foreground"
           >
-            آروما چطور پیشنهاد می‌دهد؟
+            سنتیا چطور پیشنهاد می‌دهد؟
           </Button>
         </div>
 

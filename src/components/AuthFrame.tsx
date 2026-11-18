@@ -19,7 +19,7 @@ export function AuthFrame({
             <div className="grid size-20 place-items-center rounded-surface bg-card shadow-surface ring-1 ring-border">
               <Image src="/brand/mark-192.png" alt="" width={134} height={192} priority className="h-12 w-auto" />
             </div>
-            <p className="mt-3 text-title font-bold text-foreground">آروما</p>
+            <p className="mt-3 text-title font-bold text-foreground">سنتیا</p>
             <span className="mt-2 h-1 w-10 rounded-full bg-brand" aria-hidden />
             <h1 className="mt-3 text-balance text-display font-bold">{title}</h1>
             <p className="mt-2 text-pretty text-body text-muted-foreground">{lede}</p>

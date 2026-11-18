@@ -74,7 +74,7 @@ export function AdminShell({
         <Button type="button" variant="outline" size="sm" aria-expanded={open} aria-controls="admin-menu" onClick={() => setOpen(true)}>
           منو
         </Button>
-        <p className="min-w-0 flex-1 truncate text-sm font-semibold">آروما</p>
+        <p className="min-w-0 flex-1 truncate text-sm font-semibold">سنتیا</p>
         <Button type="button" variant="ghost" size="sm" onClick={logout}>
           خروج
         </Button>
@@ -131,7 +131,7 @@ function Menu({
       className={className}
       header={
         <div>
-          <p className="text-xs text-brand">آروما</p>
+          <p className="text-xs text-brand">سنتیا</p>
           <p className="text-base font-semibold">مدیریت</p>
         </div>
       }

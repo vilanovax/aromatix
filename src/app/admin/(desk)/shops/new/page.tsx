@@ -4,7 +4,7 @@ import { ShopEditor } from "@/app/admin/shop-editor";
 import { catalogStoreStatus } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "فروشگاه جدید · مدیریت آروما" };
+export const metadata: Metadata = { title: "فروشگاه جدید · مدیریت سنتیا" };
 
 export default async function NewShopPage() {
   await guardSection("shops");

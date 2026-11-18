@@ -4,13 +4,13 @@ import "./globals.css";
 import { vazirmatn } from "./fonts";
 
 export const metadata: Metadata = {
-  title: "آروما",
+  title: "سنتیا",
   description: "از یک جملهٔ فارسی تا عطری که در ایران قابل خرید است: سلیقه، مقایسه و قیمت فروشگاه.",
-  applicationName: "آروما",
+  applicationName: "سنتیا",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    title: "آروما",
+    title: "سنتیا",
     statusBarStyle: "default",
   },
 };

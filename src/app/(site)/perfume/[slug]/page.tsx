@@ -301,7 +301,7 @@ function PerfumeScreen() {
               این عطر چطوره؟
             </h2>
             <p className="mt-1 text-pretty text-label text-muted-foreground">
-              برای آرومای من و پیشنهاد بعدی نگه می‌داریم.
+              برای سنتیای من و پیشنهاد بعدی نگه می‌داریم.
             </p>
             <Card className="mt-3 p-2">
               <TasteRow slug={perfume.slug} name={perfume.nameFa} />

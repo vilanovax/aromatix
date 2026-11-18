@@ -79,11 +79,11 @@ export function Shell({
           {brand ? (
             <Link
               href="/"
-              aria-label="خانهٔ آروما"
+              aria-label="خانهٔ سنتیا"
               className="flex min-h-11 items-center gap-2 rounded-full px-2.5 text-title font-bold text-foreground outline-offset-2 transition-colors hover:bg-secondary focus-visible:outline-2 focus-visible:outline-ring"
             >
               <Image src="/brand/mark-192.png" alt="" width={134} height={192} priority className="h-7 w-auto" />
-              <span>آروما</span>
+              <span>سنتیا</span>
             </Link>
           ) : (
             <div />

@@ -52,7 +52,7 @@ function NoteScreen() {
         <EmptyState
           className="vf app mx-5 my-10"
           icon={Leaf}
-          title="این نت در آروما نیست"
+          title="این نت در سنتیا نیست"
           description="از هرم بوی یک عطر، نت را باز کن."
         />
       </Shell>
@@ -320,7 +320,7 @@ function summary(count: number, brand: string, byLayer: boolean) {
 }
 
 function lead(count: number, brand: string) {
-  if (count === 0) return brand ? `از ${brand} عطری با این نت نیست.` : "در نمونه‌های آروما شیشه‌ای با این نت ثبت نشده.";
+  if (count === 0) return brand ? `از ${brand} عطری با این نت نیست.` : "در نمونه‌های سنتیا شیشه‌ای با این نت ثبت نشده.";
   if (count === 1) return brand ? `یک عطر از ${brand} این نت را دارد.` : "یک عطر این نت را دارد.";
   return brand ? `${countWord(count)} عطر از ${brand} این نت را دارند.` : `${countWord(count)} عطر این نت را دارند.`;
 }

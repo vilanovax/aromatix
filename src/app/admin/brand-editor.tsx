@@ -191,7 +191,7 @@ export function BrandEditor({
             maxLength={DESCRIPTION_MAX}
             rows={4}
             onChange={(event) => setDescription(event.target.value)}
-            placeholder="این برند در آروما چه جور عطری دارد و کی به کار می‌آید."
+            placeholder="این برند در سنتیا چه جور عطری دارد و کی به کار می‌آید."
           />
         </Field>
       </Card>

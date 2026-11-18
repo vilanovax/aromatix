@@ -15,25 +15,25 @@
     "catalog:update-images": "python3 scripts/update-perfume-images.py"
   },
   "dependencies": {
-    "@prisma/orm-postgres": "^8.0.0-rc.17",
+    "@prisma/orm-postgres": "8.0.0-rc.17",
     "bcryptjs": "^3.0.3",
-    "dotenv": "^18.0.7",
-    "lucide-react": "^1.56.0",
-    "next": "^16.4.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "dotenv": "^18.0.10",
+    "lucide-react": "^1.75.0",
+    "next": "^16.4.6",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "server-only": "^0.0.1",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@prisma/cli-engine": "^0.7.0",
-    "@tailwindcss/postcss": "^4",
+    "@prisma/cli-engine": "0.7.0",
+    "@tailwindcss/postcss": "^4.3.5",
     "@types/bcryptjs": "^2.4.6",
     "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "prisma": "^8.0.0-rc.22",
-    "tailwindcss": "^4",
+    "prisma": "8.0.0-rc.22",
+    "tailwindcss": "^4.3.5",
     "tsx": "^4.23.15",
     "typescript": "^5"
   }

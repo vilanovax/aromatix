@@ -6,7 +6,7 @@ import { allBrands, allPerfumes } from "@/lib/catalog";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "عطر جدید · مدیریت آروما" };
+export const metadata: Metadata = { title: "عطر جدید · مدیریت سنتیا" };
 
 export default async function NewPerfumePage() {
   await guardSection("perfumes");

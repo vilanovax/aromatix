@@ -12,7 +12,7 @@ export async function generateMetadata({
   await loadCatalog();
   const { slug } = await params;
   const brand = getBrand(decodeURIComponent(slug));
-  if (!brand?.active) return pageMeta("برند", "این برند در آروما نیست.");
+  if (!brand?.active) return pageMeta("برند", "این برند در سنتیا نیست.");
   const count = perfumesByBrand(brand.nameFa).length;
   return pageMeta(brand.nameFa, `${brand.description} ${faNum(count)} عطر در این فهرست.`);
 }

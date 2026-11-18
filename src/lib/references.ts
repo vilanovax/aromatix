@@ -641,7 +641,7 @@ export function echoesFor(perfume: { slug: string; inspiredBy?: string | string[
 
 export function findReference(input: string) {
   const haystack = ` ${normalizeAsk(input)} `;
-  const names = REFERENCES.flatMap((reference) =>
+  const names = ALL_REFERENCES.flatMap((reference) =>
     reference.aliases.map((alias) => ({ alias: normalizeAsk(alias), reference })),
   ).sort((a, b) => b.alias.length - a.alias.length);
 

@@ -12,7 +12,7 @@ import { guardSection } from "@/lib/auth/admin";
 import { fa } from "@/lib/utils";
 import { db } from "@/prisma/db";
 
-export const metadata: Metadata = { title: "نمای کلی · مدیریت آروما" };
+export const metadata: Metadata = { title: "نمای کلی · مدیریت سنتیا" };
 
 export default async function AdminHomePage() {
   await guardSection("overview");

@@ -7,7 +7,7 @@ import { loadCatalog } from "@/lib/catalog-server";
 import { faNum, millionToman } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "گزارش · مدیریت آروما" };
+export const metadata: Metadata = { title: "گزارش · مدیریت سنتیا" };
 
 type Search = { days?: string };
 

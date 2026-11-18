@@ -60,7 +60,7 @@ function CompareScreen() {
                 پیشنهادها
               </Button>
               <Button href="/shelf" variant="outline" className="min-h-11">
-                آرومای من
+                سنتیای من
               </Button>
             </div>
           }

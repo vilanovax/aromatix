@@ -47,7 +47,7 @@ export function AccountScreen() {
 
   if (!ready || !user) {
     return (
-      <Shell back={{ href: "/shelf", label: "آرومای من" }}>
+      <Shell back={{ href: "/shelf", label: "سنتیای من" }}>
         <div className="vf app px-5 pt-6" aria-hidden>
           <Card className="flex items-center gap-4 p-4">
             <Skeleton className="size-16 shrink-0 rounded-full" />
@@ -97,7 +97,7 @@ export function AccountScreen() {
   const dirty = name.trim() !== user.name || avatarId !== user.avatarId;
 
   return (
-    <Shell back={{ href: "/shelf", label: "آرومای من" }}>
+    <Shell back={{ href: "/shelf", label: "سنتیای من" }}>
       <div className="vf app px-5 pt-5 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         {welcome ? (
           <Alert className="mb-4">حسابت ساخته شد. آواتار و اسم را همین‌جا می‌توانی تنظیم کنی.</Alert>
@@ -174,7 +174,7 @@ export function AccountScreen() {
         </form>
 
         <Button href="/shelf" variant="outline" size="lg" className="mt-4 min-h-12 w-full">
-          برو به آرومای من
+          برو به سنتیای من
         </Button>
         <Button type="button" variant="ghost" className="mt-2 min-h-11 w-full" onClick={() => void logout()}>
           خروج از حساب

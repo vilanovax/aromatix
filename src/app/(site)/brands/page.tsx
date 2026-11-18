@@ -16,7 +16,7 @@ export default function BrandsIndexPage() {
     <Shell composer back={{ href: "/", label: "خانه" }}>
       <div className="vf app px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <h1 className="text-headline font-bold">برندها</h1>
-        <p className="mt-2 text-pretty text-body text-muted-foreground">عطرهای هر برند که در آروما بررسی شده‌اند.</p>
+        <p className="mt-2 text-pretty text-body text-muted-foreground">عطرهای هر برند که در سنتیا بررسی شده‌اند.</p>
 
         {list.length === 0 ? (
           <EmptyState className="mt-8" icon={Store} title="هنوز برندی در این نمونه نیست" />

@@ -72,7 +72,7 @@ export function Assistant({ quiet = false }: { quiet?: boolean }) {
           <Card className="sheet-panel mb-3 max-h-[38dvh] overflow-y-auto overscroll-contain !bg-secondary p-4" aria-live="polite">
             <div className="flex items-start justify-between gap-3">
               <p className="min-w-0 text-title font-semibold">
-                {reply.kind === "learn" || reply.kind === "compare" ? reply.title : "آروما"}
+                {reply.kind === "learn" || reply.kind === "compare" ? reply.title : "سنتیا"}
               </p>
               <Button variant="ghost" onClick={() => setReply(null)} className="min-h-11 shrink-0 px-3">
                 بستن

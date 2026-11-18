@@ -329,7 +329,7 @@ textarea {
   --backdrop: none;
   --spacing: 0.25rem;
 }
-/* روشن، همان میز و مرکب آروما. فقط وقتی از تنظیمات انتخاب شود. */
+/* روشن، همان میز و مرکب سنتیا. فقط وقتی از تنظیمات انتخاب شود. */
 html[data-admin-theme="light"] .vf {
   color-scheme: light;
   --background: #e9edee;
@@ -416,7 +416,7 @@ html[data-admin-theme="light"] .vf.app,
   --color-ring: var(--ring);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
-  /* شعاع‌های sm/md/lg سایت عمومی دست نمی‌خورند. عرض border-line هم مال رنگ خط خود آروماست. */
+  /* شعاع‌های sm/md/lg سایت عمومی دست نمی‌خورند. عرض border-line هم مال رنگ خط خود سنتیاست. */
   --radius-control: var(--shape-control);
   --radius-field: var(--shape-field);
   --radius-surface: var(--shape-surface);

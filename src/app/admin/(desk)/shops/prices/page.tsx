@@ -5,7 +5,7 @@ import { OfferDesk } from "@/app/admin/offer-desk";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "به‌روزرسانی قیمت · مدیریت آروما" };
+export const metadata: Metadata = { title: "به‌روزرسانی قیمت · مدیریت سنتیا" };
 
 export default async function ShopPricesPage({ searchParams }: { searchParams: Promise<{ shop?: string }> }) {
   await guardSection("shops");

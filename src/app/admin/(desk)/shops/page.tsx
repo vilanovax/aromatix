@@ -7,7 +7,7 @@ import { faNum } from "@/lib/format";
 import { offerMatchesShop } from "@/lib/offers";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "فروشگاه‌ها · مدیریت آروما" };
+export const metadata: Metadata = { title: "فروشگاه‌ها · مدیریت سنتیا" };
 
 export default async function ShopsPage() {
   await guardSection("shops");

@@ -66,7 +66,7 @@ function LayerScreen() {
   }
 
   return (
-    <Shell back={{ href: "/shelf", label: "آرومای من" }}>
+    <Shell back={{ href: "/shelf", label: "سنتیای من" }}>
       <div className="vf app px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <header>
           <h1 className="text-balance text-display font-bold">لایه‌کردن دو عطر</h1>

@@ -6,7 +6,7 @@ import { readBrandPins } from "@/lib/admin/brand-pins";
 import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "برندها · مدیریت آروما" };
+export const metadata: Metadata = { title: "برندها · مدیریت سنتیا" };
 
 export default async function BrandsPage() {
   await guardSection("brands");

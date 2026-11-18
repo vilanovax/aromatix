@@ -9,8 +9,12 @@ export type Suggestion = {
   id: string;
   kind: "perfume" | "reference" | "learn" | "search" | "brand";
   title: string;
+  /** نام لاتین، وقتی با عنوان فارسی یکی نیست. */
+  latin?: string;
   support?: string;
   query: string;
+  /** مقصد مستقیم ردیف؛ جستجوی آزاد href ندارد. */
+  href?: string;
   hint?: "did-you-mean";
   perfume?: Perfume;
 };
@@ -29,8 +33,10 @@ export function suggestQueries(raw: string): Suggestion[] {
       id: `brand-${brand.slug}`,
       kind: "brand",
       title: brand.nameFa,
-      support: `${brand.nameEn} · ${faNum(catalog.length)} عطر`,
+      latin: brand.nameEn,
+      support: `${faNum(catalog.length)} عطر`,
       query: brand.nameFa,
+      href: `/brands/${brand.slug}`,
     });
     for (const perfume of catalog) {
       items.push(perfumeSuggestion(perfume));
@@ -44,8 +50,10 @@ export function suggestQueries(raw: string): Suggestion[] {
       id: `ref-${correction.id}`,
       kind: "reference",
       title: `منظورت ${correction.nameFa} بود؟`,
+      latin: correction.nameEn,
       support: "حال‌وهوای خانواده",
       query: correction.nameFa,
+      href: `/reference/${correction.id}?from=${encodeURIComponent("/")}`,
       hint: "did-you-mean",
     });
     seen.add(correction.id);
@@ -74,6 +82,7 @@ export function suggestQueries(raw: string): Suggestion[] {
       title: entry.ask,
       support: "واژه",
       query: entry.aliases[0] ?? entry.ask,
+      href: `/learn/${entry.slug}`,
     });
   }
 
@@ -95,8 +104,10 @@ function perfumeSuggestion(perfume: Perfume): Suggestion {
     id: `perfume-${perfume.slug}`,
     kind: "perfume",
     title: perfume.nameFa,
+    latin: perfume.nameEn,
     support: perfumeLine(perfume),
     query: perfume.nameFa,
+    href: `/perfume/${perfume.slug}?from=${encodeURIComponent("/")}`,
     perfume,
   };
 }
@@ -115,8 +126,10 @@ function referenceSuggestion(reference: ReferenceProfile): Suggestion {
     id: `ref-${reference.id}`,
     kind: "reference",
     title: reference.nameFa,
+    latin: reference.nameEn,
     support: reference.line,
     query: reference.nameFa,
+    href: `/reference/${reference.id}?from=${encodeURIComponent("/")}`,
   };
 }
 

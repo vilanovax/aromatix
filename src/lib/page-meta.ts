@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const SITE = "آروما";
+const SITE = "سنتیا";
 
 export function pageMeta(title: string, description: string): Metadata {
   const full = `${title} · ${SITE}`;

@@ -549,7 +549,7 @@ const seedBrands: Brand[] = [
     slug: "lattafa",
     nameFa: "لطافه",
     nameEn: "Lattafa",
-    description: "برند اماراتی با عطرهای گرم و شیرین. در آروما بیشتر برای شب، قرار و هوای معتدل بررسی شده.",
+    description: "برند اماراتی با عطرهای گرم و شیرین. در سنتیا بیشتر برای شب، قرار و هوای معتدل بررسی شده.",
     logo: "",
     website: "",
     instagram: "",

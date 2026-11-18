@@ -5,7 +5,7 @@ import { ArticleEditor } from "@/app/admin/article-editor";
 import { loadArticleDesk } from "@/lib/knowledge-server";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "مقاله جدید · مدیریت آروما" };
+export const metadata: Metadata = { title: "مقاله جدید · مدیریت سنتیا" };
 
 export default async function NewArticlePage() {
   await guardSection("learn");

@@ -8,7 +8,7 @@ import { leadOffer } from "@/lib/catalog";
 import { faNum, millionToman } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "عطرها · مدیریت آروما" };
+export const metadata: Metadata = { title: "عطرها · مدیریت سنتیا" };
 
 export default async function PerfumesPage({ searchParams }: { searchParams: Promise<{ brand?: string }> }) {
   await guardSection("perfumes");

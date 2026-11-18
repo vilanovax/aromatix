@@ -49,7 +49,7 @@ export default function ShelfPage() {
   return (
     <Shell back={{ href: "/", label: "شروع" }}>
       <div className="vf app step-in px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
-        <h1 className="text-headline font-bold">آرومای من</h1>
+        <h1 className="text-headline font-bold">سنتیای من</h1>
         <p className="mt-2 text-pretty text-body text-muted-foreground">سلیقه و مجموعه‌ات روی همین دستگاه.</p>
         <AccountStrip />
         {ready ? (

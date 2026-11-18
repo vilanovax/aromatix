@@ -19,7 +19,7 @@ export function AccountStrip() {
     return (
       <Card className="mt-5 flex items-center justify-between gap-3 p-4">
         <div className="min-w-0">
-          <p className="text-title font-semibold">حساب آروما</p>
+          <p className="text-title font-semibold">حساب سنتیا</p>
           <p className="text-label text-muted-foreground">اسم و آواتار، با شمارهٔ موبایل</p>
         </div>
         <Button href="/login" className="min-h-11 shrink-0">

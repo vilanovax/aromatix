@@ -7,7 +7,7 @@ import { articleViewCounts, loadArticleDesk } from "@/lib/knowledge-server";
 import { faNum } from "@/lib/format";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "دانستنی‌ها · مدیریت آروما" };
+export const metadata: Metadata = { title: "دانستنی‌ها · مدیریت سنتیا" };
 
 export default async function LearnAdminPage() {
   await guardSection("learn");

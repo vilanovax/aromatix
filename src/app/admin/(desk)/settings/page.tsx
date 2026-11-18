@@ -6,7 +6,7 @@ import { parseAccess } from "@/lib/auth/sections";
 import { readBudgetMillions } from "@/lib/catalog-server";
 import { db } from "@/prisma/db";
 
-export const metadata: Metadata = { title: "تنظیمات · مدیریت آروما" };
+export const metadata: Metadata = { title: "تنظیمات · مدیریت سنتیا" };
 
 export default async function SettingsPage() {
   const admin = await guardSection("settings");

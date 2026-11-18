@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { AccountScreen } from "@/app/(site)/account/account-screen";
 
-export const metadata: Metadata = { title: "حساب · آروما" };
+export const metadata: Metadata = { title: "حساب · سنتیا" };
 
 export default function AccountPage() {
   return (

@@ -14,7 +14,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const perfume = getPerfume(decodeURIComponent(slug));
   if (!isPublicPerfume(perfume) || !perfume) {
-    return pageMeta("عطر", "این عطر در کاتالوگ آروما نیست.");
+    return pageMeta("عطر", "این عطر در کاتالوگ سنتیا نیست.");
   }
   const aliases = (perfume.aliases ?? []).filter(Boolean).slice(0, 4);
   const aka = aliases.length > 0 ? ` نام‌های دیگر: ${joinFa(aliases)}.` : "";

@@ -76,7 +76,7 @@ function BrandScreen() {
               <p className="mt-1 text-label text-muted-foreground">
                 <bdi dir="ltr">{brand.nameEn}</bdi>
               </p>
-              <p className="mt-2 text-body text-muted-foreground">{countWord(catalog.length)} عطر در آروما</p>
+              <p className="mt-2 text-body text-muted-foreground">{countWord(catalog.length)} عطر در سنتیا</p>
             </div>
           </div>
           {brand.description ? <p className="mt-4 text-pretty text-body">{brand.description}</p> : null}

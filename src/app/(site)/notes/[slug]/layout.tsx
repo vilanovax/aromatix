@@ -15,13 +15,13 @@ export async function generateMetadata({
   const name = noteNameFromSlug(slug);
   const hits = name ? perfumesWithNote(name) : [];
   if (!name || hits.length === 0) {
-    return pageMeta("نت عطر", "این نت در کاتالوگ آروما نیست.");
+    return pageMeta("نت عطر", "این نت در کاتالوگ سنتیا نیست.");
   }
   const english = noteEnglish(name);
   const aka = english ? ` به انگلیسی ${english}.` : "";
   return pageMeta(
     `نت ${name}`,
-    `${faNum(hits.length)} عطر در آروما این نت را دارند.${aka} قیمت‌ها از فروشگاه‌های ایران.`,
+    `${faNum(hits.length)} عطر در سنتیا این نت را دارند.${aka} قیمت‌ها از فروشگاه‌های ایران.`,
   );
 }
 

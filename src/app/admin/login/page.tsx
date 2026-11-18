@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/card";
 import { requireAdmin } from "@/lib/auth/admin";
 import { firstSectionHref } from "@/lib/auth/sections";
 
-export const metadata: Metadata = { title: "ورود مدیریت · آروما" };
+export const metadata: Metadata = { title: "ورود مدیریت · سنتیا" };
 
 export default async function AdminLoginPage() {
   const admin = await requireAdmin().catch(() => null);
@@ -15,7 +15,7 @@ export default async function AdminLoginPage() {
   return (
     <main className="vf grid min-h-dvh place-items-center bg-background px-4 py-10 text-foreground">
       <div className="w-full max-w-sm">
-        <h1 className="text-headline font-bold">مدیریت آروما</h1>
+        <h1 className="text-headline font-bold">مدیریت سنتیا</h1>
         <p className="mt-2 text-pretty text-body text-muted-foreground">فقط حساب مدیر وارد می‌شود.</p>
         <Card className="mt-6 p-5">
           <AdminLoginForm />

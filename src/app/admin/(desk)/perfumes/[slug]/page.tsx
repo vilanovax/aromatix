@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const { slug } = await params;
   await loadCatalog();
   const perfume = getPerfume(slug);
-  return { title: perfume ? `${perfume.nameFa} · مدیریت آروما` : "عطر · مدیریت آروما" };
+  return { title: perfume ? `${perfume.nameFa} · مدیریت سنتیا` : "عطر · مدیریت سنتیا" };
 }
 
 export default async function EditPerfumePage({ params }: { params: Promise<Params> }) {

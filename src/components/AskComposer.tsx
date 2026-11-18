@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useState } from "react";
+import Link from "next/link";
 import { BookOpen, Search, Store } from "lucide-react";
 import { PerfumePhoto } from "@/components/Bottle";
 import { Button } from "@/components/ui/button";
@@ -92,7 +93,7 @@ export function AskComposer({
 
       {groups.length > 0 ? (
         <div
-          className="scroll-quiet mt-2 max-h-[min(28rem,60dvh)] overflow-y-auto rounded-surface border border-border bg-card"
+          className="scroll-quiet mt-2 max-h-[min(28rem,60dvh)] overflow-x-clip overflow-y-auto rounded-surface border border-border bg-card"
           aria-label="پیشنهادها"
         >
           {groups.map((group) => (
@@ -101,19 +102,7 @@ export function AskComposer({
               <ul>
                 {group.items.map((item) => (
                   <li key={item.id}>
-                    <button
-                      type="button"
-                      onClick={() => onAsk(item.query)}
-                      className="flex min-h-11 w-full items-center gap-3 rounded-control px-2 py-1 text-start outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring"
-                    >
-                      <SuggestionMark item={item} />
-                      <span className="min-w-0 flex-1">
-                        <span className="block text-body">{item.title}</span>
-                        {item.support ? (
-                          <span className="mt-1 block text-pretty text-label text-muted-foreground">{item.support}</span>
-                        ) : null}
-                      </span>
-                    </button>
+                    <SuggestionRow item={item} onAsk={onAsk} />
                   </li>
                 ))}
               </ul>
@@ -123,6 +112,50 @@ export function AskComposer({
       ) : null}
     </form>
   );
+}
+
+const rowClass =
+  "flex min-h-11 w-full items-center gap-3 rounded-control px-2 py-2 text-start outline-offset-2 focus-visible:outline-2 focus-visible:outline-ring";
+
+function SuggestionRow({ item, onAsk }: { item: Suggestion; onAsk: (value: string) => void }) {
+  const latin = latinName(item);
+  const body = (
+    <>
+      <SuggestionMark item={item} />
+      <span className="min-w-0 flex-1">
+        <span className="block whitespace-normal break-words text-body text-foreground">{item.title}</span>
+        {latin ? (
+          <span dir="ltr" className="mt-1 block whitespace-normal break-words text-end text-label text-foreground">
+            {latin}
+          </span>
+        ) : null}
+        {item.support ? (
+          <span className="mt-1 block whitespace-normal text-pretty text-label text-muted-foreground">{item.support}</span>
+        ) : null}
+      </span>
+    </>
+  );
+
+  if (item.href) {
+    return (
+      <Link href={item.href} className={rowClass}>
+        {body}
+      </Link>
+    );
+  }
+
+  return (
+    <button type="button" onClick={() => onAsk(item.query)} className={rowClass}>
+      {body}
+    </button>
+  );
+}
+
+function latinName(item: Suggestion) {
+  const latin = item.latin?.trim() ?? "";
+  if (!latin) return "";
+  if (latin.toLowerCase() === item.title.trim().toLowerCase()) return "";
+  return latin;
 }
 
 function SuggestionMark({ item }: { item: Suggestion }) {

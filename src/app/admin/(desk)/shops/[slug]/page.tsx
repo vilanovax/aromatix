@@ -5,7 +5,7 @@ import { catalogStoreStatus, loadCatalog } from "@/lib/catalog-server";
 import { offerMatchesShop } from "@/lib/offers";
 import { guardSection } from "@/lib/auth/admin";
 
-export const metadata: Metadata = { title: "ویرایش فروشگاه · مدیریت آروما" };
+export const metadata: Metadata = { title: "ویرایش فروشگاه · مدیریت سنتیا" };
 
 export default async function EditShopPage({ params }: { params: Promise<{ slug: string }> }) {
   await guardSection("shops");

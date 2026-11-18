@@ -6,14 +6,14 @@ import { Separator } from "@/components/ui/separator";
 import { pageMeta } from "@/lib/page-meta";
 
 export const metadata = pageMeta(
-  "آروما چطور پیشنهاد می‌دهد",
-  "پیشنهاد آروما از سؤال یا قفسهٔ سلیقه می‌آید و قیمت را از فروشگاه‌های ایران نشان می‌دهد، بدون رأی ساختگی.",
+  "سنتیا چطور پیشنهاد می‌دهد",
+  "پیشنهاد سنتیا از سؤال یا قفسهٔ سلیقه می‌آید و قیمت را از فروشگاه‌های ایران نشان می‌دهد، بدون رأی ساختگی.",
 );
 
 const STEPS = [
   {
     title: "از سؤال یا قفسه شروع می‌کنیم",
-    body: "اسم یک عطر، موقعیت و بودجه، یا امتیازهایی که در آرومای من دادی را می‌خوانیم.",
+    body: "اسم یک عطر، موقعیت و بودجه، یا امتیازهایی که در سنتیای من دادی را می‌خوانیم.",
   },
   {
     title: "پیشنهاد را با حال‌وهوای بو می‌چینیم",
@@ -36,7 +36,7 @@ export default function HowPage() {
     <Shell back={{ href: "/", label: "خانه" }}>
       <article className="vf app px-5 pt-6 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
         <header>
-          <h1 className="text-balance text-display font-bold">آروما چطور پیشنهاد می‌دهد؟</h1>
+          <h1 className="text-balance text-display font-bold">سنتیا چطور پیشنهاد می‌دهد؟</h1>
           <p className="mt-3 text-pretty text-body text-muted-foreground">
             هدف ساده است: از یک جملهٔ فارسی برسی به شیشه‌ای که در ایران قابل خرید باشد و به سلیقه‌ات نزدیک
             باشد.
